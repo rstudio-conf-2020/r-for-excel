@@ -35,7 +35,11 @@ Attendees will learn tools for integrating R into their existing data analysis w
 
 ## Is this course for me?
 
-THREE_QUESTIONS
+This workshop will be appropriate for attendees who answer yes to these questions:
+
+Are you an Excel user who wants to expand your data analysis toolset with R?
+Do you want to bridge analyses between Excel and R, whether working independently or to more easily collaborate with others who use Excel or R? 
+Are you new to data analysis, and looking for a good place to get started?
 
 ## Prework
 

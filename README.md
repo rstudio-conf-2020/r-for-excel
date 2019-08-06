@@ -1,4 +1,4 @@
-WORKSHOP_TITLE
+R for Excel Users
 ================
 
 ### rstudio::conf 2020

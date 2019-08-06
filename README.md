@@ -31,7 +31,7 @@ Microsoft Excel is a widely used and powerful tool for working with data. As aut
 
 ## Learning objectives
 
-LEARNING_OBJECTIVES
+Attendees will learn tools for integrating R into their existing data analysis workflow in Excel. Upon completing the workshop, participants will have learned the basics of working with data in R/RStudio, and will have experience interfacing between in Excel and R individually and as collaborators.
 
 ## Is this course for me?
 

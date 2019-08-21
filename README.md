@@ -7,12 +7,9 @@ by Julia Lowndes and Allison Horst
 
 -----
 
-INSTRUCTIONS FOR INSTRUCTORS: Please insert information about your
-workshop below. Then, add workshop content in the materials folder and
-link to each session’s materials from the schedule below. You are
-welcomed to add more rows to the schedule. We just ask that you take
-breaks at the specified times. Once you are done adding information, you
-can remove these instructions from the README.
+**Welcome!** 
+
+We will be updating this page as we prepare for the workshop. 
 
 -----
 
@@ -43,10 +40,13 @@ Are you new to data analysis, and looking for a good place to get started?
 
 ## Prework
 
+*Coming soon*
+<!---
 \[ADD INFORMATION YOU WANT LEARNERS TO HAVE / STEPS THEY WANT THEM TO
 COMPLETE PRIOR TO THE WORKSHOP. THIS COULD BE A LINK TO A THREAD ON
 RSTUDIO COMMUNITY, PACKAGE INSTALL INSTRUCTIONS, HOW TO GET AN
 RSTUDIO.CLOUD ACCOUNT, ETC.\]
+--->
 
 ## Schedule
 
@@ -60,9 +60,12 @@ RSTUDIO.CLOUD ACCOUNT, ETC.\]
 | 15:00 - 15:30 | *Coffee break*   |
 | 15:30 - 17:00 | Session 4        |
 
-## Instructor
+## Instructors
 
-\[ADD INSTRUCTOR BIO\]
+**Julia Stewart Lowndes PhD** is a marine ecologist, data scientist, and Mozilla Fellow at the National Center for Ecological Analysis and Synthesis (NCEAS). As founding director of Openscapes and science program lead of the Ocean Health Index, she empowers scientists with data science and open practices. She also leads trainings as a co-founder of Eco-Data-Science, R-Ladies Santa Barbara, and as an instructor with The Carpentries. She earned her PhD at Stanford University in 2012 studying drivers and impacts of Humboldt squid in a changing climate. Web: [jules32.github.io](http://jules32.github.io). GitHub: [@jules32](https://github.com/jules32). Twitter: [@juliesquid](https://twitter.com/juliesquid).
+
+**Allison Horst PhD** teaches data analysis, statistics, and presentation skills at the Bren School of Environmental Science and Management (UC Santa Barbara). In addition to courses, she leads interdepartmental R/RStudio workshops for incoming graduate students, created and teaches an online R-refresher workshops for alumni, and is a co-founder of R-Ladies Santa Barbara. Allison earned the student-selected Distingushed Teaching Award at the Bren School in 2018, and was awarded the campus-wide Distinguished Teaching Award for UCSB by the Academic Senate in 2019. For her graduate research, Allison studied toxicity of engineered nanoparticles in environmental microorganisms. She is also a landscape painter, illustrator and designer. Web: [allisonhorst.github.io](http://allisonhorst.github.io). GitHub: [@allisonhorst](https://github.com/allisonhorst). Twitter: [@allison_horst](https://twitter.com/allison_horst). 
+
 
 -----
 

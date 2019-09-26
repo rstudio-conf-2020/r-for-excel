@@ -42,6 +42,8 @@ Are you new to data analysis, and looking for a good place to get started?
 
 *Coming soon*
 <!---
+R, RStudio, tidyverse using Allison's install instructions
+https://docs.google.com/document/d/1Imcx8ZropMF5tmLF6As02OJam-r1pNexu5pULczCwMA/edit?ts=5d8ce185 
 \[ADD INFORMATION YOU WANT LEARNERS TO HAVE / STEPS THEY WANT THEM TO
 COMPLETE PRIOR TO THE WORKSHOP. THIS COULD BE A LINK TO A THREAD ON
 RSTUDIO COMMUNITY, PACKAGE INSTALL INSTRUCTIONS, HOW TO GET AN
@@ -52,6 +54,7 @@ RSTUDIO.CLOUD ACCOUNT, ETC.\]
 
 | Time          | Activity         |
 | :------------ | :--------------- |
+| 08:30 - 08:45 | Install help     |
 | 09:00 - 10:30 | Session 1        |
 | 10:30 - 11:00 | *Coffee break*   |
 | 11:00 - 12:30 | Session 2        |

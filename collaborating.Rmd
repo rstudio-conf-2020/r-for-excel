@@ -1,4 +1,4 @@
-# `readxl` {#readxl}
+# Collaborating {#collaborating}
 
 ## Summary
 
@@ -7,8 +7,12 @@
 - create a new repo and give permission to a collaborator
 - open as a new RStudio project, collaborate with a partner 
 - explore github.com blame, history, issues
-- R communities and getting help (rOpenSci, RLadies)
-- how to use Twitter for #rstats
+- How to effectively ask for help
+  - R communities and getting help (rOpenSci, RLadies)
+  - reprex & RStudio Community "do it with iris"
+  - how to use Twitter for #rstats
+Activity: reprex to GitHub "dplyr reprex"  
+  
 
 ### Resources
 

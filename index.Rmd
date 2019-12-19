@@ -34,19 +34,18 @@ If you answer yes to these questions, this course is for you!
 Before you begin, be sure you are all set up: see the prerequisites in Chapter \@ref(overview). --->
 
 
-## Agenda: pilot workshop
+## Agenda
 
 
 |Time       |      Day 1|      Day 2|
 |:----------|----------:|----------:|
-|9-10:30    |  [Motivation](#overview), [R & RStudio, RMarkdown](#rstudio) |  [Charts with `ggplot2`](#ggplot2)  |
+|9-10:30    |  [Motivation](#overview), [R & RStudio, RMarkdown](#rstudio) (JL) |  [Tidying data ](#tidying) (AH) |
 |break      |  | |
-|11-12:30   | [Intro to GitHub](#github) | [`dplyr` & Pivot Tables](#dplyr-pivot-tables) |
+|11-12:30   | [Intro to GitHub](#github) (JL) | [`dplyr` & VLOOKUPs](#dplyr-vlookups) (AH) |
 |lunch      |  ||
-|13:00-14:30 | [Importing data: `readxl`](#readxl) | [`dplyr` & VLOOKUPs](#dplyr-vlookups) |
-
-From 14:30-15:00 each day we have time for additional help and feedback.
-
+|13:30-15:00 | [`ggplot2` & Charts](#ggplot2) (AH) | [Collaborating in #rstats](#collaboration) (JL) |
+|break      |  | |
+|15:30-17:00 | [`dplyr` & Pivot Tables](#dplyr-pivot-tables) (JL) | [Synthesis](#synthesis) (AH) |
 
 
 ## Prerequisites
@@ -66,5 +65,6 @@ Do this beforehand (20 minutes)
     Download & install free software: R, RStudio, tidyverse. Do this following Allison’s step-by-step instructions (from her ESM 206 course)
 
     Create a GitHub username at github.com. We recommend shorter names that identify you, and using your work email address (where you primarily do analyses)
-https://docs.google.com/document/d/1Imcx8ZropMF5tmLF6As02OJam-r1pNexu5pULczCwMA/edit?ts=5d8ce185 --->    
+https://docs.google.com/document/d/1Imcx8ZropMF5tmLF6As02OJam-r1pNexu5pULczCwMA/edit?ts=5d8ce185 --->   
+
 1. Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also watching a virtual training or following this tutorial on your own.

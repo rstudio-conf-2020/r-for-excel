@@ -149,23 +149,23 @@ Hello! This is a workshop taught by Julie Stewart Lowndes and Allison Horst at t
 
 We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara: Julie is based at the National Center for Ecological Analysis and Synthesis as part of the Ocean Health Index team and leads Openscapes, and Allison is based at the Bren School of Environmental Science and Management as a lecturer of data science \& statistics --- and is also an Artist in Residence at RStudio.
 
-\hypertarget{agenda-pilot-workshop}{%
-\section{Agenda: pilot workshop}\label{agenda-pilot-workshop}}
+\hypertarget{agenda}{%
+\section{Agenda}\label{agenda}}
 
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
 Time & Day 1 & Day 2\tabularnewline
 \midrule
 \endhead
-9-10:30 & \protect\hyperlink{overview}{Motivation}, \protect\hyperlink{rstudio}{R \& RStudio, RMarkdown} & \protect\hyperlink{ggplot2}{Charts with \texttt{ggplot2}}\tabularnewline
+9-10:30 & \protect\hyperlink{overview}{Motivation}, \protect\hyperlink{rstudio}{R \& RStudio, RMarkdown} (JL) & \protect\hyperlink{tidying}{Tidying data} (AH)\tabularnewline
 break & &\tabularnewline
-11-12:30 & \protect\hyperlink{github}{Intro to GitHub} & \protect\hyperlink{dplyr-pivot-tables}{\texttt{dplyr} \& Pivot Tables}\tabularnewline
+11-12:30 & \protect\hyperlink{github}{Intro to GitHub} (JL) & \protect\hyperlink{dplyr-vlookups}{\texttt{dplyr} \& VLOOKUPs} (AH)\tabularnewline
 lunch & &\tabularnewline
-13:00-14:30 & \protect\hyperlink{readxl}{Importing data: \texttt{readxl}} & \protect\hyperlink{dplyr-vlookups}{\texttt{dplyr} \& VLOOKUPs}\tabularnewline
+13:30-15:00 & \protect\hyperlink{ggplot2}{\texttt{ggplot2} \& Charts} (AH) & \protect\hyperlink{collaboration}{Collaborating in \#rstats} (JL)\tabularnewline
+break & &\tabularnewline
+15:30-17:00 & \protect\hyperlink{dplyr-pivot-tables}{\texttt{dplyr} \& Pivot Tables} (JL) & \protect\hyperlink{synthesis}{Synthesis} (AH)\tabularnewline
 \bottomrule
 \end{longtable}
-
-From 14:30-15:00 each day we have time for additional help and feedback.
 
 \hypertarget{prerequisites}{%
 \section{Prerequisites}\label{prerequisites}}
@@ -206,6 +206,8 @@ Before the training, please make sure you have done the following:
 
 \hypertarget{overview}{%
 \chapter{Overview}\label{overview}}
+
+TODO: add Star Wars illustrations \& Wickham R4DS illustration (as slides?)
 
 \hypertarget{welcome-1}{%
 \section{Welcome!}\label{welcome-1}}
@@ -314,13 +316,19 @@ In this lesson we will:
 \item
   get oriented to the RStudio interface
 \item
-  work with R in the console
+  explore RMarkdown. This will be your notes.
 \item
-  be introduced to built-in R functions
+  discuss RMarkdown files vs Console (running vs knitting)
 \item
-  learn to use the help pages
+  learn a few base R functions (\texttt{c()})
 \item
-  explore RMarkdown
+  error messages and help pages
+\item
+  discuss and install packages (\texttt{here()})
+\item
+  intro pipe operator (\texttt{\%\textgreater{}\%})
+\item
+  configure Git (to prepare for next session)
 \end{itemize}
 
 \hypertarget{resources-1}{%
@@ -332,535 +340,10 @@ In this lesson we will:
   \href{https://blog.shotwell.ca/posts/r_for_excel_users/}{R for Excel Users} by Gordon Shotwell (blog)
 \end{itemize}
 
-\hypertarget{why-learn-r-with-rstudio}{%
-\section{Why learn R with RStudio}\label{why-learn-r-with-rstudio}}
-
-You are all here today to learn how to code. Coding made me a better scientist because I was able to think more clearly about analyses, and become more efficient in doing so. Data scientists are creating tools that make coding more intuitive for new coders like us, and there is a wealth of awesome instruction and resources available to learn more and get help.
-
-Here is an analogy to start us off. \textbf{Think of yourself as a pilot, and R is your airplane.} You can use R to go places! With practice you'll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere.
-
-And \textbf{if R were an airplane, RStudio is the airport}. RStudio provides support! Runways, communication, community, and other services that makes your life as a pilot much easier. So it's not only the infrastructure (the user interface or IDE), although it is a great way to learn and interact with your variables, files, and interact directly with GitHub. It's also a data science philosophy, R packages, community, and more. So although you can fly your plane without an airport and we could learn R without RStudio, that's not what we're going to do.
-
-\begin{quote}
-We are learning R together with RStudio and its many supporting features.
-\end{quote}
-
-\hypertarget{rstudio-orientation}{%
-\section{RStudio Orientation}\label{rstudio-orientation}}
-
-Open RStudio for the first time.
-
-Launch RStudio/R.
-
-\includegraphics[width=0.8\linewidth]{img/RStudio_IDE}
-
-Notice the default panes:
-
-\begin{itemize}
-\tightlist
-\item
-  Console (entire left)
-\item
-  Environment/History (tabbed in upper right)
-\item
-  Files/Plots/Packages/Help (tabbed in lower right)
-\end{itemize}
-
-FYI: you can change the default location of the panes, among many other things: \href{https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio}{Customizing RStudio}.
-
-An important first question: \textbf{where are we?}
-
-If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the \texttt{\textasciitilde{}/} at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: \texttt{\textasciitilde{}/}.
-
-\includegraphics[width=0.8\linewidth]{img/RStudio_IDE_homedir}
-
-\hypertarget{r-console}{%
-\subsection{R Console}\label{r-console}}
-
-OK let's go into the Console, where we interact with the live R process.
-
-We can do math:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{52}\OperatorTok{*}\DecValTok{40}
-\DecValTok{365}\OperatorTok{/}\DecValTok{12}
-\end{Highlighting}
-\end{Shaded}
-
-But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular.
-
-\hypertarget{viewing-data-in-r}{%
-\subsection{Viewing data in R}\label{viewing-data-in-r}}
-
-Let's have a look at some data in R. Unlike Excel, R comes out-of-the-box with several built-in data sets that we can look at and work with.
-
-One of these datasets is called \texttt{cars}. If I write this in the Console, it will print the data in the console.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cars}
-\end{Highlighting}
-\end{Shaded}
-
-This returns data. To me this is not super interesting data, but I can appreciate that there are different variables listed as column headers and then numeric values for each type of row observation. (Unfortunately I don't know if these are different cars or trials or conditions but we won't focus on that for now).
-
-I can also use RStudio's Viewer to see this in a more familiar-looking format. Let's type this --- and make sure it's a capital V and open and closed parentheses:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{View}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
-
-This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.
-
-\begin{quote}
-\textbf{\emph{Aside}} The basic R data structure is a vector. You can think of a vector like a column in an Excel spreadsheet with the limitation that all the data in that vector must be of the same type. If it is a character vector, every element must be a character; if it is a logical vector, every element must be TRUE or FALSE; if it's numeric you can trust that every element is a number. There's no such constraint in Excel: you might have a column which has a bunch of numbers, but then some explanatory test intermingled with the numbers. This isn't allowed in R. - \href{https://blog.shotwell.ca/posts/r_for_excel_users/}{Gordon Shotwell}
-\end{quote}
-
-In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.
-
-\hypertarget{r-functions-help-pages}{%
-\subsection{R functions, help pages}\label{r-functions-help-pages}}
-
-Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
-
-R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. \texttt{function\_name(argument1\ =\ value1,\ argument2\ =\ value2,\ ...)}. When you see this syntax, we say we are ``calling the function''.
-
-Let's try using \texttt{seq()} which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
-
-Type \texttt{se} and hit TAB. A pop up shows you possible completions. Specify \texttt{seq()} by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane.
-
-Type the arguments \texttt{1,\ 10} and hit return.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  1  2  3  4  5  6  7  8  9 10
-\end{verbatim}
-
-We could probably infer that the \texttt{seq()} function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{?seq }
-\KeywordTok{help}\NormalTok{(seq) }\CommentTok{# same as ?seq}
-\end{Highlighting}
-\end{Shaded}
-
-When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
-
-\begin{itemize}
-\tightlist
-\item
-  Description: An extended description of what the function does.
-\item
-  Usage: The arguments of the function and their default values.
-\item
-  Arguments: An explanation of the data each argument is expecting.
-\item
-  Details: Any important details to be aware of.
-\item
-  Value: The data the function returns.
-\item
-  See Also: Any related functions you might find useful.
-\item
-  Examples: Some examples for how to use the function.
-\end{itemize}
-
-When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the \texttt{sum} page, it is pretty straight-forward and lets me know that yup, this is the function I want.
-
-I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the ``\ldots{}'' means. And the ``na.rm=FALSE'' means that by default, it will not remove NAs (I read this as: ``remove NAs? FALSE!'')
-
-Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{) }\CommentTok{# same as seq(1, 10); R assumes by position}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1]  1  2  3  4  5  6  7  8  9 10
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 1 3 5 7 9
-\end{verbatim}
-
-The above also demonstrates something about how R resolves function arguments. You can always specify in \texttt{name\ =\ value} form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence \texttt{from\ =\ 1} that goes \texttt{to\ =\ 10}. Since we didn't specify step size, the default value of \texttt{by} in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
-argument or maybe the first two. After that, I always use \texttt{name\ =\ value}.
-
-The examples from the help pages can be copy-pasted into the console for you to understand what's going on. Remember we were talking about expecting there to be a function for something you want to do? Let's try it.
+Learn more: \url{http://rmarkdown.rstudio.com/}
 
 \hypertarget{activity}{%
 \subsection{Activity}\label{activity}}
-
-\begin{quote}
-Exercise: Talk to your neighbor(s) and look up the help file for a function that you know or expect to exist. Here are some ideas: \texttt{?getwd()}, \texttt{?plot()}, \texttt{min()}, \texttt{max()}, \texttt{?mean()}, \texttt{?log()}).
-\end{quote}
-
-Let's try another. In Excel, there is a ``SUM'' function to calculate a total. Let's expect that there is the same in R. I will type this into the Console:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-R is case-sensitive. So ``sum'' is a completely different thing to ``Sum'' or ``SUM''. And this is true for the names of functions, data sets, variable names, and data itself (``blue'' vs ``Blue'').
-
-Awesome. Let's try this on our \texttt{cars} data
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
-
-Alright. What is this number? It is the sum of ALL of the data in the \texttt{cars} dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the \texttt{\$} operator.
-
-Let's say we want to calculate the total distance:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
-\end{Highlighting}
-\end{Shaded}
-
-There are many functions that are built into R, and we'll learn more of them shortly.
-
-Not all functions have (or require) arguments:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{date}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "Thu Dec 19 06:21:56 2019"
-\end{verbatim}
-
-\hypertarget{packages}{%
-\subsection{Packages}\label{packages}}
-
-So far we've been using a couple functions from base R, such as \texttt{sum()} and \texttt{date()}. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.
-
-The traditional place to download packages is from CRAN, the \href{https://cran.r-project.org/}{Comprehensive R Archive Network}, which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
-
-You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command \texttt{install.packages("package-name-in-quotes")}. Let's install a small, fun package \texttt{praise}. You need to use quotes around the package name.
-
-Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"praise"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Now we've installed the package, but we need to tell R that we are going to use the functions within the \texttt{praise} package. We do this by using the function \texttt{library()}.
-
-In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is \texttt{install.packages}. But then you need to turn on the lights each time you need them (R Session).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(praise)}
-\end{Highlighting}
-\end{Shaded}
-
-Now that we've loaded the \texttt{praise} package, we can use the single function in the package, \texttt{praise()}, which returns a randomized praise to make you feel better.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{praise}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "You are stylish!"
-\end{verbatim}
-
-\hypertarget{assigning-objects-with--}{%
-\subsection{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
-
-This might be a really important value that we want to have on hand. We can save this as its own object.
-
-This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
-
-Data can be a variety of formats, like numeric and text.
-
-We do this by writing the name along with the assignment operator \texttt{\textless{}-}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum_dist <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
-\end{Highlighting}
-\end{Shaded}
-
-And we can execute it. In my head I hear ``sum\_dist gets 2149''.
-
-Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a \href{http://en.wikipedia.org/wiki/Snake_case}{convention for demarcating words} in names.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# i_use_snake_case}
-\CommentTok{# other.people.use.periods}
-\CommentTok{# evenOthersUseCamelCase}
-\end{Highlighting}
-\end{Shaded}
-
-Notice that as I start typing \texttt{sum\_dist} in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sumdist}
-\CommentTok{# Error: object 'sumdist' not found}
-\end{Highlighting}
-\end{Shaded}
-
-OK this is an error, but I didn't break R --- error messages are your friends.
-
-The first thing to do with an error message is read it. Yes it's in angry red text and it's unexpected --- but most error messages are doing their best to help you solve the problem. And you'll get more familiar with they way they tell you. By saying ``object `sumdist' not found'' alerts me immediately to the fact that this thing I think exists R doesn't think exists --- so maybe it's a typo or not loaded?
-
-\hypertarget{error-messages-are-your-friends}{%
-\subsection{Error messages are your friends}\label{error-messages-are-your-friends}}
-
-As \href{https://stat545.com/r-basics.html}{Jenny Bryan says}:
-
-\begin{quote}
-Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
-\end{quote}
-
-Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying `What?' or `Pardon'? Error messages can also be more useful, like when they say `I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.
-
-And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused\ldots{} Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
-
-\hypertarget{logical-operators-and-expressions}{%
-\subsection{Logical operators and expressions}\label{logical-operators-and-expressions}}
-
-A moment about \textbf{logical operators and expressions}. We can ask questions about the objects we made. This is not assigning a new value to our \texttt{sum\_dist} object.
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{==} means `is equal to'
-\item
-  \texttt{!=} means `is not equal to'
-\item
-  \texttt{\textless{}} means ` is less than'
-\item
-  \texttt{\textgreater{}} means ` is greater than'
-\item
-  \texttt{\textless{}=} means ` is less than or equal to'
-\item
-  \texttt{\textgreater{}=} means ` is greater than or equal to'
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum_dist }\OperatorTok{==}\StringTok{ }\DecValTok{2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum_dist }\OperatorTok{<=}\StringTok{ }\DecValTok{3000}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] TRUE
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum_dist }\OperatorTok{!=}\StringTok{ }\DecValTok{500}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] TRUE
-\end{verbatim}
-
-\begin{quote}
-Shortcuts
-You will make lots of assignments and the operator \texttt{\textless{}-} is a pain to type. Don't be lazy and use \texttt{=}, although it would work, because it will just sow confusion later. Instead, utilize \textbf{RStudio's keyboard shortcut: Alt + - (the minus sign)}.
-Notice that RStudio automagically surrounds \texttt{\textless{}-} with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.
-RStudio offers many handy \href{https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts}{keyboard shortcuts}. Also, Alt+Shift+K brings up a keyboard shortcut reference card.
-\end{quote}
-
-\begin{quote}
-My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.
-\end{quote}
-
-\hypertarget{clearing-the-environment}{%
-\section{Clearing the environment}\label{clearing-the-environment}}
-
-Now look at the objects in your environment (workspace) -- in the upper right pane. The workspace is where user-defined objects accumulate.
-
-For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don't want your whole analysis to only work in whatever way you've been working right now --- you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis.
-
-We will keep coming back to this theme but let's restart our R session together: Go to the top menus: Session \textgreater{} Restart R.
-
-Don't save the workspace!
-
-So this is great, but if we were going to do any kind of real analysis, we need to be able to write it in a document rather than this command line prompt in the Console. Let's do something much more interesting and really start feeling its power.
-
-\hypertarget{intro-to-rmarkdown}{%
-\section{Intro to RMarkdown}\label{intro-to-rmarkdown}}
-
-An RMarkdown file is a special type of file for making reports --- it allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots.
-
-This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc.
-
-Let's experience this a bit ourselves and then we'll talk about it more.
-
-\hypertarget{create-an-rmarkdown-file}{%
-\subsection{Create an RMarkdown file}\label{create-an-rmarkdown-file}}
-
-File -\textgreater{} New File -\textgreater{} RMarkdown\ldots{} -\textgreater{} Document of output format HTML, OK.
-
-\includegraphics[width=0.8\linewidth]{img/rstudio_new-rmd-doc-html}
-
-You can give it a Title like ``Testing'' (a name that's totally ok to use as you're trying something out). Then click OK.
-
-OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
-
-Let's have a look at this file --- it's not blank; there is some initial text is already provided for you. Notice a few things about it:
-
-\begin{itemize}
-\tightlist
-\item
-  Title and Author are auto-filled, and the today's date has been added
-\item
-  There are white and grey sections. These are the 2 main languages that make up an RMarkdown file.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \textbf{Grey sections are R code}
-  \item
-    \textbf{White sections are Markdown text}
-  \end{itemize}
-\end{itemize}
-
-\includegraphics[width=0.8\linewidth]{img/rmarkdown}
-
-\hypertarget{knit-your-rmarkdown-file}{%
-\subsection{Knit your RMarkdown file}\label{knit-your-rmarkdown-file}}
-
-Let's go ahead and ``Knit'' by clicking the blue yarn at the top of the RMarkdown file. It's going to ask us to save first, I'll name mine ``testing.Rmd''.
-
-How cool is this, we've just made an html file, a webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered --- we also say formatted --- both the Markdown text (white) and the R code (grey), and the it also executed --- we also say ran --- the R code.
-
-Let's have a look at them side-by-side:
-
-\includegraphics[width=0.8\linewidth]{img/rmarkdown_side_by_side}
-
-Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
-
-\hypertarget{r-code-chunks}{%
-\subsection{R code chunks}\label{r-code-chunks}}
-
-Notice how the grey \textbf{R code chunks} are surrounded by 3 backticks and \texttt{\{r\ LABEL\}}. These are evaluated and return the output text in the case of \texttt{summary(cars)} and the output plot in the case of \texttt{plot(pressure)}.
-
-Notice how the code \texttt{plot(pressure)} is not shown in the HTML output because of the R code chunk option \texttt{echo=FALSE}.
-
-We can create a new chunk in your RMarkdown first in one of these ways:
-
-\begin{itemize}
-\tightlist
-\item
-  click ``Insert \textgreater{} R'' at the top of the editor pane
-\item
-  type by hand
-  ```\{r\}
-  ```
-\item
-  if you haven't deleted a chunk that came with the new file, edit that one
-\end{itemize}
-
-Now, let's write some code in R. Earlier we calculated \texttt{sum(cars\$dist)}. Now let's do the average. In R, this is the \texttt{mean()} function
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mean_dist <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
-\end{Highlighting}
-\end{Shaded}
-
-Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  copy-paste this line into the console.
-\item
-  select the line (or simply put the cursor there), and click `Run'. This is available from
-
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii}.}
-  \tightlist
-  \item
-    the bar above the file (green arrow)
-  \item
-    the menu bar: Code \textgreater{} Run Selected Line(s)
-  \item
-    keyboard shortcut: command-return
-  \end{enumerate}
-\item
-  click the green arrow at the right of the code chunk
-\end{enumerate}
-
-And when we do this, we see the \texttt{mean\_dist} object appear in he Environment pane.
-
-Cool tip: doesn't have to be only R, other languages supported.
-
-\hypertarget{activity-3-min}{%
-\subsection{Activity (3 min)}\label{activity-3-min}}
-
-\begin{quote}
-Calculate the maximum cars distance in your RMarkdown file by typing \texttt{max(cars\$dist)}. Remember to write your R code within a code chunk (grey)!\\
-Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default.
-\end{quote}
-
-\hypertarget{markdown-sections}{%
-\subsection{Markdown sections}\label{markdown-sections}}
-
-The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know.
-
-Notice the syntax for:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{headers} get rendered at multiple levels: \texttt{\#}, \texttt{\#\#}
-\item
-  \textbf{bold}: \texttt{**word**}
-\end{itemize}
-
-There are some good \href{https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet}{cheatsheets} to get you started, and here is one built into RStudio: Go to Help \textgreater{} Markdown Quick Reference
-
-Learn more: \url{http://rmarkdown.rstudio.com/}
-
-\hypertarget{activity-1}{%
-\subsection{Activity}\label{activity-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -899,6 +382,8 @@ Not so brittle/sensitive to minor changes.
 
 \hypertarget{github}{%
 \chapter{GitHub}\label{github}}
+
+TODO: no github folder, new screenshots, earlier emphasis on syncing steps
 
 \hypertarget{summary-1}{%
 \section{Summary}\label{summary-1}}
@@ -1324,8 +809,8 @@ The files you added should be on github.com:
 
 Let's also explore commit history, file history.
 
-\hypertarget{activity-2}{%
-\subsection{Activity}\label{activity-2}}
+\hypertarget{activity-1}{%
+\subsection{Activity}\label{activity-1}}
 
 Go back to RStudio.
 
@@ -1407,495 +892,11 @@ If you have problems, we'll help you out using Jenny Bryan's \href{http://happyg
 \hypertarget{efficiency-tips-1}{%
 \section{Efficiency Tips}\label{efficiency-tips-1}}
 
-\hypertarget{readxl}{%
-\chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
-
-\hypertarget{summary-2}{%
-\section{Summary}\label{summary-2}}
-
-\textbf{Check this, may need to be a block quote}: The \textbf{readxl} package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. \textbf{readxl} has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.
-
-\hypertarget{objectives-2}{%
-\subsection{Objectives}\label{objectives-2}}
-
-\begin{itemize}
-\tightlist
-\item
-  Use \texttt{read\_csv()} to read in a comma separated value (CSV) file
-\item
-  Use \texttt{read\_excel()} to read in an Excel worksheet from an Excel workbook
-\item
-  Replace a specific string/value in a spreadsheet with with \texttt{NA}
-\item
-  Skip \emph{n} rows when importing an Excel worksheet
-\item
-  Use \texttt{read\_excel()} to read in parts of a worksheet (by cell range)
-\item
-  Specify column names when importing Excel data
-\item
-  Read and combine data from multiple Excel worksheets into a single df using \texttt{purrr::map\_df()}
-\item
-  Write data using \texttt{write\_csv()} or \texttt{write\_xlsx()}
-\end{itemize}
-
-\hypertarget{resources-3}{%
-\subsection{Resources}\label{resources-3}}
-
-\begin{itemize}
-\tightlist
-\item
-  \url{https://readxl.tidyverse.org/}
-\item
-  \href{https://readxl.tidyverse.org/articles/articles/readxl-workflows.html}{readxl Workflows article (from tidyverse.org)}
-\end{itemize}
-
-\hypertarget{lesson}{%
-\section{Lesson}\label{lesson}}
-
-\hypertarget{attach-packages}{%
-\subsection{Attach packages}\label{attach-packages}}
-
-In the .Rmd you just created within your version-controlled \texttt{r-workshop} R project, attach the \texttt{tidyverse}, \texttt{readxl}, \texttt{writexl}, and \texttt{here} packages.
-
-In this lesson, we'll read in a CSV file with the \texttt{read\_csv()} function, so we need to have the \texttt{readr} package attached. Since it's part of the \texttt{tidyverse}, we'll go ahead and attach the \texttt{tidyverse} package below our script header using \texttt{library(package\_name)}. It's a good idea to attach packages within the set-up chunk in R Markdown, so we'll also attach the \texttt{readxl}, \texttt{writexl}, and \texttt{here} packages there.
-
-Here's our first code chunk:
-
-\begin{verbatim}
-{r setup, eval = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-# Attach the tidyverse, readxl, writexl and here packages:
-library(tidyverse)
-library(readxl)
-library(writexl)
-library(here)
-\end{verbatim}
-
-Now, all of the packages and functions within the \texttt{tidyverse} and \texttt{readxl}, including \texttt{read\_csv()} and \texttt{read\_excel()}, are available for use.
-
-\hypertarget{use-read_csv-to-read-in-data-from-a-csv-file}{%
-\subsection{\texorpdfstring{Use \texttt{read\_csv()} to read in data from a CSV file}{Use read\_csv() to read in data from a CSV file}}\label{use-read_csv-to-read-in-data-from-a-csv-file}}
-
-There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly.
-
-The CSV we'll read in here is called ``fish\_counts\_curated.csv'', and contains observations for ``the abundance and size of fish species as part of SBCLTER's kelp forest monitoring program to track long-term patterns in species abundance and diversity'' from the \href{http://sbc.lternet.edu/}{Santa Barbara Channel Long Term Ecological Research} program.
-
-\textbf{Source:} Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. \url{https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379}. Dataset accessed 9/26/2019.
-
-Read in the ``fish\_counts\_curated.csv'' file \texttt{read\_csv("file\_name.csv")}, and store it in R as an object called \emph{fish\_counts}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_counts <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"fish_counts_curated.csv"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-Notice that the name of the stored object (here, \emph{fish\_counts}) will show up in our Environment tab in RStudio.
-
-Click on the object in the Environment, and R will automatically run the \texttt{View()} function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we're used to.
-
-Here are a few other functions for quickly exploring imported data:
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{summary()}: summary of class, dimensions, \texttt{NA} values, etc.
-\item
-  \texttt{names()}: variable names (column headers)
-\item
-  \texttt{ls()}: list all objects in environment
-\item
-  \texttt{head()}: Show the first x rows (default is 6 lines)
-\item
-  \texttt{tail()}: Show the last x rows (default is 6 lines)
-\end{itemize}
-
-Now that we have our fish counts data ready to work with in R, let's get the substrate cover and kelp data (both .xlsx files). In the following sections, we'll learn that we can use \texttt{read\_excel()} to read in Excel files directly.
-
-\hypertarget{use-read_excel-to-read-in-a-single-excel-worksheet}{%
-\subsection{\texorpdfstring{Use \texttt{read\_excel()} to read in a single Excel worksheet}{Use read\_excel() to read in a single Excel worksheet}}\label{use-read_excel-to-read-in-a-single-excel-worksheet}}
-
-First, take a look at \emph{substrate\_cover\_curated.xlsx} in Excel, which contains a single worksheet with substrate type and percent cover observations at different sampling locations in the Santa Barbara Channel.
-
-A few things to notice:
-
-\begin{itemize}
-\tightlist
-\item
-  The file contains a single worksheet
-\item
-  There are multiple rows containing text information up top
-\item
-  Where observations were not recorded, there exists `-9999'
-\end{itemize}
-
-Let's go ahead and read in the data. If the file is in our working directory, we can read in a single worksheet .xlsx file using \texttt{read\_excel("file\_name.xlsx")}. \emph{Note: read\_excel() works for both .xlsx and .xls types}.
-
-Like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"substrate_cover_curated.xlsx"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Tada? Not quite.}
-
-Click on the object name (\emph{substrate\_cover}) in the Environment to view the data in a new tab. A few things aren't ideal:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 23,942 x 9
-##    `Substrate cover dataset,~ ...2  ...3   ...4  ...5  ...6  ...7  ...8   ...9  
-##    <chr>                      <chr> <chr>  <chr> <chr> <chr> <chr> <chr>  <chr> 
-##  1 Source: https://portal.ed~ <NA>  <NA>   <NA>  <NA>  <NA>  <NA>  <NA>   <NA>  
-##  2 Accessed: 9/28/2019        <NA>  <NA>   <NA>  <NA>  <NA>  <NA>  <NA>   <NA>  
-##  3 <NA>                       <NA>  <NA>   <NA>  <NA>  <NA>  <NA>  <NA>   <NA>  
-##  4 year                       month date   site  tran~ quad  side  subst~ perce~
-##  5 -9999                      -9999 -9999  carp  1     20    i     b      -9999 
-##  6 2000                       9     -9999  carp  1     20    o     b      -9999 
-##  7 2000                       9     9/8/00 carp  1     20    i     b      100   
-##  8 2000                       9     9/8/00 carp  1     20    o     b      100   
-##  9 2000                       9     9/8/00 carp  1     40    i     b      100   
-## 10 2000                       9     9/8/00 carp  1     40    o     b      100   
-## # ... with 23,932 more rows
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  The top row of text has automatically become the (messy) column headers
-\item
-  There are multiple descriptive rows before we actually get to the data
-\item
-  There are -9999s that we want R to understand as \texttt{NA} instead
-\end{itemize}
-
-We can deal with those issues by adding arguments within \texttt{read\_excel()}. Like:
-
-\begin{itemize}
-\tightlist
-\item
-  Add \texttt{skip\ =\ n} to skip the first `n' rows when importing data
-\item
-  Add \texttt{na\ =\ "this"} to replace ``this'' with \texttt{NA} when reading in spreadsheet data
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"substrate_cover_curated.xlsx, skip = 4, na = "}\OperatorTok{-}\DecValTok{9999}\StringTok{")}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{substrate_cover}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 23,938 x 9
-##    year  month date   site  transect quad  side  substrate_type percent_cover
-##    <chr> <chr> <chr>  <chr> <chr>    <chr> <chr> <chr>          <chr>        
-##  1 <NA>  <NA>  <NA>   carp  1        20    i     b              <NA>         
-##  2 2000  9     <NA>   carp  1        20    o     b              <NA>         
-##  3 2000  9     9/8/00 carp  1        20    i     b              100          
-##  4 2000  9     9/8/00 carp  1        20    o     b              100          
-##  5 2000  9     9/8/00 carp  1        40    i     b              100          
-##  6 2000  9     9/8/00 carp  1        40    o     b              100          
-##  7 2000  9     9/8/00 carp  2        20    i     b              90           
-##  8 2000  9     9/8/00 carp  2        20    o     b              80           
-##  9 2000  9     9/8/00 carp  2        40    i     b              80           
-## 10 2000  9     9/8/00 carp  2        40    o     b              85           
-## # ... with 23,928 more rows
-\end{verbatim}
-
-Check out \emph{substrate\_cover}, and see that the first row \emph{after} the 4 skipped are the column names, and all -9999s have been updated to \texttt{NA}. Hooray!
-
-\hypertarget{use-read_excel-to-read-in-only-part-of-an-excel-worksheet}{%
-\subsection{\texorpdfstring{Use \texttt{read\_excel()} to read in only \emph{part} of an Excel worksheet}{Use read\_excel() to read in only part of an Excel worksheet}}\label{use-read_excel-to-read-in-only-part-of-an-excel-worksheet}}
-
-We always advocate for leaving the raw data raw, and writing a complete script containing all steps of data wrangling \& transformation. But in \emph{some} situations (be careful), you may want to specify a range of cells to read in from an Excel worksheet.
-
-You can specify a range of cells to read in using the \texttt{range\ =} argument in \texttt{read\_excel()}. For example, if I want to read in the rectangle from D12:I15 in \emph{substrate\_cover\_curated.xlsx} - only observations for Carpenteria Beach (Transect 2) in September 2000 - I can use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{carp_cover_}\DecValTok{2000}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"substrate_cover_curated.xlsx"}\NormalTok{, }\DataTypeTok{range =} \StringTok{"D12:I15"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-But yuck. Look at \emph{carp\_cover\_2000} and you'll notice that the first row \emph{of that range} is automatically made the column headers. To keep all rows within a range and \textbf{add your own column names}, add a \texttt{col\_names\ =} argument:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{carp_cover_}\DecValTok{2000}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"substrate_cover_curated.xlsx"}\NormalTok{, }\DataTypeTok{range =} \StringTok{"D12:I15"}\NormalTok{, }\DataTypeTok{col_names =} \KeywordTok{c}\NormalTok{(}\StringTok{"site_name"}\NormalTok{, }\StringTok{"transect"}\NormalTok{, }\StringTok{"quad"}\NormalTok{, }\StringTok{"plot_side"}\NormalTok{, }\StringTok{"type"}\NormalTok{, }\StringTok{"coverage"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{carp_cover_}\DecValTok{2000}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 4 x 6
-##   site_name transect quad  plot_side type  coverage
-##   <chr>     <chr>    <chr> <chr>     <chr> <chr>   
-## 1 carp      2        20    i         b     90      
-## 2 carp      2        20    o         b     80      
-## 3 carp      2        40    i         b     80      
-## 4 carp      2        40    o         b     85
-\end{verbatim}
-
-So far we've read in a single CSV file using \texttt{read\_csv()}, and an Excel file containing a single worksheet with \texttt{read\_excel()}. Next, let's read in data from an Excel workbook that contains multiple worksheets.
-
-\hypertarget{use-read_excel-to-read-in-selected-worksheets-from-a-workbook}{%
-\subsection{\texorpdfstring{Use \texttt{read\_excel()} to read in selected worksheets from a workbook}{Use read\_excel() to read in selected worksheets from a workbook}}\label{use-read_excel-to-read-in-selected-worksheets-from-a-workbook}}
-
-Now, we'll read in the kelp fronds data from file \emph{kelp\_counts\_curated.xlsx}. Open the file in Excel, and notice see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each \emph{site} in a separate worksheet.
-
-To read in a single Excel worksheet from a workbook we'll again use \texttt{read\_excel("file\_name.xlsx")}, but we'll need to let R know which worksheet to get.
-
-Let's read in the kelp data just like we did above, as an object called \emph{kelp\_counts}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_counts <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-You might be thinking, ``Hooray, I got all of my Excel workbook data!'' But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in \texttt{read\_excel()} is to read in the \textbf{first worksheet} in a multi-sheet Excel workbook.
-
-To check the worksheet names in an Excel workbook, use \texttt{excel\_sheets()}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{excel_sheets}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the \texttt{sheet} argument.
-
-Let's read in data from the worksheet named \emph{golb} (Goleta Beach) in the \emph{kelp\_counts\_curated.xlsx} workbook:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_golb <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"golb"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-Note that you can also specify a worksheet by position: since \emph{golb} is the 6\textsuperscript{th} worksheet in the workbook, we could also use the following:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_golb <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \DecValTok{6}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_golb}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 3 x 4
-##   year  month site  total_fronds
-##   <chr> <chr> <chr>        <dbl>
-## 1 2016  7     golb          2557
-## 2 2017  7     golb          1575
-## 3 2018  7     golb          1629
-\end{verbatim}
-
-\hypertarget{read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df}{%
-\subsection{\texorpdfstring{Read in and combine data from multiple worksheets into a data frame simultaneously with \texttt{purrr::map\_df()}}{Read in and combine data from multiple worksheets into a data frame simultaneously with purrr::map\_df()}}\label{read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df}}
-
-So far, we've read in entire Excel worksheets and pieces of a worksheet. What if we have a workbook (like \emph{kelp\_counts\_curated.xlsx}) that contains worksheets that contain observations for the same variables, in the same organization? Then we may want to read in data from \emph{all} worksheets, and combine them into a single data frame.
-
-We'll use \texttt{purrr::map\_df()} to loop through all the worksheets in a workbook, reading them in \& putting them together into a single data frame in the process.
-
-The steps we'll go through in the code below are:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Set a pathway so that R knows where to look for an Excel workbook
-\item
-  Get the names of all worksheets in that workbook with \texttt{excel\_sheets()}
-\item
-  Set names of a vector with \texttt{set\_names()}
-\item
-  Read in all worksheets, and put them together into a single data frame with \texttt{purrr::map\_df()}
-\end{enumerate}
-
-\textbf{Aside}: the pipe operator (\texttt{\%\textgreater{}\%})
-
-There are many ways to use R functions in sequence. One way, that follows the order that we think about steps in sequence, is using the \textbf{pipe operator} (\texttt{\%\textgreater{}\%}). We can use the pipe operator between steps in a sequence, each place we think ``and then do this.''
-
-For example, if I would like to \textbf{walk my dog} and \emph{then} \textbf{eat a burrito}, in code that might be: \texttt{walk(dog)\ \%\textgreater{}\%\ eat(burrito,\ type\ =\ "California")}
-
-Here, we'll use the pipe operator to complete steps 1 - 4 above in sequence:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_path <-}\StringTok{ }\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{)}
-
-\NormalTok{kelp_all_sites <-}\StringTok{ }\NormalTok{kelp_path }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{excel_sheets}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{set_names}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{purrr}\OperatorTok{::}\KeywordTok{map_df}\NormalTok{(read_excel, kelp_path)}
-\end{Highlighting}
-\end{Shaded}
-
-Check out \emph{kelp\_all\_sites}, and notice that now the data from all 11 sites is now collected into a single data frame:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_all_sites}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 32 x 4
-##    year  month site  total_fronds
-##    <chr> <chr> <chr>        <dbl>
-##  1 2016  7     abur           307
-##  2 2017  7     abur           604
-##  3 2018  7     abur          3532
-##  4 2016  7     ahnd          2572
-##  5 2017  7     ahnd            16
-##  6 2018  7     ahnd            16
-##  7 2016  7     aque         11152
-##  8 2017  7     aque          9194
-##  9 2018  7     aque          7754
-## 10 2016  7     bull          6706
-## # ... with 22 more rows
-\end{verbatim}
-
-\hypertarget{save-data-frames-as-.csv-or-.xlsx-with-write_csv-or-write_xlsx}{%
-\subsection{\texorpdfstring{Save data frames as .csv or .xlsx with \texttt{write\_csv()} or \texttt{write\_xlsx()}}{Save data frames as .csv or .xlsx with write\_csv() or write\_xlsx()}}\label{save-data-frames-as-.csv-or-.xlsx-with-write_csv-or-write_xlsx}}
-
-There are a number of reasons you might want to save (/export) data in a data frame as a .csv or Excel worksheet, including:
-
-\begin{itemize}
-\tightlist
-\item
-  To store raw data within the project you're working in
-\item
-  To store copies of intermediate data frames
-\item
-  To convert your data back to a format that your coworkers/clients/colleagues will be able to use it more easily
-\end{itemize}
-
-Use \texttt{write\_csv(object,\ "file\_name.csv")} to write a data frame to a CSV, or \texttt{write\_xlsx(object,\ "file\_name.xlsx")} to similarly export as a .xlsx (or .xls) worksheet.
-
-In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn't it make sense to store a copy?
-
-As a CSV:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{write_csv}\NormalTok{(kelp_all_sites, }\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_all_sites.csv"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-A cool thing about \texttt{write\_csv()} is that it just quietly \emph{works} without wrecking anything else you do in a sequence, so it's great to add at the end of a piped sequence.
-
-For example, if I want to read in the range cells C1:D3 `ivee' worksheet from kelp\_counts\_curated.xlsx, then write that new subset to a .csv file, I can pipe all the way through:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{kelp_ivee_subset <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{), }
-                        \DataTypeTok{sheet =} \StringTok{"ivee"}\NormalTok{,}
-                        \DataTypeTok{range =} \StringTok{"C1:D3"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{write_csv}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_ivee.csv"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-Now I've created \emph{kelp\_ivee\_subset.csv}, but the object \emph{kelp\_ivee\_subset} also exists as an object for me to use in R.
-
-If needed, I can also export a data frame as an Excel (.xlsx) worksheet:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{write_xlsx}\NormalTok{(kelp_all_sites, }\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_all_sites.xlsx"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{activity-import-some-invertebrates}{%
-\section{Activity: Import some invertebrates!}\label{activity-import-some-invertebrates}}
-
-There's one dataset we haven't imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the \emph{invert\_counts\_curated.xlsx} data by opening it in Excel
-
-\begin{itemize}
-\tightlist
-\item
-  Read in the \emph{invert\_counts\_curated.xlsx} worksheet as object `inverts\_july', only retaining \textbf{site}, \textbf{common\_name}, and \textbf{2016} and setting the existing first row in the worksheet as to column headers upon import
-\item
-  Explore the imported data frame using View, names, head, tail, etc.
-\item
-  Write `inverts\_july' to a CSV file in your working directory called ``inverts\_july.csv''
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# Importing only 'site' through '2016' columns: }
-
-\NormalTok{inverts_july <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"invert_counts_curated.xlsx"}\NormalTok{), }\DataTypeTok{range =} \StringTok{"B1:D56"}\NormalTok{)}
-
-\CommentTok{# Do some basic exploring (why might we want to do this in the Console instead?):}
-
-\KeywordTok{View}\NormalTok{(inverts_july)}
-\KeywordTok{names}\NormalTok{(inverts_july)}
-\KeywordTok{head}\NormalTok{(inverts_july)}
-\KeywordTok{tail}\NormalTok{(inverts_july)}
-\KeywordTok{ls}\NormalTok{()}
-
-\CommentTok{# Writing a csv "inverts_july.csv":}
-\KeywordTok{write_csv}\NormalTok{(inverts_july, }\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"inverts_july.csv"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{efficiency-tips-2}{%
-\section{Efficiency Tips}\label{efficiency-tips-2}}
-
-\begin{itemize}
-\tightlist
-\item
-  Add an assignment arrow in (\textless{}-): Alt + minus (-)
-\item
-  Undo shortcut: Command + Z
-\item
-  Redo shortcut: Command + Shift + Z
-\end{itemize}
-
-\hypertarget{additional-thoughts}{%
-\section{Additional thoughts}\label{additional-thoughts}}
-
-\begin{itemize}
-\tightlist
-\item
-  Economist article about gene \textgreater{} dates issue in Excel
-\item
-  Mine: data frame of bike casualities in NC, column names are age ranges but some of them import as dates
-\item
-  Excel makes some wrong assumptions and doesn't give you a heads up about its decision making
-\end{itemize}
-
 \hypertarget{ggplot2}{%
 \chapter{Graphs with ggplot2}\label{ggplot2}}
 
-\hypertarget{summary-3}{%
-\section{Summary}\label{summary-3}}
+\hypertarget{summary-2}{%
+\section{Summary}\label{summary-2}}
 
 Now that we know how to \emph{get} some data, the next thing we'll probably want to do is \emph{look} at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph \emph{or} use that code again to make the same style graph with different data.
 
@@ -1911,8 +912,8 @@ We'll use the \texttt{ggplot2} package, but the function we use to initialize a 
 
 \includegraphics{img/rstudio-cheatsheet-ggplot.png}
 
-\hypertarget{objectives-3}{%
-\subsection{Objectives}\label{objectives-3}}
+\hypertarget{objectives-2}{%
+\subsection{Objectives}\label{objectives-2}}
 
 \begin{itemize}
 \tightlist
@@ -1932,8 +933,8 @@ We'll use the \texttt{ggplot2} package, but the function we use to initialize a 
   Exporting figures with \texttt{ggsave()}
 \end{itemize}
 
-\hypertarget{resources-4}{%
-\subsection{Resources}\label{resources-4}}
+\hypertarget{resources-3}{%
+\subsection{Resources}\label{resources-3}}
 
 \begin{itemize}
 \tightlist
@@ -1947,8 +948,8 @@ We'll use the \texttt{ggplot2} package, but the function we use to initialize a 
   \href{http://varianceexplained.org/r/why-I-use-ggplot2/}{``Why I use ggplot2'' - David Robinson Blog Post}
 \end{itemize}
 
-\hypertarget{lesson-1}{%
-\section{Lesson}\label{lesson-1}}
+\hypertarget{lesson}{%
+\section{Lesson}\label{lesson}}
 
 \hypertarget{getting-started---create-a-new-.rmd-attach-packages-get-data}{%
 \subsection{Getting started - Create a new .Rmd, attach packages \& get data}\label{getting-started---create-a-new-.rmd-attach-packages-get-data}}
@@ -2044,7 +1045,7 @@ Let's do that to create a line graph of visitors to Channel Islands National Par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-62-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 
@@ -2055,7 +1056,7 @@ Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-63-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-31-1.pdf}
 
 We could even do that for a column graph:
 
@@ -2066,7 +1067,7 @@ We could even do that for a column graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 Or an area plot\ldots{}
 
@@ -2077,7 +1078,7 @@ Or an area plot\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-33-1.pdf}
 
 We can see that updating to different \texttt{geom\_*} types is quick, so long as the types of graphs we're switching between are compatible.
 
@@ -2122,7 +1123,7 @@ Building on our first line graph, let's update the line color to ``purple'' and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 How do we know which color names ggplot will recognize? If you google ``R colors ggplot2'' you'll find a lot of good resources. Here's one: \href{http://sape.inf.usi.ch/quick-reference/ggplot2/colour}{SAPE ggplot2 colors quick reference guide}
 
@@ -2138,7 +1139,7 @@ Now let's update the point, style and size of points on our previous scatterplot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-67-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 \hypertarget{activity-customize-your-own-ggplot-graph}{%
 \subsubsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
@@ -2171,7 +1172,7 @@ Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aest
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-68-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 In the example above, notice that the two arguments that \textbf{do} depend on variables are within \texttt{aes()}, but since \texttt{alpha\ =\ 0.5} doesn't depend on a variable then it is \emph{outside the \texttt{aes()} but still within the \texttt{geom\_point()} layer}.
 
@@ -2187,7 +1188,7 @@ Create a column plot of Channel Islands National Park visitation over time, wher
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-69-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -2222,7 +1223,7 @@ Here, let's update our previous graph with \texttt{theme\_minimal()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-70-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{updating-axis-labels-and-titles}{%
 \subsection{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
@@ -2243,7 +1244,7 @@ Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to yo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-71-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \textbf{Note}: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the \texttt{scales} package options (see more from the \href{http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/}{R Cookbook}).
 
@@ -2263,7 +1264,7 @@ For example, adding points to a line graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-72-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 
@@ -2276,7 +1277,7 @@ Or, combine a column and line graph (not sure why you'd want to do this, but you
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 \hypertarget{multi-series-ggplot-graphs}{%
 \subsection{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
@@ -2292,7 +1293,7 @@ To do that, we need to add an aesthetic that lets \texttt{ggplot} know how thing
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-74-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 Well that's definitely a mess, and it's because ggplot has no idea that these \textbf{should be different series based on the different parks that appear in the `park\_name' column}.
 
@@ -2305,7 +1306,7 @@ We can make sure R does know by updating an aesthetic based on \emph{park\_name}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-75-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 \textbf{Note}: You could also add that aesthetic (\texttt{color\ =\ park\_name}) in the \texttt{geom\_line()} layer, instead of in the topmost \texttt{ggplot()} layer.
 
@@ -2326,7 +1327,7 @@ Also notice that any general theme changes made will be applied to \emph{all} of
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-76-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-44-1.pdf}
 
 \hypertarget{exporting-a-ggplot-graph-with-ggsave}{%
 \subsection{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
@@ -2375,20 +1376,20 @@ For the record: this is not a good option for showing the visitation data becaus
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-79-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
 \hypertarget{pivot}{%
 \chapter{\texorpdfstring{\texttt{dplyr} and Pivot Tables}{dplyr and Pivot Tables}}\label{pivot}}
 
-\hypertarget{summary-4}{%
-\section{Summary}\label{summary-4}}
+\hypertarget{summary-3}{%
+\section{Summary}\label{summary-3}}
 
 Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the \texttt{group\_by} and \texttt{summarize} functions from the \texttt{dplyr} package (part of the Tidyverse). We will also learn how to format tables and practice creating a reproducible report using RMarkdown and sharing it with GitHub.
 
-\hypertarget{objectives-4}{%
-\section{Objectives}\label{objectives-4}}
+\hypertarget{objectives-3}{%
+\section{Objectives}\label{objectives-3}}
 
 In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \texttt{group\_by} and \texttt{summarize}. We will also continue to emphasize reproducibility in all our analyses.
 
@@ -2402,8 +1403,8 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: \t
   Practice our reproducible workflow with RMarkdown and GitHub
 \end{itemize}
 
-\hypertarget{resources-5}{%
-\section{Resources}\label{resources-5}}
+\hypertarget{resources-4}{%
+\section{Resources}\label{resources-4}}
 
 \begin{itemize}
 \tightlist
@@ -3028,8 +2029,8 @@ So we can make the equivalent of Excel's pivot table in R with \texttt{group\_by
 ## # ... with 25 more rows
 \end{verbatim}
 
-\hypertarget{activity-3}{%
-\subsection{Activity}\label{activity-3}}
+\hypertarget{activity-2}{%
+\subsection{Activity}\label{activity-2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3130,7 +2131,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3151,7 +2152,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-98-2.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3291,8 +2292,8 @@ Highly recommended read: \href{https://peerj.com/preprints/3183/}{Broman \& Woo:
 
 Great opening line: ``Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades.''
 
-\hypertarget{efficiency-tips-3}{%
-\section{Efficiency Tips}\label{efficiency-tips-3}}
+\hypertarget{efficiency-tips-2}{%
+\section{Efficiency Tips}\label{efficiency-tips-2}}
 
 arrow keys with shift, option, command
 
@@ -3301,13 +2302,13 @@ arrow keys with shift, option, command
 
 TODO: janitor: adorn and kable
 
-\hypertarget{summary-5}{%
-\section{Summary}\label{summary-5}}
+\hypertarget{summary-4}{%
+\section{Summary}\label{summary-4}}
 
 In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by \emph{reshaping} data frames (converting from long-to-wide, or wide-to-long format), \emph{separating} and \emph{uniting} variable (column) contents, converting between \emph{explicit} and \emph{implicit} missing (\texttt{NA}) values, and cleaning up our column names with the \texttt{janitor} package.
 
-\hypertarget{objectives-5}{%
-\section{Objectives}\label{objectives-5}}
+\hypertarget{objectives-4}{%
+\section{Objectives}\label{objectives-4}}
 
 \begin{itemize}
 \tightlist
@@ -3327,15 +2328,15 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
   Make a customized table (TODO: or introduce Kable if not time in pivot tables chapter)
 \end{itemize}
 
-\hypertarget{resources-6}{%
-\section{Resources}\label{resources-6}}
+\hypertarget{resources-5}{%
+\section{Resources}\label{resources-5}}
 
 -- \href{https://r4ds.had.co.nz/tidy-data.html}{Ch. 12 \emph{Tidy Data}, in R for Data Science} by Grolemund \& Wickham
 - \href{https://tidyr.tidyverse.org/}{\texttt{tidyr} documentation from tidyverse.org}
 - \href{https://github.com/sfirke/janitor}{\texttt{janitor} repo / information} from Sam Firke
 
-\hypertarget{lesson-2}{%
-\section{Lesson}\label{lesson-2}}
+\hypertarget{lesson-1}{%
+\section{Lesson}\label{lesson-1}}
 
 \hypertarget{lesson-prep}{%
 \subsection{Lesson Prep}\label{lesson-prep}}
@@ -3995,8 +2996,8 @@ TODO
 \hypertarget{vlookup}{%
 \chapter{Dplyr and vlookups}\label{vlookup}}
 
-\hypertarget{summary-6}{%
-\section{Summary}\label{summary-6}}
+\hypertarget{summary-5}{%
+\section{Summary}\label{summary-5}}
 
 In previous sessions, we've learned to do some basic wrangling and find summary information with functions in the \texttt{dplyr} package, which exists within the \texttt{tidyverse}. We've used:
 
@@ -4024,8 +3025,8 @@ In this session, we'll expand our data wrangling toolkit using:
 
 The combination of \texttt{filter()} and \texttt{*\_join()} - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.
 
-\hypertarget{objectives-6}{%
-\subsection{Objectives}\label{objectives-6}}
+\hypertarget{objectives-5}{%
+\subsection{Objectives}\label{objectives-5}}
 
 \begin{itemize}
 \tightlist
@@ -4037,8 +3038,8 @@ The combination of \texttt{filter()} and \texttt{*\_join()} - to return rows sat
   Use \texttt{filter()} and \texttt{*\_join()} as part of a wrangling sequence
 \end{itemize}
 
-\hypertarget{resources-7}{%
-\subsection{Resources}\label{resources-7}}
+\hypertarget{resources-6}{%
+\subsection{Resources}\label{resources-6}}
 
 \begin{itemize}
 \tightlist
@@ -4160,8 +3161,8 @@ You could also do this using the pipe operator \texttt{\%\textgreater{}\%}:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{activity-4}{%
-\subsubsection{Activity}\label{activity-4}}
+\hypertarget{activity-3}{%
+\subsubsection{Activity}\label{activity-3}}
 
 \textbf{Task}: Create a subset from the \textbf{fish\_counts} data frame, stored as object \textbf{fish\_abur}, that only contains observations from Arroyo Burro (site `abur').
 
@@ -4657,8 +3658,8 @@ That might look like this:
 ## 3 7     abur  california spiny lobster  2018           16         3532
 \end{verbatim}
 
-\hypertarget{activity-5}{%
-\paragraph{Activity}\label{activity-5}}
+\hypertarget{activity-4}{%
+\paragraph{Activity}\label{activity-4}}
 
 Now let's combine what we've learned about piping, filtering and joining!
 
@@ -4707,8 +3708,8 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   The risk of partial joins (\& a case for full\_join + drop\_na instead?)
 \end{itemize}
 
-\hypertarget{efficiency-tips-4}{%
-\section{Efficiency Tips}\label{efficiency-tips-4}}
+\hypertarget{efficiency-tips-3}{%
+\section{Efficiency Tips}\label{efficiency-tips-3}}
 
 \begin{itemize}
 \tightlist
@@ -4718,8 +3719,48 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   Knit with Command + Shift + K
 \end{itemize}
 
+\hypertarget{readxl}{%
+\chapter{\texorpdfstring{\texttt{readxl}}{readxl}}\label{readxl}}
+
+\hypertarget{summary-6}{%
+\section{Summary}\label{summary-6}}
+
+\hypertarget{objectives-6}{%
+\subsection{Objectives}\label{objectives-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  create a new repo and give permission to a collaborator
+\item
+  open as a new RStudio project, collaborate with a partner
+\item
+  explore github.com blame, history, issues
+\item
+  R communities and getting help (rOpenSci, RLadies)
+\item
+  how to use Twitter for \#rstats
+\end{itemize}
+
+\hypertarget{resources-7}{%
+\subsection{Resources}\label{resources-7}}
+
+\hypertarget{lesson-2}{%
+\section{Lesson}\label{lesson-2}}
+
+\hypertarget{efficiency-tips-4}{%
+\section{Efficiency Tips}\label{efficiency-tips-4}}
+
+\hypertarget{additional-thoughts}{%
+\section{Additional thoughts}\label{additional-thoughts}}
+
 \hypertarget{synthesis}{%
 \chapter{Synthesis}\label{synthesis}}
+
+TODO:
+- stringr
+- Argaux,
+- Closing (15 mins)
 
 \hypertarget{summary-7}{%
 \section{Summary}\label{summary-7}}

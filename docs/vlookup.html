@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Dplyr and vlookups | R for Excel Users</title>
+  <title>Chapter 8 Dplyr and vlookups | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Dplyr and vlookups | R for Excel Users" />
+  <meta property="og:title" content="Chapter 8 Dplyr and vlookups | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Dplyr and vlookups | R for Excel Users" />
+  <meta name="twitter:title" content="Chapter 8 Dplyr and vlookups | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="tidying.html"/>
-<link rel="next" href="synthesis.html"/>
+<link rel="next" href="readxl.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda-pilot-workshop"><i class="fa fa-check"></i><b>1.1</b> Agenda: pilot workshop</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.1</b> Agenda</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
@@ -147,31 +147,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources-1"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
+<li class="chapter" data-level="3.1.3" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>3.1.3</b> Activity</a></li>
+<li class="chapter" data-level="3.1.4" data-path="rstudio.html"><a href="rstudio.html#restart-r"><i class="fa fa-check"></i><b>3.1.4</b> Restart R</a></li>
+<li class="chapter" data-level="3.1.5" data-path="rstudio.html"><a href="rstudio.html#what-is-rmarkdown-1-minute-video"><i class="fa fa-check"></i><b>3.1.5</b> What is RMarkdown? (1-minute video)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#why-learn-r-with-rstudio"><i class="fa fa-check"></i><b>3.2</b> Why learn R with RStudio</a></li>
-<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.3</b> RStudio Orientation</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#r-console"><i class="fa fa-check"></i><b>3.3.1</b> R Console</a></li>
-<li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#viewing-data-in-r"><i class="fa fa-check"></i><b>3.3.2</b> Viewing data in R</a></li>
-<li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#r-functions-help-pages"><i class="fa fa-check"></i><b>3.3.3</b> R functions, help pages</a></li>
-<li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>3.3.4</b> Activity</a></li>
-<li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#packages"><i class="fa fa-check"></i><b>3.3.5</b> Packages</a></li>
-<li class="chapter" data-level="3.3.6" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.3.6</b> Assigning objects with <code>&lt;-</code></a></li>
-<li class="chapter" data-level="3.3.7" data-path="rstudio.html"><a href="rstudio.html#error-messages-are-your-friends"><i class="fa fa-check"></i><b>3.3.7</b> Error messages are your friends</a></li>
-<li class="chapter" data-level="3.3.8" data-path="rstudio.html"><a href="rstudio.html#logical-operators-and-expressions"><i class="fa fa-check"></i><b>3.3.8</b> Logical operators and expressions</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#clearing-the-environment"><i class="fa fa-check"></i><b>3.4</b> Clearing the environment</a></li>
-<li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.5</b> Intro to RMarkdown</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.5.1</b> Create an RMarkdown file</a></li>
-<li class="chapter" data-level="3.5.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.5.2</b> Knit your RMarkdown file</a></li>
-<li class="chapter" data-level="3.5.3" data-path="rstudio.html"><a href="rstudio.html#r-code-chunks"><i class="fa fa-check"></i><b>3.5.3</b> R code chunks</a></li>
-<li class="chapter" data-level="3.5.4" data-path="rstudio.html"><a href="rstudio.html#activity-3-min"><i class="fa fa-check"></i><b>3.5.4</b> Activity (3 min)</a></li>
-<li class="chapter" data-level="3.5.5" data-path="rstudio.html"><a href="rstudio.html#markdown-sections"><i class="fa fa-check"></i><b>3.5.5</b> Markdown sections</a></li>
-<li class="chapter" data-level="3.5.6" data-path="rstudio.html"><a href="rstudio.html#activity-1"><i class="fa fa-check"></i><b>3.5.6</b> Activity</a></li>
-<li class="chapter" data-level="3.5.7" data-path="rstudio.html"><a href="rstudio.html#restart-r"><i class="fa fa-check"></i><b>3.5.7</b> Restart R</a></li>
-<li class="chapter" data-level="3.5.8" data-path="rstudio.html"><a href="rstudio.html#what-is-rmarkdown-1-minute-video"><i class="fa fa-check"></i><b>3.5.8</b> What is RMarkdown? (1-minute video)</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.6</b> Deep thoughts</a></li>
-<li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips"><i class="fa fa-check"></i><b>3.7</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.2</b> Deep thoughts</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips"><i class="fa fa-check"></i><b>3.3</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
 <li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#summary-1"><i class="fa fa-check"></i><b>4.1</b> Summary</a></li>
@@ -199,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.11.4</b> Push</a></li>
 </ul></li>
 <li class="chapter" data-level="4.12" data-path="github.html"><a href="github.html#explore-remote-github"><i class="fa fa-check"></i><b>4.12</b> Explore remote Github</a><ul>
-<li class="chapter" data-level="4.12.1" data-path="github.html"><a href="github.html#activity-2"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
+<li class="chapter" data-level="4.12.1" data-path="github.html"><a href="github.html#activity-1"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
 </ul></li>
 <li class="chapter" data-level="4.13" data-path="github.html"><a href="github.html#create-a-new-r-markdown-file"><i class="fa fa-check"></i><b>4.13</b> Create a new R Markdown file</a></li>
 <li class="chapter" data-level="4.14" data-path="github.html"><a href="github.html#explore-your-webpage"><i class="fa fa-check"></i><b>4.14</b> Explore your webpage</a></li>
@@ -207,97 +188,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.16" data-path="github.html"><a href="github.html#happy-git-with-r"><i class="fa fa-check"></i><b>4.16</b> Happy Git with R</a></li>
 <li class="chapter" data-level="4.17" data-path="github.html"><a href="github.html#efficiency-tips-1"><i class="fa fa-check"></i><b>4.17</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>5</b> <code>readxl</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="readxl.html"><a href="readxl.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="readxl.html"><a href="readxl.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="5.1.2" data-path="readxl.html"><a href="readxl.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a><ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="readxl.html"><a href="readxl.html#lesson"><i class="fa fa-check"></i><b>5.2</b> Lesson</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="readxl.html"><a href="readxl.html#attach-packages"><i class="fa fa-check"></i><b>5.2.1</b> Attach packages</a></li>
-<li class="chapter" data-level="5.2.2" data-path="readxl.html"><a href="readxl.html#use-read_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>5.2.2</b> Use <code>read_csv()</code> to read in data from a CSV file</a></li>
-<li class="chapter" data-level="5.2.3" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>5.2.3</b> Use <code>read_excel()</code> to read in a single Excel worksheet</a></li>
-<li class="chapter" data-level="5.2.4" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-only-part-of-an-excel-worksheet"><i class="fa fa-check"></i><b>5.2.4</b> Use <code>read_excel()</code> to read in only <em>part</em> of an Excel worksheet</a></li>
-<li class="chapter" data-level="5.2.5" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-selected-worksheets-from-a-workbook"><i class="fa fa-check"></i><b>5.2.5</b> Use <code>read_excel()</code> to read in selected worksheets from a workbook</a></li>
-<li class="chapter" data-level="5.2.6" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>5.2.6</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
-<li class="chapter" data-level="5.2.7" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-write_csv-or-write_xlsx"><i class="fa fa-check"></i><b>5.2.7</b> Save data frames as .csv or .xlsx with <code>write_csv()</code> or <code>write_xlsx()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>5.3</b> Activity: Import some invertebrates!</a></li>
-<li class="chapter" data-level="5.4" data-path="readxl.html"><a href="readxl.html#efficiency-tips-2"><i class="fa fa-check"></i><b>5.4</b> Efficiency Tips</a></li>
-<li class="chapter" data-level="5.5" data-path="readxl.html"><a href="readxl.html#additional-thoughts"><i class="fa fa-check"></i><b>5.5</b> Additional thoughts</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> Graphs with ggplot2</a><ul>
-<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-3"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="6.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-4"><i class="fa fa-check"></i><b>6.1.2</b> Resources</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#lesson-1"><i class="fa fa-check"></i><b>6.2</b> Lesson</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>6.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>6.2.2</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
-<li class="chapter" data-level="6.2.3" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.3</b> Intro to customizing <code>ggplot</code> graphs</a></li>
-<li class="chapter" data-level="6.2.4" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>6.2.4</b> Mapping variables onto aesthetics</a></li>
-<li class="chapter" data-level="6.2.5" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>6.2.5</b> ggplot2 complete themes</a></li>
-<li class="chapter" data-level="6.2.6" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>6.2.6</b> Updating axis labels and titles</a></li>
-<li class="chapter" data-level="6.2.7" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>6.2.7</b> Combining compatible geoms</a></li>
-<li class="chapter" data-level="6.2.8" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.8</b> Multi-series ggplot graphs</a></li>
-<li class="chapter" data-level="6.2.9" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.9</b> Faceting ggplot graphs</a></li>
-<li class="chapter" data-level="6.2.10" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>6.2.10</b> Exporting a ggplot graph with <code>ggsave()</code></a></li>
-<li class="chapter" data-level="6.2.11" data-path="ggplot2.html"><a href="ggplot2.html#one-final-graph-example-jitter-and-boxplots"><i class="fa fa-check"></i><b>6.2.11</b> One final graph example: jitter and boxplots</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#lesson"><i class="fa fa-check"></i><b>5.2</b> Lesson</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>5.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>5.2.2</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.2.3</b> Intro to customizing <code>ggplot</code> graphs</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.2.4</b> Mapping variables onto aesthetics</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>5.2.5</b> ggplot2 complete themes</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>5.2.6</b> Updating axis labels and titles</a></li>
+<li class="chapter" data-level="5.2.7" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>5.2.7</b> Combining compatible geoms</a></li>
+<li class="chapter" data-level="5.2.8" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>5.2.8</b> Multi-series ggplot graphs</a></li>
+<li class="chapter" data-level="5.2.9" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>5.2.9</b> Faceting ggplot graphs</a></li>
+<li class="chapter" data-level="5.2.10" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.2.10</b> Exporting a ggplot graph with <code>ggsave()</code></a></li>
+<li class="chapter" data-level="5.2.11" data-path="ggplot2.html"><a href="ggplot2.html#one-final-graph-example-jitter-and-boxplots"><i class="fa fa-check"></i><b>5.2.11</b> One final graph example: jitter and boxplots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>7</b> <code>dplyr</code> and Pivot Tables</a><ul>
-<li class="chapter" data-level="7.1" data-path="pivot.html"><a href="pivot.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
-<li class="chapter" data-level="7.2" data-path="pivot.html"><a href="pivot.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
-<li class="chapter" data-level="7.3" data-path="pivot.html"><a href="pivot.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
-<li class="chapter" data-level="7.4" data-path="pivot.html"><a href="pivot.html#pivot-table-overview"><i class="fa fa-check"></i><b>7.4</b> Pivot table overview</a></li>
-<li class="chapter" data-level="7.5" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>7.5</b> RMarkdown setup</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>7.5.1</b> Our task</a></li>
+<li class="chapter" data-level="6" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>6</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="6.1" data-path="pivot.html"><a href="pivot.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
+<li class="chapter" data-level="6.2" data-path="pivot.html"><a href="pivot.html#objectives-3"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
+<li class="chapter" data-level="6.3" data-path="pivot.html"><a href="pivot.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
+<li class="chapter" data-level="6.4" data-path="pivot.html"><a href="pivot.html#pivot-table-overview"><i class="fa fa-check"></i><b>6.4</b> Pivot table overview</a></li>
+<li class="chapter" data-level="6.5" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>6.5</b> RMarkdown setup</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>6.5.1</b> Our task</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>7.6</b> Pivot table demo</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>7.6.1</b> pivot one variable</a></li>
-<li class="chapter" data-level="7.6.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>7.6.2</b> pivot two variables</a></li>
+<li class="chapter" data-level="6.6" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.6</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>6.6.1</b> pivot one variable</a></li>
+<li class="chapter" data-level="6.6.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>6.6.2</b> pivot two variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>7.7</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
-<li class="chapter" data-level="7.7.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>7.7.1</b> <code>group_by</code> one variable</a></li>
-<li class="chapter" data-level="7.7.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>7.7.2</b> RStudio Viewer</a></li>
-<li class="chapter" data-level="7.7.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>7.7.3</b> <code>group_by</code> multiple variables</a></li>
-<li class="chapter" data-level="7.7.4" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>7.7.4</b> <code>summarize</code> multiple variables</a></li>
-<li class="chapter" data-level="7.7.5" data-path="pivot.html"><a href="pivot.html#activity-3"><i class="fa fa-check"></i><b>7.7.5</b> Activity</a></li>
+<li class="chapter" data-level="6.7" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>6.7</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="6.7.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>6.7.1</b> <code>group_by</code> one variable</a></li>
+<li class="chapter" data-level="6.7.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>6.7.2</b> RStudio Viewer</a></li>
+<li class="chapter" data-level="6.7.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>6.7.3</b> <code>group_by</code> multiple variables</a></li>
+<li class="chapter" data-level="6.7.4" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>6.7.4</b> <code>summarize</code> multiple variables</a></li>
+<li class="chapter" data-level="6.7.5" data-path="pivot.html"><a href="pivot.html#activity-2"><i class="fa fa-check"></i><b>6.7.5</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>7.8</b> Oh no, our colleague sent the wrong data!</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>7.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
-<li class="chapter" data-level="7.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>7.8.2</b> <code>dplyr::count()</code></a></li>
+<li class="chapter" data-level="6.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.8</b> Oh no, our colleague sent the wrong data!</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>6.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
+<li class="chapter" data-level="6.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>6.8.2</b> <code>dplyr::count()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>7.9</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="7.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>7.10</b> <code>select()</code></a></li>
-<li class="chapter" data-level="7.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>7.11</b> Deep thoughts</a></li>
-<li class="chapter" data-level="7.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>7.12</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="6.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>6.9</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>6.10</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>6.11</b> Deep thoughts</a></li>
+<li class="chapter" data-level="6.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-2"><i class="fa fa-check"></i><b>6.12</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>8</b> Tidying</a><ul>
-<li class="chapter" data-level="8.1" data-path="tidying.html"><a href="tidying.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
-<li class="chapter" data-level="8.2" data-path="tidying.html"><a href="tidying.html#objectives-5"><i class="fa fa-check"></i><b>8.2</b> Objectives</a></li>
-<li class="chapter" data-level="8.3" data-path="tidying.html"><a href="tidying.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
-<li class="chapter" data-level="8.4" data-path="tidying.html"><a href="tidying.html#lesson-2"><i class="fa fa-check"></i><b>8.4</b> Lesson</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>8.4.1</b> Lesson Prep</a></li>
-<li class="chapter" data-level="8.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>8.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
-<li class="chapter" data-level="8.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>8.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
-<li class="chapter" data-level="8.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>8.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
-<li class="chapter" data-level="8.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>8.4.5</b> Activities</a></li>
-<li class="chapter" data-level="8.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>8.4.6</b> Fun facts / insights</a></li>
+<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
+<li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#lesson-1"><i class="fa fa-check"></i><b>7.4</b> Lesson</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>7.4.1</b> Lesson Prep</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>7.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="7.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>7.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
+<li class="chapter" data-level="7.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>7.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
+<li class="chapter" data-level="7.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>7.4.5</b> Activities</a></li>
+<li class="chapter" data-level="7.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>7.4.6</b> Fun facts / insights</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>9</b> Dplyr and vlookups</a><ul>
-<li class="chapter" data-level="9.1" data-path="vlookup.html"><a href="vlookup.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="9.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+<li class="chapter" data-level="8" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>8</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="8.1" data-path="vlookup.html"><a href="vlookup.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-5"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-6"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>9.2</b> Lessons</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="vlookup.html"><a href="vlookup.html#getting-started---create-a-new-.rmd-attach-packages-get-data-1"><i class="fa fa-check"></i><b>9.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="9.2.2" data-path="vlookup.html"><a href="vlookup.html#filter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>9.2.2</b> <code>filter()</code> to conditionally subset by rows</a></li>
-<li class="chapter" data-level="9.2.3" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-_join"><i class="fa fa-check"></i><b>9.2.3</b> Merging data frames with <code>*_join()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>8.2</b> Lessons</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="vlookup.html"><a href="vlookup.html#getting-started---create-a-new-.rmd-attach-packages-get-data-1"><i class="fa fa-check"></i><b>8.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="vlookup.html"><a href="vlookup.html#filter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.2.2</b> <code>filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="8.2.3" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-_join"><i class="fa fa-check"></i><b>8.2.3</b> Merging data frames with <code>*_join()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>9.3</b> Fun / kind of scary facts</a></li>
-<li class="chapter" data-level="9.4" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>9.4</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="9.5" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>9.5</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="8.3" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>8.3</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="8.4" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>8.4</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="8.5" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-3"><i class="fa fa-check"></i><b>8.5</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>9</b> <code>readxl</code></a><ul>
+<li class="chapter" data-level="9.1" data-path="readxl.html"><a href="readxl.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="readxl.html"><a href="readxl.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="readxl.html"><a href="readxl.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="readxl.html"><a href="readxl.html#lesson-2"><i class="fa fa-check"></i><b>9.2</b> Lesson</a></li>
+<li class="chapter" data-level="9.3" data-path="readxl.html"><a href="readxl.html#efficiency-tips-4"><i class="fa fa-check"></i><b>9.3</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="9.4" data-path="readxl.html"><a href="readxl.html#additional-thoughts"><i class="fa fa-check"></i><b>9.4</b> Additional thoughts</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
 <li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-7"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
@@ -333,9 +305,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="vlookup" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Dplyr and vlookups</h1>
-<div id="summary-6" class="section level2">
-<h2><span class="header-section-number">9.1</span> Summary</h2>
+<h1><span class="header-section-number">Chapter 8</span> Dplyr and vlookups</h1>
+<div id="summary-5" class="section level2">
+<h2><span class="header-section-number">8.1</span> Summary</h2>
 <p>In previous sessions, we’ve learned to do some basic wrangling and find summary information with functions in the <code>dplyr</code> package, which exists within the <code>tidyverse</code>. We’ve used:</p>
 <ul>
 <li><code>count()</code>: get counts of observations for groupings we specify</li>
@@ -349,16 +321,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>*_join()</code> functions to merge data frames together</li>
 </ul>
 <p>The combination of <code>filter()</code> and <code>*_join()</code> - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.</p>
-<div id="objectives-6" class="section level3">
-<h3><span class="header-section-number">9.1.1</span> Objectives</h3>
+<div id="objectives-5" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Objectives</h3>
 <ul>
 <li>Use <code>filter()</code> to subset data frames, returning <strong>rows</strong> that satisfy variable conditions</li>
 <li>Use <code>full_join()</code>, <code>left_join()</code>, and <code>inner_join()</code> to merge data frames, with different endpoints in mind</li>
 <li>Use <code>filter()</code> and <code>*_join()</code> as part of a wrangling sequence</li>
 </ul>
 </div>
-<div id="resources-7" class="section level3">
-<h3><span class="header-section-number">9.1.2</span> Resources</h3>
+<div id="resources-6" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Resources</h3>
 <ul>
 <li><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code> documentation from tidyverse.org</a></li>
 <li><a href="https://dplyr.tidyverse.org/reference/join.html"><code>join()</code> documentation from tidyverse.org</a></li>
@@ -367,9 +339,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="lessons" class="section level2">
-<h2><span class="header-section-number">9.2</span> Lessons</h2>
+<h2><span class="header-section-number">8.2</span> Lessons</h2>
 <div id="getting-started---create-a-new-.rmd-attach-packages-get-data-1" class="section level3">
-<h3><span class="header-section-number">9.2.1</span> Getting started - Create a new .Rmd, attach packages &amp; get data</h3>
+<h3><span class="header-section-number">8.2.1</span> Getting started - Create a new .Rmd, attach packages &amp; get data</h3>
 <p>Create a new R Markdown document in your r-workshop project and knit to save as <strong>filter_join.Rmd</strong>. Remove all the example code (everything below the set-up code chunk).</p>
 <p>In this session, we’ll use three packages:</p>
 <ul>
@@ -378,25 +350,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>here</code></li>
 </ul>
 <p>Attach the packages in the setup code chunk in your .Rmd:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="co"># Attach packages:</span></a>
-<a class="sourceLine" id="cb153-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="kw">library</span>(here)</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="co"># Attach packages:</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="kw">library</span>(here)</a></code></pre></div>
 <p>Then create a new code chunk to read in three files from your ‘data’ subfolder:</p>
 <ul>
 <li>invert_counts_curated.xlsx</li>
 <li>fish_counts_curated.csv</li>
 <li>kelp_counts_curated.xlsx</li>
 </ul>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="co"># Read in data: </span></a>
-<a class="sourceLine" id="cb154-2" data-line-number="2">invert_counts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;invert_counts_curated.xlsx&quot;</span>))</a>
-<a class="sourceLine" id="cb154-3" data-line-number="3">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish_counts_curated.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb154-4" data-line-number="4">kelp_counts_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="co"># Read in data: </span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">invert_counts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;invert_counts_curated.xlsx&quot;</span>))</a>
+<a class="sourceLine" id="cb100-3" data-line-number="3">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish_counts_curated.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb100-4" data-line-number="4">kelp_counts_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>))</a></code></pre></div>
 <p>We should always explore the data we’ve read in using functions like <code>View()</code>, <code>names()</code>, <code>summary()</code>, <code>head()</code> and <code>tail()</code> to ensure that the data we <em>think</em> we’ve read in is <em>actually</em> the data we’ve read in.</p>
 <p>Now, let’s use <code>filter()</code> to decide which observations (rows) we’ll keep or exclude in new subsets, similar to using Excel’s VLOOKUP function.</p>
 </div>
 <div id="filter-to-conditionally-subset-by-rows" class="section level3">
-<h3><span class="header-section-number">9.2.2</span> <code>filter()</code> to conditionally subset by rows</h3>
+<h3><span class="header-section-number">8.2.2</span> <code>filter()</code> to conditionally subset by rows</h3>
 <p>Use <code>filter()</code> to let R know which <strong>rows</strong> you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables.</p>
 <p><img src="img/rstudio-cheatsheet-filter.png" /></p>
 <p>Some examples in words that might inspire you to use <code>filter()</code>:</p>
@@ -412,96 +384,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here, we’ll learn some common ways to use <code>filter()</code>.</p>
 <div id="filter-rows-by-matching-a-single-character-string" class="section level4">
-<h4><span class="header-section-number">9.2.2.1</span> Filter rows by matching a single character string</h4>
+<h4><span class="header-section-number">8.2.2.1</span> Filter rows by matching a single character string</h4>
 <p>Let’s say we want to keep all observations from the fish_counts data frame where the common name is “garibaldi.” Here, we need to tell R to only <em>keep rows</em> from the <strong>fish_counts</strong> data frame when the common name (<strong>common_name</strong> variable) exactly matches <strong>garibaldi</strong>.
 Use <code>==</code> to ask R to look for matching strings:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">fish_garibaldi &lt;-<span class="st"> </span><span class="kw">filter</span>(fish_counts, common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">fish_garibaldi &lt;-<span class="st"> </span><span class="kw">filter</span>(fish_counts, common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
 <p>Check out the <strong>fish_garibaldi</strong> object to ensure that only <em>garibaldi</em> observations remain.</p>
 <p>You could also do this using the pipe operator <code>%&gt;%</code>:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">fish_garibaldi &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">fish_garibaldi &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
 </div>
-<div id="activity-4" class="section level4">
-<h4><span class="header-section-number">9.2.2.2</span> Activity</h4>
+<div id="activity-3" class="section level4">
+<h4><span class="header-section-number">8.2.2.2</span> Activity</h4>
 <p><strong>Task</strong>: Create a subset from the <strong>fish_counts</strong> data frame, stored as object <strong>fish_abur</strong>, that only contains observations from Arroyo Burro (site ‘abur’).</p>
 <p><strong>Solution</strong>:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">fish_abur &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb157-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;abur&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">fish_abur &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;abur&quot;</span>)</a></code></pre></div>
 <p>Explore the subset you just created to ensure that only Arroyo Burro observations are returned.</p>
 </div>
 <div id="filter-rows-based-on-numeric-conditions" class="section level4">
-<h4><span class="header-section-number">9.2.2.3</span> Filter rows based on numeric conditions</h4>
+<h4><span class="header-section-number">8.2.2.3</span> Filter rows based on numeric conditions</h4>
 <p>Use expected operators (&gt;, &lt;, &gt;=, &lt;=, ==) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the <strong>total_count</strong> column value is &gt;= 50:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span><span class="kw">filter</span>(fish_counts, total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span><span class="kw">filter</span>(fish_counts, total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
 <p>Or, using the pipe:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
 </div>
 <div id="filter-to-return-rows-that-match-this-or-that-or-that" class="section level4">
-<h4><span class="header-section-number">9.2.2.4</span> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></h4>
+<h4><span class="header-section-number">8.2.2.4</span> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></h4>
 <p>What if we want to return a subset of the fish_counts df that contains <em>garibaldi</em>, <em>blacksmith</em> OR <em>black surfperch</em>?</p>
 <p>There are several ways to write an “OR” statement for filtering, which will keep any observations that match Condition A <em>or</em> Condition B <em>or</em> Condition C. In this example, we will create a subset from <strong>fish_counts</strong> that only contains rows where the <strong>common_name</strong> is <em>garibaldi</em> or <em>blacksmith</em> or <em>black surfperch</em>.</p>
 <p>Use <code>%in%</code> to ask R to look for <em>any matches</em> within a combined vector of strings:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</a></code></pre></div>
 <p>Alternatively, you can indicate <strong>OR</strong> using the vertical line operator <code>|</code> to do the same thing (but you can see that it’s more repetitive when looking for matches within the same variable):</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</a></code></pre></div>
 </div>
 <div id="filter-to-return-rows-that-match-conditions-for-multiple-variables" class="section level4">
-<h4><span class="header-section-number">9.2.2.5</span> Filter to return rows that match conditions for multiple variables</h4>
+<h4><span class="header-section-number">8.2.2.5</span> Filter to return rows that match conditions for multiple variables</h4>
 <p>In the previous examples, we set filter conditions based on a single variable (e.g. common_name). What if we want to return observations that satisfy conditions for multiple variables?</p>
 <p>For example: We want to create a subset that only returns rows from ‘invert_counts’ where the <strong>site</strong> is “abur” or “mohk” <em>and</em> the <strong>common_name</strong> is “purple urchin.” In <code>filter()</code>, add a comma (or ampersand, &amp;) between arguments for multiple <em>AND</em> conditions:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>), common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">head</span>(urchin_abur_mohk)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>), common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">head</span>(urchin_abur_mohk)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 6
 ##   month site  common_name   `2016` `2017` `2018`
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 7     abur  purple urchin     48     48     48
 ## 2 7     mohk  purple urchin    620    505    323</code></pre>
 <p>Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using <code>&amp;</code> (instead of a comma) between “and” conditions:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb165-3" data-line-number="3">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>,<span class="st">&quot;mohk&quot;</span>) <span class="op">&amp;</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
 <p>Or you could just do two filter steps in sequence:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="co"># Written as sequential filter steps:</span></a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>, <span class="st">&quot;mohk&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># Written as sequential filter steps:</span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb112-3" data-line-number="3">urchin_abur_mohk &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abur&quot;</span>, <span class="st">&quot;mohk&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb112-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;purple urchin&quot;</span>)</a></code></pre></div>
 <div id="activity-combined-filter-conditions" class="section level5">
-<h5><span class="header-section-number">9.2.2.5.1</span> Activity: combined filter conditions</h5>
+<h5><span class="header-section-number">8.2.2.5.1</span> Activity: combined filter conditions</h5>
 <p><strong>Task:</strong> Create a subset from the <strong>fish_counts</strong> data frame, called <strong>low_gb_wr</strong> that only contains:</p>
 <ul>
 <li>Observations of <em>garibaldi</em> and <em>rock wrasse</em></li>
 <li>Where the <em>total_count</em> is <em>less than or equal to 10</em></li>
 </ul>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">low_gb_wr &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>), </a>
-<a class="sourceLine" id="cb167-3" data-line-number="3">         total_count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">low_gb_wr &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>), </a>
+<a class="sourceLine" id="cb113-3" data-line-number="3">         total_count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
 <p><strong>Sync your local project to your repo on GitHub.</strong></p>
 </div>
 </div>
 <div id="filter-to-return-rows-that-do-not-match-conditions" class="section level4">
-<h4><span class="header-section-number">9.2.2.6</span> Filter to return rows that <em>do not</em> match conditions</h4>
+<h4><span class="header-section-number">8.2.2.6</span> Filter to return rows that <em>do not</em> match conditions</h4>
 <p>Sometimes we might want to exclude observations. Here, let’s say we want to make a subset that contains all rows from <strong>fish_counts</strong> except those recorded at the Mohawk Reef site (“mohk” in the <em>site</em> variable).</p>
 <p>We use <code>!=</code> to return observations that <strong>do not match</strong> a condition.</p>
 <p>Like this:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">fish_no_mohk &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">!=</span><span class="st"> &quot;mohk&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">fish_no_mohk &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">!=</span><span class="st"> &quot;mohk&quot;</span>)</a></code></pre></div>
 <p>This similarly works to exclude observations by a value.</p>
 <p>For example, if we want to return all observations <em>except</em> those where the total fish count is 1, we use:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">fish_more_one &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">fish_more_one &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
 <p>What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species <strong>is not</strong> garibaldi <strong>or</strong> rock wrasse.</p>
 <p>We can use <code>filter(!variable %in% c(&quot;apple&quot;, &quot;orange&quot;))</code> to return rows where the variable does <strong>not</strong> match “apple” or “orange”. For our fish example, that looks like this:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1">fish_subset &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">fish_subset &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>))</a></code></pre></div>
 <p>Which then only returns observations for the other fish species in the dataset.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">head</span>(fish_subset)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">head</span>(fish_subset)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##    year site  common_name     total_count
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
@@ -513,7 +485,7 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 ## 6  2016 aque  senorita                 57</code></pre>
 </div>
 <div id="example-combining-filter-with-other-functions-using-the-pipe-operator" class="section level4">
-<h4><span class="header-section-number">9.2.2.7</span> Example: combining <code>filter()</code> with other functions using the pipe operator (<code>%&gt;%</code>)</h4>
+<h4><span class="header-section-number">8.2.2.7</span> Example: combining <code>filter()</code> with other functions using the pipe operator (<code>%&gt;%</code>)</h4>
 <p>We can also use <code>filter()</code> in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the <em>pipe operator</em> (<code>%&gt;%</code>).</p>
 <p>Here, we’ll start with the <code>invert_counts</code> data frame and create a subset that:</p>
 <ul>
@@ -521,15 +493,15 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li>Only keeps observations for rock scallops</li>
 <li>Calculates the total count of rock scallops by site only</li>
 </ul>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="co"># Counts of scallops by site (all years included):</span></a>
-<a class="sourceLine" id="cb173-2" data-line-number="2">scallop_count_by_site &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>, </a>
-<a class="sourceLine" id="cb173-4" data-line-number="4">               <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, </a>
-<a class="sourceLine" id="cb173-5" data-line-number="5">               <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;rock scallop&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb173-7" data-line-number="7"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">tot_count =</span> <span class="kw">sum</span>(sp_count, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">scallop_count_by_site</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># Counts of scallops by site (all years included):</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">scallop_count_by_site &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>, </a>
+<a class="sourceLine" id="cb119-4" data-line-number="4">               <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, </a>
+<a class="sourceLine" id="cb119-5" data-line-number="5">               <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-6" data-line-number="6"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;rock scallop&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-7" data-line-number="7"><span class="st">  </span><span class="kw">group_by</span>(site) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">tot_count =</span> <span class="kw">sum</span>(sp_count, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">scallop_count_by_site</a></code></pre></div>
 <pre><code>## # A tibble: 11 x 2
 ##    site  tot_count
 ##    &lt;chr&gt;     &lt;dbl&gt;
@@ -547,7 +519,7 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 </div>
 </div>
 <div id="merging-data-frames-with-_join" class="section level3">
-<h3><span class="header-section-number">9.2.3</span> Merging data frames with <code>*_join()</code></h3>
+<h3><span class="header-section-number">8.2.3</span> Merging data frames with <code>*_join()</code></h3>
 <p>Excel’s <code>VLOOKUP</code> can also be used to merge data from separate tables or worksheets. Here, we’ll use the <code>*_join()</code> functions to merge separate data frames in R.</p>
 <p>There are a number of ways to merge data frames in R. We’ll use <code>full_join()</code>, <code>left_join()</code>, and <code>inner_join()</code> in this session.</p>
 <p>From R Documentation (<code>?join</code>):</p>
@@ -559,25 +531,25 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <p>Schematic (from RStudio data wrangling cheat sheet):
 <img src="img/rstudio-cheatsheet-combine-options1.png" /></p>
 <p>To clarify what the different joins are doing, let’s first make a subset of the <em>fish_counts</em> data frame that only contains observations from 2016 and 2017.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">fish_<span class="dv">2016</span>_<span class="dv">2017</span> &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">fish_<span class="dv">2016</span>_<span class="dv">2017</span> &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span> <span class="op">|</span><span class="st"> </span>year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>)</a></code></pre></div>
 <p>Take a look to ensure that only those years are included with <code>View(fish_2016_2017)</code>. Now, let’s merge it with our kelp fronds data in different ways.</p>
 <div id="full_join-to-merge-data-frames-keeping-everything" class="section level4">
-<h4><span class="header-section-number">9.2.3.1</span> <code>full_join()</code> to merge data frames, keeping everything</h4>
+<h4><span class="header-section-number">8.2.3.1</span> <code>full_join()</code> to merge data frames, keeping everything</h4>
 <p>When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):</p>
 <ul>
 <li>Which data frames we want to merge together</li>
 <li>Which variables to merge by</li>
 </ul>
 <p><strong>Note:</strong> If there are <strong>exactly matching</strong> column names in the data frames you’re merging, the <code>*_join()</code> functions will assume that you want to join by those columns. If there are <em>no</em> matching column names, you can specify which columns to join by manually. We’ll do both here.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="co"># Join the fish_counts and kelp_counts_abur together: </span></a>
-<a class="sourceLine" id="cb177-2" data-line-number="2">abur_kelp_join &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) <span class="co"># Uh oh. An error message.</span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="co"># Join the fish_counts and kelp_counts_abur together: </span></a>
+<a class="sourceLine" id="cb123-2" data-line-number="2">abur_kelp_join &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) <span class="co"># Uh oh. An error message.</span></a></code></pre></div>
 <p>When we try to do that join, we get an error message:
 <code>Error: Can't join on 'year' x 'year' because of incompatible types (character / numeric)</code></p>
 <p>Let’s google this. That means copying this from the console and pasting it into Google.</p>
 <p>What’s going on here? First, there’s something fishy (ha) going on with the class of the <em>year</em> variable in <code>kelp_counts_abur</code>. Use the <code>class()</code> function to see how R understands that variable (remember, we use <code>$</code> to return a specific column from a data frame).</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>So the variable is currently stored as a character. Why?</p>
 <p>If we go back to the kelp_counts_curated.xlsx file, we’ll see that the numbers in both the year and month column have been stored as <em>text</em>. There are several hints Excel gives us:</p>
@@ -587,16 +559,16 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li>The warning sign shows up when you click on one of the values with text formatting, and lets you know that the cell has been stored as text. We are given the option to reformat as numeric in Excel, but we’ll do it here in R so we have a reproducible record of the change to the variable class.</li>
 </ul>
 <p>There are a number of ways to do this in R. We’ll use <code>mutate()</code> to overwrite the existing <code>year</code> column while coercing it to class <em>numeric</em> using the <code>as.numeric()</code> function.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="co"># Coerce the class of &#39;year&#39; to numeric</span></a>
-<a class="sourceLine" id="cb180-2" data-line-number="2">kelp_counts_abur &lt;-<span class="st"> </span>kelp_counts_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="co"># Coerce the class of &#39;year&#39; to numeric</span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2">kelp_counts_abur &lt;-<span class="st"> </span>kelp_counts_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
 <p>Now if we check the class of the <em>year</em> variable in <code>kelp_counts_abur</code>, we’ll see that it has been coerced to ‘numeric’:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">class</span>(kelp_counts_abur<span class="op">$</span>year)</a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p><strong>Question: Isn’t it bad practice to overwrite variables, instead of just making a new one?</strong> Great question, and usually the answer is yes. Here, we feel fine with “overwriting” the year column because we’re not changing anything about what’s contained within the column, we’re only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead!</p>
 <p>OK, so now the class of <em>year</em> in the data frames we’re joining is the same. Let’s try that <code>full_join()</code> again:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">abur_kelp_join &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">abur_kelp_join &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(kelp_counts_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>))</a></code></pre></div>
 <p>Let’s look at the merged data frame with <code>View(abur_kelp_join)</code>. A few things to notice about how <code>full_join()</code> has worked:</p>
 <ol style="list-style-type: decimal">
 <li>All columns that existed in <strong>both data frames</strong> still exist.</li>
@@ -606,20 +578,20 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <p>Because all data (observations &amp; columns) are retained, <code>full_join()</code> is the safest option if you’re unclear about how to merge data frames.
 #### <code>left_join()</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</p>
 <p>Now, we want to keep all observations in <em>fish_2016_2017</em>, and merge them with <em>kelp_counts_abur</em> while only keeping observations from <em>kelp_counts_abur</em> that match an observation within <em>fish_2016_2017</em>. So when we use <code>left_join()</code>, any information on kelp counts from 2018 should be dropped.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">fish_kelp_<span class="dv">2016</span>_<span class="dv">2017</span> &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(kelp_counts_abur)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">fish_kelp_<span class="dv">2016</span>_<span class="dv">2017</span> &lt;-<span class="st"> </span>fish_<span class="dv">2016</span>_<span class="dv">2017</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(kelp_counts_abur)</a></code></pre></div>
 <pre><code>## Joining, by = c(&quot;year&quot;, &quot;site&quot;)</code></pre>
 <p>Notice when you look at <code>fish_kelp_2016_2017</code>, the 2018 data that <strong>does</strong> exist in <code>kelp_counts_abur</code> does <strong>not</strong> get joined to the <code>fish_2016_2017</code> data frame, because <code>left_join(df_a, df_b)</code> will only keep observations from <code>df_b</code> if they have a match in <code>df_a</code>!</p>
 </div>
 <div id="inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both" class="section level4">
-<h4><span class="header-section-number">9.2.3.2</span> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></h4>
+<h4><span class="header-section-number">8.2.3.2</span> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></h4>
 <p>When we used <code>left_join(df_a, df_b)</code>, we kept all observations in <code>df_a</code> but <em>only observations from <code>df_b</code> that matched an entry in <code>df_a</code></em> (in other words, some entries from <code>df_b</code> were excluded).</p>
 <p>Use <code>inner_join()</code> if you know that you <strong>only</strong> want to retain observations when they match across <strong>both data</strong> frames. Caution: this is built to exclude any observations that don’t match across data frames by joined variables - double check to make sure this is actually what you want to do!</p>
 <p>For example, if we use <code>inner_join()</code> to merge fish_counts and kelp_counts_abur, then we are asking R to <strong>only return observations where the joining variables (<em>year</em> and <em>site</em>) have matches in both data frames.</strong> Let’s see what the outcome is:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">abur_kelp_inner_join &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(kelp_counts_abur)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">abur_kelp_inner_join &lt;-<span class="st"> </span>fish_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(kelp_counts_abur)</a></code></pre></div>
 <pre><code>## Joining, by = c(&quot;year&quot;, &quot;site&quot;)</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">abur_kelp_inner_join</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">abur_kelp_inner_join</a></code></pre></div>
 <pre><code>## # A tibble: 15 x 6
 ##     year site  common_name     total_count month total_fronds
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
@@ -641,7 +613,7 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <p>Here, we see that only observations where there is a match for <em>year</em> and <em>site</em> in both data frames are returned.</p>
 </div>
 <div id="join-in-a-sequence" class="section level4">
-<h4><span class="header-section-number">9.2.3.3</span> <code>*_join()</code> in a sequence</h4>
+<h4><span class="header-section-number">8.2.3.3</span> <code>*_join()</code> in a sequence</h4>
 <p>We can also merge data frames as part of a sequence of wrangling steps.</p>
 <p>As an example: Starting with the <code>invert_counts</code> data frame, we want to:</p>
 <ul>
@@ -651,21 +623,21 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 <li>Next, join the <code>kelp_counts_abur</code> to the resulting subset above, <strong>only keeping observations that have a match in both data frames</strong></li>
 </ul>
 <p>That might look like this:</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">abur_lobster_kelp &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>, <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;total_counts&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb190-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb190-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;california spiny lobster&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb190-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(kelp_counts_abur)</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">abur_lobster_kelp &lt;-<span class="st"> </span>invert_counts <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>, <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;total_counts&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;california spiny lobster&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-5" data-line-number="5"><span class="st">  </span><span class="kw">inner_join</span>(kelp_counts_abur)</a></code></pre></div>
 <pre><code>## Joining, by = c(&quot;month&quot;, &quot;site&quot;, &quot;year&quot;)</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">abur_lobster_kelp</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">abur_lobster_kelp</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 6
 ##   month site  common_name               year total_counts total_fronds
 ##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
 ## 1 7     abur  california spiny lobster  2016           17          307
 ## 2 7     abur  california spiny lobster  2017           17          604
 ## 3 7     abur  california spiny lobster  2018           16         3532</code></pre>
-<div id="activity-5" class="section level5">
-<h5><span class="header-section-number">9.2.3.3.1</span> Activity</h5>
+<div id="activity-4" class="section level5">
+<h5><span class="header-section-number">8.2.3.3.1</span> Activity</h5>
 <p>Now let’s combine what we’ve learned about piping, filtering and joining!</p>
 <p><strong>Task:</strong> Complete the following as part of a single sequence (remember, check to see what you’ve produced after each step) to create a new data frame called <code>my_fish_join</code>:</p>
 <ul>
@@ -681,7 +653,7 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 </div>
 </div>
 <div id="fun-kind-of-scary-facts" class="section level2">
-<h2><span class="header-section-number">9.3</span> Fun / kind of scary facts</h2>
+<h2><span class="header-section-number">8.3</span> Fun / kind of scary facts</h2>
 <p><strong>How is this similar to <code>VLOOKUP</code> in Excel? How does it differ?</strong></p>
 <p>From <a href="https://support.office.com/en-us/article/vlookup-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1">Microsoft Office Support</a>, “use VLOOKUP when you need to find things in a table or a range by row.”</p>
 <p>So, both <code>filter()</code> and <code>VLOOKUP</code> look through your data frame (or spreadsheet, in Excel) to look for observations that match your conditions. But they also differ in important ways:</p>
@@ -691,14 +663,14 @@ Use <code>==</code> to ask R to look for matching strings:</p>
 </ol>
 </div>
 <div id="interludes-deep-thoughtsopenscapes" class="section level2">
-<h2><span class="header-section-number">9.4</span> Interludes (deep thoughts/openscapes)</h2>
+<h2><span class="header-section-number">8.4</span> Interludes (deep thoughts/openscapes)</h2>
 <ul>
 <li><p>Not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what’s happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.</p></li>
 <li><p>The risk of partial joins (&amp; a case for full_join + drop_na instead?)</p></li>
 </ul>
 </div>
-<div id="efficiency-tips-4" class="section level2">
-<h2><span class="header-section-number">9.5</span> Efficiency Tips</h2>
+<div id="efficiency-tips-3" class="section level2">
+<h2><span class="header-section-number">8.5</span> Efficiency Tips</h2>
 <ul>
 <li>Comment out multiline code with Command + Shift + C</li>
 <li>Knit with Command + Shift + K</li>
@@ -712,7 +684,7 @@ Use <code>==</code> to ask R to look for matching strings:</p>
         </div>
       </div>
 <a href="tidying.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="synthesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="readxl.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

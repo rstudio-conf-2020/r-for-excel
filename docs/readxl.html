@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 readxl | R for Excel Users</title>
+  <title>Chapter 9 readxl | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 readxl | R for Excel Users" />
+  <meta property="og:title" content="Chapter 9 readxl | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 readxl | R for Excel Users" />
+  <meta name="twitter:title" content="Chapter 9 readxl | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="github.html"/>
-<link rel="next" href="ggplot2.html"/>
+<link rel="prev" href="vlookup.html"/>
+<link rel="next" href="synthesis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda-pilot-workshop"><i class="fa fa-check"></i><b>1.1</b> Agenda: pilot workshop</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.1</b> Agenda</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
@@ -147,31 +147,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources-1"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
+<li class="chapter" data-level="3.1.3" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>3.1.3</b> Activity</a></li>
+<li class="chapter" data-level="3.1.4" data-path="rstudio.html"><a href="rstudio.html#restart-r"><i class="fa fa-check"></i><b>3.1.4</b> Restart R</a></li>
+<li class="chapter" data-level="3.1.5" data-path="rstudio.html"><a href="rstudio.html#what-is-rmarkdown-1-minute-video"><i class="fa fa-check"></i><b>3.1.5</b> What is RMarkdown? (1-minute video)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#why-learn-r-with-rstudio"><i class="fa fa-check"></i><b>3.2</b> Why learn R with RStudio</a></li>
-<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.3</b> RStudio Orientation</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#r-console"><i class="fa fa-check"></i><b>3.3.1</b> R Console</a></li>
-<li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#viewing-data-in-r"><i class="fa fa-check"></i><b>3.3.2</b> Viewing data in R</a></li>
-<li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#r-functions-help-pages"><i class="fa fa-check"></i><b>3.3.3</b> R functions, help pages</a></li>
-<li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>3.3.4</b> Activity</a></li>
-<li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#packages"><i class="fa fa-check"></i><b>3.3.5</b> Packages</a></li>
-<li class="chapter" data-level="3.3.6" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.3.6</b> Assigning objects with <code>&lt;-</code></a></li>
-<li class="chapter" data-level="3.3.7" data-path="rstudio.html"><a href="rstudio.html#error-messages-are-your-friends"><i class="fa fa-check"></i><b>3.3.7</b> Error messages are your friends</a></li>
-<li class="chapter" data-level="3.3.8" data-path="rstudio.html"><a href="rstudio.html#logical-operators-and-expressions"><i class="fa fa-check"></i><b>3.3.8</b> Logical operators and expressions</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#clearing-the-environment"><i class="fa fa-check"></i><b>3.4</b> Clearing the environment</a></li>
-<li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.5</b> Intro to RMarkdown</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.5.1</b> Create an RMarkdown file</a></li>
-<li class="chapter" data-level="3.5.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.5.2</b> Knit your RMarkdown file</a></li>
-<li class="chapter" data-level="3.5.3" data-path="rstudio.html"><a href="rstudio.html#r-code-chunks"><i class="fa fa-check"></i><b>3.5.3</b> R code chunks</a></li>
-<li class="chapter" data-level="3.5.4" data-path="rstudio.html"><a href="rstudio.html#activity-3-min"><i class="fa fa-check"></i><b>3.5.4</b> Activity (3 min)</a></li>
-<li class="chapter" data-level="3.5.5" data-path="rstudio.html"><a href="rstudio.html#markdown-sections"><i class="fa fa-check"></i><b>3.5.5</b> Markdown sections</a></li>
-<li class="chapter" data-level="3.5.6" data-path="rstudio.html"><a href="rstudio.html#activity-1"><i class="fa fa-check"></i><b>3.5.6</b> Activity</a></li>
-<li class="chapter" data-level="3.5.7" data-path="rstudio.html"><a href="rstudio.html#restart-r"><i class="fa fa-check"></i><b>3.5.7</b> Restart R</a></li>
-<li class="chapter" data-level="3.5.8" data-path="rstudio.html"><a href="rstudio.html#what-is-rmarkdown-1-minute-video"><i class="fa fa-check"></i><b>3.5.8</b> What is RMarkdown? (1-minute video)</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.6</b> Deep thoughts</a></li>
-<li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips"><i class="fa fa-check"></i><b>3.7</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.2</b> Deep thoughts</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips"><i class="fa fa-check"></i><b>3.3</b> Efficiency Tips</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
 <li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#summary-1"><i class="fa fa-check"></i><b>4.1</b> Summary</a></li>
@@ -199,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.11.4</b> Push</a></li>
 </ul></li>
 <li class="chapter" data-level="4.12" data-path="github.html"><a href="github.html#explore-remote-github"><i class="fa fa-check"></i><b>4.12</b> Explore remote Github</a><ul>
-<li class="chapter" data-level="4.12.1" data-path="github.html"><a href="github.html#activity-2"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
+<li class="chapter" data-level="4.12.1" data-path="github.html"><a href="github.html#activity-1"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
 </ul></li>
 <li class="chapter" data-level="4.13" data-path="github.html"><a href="github.html#create-a-new-r-markdown-file"><i class="fa fa-check"></i><b>4.13</b> Create a new R Markdown file</a></li>
 <li class="chapter" data-level="4.14" data-path="github.html"><a href="github.html#explore-your-webpage"><i class="fa fa-check"></i><b>4.14</b> Explore your webpage</a></li>
@@ -207,97 +188,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.16" data-path="github.html"><a href="github.html#happy-git-with-r"><i class="fa fa-check"></i><b>4.16</b> Happy Git with R</a></li>
 <li class="chapter" data-level="4.17" data-path="github.html"><a href="github.html#efficiency-tips-1"><i class="fa fa-check"></i><b>4.17</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>5</b> <code>readxl</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="readxl.html"><a href="readxl.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="readxl.html"><a href="readxl.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="5.1.2" data-path="readxl.html"><a href="readxl.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a><ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="readxl.html"><a href="readxl.html#lesson"><i class="fa fa-check"></i><b>5.2</b> Lesson</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="readxl.html"><a href="readxl.html#attach-packages"><i class="fa fa-check"></i><b>5.2.1</b> Attach packages</a></li>
-<li class="chapter" data-level="5.2.2" data-path="readxl.html"><a href="readxl.html#use-read_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>5.2.2</b> Use <code>read_csv()</code> to read in data from a CSV file</a></li>
-<li class="chapter" data-level="5.2.3" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>5.2.3</b> Use <code>read_excel()</code> to read in a single Excel worksheet</a></li>
-<li class="chapter" data-level="5.2.4" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-only-part-of-an-excel-worksheet"><i class="fa fa-check"></i><b>5.2.4</b> Use <code>read_excel()</code> to read in only <em>part</em> of an Excel worksheet</a></li>
-<li class="chapter" data-level="5.2.5" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-selected-worksheets-from-a-workbook"><i class="fa fa-check"></i><b>5.2.5</b> Use <code>read_excel()</code> to read in selected worksheets from a workbook</a></li>
-<li class="chapter" data-level="5.2.6" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>5.2.6</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
-<li class="chapter" data-level="5.2.7" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-write_csv-or-write_xlsx"><i class="fa fa-check"></i><b>5.2.7</b> Save data frames as .csv or .xlsx with <code>write_csv()</code> or <code>write_xlsx()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>5.3</b> Activity: Import some invertebrates!</a></li>
-<li class="chapter" data-level="5.4" data-path="readxl.html"><a href="readxl.html#efficiency-tips-2"><i class="fa fa-check"></i><b>5.4</b> Efficiency Tips</a></li>
-<li class="chapter" data-level="5.5" data-path="readxl.html"><a href="readxl.html#additional-thoughts"><i class="fa fa-check"></i><b>5.5</b> Additional thoughts</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> Graphs with ggplot2</a><ul>
-<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-3"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="6.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-4"><i class="fa fa-check"></i><b>6.1.2</b> Resources</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#lesson-1"><i class="fa fa-check"></i><b>6.2</b> Lesson</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>6.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>6.2.2</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
-<li class="chapter" data-level="6.2.3" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.3</b> Intro to customizing <code>ggplot</code> graphs</a></li>
-<li class="chapter" data-level="6.2.4" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>6.2.4</b> Mapping variables onto aesthetics</a></li>
-<li class="chapter" data-level="6.2.5" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>6.2.5</b> ggplot2 complete themes</a></li>
-<li class="chapter" data-level="6.2.6" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>6.2.6</b> Updating axis labels and titles</a></li>
-<li class="chapter" data-level="6.2.7" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>6.2.7</b> Combining compatible geoms</a></li>
-<li class="chapter" data-level="6.2.8" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.8</b> Multi-series ggplot graphs</a></li>
-<li class="chapter" data-level="6.2.9" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.9</b> Faceting ggplot graphs</a></li>
-<li class="chapter" data-level="6.2.10" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>6.2.10</b> Exporting a ggplot graph with <code>ggsave()</code></a></li>
-<li class="chapter" data-level="6.2.11" data-path="ggplot2.html"><a href="ggplot2.html#one-final-graph-example-jitter-and-boxplots"><i class="fa fa-check"></i><b>6.2.11</b> One final graph example: jitter and boxplots</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#lesson"><i class="fa fa-check"></i><b>5.2</b> Lesson</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>5.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>5.2.2</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.2.3</b> Intro to customizing <code>ggplot</code> graphs</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.2.4</b> Mapping variables onto aesthetics</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>5.2.5</b> ggplot2 complete themes</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>5.2.6</b> Updating axis labels and titles</a></li>
+<li class="chapter" data-level="5.2.7" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>5.2.7</b> Combining compatible geoms</a></li>
+<li class="chapter" data-level="5.2.8" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>5.2.8</b> Multi-series ggplot graphs</a></li>
+<li class="chapter" data-level="5.2.9" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>5.2.9</b> Faceting ggplot graphs</a></li>
+<li class="chapter" data-level="5.2.10" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.2.10</b> Exporting a ggplot graph with <code>ggsave()</code></a></li>
+<li class="chapter" data-level="5.2.11" data-path="ggplot2.html"><a href="ggplot2.html#one-final-graph-example-jitter-and-boxplots"><i class="fa fa-check"></i><b>5.2.11</b> One final graph example: jitter and boxplots</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>7</b> <code>dplyr</code> and Pivot Tables</a><ul>
-<li class="chapter" data-level="7.1" data-path="pivot.html"><a href="pivot.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
-<li class="chapter" data-level="7.2" data-path="pivot.html"><a href="pivot.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
-<li class="chapter" data-level="7.3" data-path="pivot.html"><a href="pivot.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
-<li class="chapter" data-level="7.4" data-path="pivot.html"><a href="pivot.html#pivot-table-overview"><i class="fa fa-check"></i><b>7.4</b> Pivot table overview</a></li>
-<li class="chapter" data-level="7.5" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>7.5</b> RMarkdown setup</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>7.5.1</b> Our task</a></li>
+<li class="chapter" data-level="6" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>6</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="6.1" data-path="pivot.html"><a href="pivot.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
+<li class="chapter" data-level="6.2" data-path="pivot.html"><a href="pivot.html#objectives-3"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
+<li class="chapter" data-level="6.3" data-path="pivot.html"><a href="pivot.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
+<li class="chapter" data-level="6.4" data-path="pivot.html"><a href="pivot.html#pivot-table-overview"><i class="fa fa-check"></i><b>6.4</b> Pivot table overview</a></li>
+<li class="chapter" data-level="6.5" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>6.5</b> RMarkdown setup</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>6.5.1</b> Our task</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>7.6</b> Pivot table demo</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>7.6.1</b> pivot one variable</a></li>
-<li class="chapter" data-level="7.6.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>7.6.2</b> pivot two variables</a></li>
+<li class="chapter" data-level="6.6" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.6</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>6.6.1</b> pivot one variable</a></li>
+<li class="chapter" data-level="6.6.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>6.6.2</b> pivot two variables</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>7.7</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
-<li class="chapter" data-level="7.7.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>7.7.1</b> <code>group_by</code> one variable</a></li>
-<li class="chapter" data-level="7.7.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>7.7.2</b> RStudio Viewer</a></li>
-<li class="chapter" data-level="7.7.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>7.7.3</b> <code>group_by</code> multiple variables</a></li>
-<li class="chapter" data-level="7.7.4" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>7.7.4</b> <code>summarize</code> multiple variables</a></li>
-<li class="chapter" data-level="7.7.5" data-path="pivot.html"><a href="pivot.html#activity-3"><i class="fa fa-check"></i><b>7.7.5</b> Activity</a></li>
+<li class="chapter" data-level="6.7" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>6.7</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="6.7.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>6.7.1</b> <code>group_by</code> one variable</a></li>
+<li class="chapter" data-level="6.7.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>6.7.2</b> RStudio Viewer</a></li>
+<li class="chapter" data-level="6.7.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>6.7.3</b> <code>group_by</code> multiple variables</a></li>
+<li class="chapter" data-level="6.7.4" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>6.7.4</b> <code>summarize</code> multiple variables</a></li>
+<li class="chapter" data-level="6.7.5" data-path="pivot.html"><a href="pivot.html#activity-2"><i class="fa fa-check"></i><b>6.7.5</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>7.8</b> Oh no, our colleague sent the wrong data!</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>7.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
-<li class="chapter" data-level="7.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>7.8.2</b> <code>dplyr::count()</code></a></li>
+<li class="chapter" data-level="6.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.8</b> Oh no, our colleague sent the wrong data!</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>6.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
+<li class="chapter" data-level="6.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>6.8.2</b> <code>dplyr::count()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>7.9</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="7.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>7.10</b> <code>select()</code></a></li>
-<li class="chapter" data-level="7.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>7.11</b> Deep thoughts</a></li>
-<li class="chapter" data-level="7.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>7.12</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="6.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>6.9</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>6.10</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>6.11</b> Deep thoughts</a></li>
+<li class="chapter" data-level="6.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-2"><i class="fa fa-check"></i><b>6.12</b> Efficiency Tips</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>8</b> Tidying</a><ul>
-<li class="chapter" data-level="8.1" data-path="tidying.html"><a href="tidying.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
-<li class="chapter" data-level="8.2" data-path="tidying.html"><a href="tidying.html#objectives-5"><i class="fa fa-check"></i><b>8.2</b> Objectives</a></li>
-<li class="chapter" data-level="8.3" data-path="tidying.html"><a href="tidying.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
-<li class="chapter" data-level="8.4" data-path="tidying.html"><a href="tidying.html#lesson-2"><i class="fa fa-check"></i><b>8.4</b> Lesson</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>8.4.1</b> Lesson Prep</a></li>
-<li class="chapter" data-level="8.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>8.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
-<li class="chapter" data-level="8.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>8.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
-<li class="chapter" data-level="8.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>8.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
-<li class="chapter" data-level="8.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>8.4.5</b> Activities</a></li>
-<li class="chapter" data-level="8.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>8.4.6</b> Fun facts / insights</a></li>
+<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
+<li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#lesson-1"><i class="fa fa-check"></i><b>7.4</b> Lesson</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>7.4.1</b> Lesson Prep</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>7.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="7.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>7.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
+<li class="chapter" data-level="7.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>7.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
+<li class="chapter" data-level="7.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>7.4.5</b> Activities</a></li>
+<li class="chapter" data-level="7.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>7.4.6</b> Fun facts / insights</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>9</b> Dplyr and vlookups</a><ul>
-<li class="chapter" data-level="9.1" data-path="vlookup.html"><a href="vlookup.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="9.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+<li class="chapter" data-level="8" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>8</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="8.1" data-path="vlookup.html"><a href="vlookup.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-5"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-6"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>9.2</b> Lessons</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="vlookup.html"><a href="vlookup.html#getting-started---create-a-new-.rmd-attach-packages-get-data-1"><i class="fa fa-check"></i><b>9.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="9.2.2" data-path="vlookup.html"><a href="vlookup.html#filter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>9.2.2</b> <code>filter()</code> to conditionally subset by rows</a></li>
-<li class="chapter" data-level="9.2.3" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-_join"><i class="fa fa-check"></i><b>9.2.3</b> Merging data frames with <code>*_join()</code></a></li>
+<li class="chapter" data-level="8.2" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>8.2</b> Lessons</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="vlookup.html"><a href="vlookup.html#getting-started---create-a-new-.rmd-attach-packages-get-data-1"><i class="fa fa-check"></i><b>8.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="vlookup.html"><a href="vlookup.html#filter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.2.2</b> <code>filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="8.2.3" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-_join"><i class="fa fa-check"></i><b>8.2.3</b> Merging data frames with <code>*_join()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>9.3</b> Fun / kind of scary facts</a></li>
-<li class="chapter" data-level="9.4" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>9.4</b> Interludes (deep thoughts/openscapes)</a></li>
-<li class="chapter" data-level="9.5" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>9.5</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="8.3" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>8.3</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="8.4" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>8.4</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="8.5" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-3"><i class="fa fa-check"></i><b>8.5</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>9</b> <code>readxl</code></a><ul>
+<li class="chapter" data-level="9.1" data-path="readxl.html"><a href="readxl.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="readxl.html"><a href="readxl.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="readxl.html"><a href="readxl.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="readxl.html"><a href="readxl.html#lesson-2"><i class="fa fa-check"></i><b>9.2</b> Lesson</a></li>
+<li class="chapter" data-level="9.3" data-path="readxl.html"><a href="readxl.html#efficiency-tips-4"><i class="fa fa-check"></i><b>9.3</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="9.4" data-path="readxl.html"><a href="readxl.html#additional-thoughts"><i class="fa fa-check"></i><b>9.4</b> Additional thoughts</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
 <li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-7"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
@@ -333,263 +305,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="readxl" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> <code>readxl</code></h1>
-<div id="summary-2" class="section level2">
-<h2><span class="header-section-number">5.1</span> Summary</h2>
-<p><strong>Check this, may need to be a block quote</strong>: The <strong>readxl</strong> package makes it easy to import tabular data from Excel spreadsheets (.xls or .xlsx files) and includes several options for cleaning data during import. <strong>readxl</strong> has no external dependencies and functions on any operating system, making it an OS- and user-friendly package that simplifies getting your data from Excel into R.</p>
-<div id="objectives-2" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Objectives</h3>
+<h1><span class="header-section-number">Chapter 9</span> <code>readxl</code></h1>
+<div id="summary-6" class="section level2">
+<h2><span class="header-section-number">9.1</span> Summary</h2>
+<div id="objectives-6" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Objectives</h3>
 <ul>
-<li>Use <code>read_csv()</code> to read in a comma separated value (CSV) file</li>
-<li>Use <code>read_excel()</code> to read in an Excel worksheet from an Excel workbook</li>
-<li>Replace a specific string/value in a spreadsheet with with <code>NA</code></li>
-<li>Skip <em>n</em> rows when importing an Excel worksheet</li>
-<li>Use <code>read_excel()</code> to read in parts of a worksheet (by cell range)</li>
-<li>Specify column names when importing Excel data</li>
-<li>Read and combine data from multiple Excel worksheets into a single df using <code>purrr::map_df()</code></li>
-<li>Write data using <code>write_csv()</code> or <code>write_xlsx()</code></li>
+<li>create a new repo and give permission to a collaborator</li>
+<li>open as a new RStudio project, collaborate with a partner</li>
+<li>explore github.com blame, history, issues</li>
+<li>R communities and getting help (rOpenSci, RLadies)</li>
+<li>how to use Twitter for #rstats</li>
 </ul>
 </div>
-<div id="resources-3" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Resources</h3>
-<ul>
-<li><a href="https://readxl.tidyverse.org/" class="uri">https://readxl.tidyverse.org/</a></li>
-<li><a href="https://readxl.tidyverse.org/articles/articles/readxl-workflows.html">readxl Workflows article (from tidyverse.org)</a></li>
-</ul>
+<div id="resources-7" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> Resources</h3>
 </div>
 </div>
-<div id="lesson" class="section level2">
-<h2><span class="header-section-number">5.2</span> Lesson</h2>
-<div id="attach-packages" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Attach packages</h3>
-<p>In the .Rmd you just created within your version-controlled <code>r-workshop</code> R project, attach the <code>tidyverse</code>, <code>readxl</code>, <code>writexl</code>, and <code>here</code> packages.</p>
-<p>In this lesson, we’ll read in a CSV file with the <code>read_csv()</code> function, so we need to have the <code>readr</code> package attached. Since it’s part of the <code>tidyverse</code>, we’ll go ahead and attach the <code>tidyverse</code> package below our script header using <code>library(package_name)</code>. It’s a good idea to attach packages within the set-up chunk in R Markdown, so we’ll also attach the <code>readxl</code>, <code>writexl</code>, and <code>here</code> packages there.</p>
-<p>Here’s our first code chunk:</p>
-<pre><code>{r setup, eval = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-# Attach the tidyverse, readxl, writexl and here packages:
-library(tidyverse)
-library(readxl)
-library(writexl)
-library(here)
-</code></pre>
-<p>Now, all of the packages and functions within the <code>tidyverse</code> and <code>readxl</code>, including <code>read_csv()</code> and <code>read_excel()</code>, are available for use.</p>
+<div id="lesson-2" class="section level2">
+<h2><span class="header-section-number">9.2</span> Lesson</h2>
 </div>
-<div id="use-read_csv-to-read-in-data-from-a-csv-file" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Use <code>read_csv()</code> to read in data from a CSV file</h3>
-<p>There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let’s learn how to get data directly from a CSV into R where we can work with it more reproducibly.</p>
-<p>The CSV we’ll read in here is called “fish_counts_curated.csv”, and contains observations for “the abundance and size of fish species as part of SBCLTER’s kelp forest monitoring program to track long-term patterns in species abundance and diversity” from the <a href="http://sbc.lternet.edu/">Santa Barbara Channel Long Term Ecological Research</a> program.</p>
-<p><strong>Source:</strong> Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379" class="uri">https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379</a>. Dataset accessed 9/26/2019.</p>
-<p>Read in the “fish_counts_curated.csv” file <code>read_csv(&quot;file_name.csv&quot;)</code>, and store it in R as an object called <em>fish_counts</em>:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">fish_counts &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish_counts_curated.csv&quot;</span>))</a></code></pre></div>
-<p>Notice that the name of the stored object (here, <em>fish_counts</em>) will show up in our Environment tab in RStudio.</p>
-<p>Click on the object in the Environment, and R will automatically run the <code>View()</code> function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we’re used to.</p>
-<p>Here are a few other functions for quickly exploring imported data:</p>
-<ul>
-<li><code>summary()</code>: summary of class, dimensions, <code>NA</code> values, etc.</li>
-<li><code>names()</code>: variable names (column headers)</li>
-<li><code>ls()</code>: list all objects in environment</li>
-<li><code>head()</code>: Show the first x rows (default is 6 lines)</li>
-<li><code>tail()</code>: Show the last x rows (default is 6 lines)</li>
-</ul>
-<p>Now that we have our fish counts data ready to work with in R, let’s get the substrate cover and kelp data (both .xlsx files). In the following sections, we’ll learn that we can use <code>read_excel()</code> to read in Excel files directly.</p>
-</div>
-<div id="use-read_excel-to-read-in-a-single-excel-worksheet" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Use <code>read_excel()</code> to read in a single Excel worksheet</h3>
-<p>First, take a look at <em>substrate_cover_curated.xlsx</em> in Excel, which contains a single worksheet with substrate type and percent cover observations at different sampling locations in the Santa Barbara Channel.</p>
-<p>A few things to notice:</p>
-<ul>
-<li>The file contains a single worksheet</li>
-<li>There are multiple rows containing text information up top</li>
-<li>Where observations were not recorded, there exists ‘-9999’</li>
-</ul>
-<p>Let’s go ahead and read in the data. If the file is in our working directory, we can read in a single worksheet .xlsx file using <code>read_excel(&quot;file_name.xlsx&quot;)</code>. <em>Note: read_excel() works for both .xlsx and .xls types</em>.</p>
-<p>Like this:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>))</a></code></pre></div>
-<p><strong>Tada? Not quite.</strong></p>
-<p>Click on the object name (<em>substrate_cover</em>) in the Environment to view the data in a new tab. A few things aren’t ideal:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">substrate_cover</a></code></pre></div>
-<pre><code>## # A tibble: 23,942 x 9
-##    `Substrate cover dataset,… ...2  ...3   ...4  ...5  ...6  ...7  ...8   ...9  
-##    &lt;chr&gt;                      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; 
-##  1 Source: https://portal.ed… &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  
-##  2 Accessed: 9/28/2019        &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  
-##  3 &lt;NA&gt;                       &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;  
-##  4 year                       month date   site  tran… quad  side  subst… perce…
-##  5 -9999                      -9999 -9999  carp  1     20    i     b      -9999 
-##  6 2000                       9     -9999  carp  1     20    o     b      -9999 
-##  7 2000                       9     9/8/00 carp  1     20    i     b      100   
-##  8 2000                       9     9/8/00 carp  1     20    o     b      100   
-##  9 2000                       9     9/8/00 carp  1     40    i     b      100   
-## 10 2000                       9     9/8/00 carp  1     40    o     b      100   
-## # … with 23,932 more rows</code></pre>
-<ul>
-<li>The top row of text has automatically become the (messy) column headers</li>
-<li>There are multiple descriptive rows before we actually get to the data</li>
-<li>There are -9999s that we want R to understand as <code>NA</code> instead</li>
-</ul>
-<p>We can deal with those issues by adding arguments within <code>read_excel()</code>. Like:</p>
-<ul>
-<li>Add <code>skip = n</code> to skip the first ‘n’ rows when importing data</li>
-<li>Add <code>na = &quot;this&quot;</code> to replace “this” with <code>NA</code> when reading in spreadsheet data</li>
-</ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">substrate_cover &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;substrate_cover_curated.xlsx, skip = 4, na = &quot;</span><span class="op">-</span><span class="dv">9999</span><span class="st">&quot;)</span></a></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">substrate_cover</a></code></pre></div>
-<pre><code>## # A tibble: 23,938 x 9
-##    year  month date   site  transect quad  side  substrate_type percent_cover
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;        
-##  1 &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   carp  1        20    i     b              &lt;NA&gt;         
-##  2 2000  9     &lt;NA&gt;   carp  1        20    o     b              &lt;NA&gt;         
-##  3 2000  9     9/8/00 carp  1        20    i     b              100          
-##  4 2000  9     9/8/00 carp  1        20    o     b              100          
-##  5 2000  9     9/8/00 carp  1        40    i     b              100          
-##  6 2000  9     9/8/00 carp  1        40    o     b              100          
-##  7 2000  9     9/8/00 carp  2        20    i     b              90           
-##  8 2000  9     9/8/00 carp  2        20    o     b              80           
-##  9 2000  9     9/8/00 carp  2        40    i     b              80           
-## 10 2000  9     9/8/00 carp  2        40    o     b              85           
-## # … with 23,928 more rows</code></pre>
-<p>Check out <em>substrate_cover</em>, and see that the first row <em>after</em> the 4 skipped are the column names, and all -9999s have been updated to <code>NA</code>. Hooray!</p>
-</div>
-<div id="use-read_excel-to-read-in-only-part-of-an-excel-worksheet" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> Use <code>read_excel()</code> to read in only <em>part</em> of an Excel worksheet</h3>
-<p>We always advocate for leaving the raw data raw, and writing a complete script containing all steps of data wrangling &amp; transformation. But in <em>some</em> situations (be careful), you may want to specify a range of cells to read in from an Excel worksheet.</p>
-<p>You can specify a range of cells to read in using the <code>range =</code> argument in <code>read_excel()</code>. For example, if I want to read in the rectangle from D12:I15 in <em>substrate_cover_curated.xlsx</em> - only observations for Carpenteria Beach (Transect 2) in September 2000 - I can use:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>)</a></code></pre></div>
-<p>But yuck. Look at <em>carp_cover_2000</em> and you’ll notice that the first row <em>of that range</em> is automatically made the column headers. To keep all rows within a range and <strong>add your own column names</strong>, add a <code>col_names =</code> argument:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">carp_cover_<span class="dv">2000</span> &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;substrate_cover_curated.xlsx&quot;</span>, <span class="dt">range =</span> <span class="st">&quot;D12:I15&quot;</span>, <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&quot;site_name&quot;</span>, <span class="st">&quot;transect&quot;</span>, <span class="st">&quot;quad&quot;</span>, <span class="st">&quot;plot_side&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;coverage&quot;</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">carp_cover_<span class="dv">2000</span></a></code></pre></div>
-<pre><code>## # A tibble: 4 x 6
-##   site_name transect quad  plot_side type  coverage
-##   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   
-## 1 carp      2        20    i         b     90      
-## 2 carp      2        20    o         b     80      
-## 3 carp      2        40    i         b     80      
-## 4 carp      2        40    o         b     85</code></pre>
-<p>So far we’ve read in a single CSV file using <code>read_csv()</code>, and an Excel file containing a single worksheet with <code>read_excel()</code>. Next, let’s read in data from an Excel workbook that contains multiple worksheets.</p>
-</div>
-<div id="use-read_excel-to-read-in-selected-worksheets-from-a-workbook" class="section level3">
-<h3><span class="header-section-number">5.2.5</span> Use <code>read_excel()</code> to read in selected worksheets from a workbook</h3>
-<p>Now, we’ll read in the kelp fronds data from file <em>kelp_counts_curated.xlsx</em>. Open the file in Excel, and notice see that it contains multiple worksheets with giant kelp observations in the Santa Barbara Channel during July 2016, 2017, and 2018, with data collected at each <em>site</em> in a separate worksheet.</p>
-<p>To read in a single Excel worksheet from a workbook we’ll again use <code>read_excel(&quot;file_name.xlsx&quot;)</code>, but we’ll need to let R know which worksheet to get.</p>
-<p>Let’s read in the kelp data just like we did above, as an object called <em>kelp_counts</em>.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">kelp_counts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
-<p>You might be thinking, “Hooray, I got all of my Excel workbook data!” But remember to always look at your data - you will see that actually only the first worksheet was read in. The default in <code>read_excel()</code> is to read in the <strong>first worksheet</strong> in a multi-sheet Excel workbook.</p>
-<p>To check the worksheet names in an Excel workbook, use <code>excel_sheets()</code>:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">excel_sheets</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
-<p>If we want to read in data from a worksheet other than the first one in an Excel workbook, we can specify the correct worksheet by name or position by adding the <code>sheet</code> argument.</p>
-<p>Let’s read in data from the worksheet named <em>golb</em> (Goleta Beach) in the <em>kelp_counts_curated.xlsx</em> workbook:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">kelp_golb &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="st">&quot;golb&quot;</span>))</a></code></pre></div>
-<p>Note that you can also specify a worksheet by position: since <em>golb</em> is the 6<sup>th</sup> worksheet in the workbook, we could also use the following:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">kelp_golb &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>, <span class="dt">sheet =</span> <span class="dv">6</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">kelp_golb</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 4
-##   year  month site  total_fronds
-##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
-## 1 2016  7     golb          2557
-## 2 2017  7     golb          1575
-## 3 2018  7     golb          1629</code></pre>
-</div>
-<div id="read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df" class="section level3">
-<h3><span class="header-section-number">5.2.6</span> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></h3>
-<p>So far, we’ve read in entire Excel worksheets and pieces of a worksheet. What if we have a workbook (like <em>kelp_counts_curated.xlsx</em>) that contains worksheets that contain observations for the same variables, in the same organization? Then we may want to read in data from <em>all</em> worksheets, and combine them into a single data frame.</p>
-<p>We’ll use <code>purrr::map_df()</code> to loop through all the worksheets in a workbook, reading them in &amp; putting them together into a single data frame in the process.</p>
-<p>The steps we’ll go through in the code below are:</p>
-<ol style="list-style-type: decimal">
-<li>Set a pathway so that R knows where to look for an Excel workbook</li>
-<li>Get the names of all worksheets in that workbook with <code>excel_sheets()</code></li>
-<li>Set names of a vector with <code>set_names()</code></li>
-<li>Read in all worksheets, and put them together into a single data frame with <code>purrr::map_df()</code></li>
-</ol>
-<p><strong>Aside</strong>: the pipe operator (<code>%&gt;%</code>)</p>
-<p>There are many ways to use R functions in sequence. One way, that follows the order that we think about steps in sequence, is using the <strong>pipe operator</strong> (<code>%&gt;%</code>). We can use the pipe operator between steps in a sequence, each place we think “and then do this.”</p>
-<p>For example, if I would like to <strong>walk my dog</strong> and <em>then</em> <strong>eat a burrito</strong>, in code that might be: <code>walk(dog) %&gt;% eat(burrito, type = &quot;California&quot;)</code></p>
-<p>Here, we’ll use the pipe operator to complete steps 1 - 4 above in sequence:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">kelp_path &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">kelp_all_sites &lt;-<span class="st"> </span>kelp_path <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="st">  </span><span class="kw">excel_sheets</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">  </span><span class="kw">set_names</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="st">  </span>purrr<span class="op">::</span><span class="kw">map_df</span>(read_excel, kelp_path)</a></code></pre></div>
-<p>Check out <em>kelp_all_sites</em>, and notice that now the data from all 11 sites is now collected into a single data frame:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">kelp_all_sites</a></code></pre></div>
-<pre><code>## # A tibble: 32 x 4
-##    year  month site  total_fronds
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
-##  1 2016  7     abur           307
-##  2 2017  7     abur           604
-##  3 2018  7     abur          3532
-##  4 2016  7     ahnd          2572
-##  5 2017  7     ahnd            16
-##  6 2018  7     ahnd            16
-##  7 2016  7     aque         11152
-##  8 2017  7     aque          9194
-##  9 2018  7     aque          7754
-## 10 2016  7     bull          6706
-## # … with 22 more rows</code></pre>
-</div>
-<div id="save-data-frames-as-.csv-or-.xlsx-with-write_csv-or-write_xlsx" class="section level3">
-<h3><span class="header-section-number">5.2.7</span> Save data frames as .csv or .xlsx with <code>write_csv()</code> or <code>write_xlsx()</code></h3>
-<p>There are a number of reasons you might want to save (/export) data in a data frame as a .csv or Excel worksheet, including:</p>
-<ul>
-<li>To store raw data within the project you’re working in</li>
-<li>To store copies of intermediate data frames</li>
-<li>To convert your data back to a format that your coworkers/clients/colleagues will be able to use it more easily</li>
-</ul>
-<p>Use <code>write_csv(object, &quot;file_name.csv&quot;)</code> to write a data frame to a CSV, or <code>write_xlsx(object, &quot;file_name.xlsx&quot;)</code> to similarly export as a .xlsx (or .xls) worksheet.</p>
-<p>In the previous step, we combined all of our kelp frond observations into a single data frame. Wouldn’t it make sense to store a copy?</p>
-<p>As a CSV:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">write_csv</span>(kelp_all_sites, <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_all_sites.csv&quot;</span>))</a></code></pre></div>
-<p>A cool thing about <code>write_csv()</code> is that it just quietly <em>works</em> without wrecking anything else you do in a sequence, so it’s great to add at the end of a piped sequence.</p>
-<p>For example, if I want to read in the range cells C1:D3 ‘ivee’ worksheet from kelp_counts_curated.xlsx, then write that new subset to a .csv file, I can pipe all the way through:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">kelp_ivee_subset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_counts_curated.xlsx&quot;</span>), </a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">                        <span class="dt">sheet =</span> <span class="st">&quot;ivee&quot;</span>,</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">                        <span class="dt">range =</span> <span class="st">&quot;C1:D3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="st">  </span><span class="kw">write_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_ivee.csv&quot;</span>))</a></code></pre></div>
-<p>Now I’ve created <em>kelp_ivee_subset.csv</em>, but the object <em>kelp_ivee_subset</em> also exists as an object for me to use in R.</p>
-<p>If needed, I can also export a data frame as an Excel (.xlsx) worksheet:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">write_xlsx</span>(kelp_all_sites, <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_all_sites.xlsx&quot;</span>))</a></code></pre></div>
-</div>
-</div>
-<div id="activity-import-some-invertebrates" class="section level2">
-<h2><span class="header-section-number">5.3</span> Activity: Import some invertebrates!</h2>
-<p>There’s one dataset we haven’t imported or explored yet: invertebrate counts for 5 popular invertebrates (California cone snail, California spiny lobster, orange cup coral, purple urchin and rock scallops) at 11 sites in the Santa Barbara Channel. Take a look at the <em>invert_counts_curated.xlsx</em> data by opening it in Excel</p>
-<ul>
-<li>Read in the <em>invert_counts_curated.xlsx</em> worksheet as object ‘inverts_july’, only retaining <strong>site</strong>, <strong>common_name</strong>, and <strong>2016</strong> and setting the existing first row in the worksheet as to column headers upon import</li>
-<li>Explore the imported data frame using View, names, head, tail, etc.</li>
-<li>Write ‘inverts_july’ to a CSV file in your working directory called “inverts_july.csv”</li>
-</ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># Importing only &#39;site&#39; through &#39;2016&#39; columns: </span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb59-3" data-line-number="3">inverts_july &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;invert_counts_curated.xlsx&quot;</span>), <span class="dt">range =</span> <span class="st">&quot;B1:D56&quot;</span>)</a>
-<a class="sourceLine" id="cb59-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb59-5" data-line-number="5"><span class="co"># Do some basic exploring (why might we want to do this in the Console instead?):</span></a>
-<a class="sourceLine" id="cb59-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb59-7" data-line-number="7"><span class="kw">View</span>(inverts_july)</a>
-<a class="sourceLine" id="cb59-8" data-line-number="8"><span class="kw">names</span>(inverts_july)</a>
-<a class="sourceLine" id="cb59-9" data-line-number="9"><span class="kw">head</span>(inverts_july)</a>
-<a class="sourceLine" id="cb59-10" data-line-number="10"><span class="kw">tail</span>(inverts_july)</a>
-<a class="sourceLine" id="cb59-11" data-line-number="11"><span class="kw">ls</span>()</a>
-<a class="sourceLine" id="cb59-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb59-13" data-line-number="13"><span class="co"># Writing a csv &quot;inverts_july.csv&quot;:</span></a>
-<a class="sourceLine" id="cb59-14" data-line-number="14"><span class="kw">write_csv</span>(inverts_july, <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;inverts_july.csv&quot;</span>))</a></code></pre></div>
-</div>
-<div id="efficiency-tips-2" class="section level2">
-<h2><span class="header-section-number">5.4</span> Efficiency Tips</h2>
-<ul>
-<li>Add an assignment arrow in (&lt;-): Alt + minus (-)</li>
-<li>Undo shortcut: Command + Z</li>
-<li>Redo shortcut: Command + Shift + Z</li>
-</ul>
+<div id="efficiency-tips-4" class="section level2">
+<h2><span class="header-section-number">9.3</span> Efficiency Tips</h2>
 </div>
 <div id="additional-thoughts" class="section level2">
-<h2><span class="header-section-number">5.5</span> Additional thoughts</h2>
-<ul>
-<li>Economist article about gene &gt; dates issue in Excel</li>
-<li>Mine: data frame of bike casualities in NC, column names are age ranges but some of them import as dates</li>
-<li>Excel makes some wrong assumptions and doesn’t give you a heads up about its decision making</li>
-</ul>
+<h2><span class="header-section-number">9.4</span> Additional thoughts</h2>
 
 </div>
 </div>
@@ -598,8 +338,8 @@ library(here)
           </div>
         </div>
       </div>
-<a href="github.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vlookup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="synthesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

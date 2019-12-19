@@ -1,0 +1,24 @@
+# `readxl` {#readxl}
+
+## Summary
+
+### Objectives
+
+- create a new repo and give permission to a collaborator
+- open as a new RStudio project, collaborate with a partner 
+- explore github.com blame, history, issues
+- R communities and getting help (rOpenSci, RLadies)
+- how to use Twitter for #rstats
+
+### Resources
+
+
+## Lesson
+
+
+## Efficiency Tips
+
+
+## Additional thoughts
+
+

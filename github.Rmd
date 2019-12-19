@@ -1,5 +1,7 @@
 # GitHub {#github}
 
+TODO: no github folder, new screenshots, earlier emphasis on syncing steps
+
 ```{r gh ops, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(htmltools)

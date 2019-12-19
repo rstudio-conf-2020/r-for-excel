@@ -9,15 +9,19 @@ We'll learn RMarkdown, which helps you tell a story with your data analysis beca
 In this lesson we will:
 
 - get oriented to the RStudio interface
-- work with R in the console
-- be introduced to built-in R functions
-- learn to use the help pages
-- explore RMarkdown
+- explore RMarkdown. This will be your notes.
+- discuss RMarkdown files vs Console (running vs knitting)
+- learn a few base R functions (`c()`)
+- error messages and help pages
+- discuss and install packages (`here()`)
+- intro pipe operator (`%>%`)
+- configure Git (to prepare for next session)
 
 ### Resources
 
 - [R for Excel Users](https://blog.shotwell.ca/posts/r_for_excel_users/) by Gordon Shotwell (blog)
 
+<!---
 ## Why learn R with RStudio
 
 You are all here today to learn how to code. Coding made me a better scientist because I was able to think more clearly about analyses, and become more efficient in doing so. Data scientists are creating tools that make coding more intuitive for new coders like us, and there is a wealth of awesome instruction and resources available to learn more and get help.

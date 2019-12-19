@@ -1,5 +1,11 @@
 # Synthesis {#synthesis}
 
+TODO:
+- stringr
+- Argaux, 
+- Closing (15 mins)
+
+
 ## Summary
 
 In this session, we'll pull together the skills that we've learned so far. We'll create a new GitHub repo and R project, wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then share our outputs in a nicely formatted GitHub ReadMe. And we'll learn a few new things along the way! 

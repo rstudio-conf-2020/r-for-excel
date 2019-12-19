@@ -1,0 +1,91 @@
+---
+title: "Fish counts data curation"
+author: "Allison Horst"
+date: "8/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+
+Curating the 'fish counts' LTER data into a perfect, tidy, ggplot-able CSV file. 
+
+**Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=17&revision=newest
+
+**Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379. Dataset accessed 8/30/2019.
+
+NOTE: "Count values were given a NA (-99999) if: (1) data were not collected for a particular species, (2) a datasheet was lost or (3) poor underwater visibility prevented fish from being surveyed" (from: https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-sbc.17.33)
+
+1. Get the raw data (updating all non-observed -99999's to NA):
+```{r}
+
+fish_counts_raw <- read_csv("fish_counts_raw.csv", na = "-99999")
+
+```
+
+2. Some basic cleaning (already in great shape): 
+```{r}
+
+fish_counts <- fish_counts_raw %>% 
+  janitor::clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+
+```
+
+3. Write CSV
+```{r}
+
+write_csv(fish_counts, "fish_counts.csv") # NOT THE FINAL ONE
+
+```
+
+4. Some further curation testing (trying out different fish subsets, etc.)
+```{r}
+# Subset fish
+# Find the most commonly observed fish (by year and species) - will be more interesting than a bunch of 0's
+
+fish_pivot <- fish_counts %>% 
+  drop_na(count) %>% 
+  mutate(count = as.numeric(count)) %>% 
+  group_by(common_name) %>% 
+  summarize(
+    total = sum(count, na.rm = TRUE)
+    ) %>% 
+  arrange(-total)
+
+top_ten <- fish_pivot$common_name[1:10]
+
+# Try: senorita, blacksmith, black surfperch, rock wrasse, garibaldi
+
+fish_subset <- fish_counts %>% 
+  filter(common_name %in% c("senorita", "blacksmith", "black surfperch", "rock wrasse", "garibaldi")) %>% 
+  filter(year %in% 2016:2018) %>% 
+  filter(month == 7) %>% 
+  drop_na(count) %>% 
+  mutate(count = as.numeric(count)) %>% 
+  group_by(year, site, common_name) %>% 
+  summarize(
+    total_count = sum(count)
+  ) %>% 
+  ungroup()
+
+# This is the final curated version (fish_counts_curated.csv)
+write_csv(fish_subset, "fish_counts_curated.csv")
+
+# Make a graph of the numbers by location, year & species?
+# Probably want to work on this a bit more ()
+
+ggplot(fish_subset, aes(x = year, y = total_count, fill = common_name)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~site)
+
+```
+

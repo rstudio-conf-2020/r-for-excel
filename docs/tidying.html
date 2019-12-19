@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Tidying | R for Excel Users</title>
+  <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Tidying | R for Excel Users" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Tidying | R for Excel Users" />
+  
+  <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+<meta name="author" content="Julie Lowndes &amp; Allison Horst" />
+
+
+<meta name="date" content="2019-12-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="pivot.html"/>
+<link rel="next" href="vlookup.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Excel Users</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda-pilot-workshop"><i class="fa fa-check"></i><b>1.1</b> Agenda: pilot workshop</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#welcome-1"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#why-learn-r-if-i-know-excel"><i class="fa fa-check"></i><b>2.2</b> Why learn R if I know Excel?</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.2.1</b> What to expect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.3</b> Guiding principles / recurring themes</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources-1"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#why-learn-r-with-rstudio"><i class="fa fa-check"></i><b>3.2</b> Why learn R with RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.3</b> RStudio Orientation</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#r-console"><i class="fa fa-check"></i><b>3.3.1</b> R Console</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#viewing-data-in-r"><i class="fa fa-check"></i><b>3.3.2</b> Viewing data in R</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#r-functions-help-pages"><i class="fa fa-check"></i><b>3.3.3</b> R functions, help pages</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>3.3.4</b> Activity</a></li>
+<li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#packages"><i class="fa fa-check"></i><b>3.3.5</b> Packages</a></li>
+<li class="chapter" data-level="3.3.6" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.3.6</b> Assigning objects with <code>&lt;-</code></a></li>
+<li class="chapter" data-level="3.3.7" data-path="rstudio.html"><a href="rstudio.html#error-messages-are-your-friends"><i class="fa fa-check"></i><b>3.3.7</b> Error messages are your friends</a></li>
+<li class="chapter" data-level="3.3.8" data-path="rstudio.html"><a href="rstudio.html#logical-operators-and-expressions"><i class="fa fa-check"></i><b>3.3.8</b> Logical operators and expressions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#clearing-the-environment"><i class="fa fa-check"></i><b>3.4</b> Clearing the environment</a></li>
+<li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.5</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.5.1</b> Create an RMarkdown file</a></li>
+<li class="chapter" data-level="3.5.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.5.2</b> Knit your RMarkdown file</a></li>
+<li class="chapter" data-level="3.5.3" data-path="rstudio.html"><a href="rstudio.html#r-code-chunks"><i class="fa fa-check"></i><b>3.5.3</b> R code chunks</a></li>
+<li class="chapter" data-level="3.5.4" data-path="rstudio.html"><a href="rstudio.html#activity-3-min"><i class="fa fa-check"></i><b>3.5.4</b> Activity (3 min)</a></li>
+<li class="chapter" data-level="3.5.5" data-path="rstudio.html"><a href="rstudio.html#markdown-sections"><i class="fa fa-check"></i><b>3.5.5</b> Markdown sections</a></li>
+<li class="chapter" data-level="3.5.6" data-path="rstudio.html"><a href="rstudio.html#activity-1"><i class="fa fa-check"></i><b>3.5.6</b> Activity</a></li>
+<li class="chapter" data-level="3.5.7" data-path="rstudio.html"><a href="rstudio.html#restart-r"><i class="fa fa-check"></i><b>3.5.7</b> Restart R</a></li>
+<li class="chapter" data-level="3.5.8" data-path="rstudio.html"><a href="rstudio.html#what-is-rmarkdown-1-minute-video"><i class="fa fa-check"></i><b>3.5.8</b> What is RMarkdown? (1-minute video)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.6</b> Deep thoughts</a></li>
+<li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips"><i class="fa fa-check"></i><b>3.7</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#summary-1"><i class="fa fa-check"></i><b>4.1</b> Summary</a></li>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#objectives-1"><i class="fa fa-check"></i><b>4.2</b> Objectives</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.4</b> Why should R users use Github?</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="github.html"><a href="github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>4.4.1</b> What are Git and Github?</a></li>
+<li class="chapter" data-level="4.4.2" data-path="github.html"><a href="github.html#some-github-terminology"><i class="fa fa-check"></i><b>4.4.2</b> Some Github terminology</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#setup-git-github"><i class="fa fa-check"></i><b>4.5</b> Setup Git &amp; GitHub</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="github.html"><a href="github.html#troubleshooting"><i class="fa fa-check"></i><b>4.5.1</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.6</b> Create a repository on Github.com</a></li>
+<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#create-a-gh-pages-branch"><i class="fa fa-check"></i><b>4.7</b> Create a gh-pages branch</a></li>
+<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.8</b> Clone your repository using RStudio</a></li>
+<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#inspect-your-repository"><i class="fa fa-check"></i><b>4.9</b> Inspect your repository</a></li>
+<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#add-files-to-our-local-repo"><i class="fa fa-check"></i><b>4.10</b> Add files to our local repo</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="github.html"><a href="github.html#get-data-files-into-your-working-directory"><i class="fa fa-check"></i><b>4.10.1</b> Get data files into your working directory</a></li>
+<li class="chapter" data-level="4.10.2" data-path="github.html"><a href="github.html#inspect-what-has-changed"><i class="fa fa-check"></i><b>4.10.2</b> Inspect what has changed</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="github.html"><a href="github.html#sync-from-rstudio-to-github"><i class="fa fa-check"></i><b>4.11</b> Sync from RStudio to GitHub</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.11.1</b> Pull</a></li>
+<li class="chapter" data-level="4.11.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.11.2</b> Stage</a></li>
+<li class="chapter" data-level="4.11.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.11.3</b> Commit</a></li>
+<li class="chapter" data-level="4.11.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.11.4</b> Push</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="github.html"><a href="github.html#explore-remote-github"><i class="fa fa-check"></i><b>4.12</b> Explore remote Github</a><ul>
+<li class="chapter" data-level="4.12.1" data-path="github.html"><a href="github.html#activity-2"><i class="fa fa-check"></i><b>4.12.1</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="4.13" data-path="github.html"><a href="github.html#create-a-new-r-markdown-file"><i class="fa fa-check"></i><b>4.13</b> Create a new R Markdown file</a></li>
+<li class="chapter" data-level="4.14" data-path="github.html"><a href="github.html#explore-your-webpage"><i class="fa fa-check"></i><b>4.14</b> Explore your webpage</a></li>
+<li class="chapter" data-level="4.15" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.15</b> Committing - how often? Tracking changes in your files</a></li>
+<li class="chapter" data-level="4.16" data-path="github.html"><a href="github.html#happy-git-with-r"><i class="fa fa-check"></i><b>4.16</b> Happy Git with R</a></li>
+<li class="chapter" data-level="4.17" data-path="github.html"><a href="github.html#efficiency-tips-1"><i class="fa fa-check"></i><b>4.17</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="readxl.html"><a href="readxl.html"><i class="fa fa-check"></i><b>5</b> <code>readxl</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="readxl.html"><a href="readxl.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="readxl.html"><a href="readxl.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="readxl.html"><a href="readxl.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="readxl.html"><a href="readxl.html#lesson"><i class="fa fa-check"></i><b>5.2</b> Lesson</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="readxl.html"><a href="readxl.html#attach-packages"><i class="fa fa-check"></i><b>5.2.1</b> Attach packages</a></li>
+<li class="chapter" data-level="5.2.2" data-path="readxl.html"><a href="readxl.html#use-read_csv-to-read-in-data-from-a-csv-file"><i class="fa fa-check"></i><b>5.2.2</b> Use <code>read_csv()</code> to read in data from a CSV file</a></li>
+<li class="chapter" data-level="5.2.3" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-a-single-excel-worksheet"><i class="fa fa-check"></i><b>5.2.3</b> Use <code>read_excel()</code> to read in a single Excel worksheet</a></li>
+<li class="chapter" data-level="5.2.4" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-only-part-of-an-excel-worksheet"><i class="fa fa-check"></i><b>5.2.4</b> Use <code>read_excel()</code> to read in only <em>part</em> of an Excel worksheet</a></li>
+<li class="chapter" data-level="5.2.5" data-path="readxl.html"><a href="readxl.html#use-read_excel-to-read-in-selected-worksheets-from-a-workbook"><i class="fa fa-check"></i><b>5.2.5</b> Use <code>read_excel()</code> to read in selected worksheets from a workbook</a></li>
+<li class="chapter" data-level="5.2.6" data-path="readxl.html"><a href="readxl.html#read-in-and-combine-data-from-multiple-worksheets-into-a-data-frame-simultaneously-with-purrrmap_df"><i class="fa fa-check"></i><b>5.2.6</b> Read in and combine data from multiple worksheets into a data frame simultaneously with <code>purrr::map_df()</code></a></li>
+<li class="chapter" data-level="5.2.7" data-path="readxl.html"><a href="readxl.html#save-data-frames-as-.csv-or-.xlsx-with-write_csv-or-write_xlsx"><i class="fa fa-check"></i><b>5.2.7</b> Save data frames as .csv or .xlsx with <code>write_csv()</code> or <code>write_xlsx()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="readxl.html"><a href="readxl.html#activity-import-some-invertebrates"><i class="fa fa-check"></i><b>5.3</b> Activity: Import some invertebrates!</a></li>
+<li class="chapter" data-level="5.4" data-path="readxl.html"><a href="readxl.html#efficiency-tips-2"><i class="fa fa-check"></i><b>5.4</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="5.5" data-path="readxl.html"><a href="readxl.html#additional-thoughts"><i class="fa fa-check"></i><b>5.5</b> Additional thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>6</b> Graphs with ggplot2</a><ul>
+<li class="chapter" data-level="6.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-3"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-4"><i class="fa fa-check"></i><b>6.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ggplot2.html"><a href="ggplot2.html#lesson-1"><i class="fa fa-check"></i><b>6.2</b> Lesson</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>6.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>6.2.2</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
+<li class="chapter" data-level="6.2.3" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.3</b> Intro to customizing <code>ggplot</code> graphs</a></li>
+<li class="chapter" data-level="6.2.4" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>6.2.4</b> Mapping variables onto aesthetics</a></li>
+<li class="chapter" data-level="6.2.5" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>6.2.5</b> ggplot2 complete themes</a></li>
+<li class="chapter" data-level="6.2.6" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>6.2.6</b> Updating axis labels and titles</a></li>
+<li class="chapter" data-level="6.2.7" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>6.2.7</b> Combining compatible geoms</a></li>
+<li class="chapter" data-level="6.2.8" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.8</b> Multi-series ggplot graphs</a></li>
+<li class="chapter" data-level="6.2.9" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>6.2.9</b> Faceting ggplot graphs</a></li>
+<li class="chapter" data-level="6.2.10" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>6.2.10</b> Exporting a ggplot graph with <code>ggsave()</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="ggplot2.html"><a href="ggplot2.html#one-final-graph-example-jitter-and-boxplots"><i class="fa fa-check"></i><b>6.2.11</b> One final graph example: jitter and boxplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>7</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="7.1" data-path="pivot.html"><a href="pivot.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="pivot.html"><a href="pivot.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.3" data-path="pivot.html"><a href="pivot.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="pivot.html"><a href="pivot.html#pivot-table-overview"><i class="fa fa-check"></i><b>7.4</b> Pivot table overview</a></li>
+<li class="chapter" data-level="7.5" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>7.5</b> RMarkdown setup</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>7.5.1</b> Our task</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>7.6</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>7.6.1</b> pivot one variable</a></li>
+<li class="chapter" data-level="7.6.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>7.6.2</b> pivot two variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>7.7</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="7.7.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>7.7.1</b> <code>group_by</code> one variable</a></li>
+<li class="chapter" data-level="7.7.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>7.7.2</b> RStudio Viewer</a></li>
+<li class="chapter" data-level="7.7.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>7.7.3</b> <code>group_by</code> multiple variables</a></li>
+<li class="chapter" data-level="7.7.4" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>7.7.4</b> <code>summarize</code> multiple variables</a></li>
+<li class="chapter" data-level="7.7.5" data-path="pivot.html"><a href="pivot.html#activity-3"><i class="fa fa-check"></i><b>7.7.5</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>7.8</b> Oh no, our colleague sent the wrong data!</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>7.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
+<li class="chapter" data-level="7.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>7.8.2</b> <code>dplyr::count()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>7.9</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="7.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>7.10</b> <code>select()</code></a></li>
+<li class="chapter" data-level="7.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>7.11</b> Deep thoughts</a></li>
+<li class="chapter" data-level="7.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-3"><i class="fa fa-check"></i><b>7.12</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>8</b> Tidying</a><ul>
+<li class="chapter" data-level="8.1" data-path="tidying.html"><a href="tidying.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
+<li class="chapter" data-level="8.2" data-path="tidying.html"><a href="tidying.html#objectives-5"><i class="fa fa-check"></i><b>8.2</b> Objectives</a></li>
+<li class="chapter" data-level="8.3" data-path="tidying.html"><a href="tidying.html#resources-6"><i class="fa fa-check"></i><b>8.3</b> Resources</a></li>
+<li class="chapter" data-level="8.4" data-path="tidying.html"><a href="tidying.html#lesson-2"><i class="fa fa-check"></i><b>8.4</b> Lesson</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="tidying.html"><a href="tidying.html#lesson-prep"><i class="fa fa-check"></i><b>8.4.1</b> Lesson Prep</a></li>
+<li class="chapter" data-level="8.4.2" data-path="tidying.html"><a href="tidying.html#reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider"><i class="fa fa-check"></i><b>8.4.2</b> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="8.4.3" data-path="tidying.html"><a href="tidying.html#combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>8.4.3</b> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a></li>
+<li class="chapter" data-level="8.4.4" data-path="tidying.html"><a href="tidying.html#convert-between-explicit-and-implicit-missings-nas"><i class="fa fa-check"></i><b>8.4.4</b> Convert between explicit and implicit missings (<code>NA</code>s)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="tidying.html"><a href="tidying.html#activities"><i class="fa fa-check"></i><b>8.4.5</b> Activities</a></li>
+<li class="chapter" data-level="8.4.6" data-path="tidying.html"><a href="tidying.html#fun-facts-insights"><i class="fa fa-check"></i><b>8.4.6</b> Fun facts / insights</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>9</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="9.1" data-path="vlookup.html"><a href="vlookup.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="vlookup.html"><a href="vlookup.html#lessons"><i class="fa fa-check"></i><b>9.2</b> Lessons</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="vlookup.html"><a href="vlookup.html#getting-started---create-a-new-.rmd-attach-packages-get-data-1"><i class="fa fa-check"></i><b>9.2.1</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="vlookup.html"><a href="vlookup.html#filter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>9.2.2</b> <code>filter()</code> to conditionally subset by rows</a></li>
+<li class="chapter" data-level="9.2.3" data-path="vlookup.html"><a href="vlookup.html#merging-data-frames-with-_join"><i class="fa fa-check"></i><b>9.2.3</b> Merging data frames with <code>*_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>9.3</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="9.4" data-path="vlookup.html"><a href="vlookup.html#interludes-deep-thoughtsopenscapes"><i class="fa fa-check"></i><b>9.4</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="9.5" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-4"><i class="fa fa-check"></i><b>9.5</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
+<li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-7"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
+<li class="chapter" data-level="10.2" data-path="synthesis.html"><a href="synthesis.html#objectives-7"><i class="fa fa-check"></i><b>10.2</b> Objectives</a></li>
+<li class="chapter" data-level="10.3" data-path="synthesis.html"><a href="synthesis.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+<li class="chapter" data-level="10.4" data-path="synthesis.html"><a href="synthesis.html#lesson-3"><i class="fa fa-check"></i><b>10.4</b> Lesson</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="synthesis.html"><a href="synthesis.html#set-up"><i class="fa fa-check"></i><b>10.4.1</b> Set-up:</a></li>
+<li class="chapter" data-level="10.4.2" data-path="synthesis.html"><a href="synthesis.html#attach-packages-and-read-in-the-data"><i class="fa fa-check"></i><b>10.4.2</b> Attach packages and read in the data</a></li>
+<li class="chapter" data-level="10.4.3" data-path="synthesis.html"><a href="synthesis.html#data-wrangling"><i class="fa fa-check"></i><b>10.4.3</b> Data wrangling</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections"><i class="fa fa-check"></i><b>10.5</b> Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)</a></li>
+<li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#interludes-deep-thoughtsopenscapes-1"><i class="fa fa-check"></i><b>10.6</b> Interludes (deep thoughts/openscapes)</a></li>
+<li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#efficiency-tips-5"><i class="fa fa-check"></i><b>10.7</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Excel Users</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidying" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Tidying</h1>
+<p>TODO: janitor: adorn and kable</p>
+<div id="summary-5" class="section level2">
+<h2><span class="header-section-number">8.1</span> Summary</h2>
+<p>In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we’ll continue by <em>reshaping</em> data frames (converting from long-to-wide, or wide-to-long format), <em>separating</em> and <em>uniting</em> variable (column) contents, converting between <em>explicit</em> and <em>implicit</em> missing (<code>NA</code>) values, and cleaning up our column names with the <code>janitor</code> package.</p>
+</div>
+<div id="objectives-5" class="section level2">
+<h2><span class="header-section-number">8.2</span> Objectives</h2>
+<ul>
+<li>Reshape data frames with <code>tidyr::pivot_wider()</code> and <code>tidyr::pivot_longer()</code></li>
+<li>Convert column names with <code>janitor::clean_names()</code></li>
+<li>Combine or separate information from columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></li>
+<li>Make implicit missings <em>explicit</em> with <code>tidyr::complete()</code></li>
+<li>Make explicit missings <em>implicit</em> with <code>tidyr::drop_na()</code></li>
+<li>Use our new skills as part of a bigger wrangling sequence</li>
+<li>Make a customized table (TODO: or introduce Kable if not time in pivot tables chapter)</li>
+</ul>
+</div>
+<div id="resources-6" class="section level2">
+<h2><span class="header-section-number">8.3</span> Resources</h2>
+<p>– <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 <em>Tidy Data</em>, in R for Data Science</a> by Grolemund &amp; Wickham
+- <a href="https://tidyr.tidyverse.org/"><code>tidyr</code> documentation from tidyverse.org</a>
+- <a href="https://github.com/sfirke/janitor"><code>janitor</code> repo / information</a> from Sam Firke</p>
+</div>
+<div id="lesson-2" class="section level2">
+<h2><span class="header-section-number">8.4</span> Lesson</h2>
+<div id="lesson-prep" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> Lesson Prep</h3>
+<div id="create-a-new-r-markdown-and-attach-packages" class="section level4">
+<h4><span class="header-section-number">8.4.1.1</span> Create a new R Markdown and attach packages</h4>
+<p>Within your day 2 R Project, create a new .Rmd. Attach the <code>tidyverse</code>, <code>janitor</code> and <code>readxl</code> packages with <code>library(package_name)</code>. Knit and save your new .Rmd within the project folder.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="co"># Attach packages</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="kw">library</span>(janitor)</a>
+<a class="sourceLine" id="cb119-4" data-line-number="4"><span class="kw">library</span>(readxl)</a></code></pre></div>
+</div>
+<div id="read-in-data" class="section level4">
+<h4><span class="header-section-number">8.4.1.2</span> Read in data</h4>
+<p>Use <code>readxl::read_excel()</code> to import the “invert_counts_curated.xlsx” data:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">inverts_df &lt;-<span class="st"> </span>readxl<span class="op">::</span><span class="kw">read_excel</span>(<span class="st">&quot;invert_counts_curated.xlsx&quot;</span>)</a></code></pre></div>
+<p>Be sure to explore the imported data a bit:</p>
+<ul>
+<li><code>View()</code></li>
+<li><code>names()</code></li>
+<li><code>summary()</code></li>
+</ul>
+</div>
+</div>
+<div id="reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Reshaping with <code>tidyr::pivot_longer()</code> and <code>tidyr::pivot_wider()</code></h3>
+<div id="wide-to-longer-format-with-tidyrpivot_longer" class="section level4">
+<h4><span class="header-section-number">8.4.2.1</span> Wide-to-longer format with <code>tidyr::pivot_longer()</code></h4>
+<p>In <em>tidy format</em>, each variable is contained within a single column. If we look at <em>inverts_df</em>, we can see that the <em>year</em> variable is actually split over 3 columns, so we’d say this is currently in <strong>wide format</strong>.</p>
+<p>There may be times when you want to have data in wide format, but often with code it is more efficient to convert to <strong>long format</strong> by gathering together observations for a variable that is currently split into multiple columns.</p>
+<p>Schematically, converting from wide to long format looks like this:</p>
+<p><img src="img/tidyr_pivot_longer.png" /></p>
+<p>Generally, the code to gather wide columns together using <code>tidyr::pivot_longer()</code> looks like this:</p>
+<p>TODO: Add pivot_longer() schematic</p>
+<p>We’ll use <code>tidyr::pivot_longer()</code> to gather data from all years in <em>inverts_df</em> into two columns: one called <em>year</em>, which contains the year (as a number), and another called <em>sp_count</em> that contains the number of each species observed. The new data frame will be stored as <em>inverts_long</em>:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">inverts_long &lt;-<span class="st"> </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> inverts_df, </a>
+<a class="sourceLine" id="cb121-2" data-line-number="2">                                    <span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>,</a>
+<a class="sourceLine" id="cb121-3" data-line-number="3">                                    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>,</a>
+<a class="sourceLine" id="cb121-4" data-line-number="4">                                    <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>)</a></code></pre></div>
+<p>The outcome is the new long-format <em>inverts_long</em> data frame:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">inverts_long</a></code></pre></div>
+<pre><code>## # A tibble: 165 x 5
+##    month site  common_name              year  sp_count
+##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                    &lt;chr&gt;    &lt;dbl&gt;
+##  1 7     abur  california cone snail    2016       451
+##  2 7     abur  california cone snail    2017        28
+##  3 7     abur  california cone snail    2018       762
+##  4 7     abur  california spiny lobster 2016        17
+##  5 7     abur  california spiny lobster 2017        17
+##  6 7     abur  california spiny lobster 2018        16
+##  7 7     abur  orange cup coral         2016        24
+##  8 7     abur  orange cup coral         2017        24
+##  9 7     abur  orange cup coral         2018        24
+## 10 7     abur  purple urchin            2016        48
+## # … with 155 more rows</code></pre>
+<p>Hooray, long format!</p>
+<p>One thing that isn’t obvious at first (but would become obvious if you continued working with this data) is that since those year numbers were initially column names (characters), when they are stacked into the <em>year</em> column, their class wasn’t auto-updated to numeric.</p>
+<p>Explore the class of <em>year</em> in <em>inverts_long</em>:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>We’ll use <code>dplyr::mutate()</code> in a different way here: to create a new column (that’s how we’ve used <code>mutate()</code> previously) that has the same name of an existing column, in order to update and overwrite the existing column.</p>
+<p>In this case, we’ll <code>mutate()</code> to add a column called <em>year</em>, which contains an <code>as.numeric()</code> version of the existing <em>year</em> variable:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="co"># Coerce &quot;year&quot; class to numeric: </span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3">inverts_long &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
+<p>Checking the class again, we see that <em>year</em> has been updated to a numeric variable:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+</div>
+<div id="long-to-wider-format-with-tidyrpivot_wider" class="section level4">
+<h4><span class="header-section-number">8.4.2.2</span> Long-to-wider format with <code>tidyr::pivot_wider()</code></h4>
+<p>In the previous example, we had information spread over multiple columns that we wanted to <em>gather</em>. Sometimes, we’ll have data that we want to <em>spread</em> over multiple columns.</p>
+<p>For example, imagine that starting from <em>inverts_long</em> we want each species in the <em>common_name</em> column to exist as its <strong>own column</strong>. In that case, we would be converting from a longer to a wider format, and will use <code>tidyr::pivot_wider()</code> as follows:</p>
+<p>TODO: Add pivot_wider() schematic</p>
+<p>Specifically for our data, we write code to spread the <em>common_name</em> column as follows:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">inverts_wide &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> common_name, </a>
+<a class="sourceLine" id="cb129-3" data-line-number="3">                     <span class="dt">values_from =</span> sp_count)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">inverts_wide</a></code></pre></div>
+<pre><code>## # A tibble: 33 x 8
+##    month site   year `california con… `california spi… `orange cup cor…
+##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 7     abur   2016              451               17               24
+##  2 7     abur   2017               28               17               24
+##  3 7     abur   2018              762               16               24
+##  4 7     ahnd   2016               27               16               24
+##  5 7     ahnd   2017               24               16               24
+##  6 7     ahnd   2018               24               16               24
+##  7 7     aque   2016             4971               48             1526
+##  8 7     aque   2017             1752               48             1623
+##  9 7     aque   2018             2616               48             1859
+## 10 7     bull   2016             1735               24               36
+## # … with 23 more rows, and 2 more variables: `purple urchin` &lt;dbl&gt;, `rock
+## #   scallop` &lt;dbl&gt;</code></pre>
+<p>We can see that now each <em>species</em> has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format…</p>
+</div>
+<div id="meet-the-janitor-package" class="section level4">
+<h4><span class="header-section-number">8.4.2.3</span> Meet the <code>janitor</code> package</h4>
+<p>The <code>janitor</code> package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Like:</p>
+<ul>
+<li><code>janitor::clean_names()</code>: update column headers to a case of your choosing</li>
+<li><code>janitor::get_dupes()</code>: see all rows that are duplicates within variables you choose</li>
+<li><code>janitor::remove_empty()</code>: remove empty rows and/or columns</li>
+<li><code>janitor::andorn_*()</code>: jazz up frequency tables of counts (we’ll return to this for a table example in TODO: Session 8)</li>
+<li>…and more!</li>
+</ul>
+<p>Here, we’ll use <code>janitor::clean_names()</code> to convert all of our column headers to a more convenient case - the default is <strong>lower_snake_case</strong>, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments.</p>
+<p>For example, <code>janitor::clean_names()</code> would update these nightmare column names into much nicer forms:</p>
+<ul>
+<li><code>My...RECENT-income!</code> becomes <code>my_recent_income</code></li>
+<li><code>SAMPLE2.!test1</code> becomes <code>sample2_test1</code></li>
+<li><code>ThisIsTheName</code> becomes <code>this_is_the_name</code></li>
+<li><code>2015</code> becomes <code>x2015</code></li>
+</ul>
+<p>If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with <code>janitor::clean_names()</code>:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">inverts_wide &lt;-<span class="st"> </span>inverts_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="kw">names</span>(inverts_wide)</a></code></pre></div>
+<pre><code>## [1] &quot;month&quot;                    &quot;site&quot;                    
+## [3] &quot;year&quot;                     &quot;california_cone_snail&quot;   
+## [5] &quot;california_spiny_lobster&quot; &quot;orange_cup_coral&quot;        
+## [7] &quot;purple_urchin&quot;            &quot;rock_scallop&quot;</code></pre>
+<p>And there are other options for the case, like:</p>
+<ul>
+<li>“snake” produces snake_case</li>
+<li>“lower_camel” or “small_camel” produces lowerCamel</li>
+<li>“upper_camel” or “big_camel” produces UpperCamel</li>
+<li>“screaming_snake” or “all_caps” produces ALL_CAPS</li>
+<li>“lower_upper” produces lowerUPPER</li>
+<li>“upper_lower” produces UPPERlower</li>
+</ul>
+</div>
+</div>
+<div id="combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate" class="section level3">
+<h3><span class="header-section-number">8.4.3</span> Combine or separate information in columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></h3>
+<p>Sometimes we’ll want to <em>separate</em> contents of a single column into multiple columns, or <em>combine</em> entries from different columns into a single column.</p>
+For example, the following data frame has <em>genus</em> and <em>species</em> in separate columns:
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+genus
+</th>
+<th style="text-align:left;">
+species
+</th>
+<th style="text-align:left;">
+common_name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Scorpaena
+</td>
+<td style="text-align:left;">
+guttata
+</td>
+<td style="text-align:left;">
+sculpin
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sebastes
+</td>
+<td style="text-align:left;">
+miniatus
+</td>
+<td style="text-align:left;">
+vermillion
+</td>
+</tr>
+</tbody>
+</table>
+We may want to combine the genus and species into a single column, <em>scientific_name</em>:
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+scientific_name
+</th>
+<th style="text-align:left;">
+common_name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Scorpaena guttata
+</td>
+<td style="text-align:left;">
+sculpin
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Sebastes miniatus
+</td>
+<td style="text-align:left;">
+vermillion
+</td>
+</tr>
+</tbody>
+</table>
+<p>Or we may want to do the reverse (separate information from a single column into multiple columns). Here, we’ll learn <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to help us do both.</p>
+<div id="tidyrunite-to-merge-information-from-separate-columns" class="section level4">
+<h4><span class="header-section-number">8.4.3.1</span> <code>tidyr::unite()</code> to merge information from separate columns</h4>
+<p>Use <code>tidyr::unite()</code> to combine (paste) information from multiple columns into a single column (as for the scientific name example above)</p>
+<p><img src="img/rstudio-cheatsheet-unite.png" /></p>
+<p>To demonstrate uniting information from separate columns, we’ll make a single column that has the combined information from <em>site</em> abbreviation and <em>year</em> in <em>inverts_wide</em>.</p>
+<p>We need to give <code>tidyr::unite()</code> several arguments:</p>
+<ul>
+<li><strong>data:</strong> the data frame containing columns we want to combine (or pipe into the function from the data frame)</li>
+<li><strong>col:</strong> the name of the new “united” column</li>
+<li>the <strong>columns you are uniting</strong></li>
+<li><strong>sep:</strong> the symbol, value or character to put between the united information from each column</li>
+</ul>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">inverts_unite &lt;-<span class="st"> </span>inverts_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;site_year&quot;</span>, <span class="co"># What to name the new united column</span></a>
+<a class="sourceLine" id="cb135-3" data-line-number="3">               <span class="kw">c</span>(site, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></a>
+<a class="sourceLine" id="cb135-4" data-line-number="4">               <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="co"># How to separate the things we&#39;re uniting</span></a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##   month site_year california_cone… california_spin… orange_cup_coral
+##   &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 7     abur_2016              451               17               24
+## 2 7     abur_2017               28               17               24
+## 3 7     abur_2018              762               16               24
+## 4 7     ahnd_2016               27               16               24
+## 5 7     ahnd_2017               24               16               24
+## 6 7     ahnd_2018               24               16               24
+## # … with 2 more variables: purple_urchin &lt;dbl&gt;, rock_scallop &lt;dbl&gt;</code></pre>
+<p>Try updating the separator from &quot;_&quot; to “<em>hello!</em>” to see what the outcome column contains.</p>
+<p><code>tidyr::unite()</code> can also combine information from <em>more</em> than two columns. For example, to combine the <em>site</em>, <em>common_name</em> and <em>year</em> columns from <em>inverts_long</em>, we could use:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="co"># Uniting more than 2 columns: </span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb137-3" data-line-number="3">inverts_triple_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;year_site_name&quot;</span>,</a>
+<a class="sourceLine" id="cb137-5" data-line-number="5">               <span class="kw">c</span>(year, site, common_name),</a>
+<a class="sourceLine" id="cb137-6" data-line-number="6">               <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">head</span>(inverts_triple_unite)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   month year_site_name                     sp_count
+##   &lt;chr&gt; &lt;chr&gt;                                 &lt;dbl&gt;
+## 1 7     2016-abur-california cone snail         451
+## 2 7     2017-abur-california cone snail          28
+## 3 7     2018-abur-california cone snail         762
+## 4 7     2016-abur-california spiny lobster       17
+## 5 7     2017-abur-california spiny lobster       17
+## 6 7     2018-abur-california spiny lobster       16</code></pre>
+</div>
+<div id="tidyrseparate-to-separate-information-into-multiple-columns" class="section level4">
+<h4><span class="header-section-number">8.4.3.2</span> <code>tidyr::separate()</code> to separate information into multiple columns</h4>
+<p>While <code>tidyr::unite()</code> allows us to combine information from multiple columns, it’s more likely that you’ll <em>start</em> with a single column that you want to split up into pieces.</p>
+<p>For example, I might want to split up a column containing the <em>genus</em> and <em>species</em> (<em>Scorpaena guttata</em>) into two separate columns (<em>Scorpaena</em> | <em>guttata</em>), so that I can count how many <em>Scorpaena</em> organisms exist in my dataset at the genus level.</p>
+<p>Use <code>tidyr::separate()</code> to “separate a character column into multiple columns using a regular expression separator.”</p>
+<p><img src="img/rstudio-cheatsheet-separate.png" /></p>
+<p>Let’s start again with <em>inverts_unite</em>, where we have combined the <em>site</em> and <em>year</em> into a single column called <em>site_year</em>. If we want to <strong>separate</strong> those, we can use:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">inverts_sep &lt;-<span class="st"> </span>inverts_triple_unite <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">separate</span>(year_site_name, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;my_year&quot;</span>, <span class="st">&quot;my_site_name&quot;</span>))</a></code></pre></div>
+<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 165 rows [1, 2, 3, 4,
+## 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
+<p>What is that warning <code>Expected 2 pieces...</code> telling us? If we take a look at the resulting data frame <em>inverts_sep</em>, we see that it only keeps the first <strong>two</strong> pieces, and gets rid of the third (name). Which is a bit concerning, because we rarely want to just throw away information in a data frame.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">head</span>(inverts_sep)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   month my_year my_site_name sp_count
+##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;
+## 1 7     2016    abur              451
+## 2 7     2017    abur               28
+## 3 7     2018    abur              762
+## 4 7     2016    abur               17
+## 5 7     2017    abur               17
+## 6 7     2018    abur               16</code></pre>
+<p>That’s problematic. How can we make sure we’re keeping as many different elements as exist in the united column?</p>
+<p>We have a couple of options:</p>
+<ol style="list-style-type: decimal">
+<li>Create the <em>number</em> of columns that are needed to retain as many elements as exist (in this case, 3, but we only created two new columns in the example above)</li>
+</ol>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">inverts_sep3 &lt;-<span class="st"> </span>inverts_triple_unite <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">separate</span>(year_site_name, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;the_year&quot;</span>, <span class="st">&quot;the_site&quot;</span>, <span class="st">&quot;the_name&quot;</span>))</a></code></pre></div>
+<pre><code>## Warning: Expected 3 pieces. Additional pieces discarded in 165 rows [1, 2, 3, 4,
+## 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].</code></pre>
+<p>Another warning. What is that about? Let’s take a look at the resulting data frame and think about what’s missing (what are the “pieces discarded”?):</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">head</span>(inverts_sep3)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   month the_year the_site the_name   sp_count
+##   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt;
+## 1 7     2016     abur     california      451
+## 2 7     2017     abur     california       28
+## 3 7     2018     abur     california      762
+## 4 7     2016     abur     california       17
+## 5 7     2017     abur     california       17
+## 6 7     2018     abur     california       16</code></pre>
+<p>Aha! Only the <em>first word</em> of the common name was retained, and anything else was trashed. We want to keep everything after the second dash in the new <em>the_name</em> column.</p>
+<p>That’s because the <strong>default is <code>extra = &quot;warn&quot;</code></strong>, which means that if you have more pieces than columns you’re separating into, it will populate the columns that have been allotted (in our case, just 3) then drop any additional information, giving you a warning that pieces have been dropped.</p>
+<p>To keep the extra pieces that have been dropped, add the <code>extra = &quot;merge&quot;</code> argument within <code>tidyr::separate()</code> to override:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">inverts_sep_all &lt;-<span class="st"> </span>inverts_triple_unite <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(year_site_name, </a>
+<a class="sourceLine" id="cb148-3" data-line-number="3">           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;sample_year&quot;</span>, <span class="st">&quot;location&quot;</span>, <span class="st">&quot;sp_name&quot;</span>), </a>
+<a class="sourceLine" id="cb148-4" data-line-number="4">           <span class="dt">extra =</span> <span class="st">&quot;merge&quot;</span>)</a></code></pre></div>
+<p>No warning there about things being discarded. Explore <em>inverts_sep_all</em>:</p>
+<pre><code>## # A tibble: 165 x 5
+##    month sample_year location sp_name                  sp_count
+##    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;                       &lt;dbl&gt;
+##  1 7     2016        abur     california cone snail         451
+##  2 7     2017        abur     california cone snail          28
+##  3 7     2018        abur     california cone snail         762
+##  4 7     2016        abur     california spiny lobster       17
+##  5 7     2017        abur     california spiny lobster       17
+##  6 7     2018        abur     california spiny lobster       16
+##  7 7     2016        abur     orange cup coral               24
+##  8 7     2017        abur     orange cup coral               24
+##  9 7     2018        abur     orange cup coral               24
+## 10 7     2016        abur     purple urchin                  48
+## # … with 155 more rows</code></pre>
+<p>We see that the resulting data frame has split <em>year_site_name</em> into three separate columns, <em>sample_year</em>, <em>location</em>, and <em>sp_name</em>, but now everything after the second break (“-”) remains together in <em>sp_name</em> instead of dropping pieces following the third word.</p>
+</div>
+</div>
+<div id="convert-between-explicit-and-implicit-missings-nas" class="section level3">
+<h3><span class="header-section-number">8.4.4</span> Convert between explicit and implicit missings (<code>NA</code>s)</h3>
+<p>An <em>explicit missing</em> is when every possible outcome actually appears in a data frame as a row, even if a variable of interest for that row is missing (<code>NA</code>).</p>
+<p>Conversely, an <em>implicit missing</em> is when an observation (row) does <em>not</em> appear in the data frame because a variable of interest contains an <code>NA</code> missing value.</p>
+<p>Consider the following data:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+day
+</th>
+<th style="text-align:left;">
+animal
+</th>
+<th style="text-align:left;">
+food_choice
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Monday
+</td>
+<td style="text-align:left;">
+eagle
+</td>
+<td style="text-align:left;">
+fish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Monday
+</td>
+<td style="text-align:left;">
+mountain lion
+</td>
+<td style="text-align:left;">
+squirrel
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Monday
+</td>
+<td style="text-align:left;">
+toad
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tuesday
+</td>
+<td style="text-align:left;">
+eagle
+</td>
+<td style="text-align:left;">
+fish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tuesday
+</td>
+<td style="text-align:left;">
+mountain lion
+</td>
+<td style="text-align:left;">
+deer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tuesday
+</td>
+<td style="text-align:left;">
+toad
+</td>
+<td style="text-align:left;">
+flies
+</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that the row for <strong>toad</strong> still appears in the dataset for <strong>Tuesday</strong>, despite having a missing food choice for that day. This is an <em>explicit missing</em> because the row still appears in the data frame.</p>
+<p>If that row was removed, the resulting dataset would look like this:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">df_missings <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="st">  </span><span class="kw">drop_na</span>(food_choice) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+day
+</th>
+<th style="text-align:left;">
+animal
+</th>
+<th style="text-align:left;">
+food_choice
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Monday
+</td>
+<td style="text-align:left;">
+eagle
+</td>
+<td style="text-align:left;">
+fish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Monday
+</td>
+<td style="text-align:left;">
+mountain lion
+</td>
+<td style="text-align:left;">
+squirrel
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tuesday
+</td>
+<td style="text-align:left;">
+eagle
+</td>
+<td style="text-align:left;">
+fish
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tuesday
+</td>
+<td style="text-align:left;">
+mountain lion
+</td>
+<td style="text-align:left;">
+deer
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tuesday
+</td>
+<td style="text-align:left;">
+toad
+</td>
+<td style="text-align:left;">
+flies
+</td>
+</tr>
+</tbody>
+</table>
+<p>…and if your reaction is “But then how do I know there’s a toad from <strong>MONDAY</strong>?”, then you can see how it can be a bit risky to have <em>implicit missings</em> instead of <em>explicit missings</em>.</p>
+<p>Whichever we choose, we can convert between the two forms using <code>tidyr::drop_na()</code> or <code>tidyr::complete()</code>:</p>
+<ul>
+<li><code>tidyr::drop_na()</code>: removes observations (rows) that contain <code>NA</code> for variable(s) of interest</li>
+<li><code>tidyr::complete()</code>: turns implicit missing values into explicit missing values by completing a data frame with missing combinations of data</li>
+</ul>
+<p>We’ll use both here, starting with the <em>inverts_long</em> data frame we created above.</p>
+<p>Looking through <em>inverts_long</em>, we’ll see that there are <code>NA</code> observations for every species at site <strong>bull</strong> in 2018 - but those <code>NA</code> counts do show up. First, we’ll use <code>tidyr::drop_na()</code> to make those missings implicit (invisible) instead:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">inverts_implicit_NA &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="st">  </span><span class="kw">drop_na</span>(sp_count)</a></code></pre></div>
+<p>See that now, the rows that contained an <code>NA</code> in the <em>sp_count</em> column from <em>inverts_long</em> have been removed.</p>
+<p>WAIT, I want them back! We can ask R to create explicit missings (by identifying which combinations of groups currently don’t appear in the data frame) using <code>tidyr::complete()</code>:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">inverts_explicit_NA &lt;-<span class="st"> </span>inverts_implicit_NA <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb152-2" data-line-number="2"><span class="st">  </span><span class="kw">complete</span>(month, site, common_name, year)</a></code></pre></div>
+<p>Now you’ll see <code>inverts_explicit_NA</code> has those 5 “missing” observations shown in the data frame.</p>
+</div>
+<div id="activities" class="section level3">
+<h3><span class="header-section-number">8.4.5</span> Activities</h3>
+<p>TODO</p>
+</div>
+<div id="fun-facts-insights" class="section level3">
+<h3><span class="header-section-number">8.4.6</span> Fun facts / insights</h3>
+<p>TODO</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pivot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vlookup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R for Excel Users.pdf", "R for Excel Users.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

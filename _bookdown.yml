@@ -1,0 +1,18 @@
+book_filename: "R for Excel Users"
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files: [
+  "index.Rmd",
+  "overview.Rmd", # session 1
+  "rstudio.Rmd", # session 1
+  "github.Rmd", # session 2
+  "readxl.Rmd", # session 3
+  "ggplot2.Rmd", # session 4
+  "dplyr-pivot-tables.Rmd", # session 5
+  "tidying.Rmd", # session 6 - skip this for Pilot test
+  "dplyr-vlookups.Rmd", # session 7
+  "synthesis.Rmd" # session 8
+ ]
+delete_merged_file: true
+output_dir: "docs"

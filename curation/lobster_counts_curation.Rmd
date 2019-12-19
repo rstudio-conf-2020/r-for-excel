@@ -1,0 +1,65 @@
+---
+title: "lobster counts data curation"
+author: "Allison Horst"
+date: "8/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(writexl)
+```
+
+
+Curating the 'lobster counts' data into a perfect, tidy, ggplot-able CSV file. 
+
+**Info:**
+
+**Citation:**
+NOTE: "Count values were given a NA (-99999) if: (1) data were not collected for a particular species, (2) a datasheet was lost or (3) poor underwater visibility prevented lobster from being surveyed" (from: https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-sbc.17.33)
+
+1. Get the raw data (updating all non-observed -99999's to NA):
+```{r}
+
+lobster_counts_raw <- read_csv("curation/lobster_counts.csv", na = "-99999")
+
+```
+
+2. Some basic cleaning (already in great shape): 
+```{r}
+
+lobster_counts <- lobster_counts_raw %>% 
+  janitor::clean_names() %>% 
+  mutate(site = str_to_lower(site))
+
+## will become lobsters2 to read in second
+lobster_uncount_full <- lobster_counts %>%
+  uncount(count) %>%
+  select(-area, -num_ao)
+
+## will become lobsters to read in first
+lobster_uncount_subset <- lobster_uncount_full %>%
+  filter(year <= 2016) 
+```
+
+3. Some further curation testing (trying out different lobster subsets, etc.)
+```{r}
+
+# These are the final curated version (lobster_counts_curated.csv)
+write_xlsx(lobster_uncount_subset, "curation/lobsters_curated.xlsx")
+write_xlsx(lobster_uncount_full, "curation/lobsters2_curated.xlsx")
+
+# Make a graph of the numbers by location, year & species?
+# Probably want to work on this a bit more ()
+
+ggplot(lobster_subset, aes(x = year)) +
+  geom_bar() +
+  facet_wrap(~site)
+
+```
+

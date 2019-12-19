@@ -1,0 +1,81 @@
+---
+title: "Substrate benthic cover data curation"
+author: "Allison Horst"
+date: "9/28/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include = FALSE}
+library(tidyverse)
+library(janitor)
+library(writexl)
+```
+
+
+Data: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=15&revision=newest
+
+Citation: Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Cover of sessile organisms, Uniform Point Contact. Environmental Data Initiative. https://doi.org/10.6073/pasta/f4ea94a612ef3dc0e14579dfb6298467. Dataset accessed 9/28/2019.
+
+**Relevant variables:**
+
+SUBSTRATE_TYPE:
+- B = Bedrock
+- BL = Large boulders (> 1 m diameter)
+- BM = Medium boulders (50 - 100 cm)
+- BS = Small boulders (25 - 50 cm)
+- C = Cobble rock (< 25 cm)
+- S = Sand, greater than 2.5 cm deep
+- SH = Shell debris, broken
+- SS = Sand shallow, less than 2.5 cm deep
+
+PERCENT_COVER: 
+"Percent cover of the species noted as determined by a uniform point contact method (80 point per 40x2 meter transect) where multiple layers of species at a given point are accounted for."
+
+**Curation goals:** Make an Excel file containing a single Excel worksheet that contains non-data header rows (so we can use skip = n) and some empty cells (or -9999 indicators) that we can instead read in as NA.
+
+Reading in data & some cleaning: 
+```{r}
+substrate <- read_csv("substrate_benthic_cover.csv") %>% 
+  clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+```
+
+Then I'll make some rows to add to the top of it. Note: the rep("",8) in each line ensures that they each have 9 columns, so that it can be bound to the 'substrate' df, which also has 9 columsn. 
+```{r}
+
+# Create the 4 lines:
+line_one <- c("Substrate cover dataset, SBC LTER", rep("",8))
+line_two <- c("Source: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=15&revision=newest", rep("",8))
+line_three <- c("Accessed: 9/28/2019", rep("",8))
+line_four <- rep("",9)
+line_five <- names(substrate)
+line_six <- c(-9999, -9999, -9999, "carp", 1, 20, "i","b",-9999)
+line_seven <- c(2000, 9, -9999, "carp", 1, 20, "o","b", -9999)
+
+# Combine them all:
+extra_lines <- rbind(line_one, line_two, line_three, line_four, line_five, line_six, line_seven)
+
+# Make sure the variable names are the same in each: 
+colnames(extra_lines) <- names(substrate)
+
+```
+
+Then combine them: 
+```{r}
+
+substrate_cover <- rbind(extra_lines, substrate) # Cool. 
+# Notice that I'll need to exclude column names later. 
+
+```
+
+And create a CSV (excluding column names): 
+```{r}
+write_xlsx(substrate_cover, "substrate_cover_curated.xlsx", col_names = FALSE)
+```
+
+Done! Now this is a single Excel worksheet that has header rows and several -9999 entries right up top to demonstrate reading Excel worksheets. 

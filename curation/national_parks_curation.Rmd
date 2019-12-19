@@ -1,0 +1,29 @@
+---
+title: "National Parks Curation"
+author: "Allison Horst"
+date: "11/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(writexl)
+```
+
+### Get data from OHI-Science book & curate
+```{r}
+ca <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/ca.csv") 
+
+# Write this straight to CSV (all NPs in California)
+write_csv(ca, here::here("curation","ca_np.csv"))
+
+# Create a smaller version with ONLY Channel Islands for first examples
+ci_np <- ca %>% 
+  filter(park_name == "Channel Islands National Park")
+
+write_xlsx(ci_np, here::here("curation", "ci_np.xlsx"))
+
+```
+

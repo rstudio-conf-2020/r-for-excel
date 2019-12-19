@@ -1,0 +1,469 @@
+# `dplyr` and Pivot Tables {#pivot}
+
+<!---
+Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
+How easy is it to get these counts by different groupings
+--->
+
+## Summary
+
+Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the `group_by` and `summarize` functions from the `dplyr` package (part of the Tidyverse). We will also learn how to format tables and practice creating a reproducible report using RMarkdown and sharing it with GitHub. 
+
+## Objectives
+
+In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `group_by` and `summarize`. We will also continue to emphasize reproducibility in all our analyses.
+
+- Discuss pivot tables in Excel
+- Introduce `group_by() %>% summarize()` from the `dplyr` package
+- Practice our reproducible workflow with RMarkdown and GitHub
+
+## Resources
+
+- [dplyr.tidyverse.org](https://dplyr.tidyverse.org/)
+- [R for Data Science: Transform Chapter](https://r4ds.had.co.nz/transform.html)
+- [Intro to Pivot Tables I-III](https://youtu.be/g530cnFfk8Y) by Excel Campus (YouTube)
+
+## Pivot table overview
+
+[Wikipedia describes a pivot table](https://en.wikipedia.org/wiki/Pivot_table) as a "table of statistics that summarizes the data of a more extensive table...This summary might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way." Fun fact: it also says that "Although pivot table is a generic term, Microsoft trademarked PivotTable in the United States in 1994."
+
+Pivot tables are a really powerful tool for summarizing data, and we can have similar functionality in R — as well as nicely automating and reporting these tables. We will learn about this using data about lobsters and will go back and forth between R and Excel as we learn. 
+
+Let's start off in R, and have a look at the data. 
+
+## RMarkdown setup
+
+Let's start a new RMarkdown file in our repo, at the top-level (where it will be created by default in our Project). I'll call mine `pivot_lobsters.Rmd`. 
+
+In the setup chunk, let's attach our libraries and read in our lobster data. In addition to the `tidyverse` package we will also use the `skimr` package. You will have to install it, but don't want it to be installed every time you write your code. The following is a nice convention for having the install instructions available (on the same line) as the `library()` call. 
+
+```{r setup, eval=FALSE}
+## attach libraries
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr) # install.packages('skimr')
+
+## read in data
+lobsters <- read_xlsx(here("data/lobsters.xlsx"))
+```
+
+```{r, include = FALSE}
+# Teaching version
+library(tidyverse)
+library(readxl)
+library(here)
+library(skimr)
+lobsters <- read_xlsx(here("curation/lobsters2_curated.xlsx"))
+```
+
+Let's add a code chunk and explore the data in a few ways.
+
+```{r head-lobsters}
+# explore data
+head(lobsters) # year and month as well as a column for date
+```
+
+`head()` gives us a look at the first rows of the data (6 by default). I like this because I can see the column names and get a sense of the shape of the data. I can also see the class of each column (double or character)
+
+In this data set, every row is a unique observation. This is called "uncounted" data; you'll see there is no row for how many lobsters were seen because each row is an observation, or an "n of 1". 
+
+```{r summary-lobsters}
+# explore data
+summary(lobsters) 
+```
+
+`summary` gives us summary statistics for each variable (column). I like this for numeric columns, but it doesn't give a lot of useful information for non-numeric data. To have a look there I like using the skimr package: 
+
+```{r skim-lobsters}
+# explore data
+skimr::skim(lobsters) 
+```
+
+This `skimr::` notation is a reminder to me that `skim` is from the `skimr` package. It is a nice convention: it's a reminder to others (especially you!).
+
+`skim` lets us look more at each variable. I particularly like looking at missing data. There are 6 missing values in the `size_mm` variable.
+
+We can also make a quick plot to have a look at these data, and use our new ggplot2 skills. Let's make a bar chart by year for each site
+
+```{r plot-lobsters}
+ggplot(lobsters, aes(x = year)) +
+  geom_bar() +
+  facet_wrap(~site)
+```
+
+(geom_bar() counts things and geom_col() is for values within the data (mean))
+
+### Our task
+
+So this is all great to get a quick look. But what if we needed to report to someone about how the average size of lobsters has changed over time across sites? 
+
+To answer this we need to do a pivot table in Excel, or data wrangling in R. 
+
+Let's start by having a quick look at what pivot tables can do in Excel.
+
+
+## Pivot table demo
+
+Let's make a pivot table with our lobster data.
+
+Let's start off with how many lobsters were counted each year. I want a count of rows by year.
+
+So to do this in Excel we would initiate the Pivot Table Process: 
+
+<br>
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/pivot-table-menu.png")  
+```
+
+<br>
+
+And it will do its best to find the data I would like to include in my Pivot Table (it can have difficulty with non-rectangular or "non-tidy" data), and suggest we make this in a new sheet: 
+
+<br>
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/pivot-table-create.png")  
+```
+
+<br>
+
+And then we'll get a little wizard to help us create the Pivot Table. 
+
+### pivot one variable
+
+I want to summarize by year, so I drag "year" down into the "Rows" box, and to get the counts by year I actually drag the same variable, "year" into the "Values" box. And it will create a Pivot Table for me! But "sum" as the default summary statistic, so I can click the little "I" icon to change this to count.
+
+<br>
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/pivot-table-count-year.png")  
+```
+
+<br>
+
+A few things to note: 
+
+- The pivot table is separate entity from our data (it's on a different sheet); the original data has not been affected 
+- The pivot table only shows the variables we requested; we don't see other columns (like date, month, or site). 
+- Notice that in Excel we retain the overall totals for each site (in bold, on the same line with the site name). This is nice for communicating about data. But it can be problematic for further analyses, because it could be easy to take a total of this column and introduce errors. 
+
+So pivot tables are great because they summarize the data and keep the raw data raw — they even promote good pratice because they by default ask you if you'd like to present the data in a new sheet rather than in the same sheet.  
+
+### pivot two variables
+
+We can also add site as a second variable by dragging it: 
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/pivot-table-count-year-site.png")  
+```
+
+And then can reverse the order by dragging: 
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/pivot-table-count-site-year.png")  
+```
+
+So in terms of our final interest of average size by site and year, we are on our way! I'm going to stop here because we want to be able to do this in R. 
+
+The power of R is in the automation, and in keeping that raw data truly raw.
+
+<!---If you build a complex pivot table and found a mistake in your logic, or if then need to redo it next month with new data, or --->
+
+<!---If you add new data, you can refresh your table
+
+And it's nimble if you want to re-order.--->
+
+
+Let's talk about how this looks like in R. 
+
+
+<!---
+All verbs work similarly:
+
+1. The first argument is a data frame.
+2. The subsequent arguments describe what to do with the data frame. You can refer to columns in the data frame directly without using `$`.
+3. The result is a new data frame.
+
+Together these properties make it easy to chain together multiple simple steps to achieve a complex result using the pipe operator `%>%`.
+
+I love thinking of these `dplyr` verbs and the pipe operator `%>%` as telling a story. When I see `%>%` I think "and then":
+
+```{r, eval=FALSE}
+data %>%          # start with data, and then
+  group_by() %>%  # group by a variable, and then
+  mutate() %>%    # mutate to add a new column, and then
+  select()        # select specific columns
+```
+
+
+--->
+## `group_by()` %>% `summarize()`
+
+In R, we can create the functionality of pivot tables by using 2 main `dplyr` verbs in combination: `group_by` and `summarize`. 
+  
+Say it with me: "pivot tables are group_by and then summarize". And just like pivot tables, you have flexibility with how you are going to summarize. For example, we can calculate an average, or a total. 
+
+I think it's incredibly powerful to visualize what we are talking about with our data when do do these kinds of operations. It looks like this (from [RStudio's cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf); all cheatsheets available from <https://rstudio.com/resources/cheatsheets>): 
+
+<br>
+<br>
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio-cheatsheet-group_by_summarize.png")  
+```
+<br>
+<br>
+
+When we were reporting by year or site, we were essentially modifying what we were grouping by (the different colors here in this figure. 
+
+Let's do this in R.
+
+### `group_by` one variable
+
+Let's try this on our `lobsters` data, just like we did in Excel. We will count the the total number of lobster by year. In R vocabulary, we will group_by year and then summarize by counting using `n()`, which is a function from `dplyr`. `n()` counts the number of times an observation shows up, and since this is uncounted data, this will count each row. We'll also use the pipe operator `%>%`, which you can read as "and then". 
+
+This to me reads: "take the lobsters data and then group_by year and then summarize by count in a new column called 'count'"
+
+```{r}
+lobsters %>%
+  group_by(year) %>%
+  summarize(count_by_year = n())
+```
+
+Notice how together, `group_by` and `summarize` minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren't involved here. 
+
+Question: What if you *don't* group_by first? Let's try it and discuss what's going on.
+
+```{r}
+lobsters %>%
+  summarize(count =  n())
+```
+
+So if we don't `group_by` first, we will get a single summary statistic (sum in this case) for the whole dataset. 
+
+Another question: what if we *only* group_by? 
+
+```{r}
+lobsters %>%
+  group_by(year)
+```
+
+
+
+### RStudio Viewer 
+
+Let's now check the `lobsters` variable. We can do this by clicking on `lobsters` in the Environment pane in RStudio. 
+
+We see that we haven't changed any of our original data that was stored in this variable. (Just like how the pivot table didn't affect the raw data on the original sheet). 
+
+> ***Aside***: You'll also see that when you click on the variable name in the Environment pane, `View(lobsters)` shows up in your Console. `View()` (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include `View()` in your RMarkdown document you will need to either comment it out `#View()` or add `eval=FALSE` to the top of the code chunk so that the full line reads `{r, eval=FALSE}`. 
+
+### `group_by` multiple variables
+
+Great. Now let's summarize by both year and site like we did in the pivot table. We are able to `group_by` more than one variable. Let's do this together:
+
+```{r}
+lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n())
+```
+
+text. 
+
+
+### `summarize` multiple variables
+
+We can summarize multiple variables at a time. So far we've done the count of lobster observations. Let's also do the mean and standard deviation. First let's use the `mean()` function to calculate the mean. We do this within the same summarize() function, but we can add a new line to make it easier to read. Notice how when you put your curser within the parenthesis and hit return, the indentation will automatically align. 
+
+```{r}
+lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(),
+            mean_size_mm = mean(size_mm))
+```
+
+> ***Aside*** Command-I will properly indent selected lines.
+
+Great! But this will actually calculate some of the means as NA because one or more values in that year are NA. So we can pass an argument that says to remove NAs first before calculating the average. Let's do that, and then also calculate the standard deviation with the `sd()` function:
+
+```{r}
+lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
+            mean_size_mm = mean(size_mm, na.rm=TRUE), 
+            sd_size_mm = sd(size_mm, na.rm=TRUE))
+```
+
+So we can make the equivalent of Excel's pivot table in R with `group_by` and then `summarize`. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let's add a variable assignment to that first line:
+
+```{r}
+siteyear_summary <- lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
+            mean_size_mm = mean(size_mm, na.rm = TRUE), 
+            sd_size_mm = sd(size_mm, na.rm = TRUE))
+
+siteyear_summary
+```
+
+### Activity
+
+1. Calculate the median `size_mm` (Hint: ?median) and 
+1. create and ggsave() a plot. 
+
+Then, save, commit, and push your .Rmd, .html, and .png. 
+
+Solution (no peeking): 
+```{r, eval=FALSE}
+siteyear_summary <- lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
+            mean_size_mm = mean(size_mm, na.rm = TRUE), 
+            sd_size_mm = sd(size_mm, na.rm = TRUE), 
+            median_size_mm = median(size_mm, na.rm = TRUE))
+
+siteyear_summary
+
+## a ggplot option:
+ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
+  geom_line() 
+ggsave(here("figures", "lobsters-line.png"))
+
+
+## another option:
+ggplot(siteyear_summary, aes(x = year, y = median_size_mm)) +
+  geom_col() +
+  facet_wrap(~site)
+ggsave(here("figures", "lobsters-col.png"))
+```
+
+
+Don't forget to knit, commit, and push!
+
+Nice work everybody. 
+
+## Oh no, our colleague sent the wrong data!
+
+Oh no! After all our analyses and everything we've done, our colleague just emailed us at 4:30pm on Friday that he sent the wrong data and we need to redo all our analyses with a new .xlsx file: `lobsters2.xlsx`, not `lobsters.xlsx`. Aaaaah! 
+
+If we were doing this in Excel, this would be a bummer; we'd have to rebuild our pivot table and click through all of our logic again. And then export our figures and save them into our report.
+
+But, since we did it in R, we are much safer. We can go back to the top of our RMarkdown file, and read in the updated dataset, and then re-knit. We will still need to check that everything outputs correctly, (and that column headers haven't been renamed), but our first pass will be to update the filename and re-knit: 
+
+```{r, eval=FALSE}
+## read in data
+lobsters <- read_xlsx(here("data/lobsters2.xlsx"))
+```
+
+```{r, include = FALSE}
+# Teaching version
+lobsters <- read_xlsx(here("curation/lobsters2_curated.xlsx"))
+```
+
+And now we can see that our plot updated as well: 
+
+```{r}
+siteyear_summary <- lobsters %>%
+  group_by(site, year) %>%
+  summarize(count_by_siteyear =  n(), 
+            mean_size_mm = mean(size_mm, na.rm = TRUE), 
+            sd_size_mm = sd(size_mm, na.rm = TRUE), 
+            median_size_mm = median(size_mm, na.rm = TRUE), )
+
+siteyear_summary
+
+## a ggplot option:
+ggplot(data = siteyear_summary, aes(x = year, y = median_size_mm, color = site)) +
+  geom_line() 
+ggsave(here("figures", "lobsters-line.png"))
+
+## another option:
+ggplot(siteyear_summary, aes(x = year, y = median_size_mm)) +
+  geom_col() +
+  facet_wrap(~site)
+ggsave(here("figures", "lobsters-col.png"))
+```
+
+### Knit, push, & show differences on GitHub
+
+So cool. 
+
+### `dplyr::count()`
+
+Now that we've spent time with group_by %>% summarize, there is a shortcut if you only want to summarize by count. This is with a function called `count()`, and it will group_by your selected variable, count, and then also ungroup. It looks like this: 
+
+```{r, eval=FALSE}
+lobsters %>%
+  count(site, year) 
+
+## This is the same as:
+lobsters %>%
+  group_by(site, year) %>% 
+  summarize(n = n()) %>%
+  ungroup()
+
+```
+
+Switching gears...
+
+## `mutate()` 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio-cheatsheet-mutate.png")  
+```
+
+<br>
+
+There are a lot of times where you don't want to summarize your data, but you do want to operate beyond the original data. This is often done by adding a column. We do this with the `mutate()` function from `dplyr`. Let's try this with our original lobsters data. The sizes are in millimeters but let's say it was important for them to be in meters. We can add a column with this calculation: 
+
+```{r}
+# quick reminder what this looks like
+head(lobsters)
+
+lobsters %>%
+  mutate(size_m = size_mm / 1000)
+```
+
+If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes). And let's save this as a variable called `lobsters_detailed`
+
+```{r}
+lobsters_detailed <- lobsters %>%
+  mutate(size_m = size_mm / 1000, 
+         millenia = 2000,
+         observer = "Allison Horst")
+```
+
+## `select()` 
+
+We will end with one final function, `select`. This is how to choose, retain, and move your data by columns: 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio-cheatsheet-select.png")  
+```
+
+<br>
+
+Let's say that we want to present this data finally with only columns for date, site, and size in meters. We would do this:
+
+```{r select}
+
+lobsters_detailed %>%
+  select(date, site, size_m)
+```
+
+One last time, let's knit, save, commit, and push to GitHub.
+
+## Deep thoughts
+
+Highly recommended read: [Broman & Woo: Data organization in spreadsheets](https://peerj.com/preprints/3183/). Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share
+
+Great opening line: "Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades."
+
+
+## Efficiency Tips
+
+arrow keys with shift, option, command
+
+
+<!---And that's the end of Day 1! --->

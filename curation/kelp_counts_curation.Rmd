@@ -1,0 +1,77 @@
+---
+title: "Kelp counts data curation"
+author: "Allison Horst"
+date: "9/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(writexl) # install.packages("writexl")
+library(here)
+```
+
+
+Curating the 'annual_kelp_all_years.csv' LTER data into an Excel worksheet with multiple tabs (stored as kelp_counts.xlsx). 
+
+**Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=18&revision=newest
+
+**Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Abundance and size of Giant Kelp (Macrocystis Pyrifera), ongoing since 2000. Environmental Data Initiative. https://doi.org/10.6073/pasta/dea56e02127161194626f97c8b6118e8. Dataset accessed 9/05/2019.
+
+1. Get the raw data, clean and filter
+```{r}
+
+data_raw <- read_csv("annual_kelp_all_years.csv")
+
+## clean!
+data_clean <- data_raw %>% 
+  janitor::clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+
+
+# filter as we do
+kelp_subset <- data_clean %>% 
+  filter(year %in% 2016:2018, 
+         month == 7) %>%
+  drop_na(fronds) %>% 
+  mutate(fronds = as.numeric(fronds)) %>% 
+  group_by(year, month, site, common_name) %>% 
+  summarize(
+    total_fronds = sum(fronds)
+  ) %>%
+  ungroup() %>% 
+  select(-common_name)
+
+unique(kelp_subset$site) 
+
+```
+
+2. Split it up by site (will put data for each of 11 sites in a separate Excel worksheet, within the same workbook)
+```{r}
+
+kelp_split <- kelp_subset %>% 
+  group_by(site) %>% 
+  dplyr::group_split()
+
+```
+
+3. Save to separate sheets!
+```{r}
+
+# Just get the names & arrange (in order of list appearance)
+site_names <- data_clean %>%
+  select(site) %>%
+  arrange(site)
+
+# Set the names of the kelp_split list items
+names(kelp_split) <- tolower(unique(site_names$site))
+
+# Write to an Excel file: 
+write_xlsx(kelp_split, here("curation", "kelp_counts_curated.xlsx"))
+```
+

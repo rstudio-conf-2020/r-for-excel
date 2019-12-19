@@ -1,0 +1,790 @@
+region,state,code,park_name,type,visitors,year
+PW,CA,CHIS,Channel Islands National Park,National Park,1200,1963
+PW,CA,CHIS,Channel Islands National Park,National Park,1500,1964
+PW,CA,CHIS,Channel Islands National Park,National Park,1600,1965
+PW,CA,CHIS,Channel Islands National Park,National Park,300,1966
+PW,CA,CHIS,Channel Islands National Park,National Park,15700,1967
+PW,CA,CHIS,Channel Islands National Park,National Park,31000,1968
+PW,CA,CHIS,Channel Islands National Park,National Park,33100,1969
+PW,CA,CHIS,Channel Islands National Park,National Park,32000,1970
+PW,CA,CHIS,Channel Islands National Park,National Park,24400,1971
+PW,CA,CHIS,Channel Islands National Park,National Park,31947,1972
+PW,CA,CHIS,Channel Islands National Park,National Park,44700,1973
+PW,CA,CHIS,Channel Islands National Park,National Park,31000,1974
+PW,CA,CHIS,Channel Islands National Park,National Park,74400,1975
+PW,CA,CHIS,Channel Islands National Park,National Park,92600,1976
+PW,CA,CHIS,Channel Islands National Park,National Park,87200,1977
+PW,CA,CHIS,Channel Islands National Park,National Park,46416,1978
+PW,CA,CHIS,Channel Islands National Park,National Park,82937,1979
+PW,CA,CHIS,Channel Islands National Park,National Park,104574,1980
+PW,CA,CHIS,Channel Islands National Park,National Park,87514,1981
+PW,CA,CHIS,Channel Islands National Park,National Park,172287,1982
+PW,CA,CHIS,Channel Islands National Park,National Park,205024,1983
+PW,CA,CHIS,Channel Islands National Park,National Park,203411,1984
+PW,CA,CHIS,Channel Islands National Park,National Park,164132,1985
+PW,CA,CHIS,Channel Islands National Park,National Park,172913,1986
+PW,CA,CHIS,Channel Islands National Park,National Park,174607,1987
+PW,CA,CHIS,Channel Islands National Park,National Park,168592,1988
+PW,CA,CHIS,Channel Islands National Park,National Park,152662,1989
+PW,CA,CHIS,Channel Islands National Park,National Park,144083,1990
+PW,CA,CHIS,Channel Islands National Park,National Park,149263,1991
+PW,CA,CHIS,Channel Islands National Park,National Park,169181,1992
+PW,CA,CHIS,Channel Islands National Park,National Park,184867,1993
+PW,CA,CHIS,Channel Islands National Park,National Park,175226,1994
+PW,CA,CHIS,Channel Islands National Park,National Park,525882,1995
+PW,CA,CHIS,Channel Islands National Park,National Park,490715,1996
+PW,CA,CHIS,Channel Islands National Park,National Park,488757,1997
+PW,CA,CHIS,Channel Islands National Park,National Park,574270,1998
+PW,CA,CHIS,Channel Islands National Park,National Park,607057,1999
+PW,CA,CHIS,Channel Islands National Park,National Park,482571,2000
+PW,CA,CHIS,Channel Islands National Park,National Park,520428,2001
+PW,CA,CHIS,Channel Islands National Park,National Park,613935,2002
+PW,CA,CHIS,Channel Islands National Park,National Park,585919,2003
+PW,CA,CHIS,Channel Islands National Park,National Park,537716,2004
+PW,CA,CHIS,Channel Islands National Park,National Park,434107,2005
+PW,CA,CHIS,Channel Islands National Park,National Park,375256,2006
+PW,CA,CHIS,Channel Islands National Park,National Park,360806,2007
+PW,CA,CHIS,Channel Islands National Park,National Park,332177,2008
+PW,CA,CHIS,Channel Islands National Park,National Park,348745,2009
+PW,CA,CHIS,Channel Islands National Park,National Park,277515,2010
+PW,CA,CHIS,Channel Islands National Park,National Park,242756,2011
+PW,CA,CHIS,Channel Islands National Park,National Park,249594,2012
+PW,CA,CHIS,Channel Islands National Park,National Park,212029,2013
+PW,CA,CHIS,Channel Islands National Park,National Park,342161,2014
+PW,CA,CHIS,Channel Islands National Park,National Park,324816,2015
+PW,CA,CHIS,Channel Islands National Park,National Park,364807,2016
+PW,CA,DEVA,Death Valley National Park,National Park,9970,1933
+PW,CA,DEVA,Death Valley National Park,National Park,19678,1934
+PW,CA,DEVA,Death Valley National Park,National Park,42061,1935
+PW,CA,DEVA,Death Valley National Park,National Park,40815,1936
+PW,CA,DEVA,Death Valley National Park,National Park,48874,1937
+PW,CA,DEVA,Death Valley National Park,National Park,58320,1938
+PW,CA,DEVA,Death Valley National Park,National Park,61301,1939
+PW,CA,DEVA,Death Valley National Park,National Park,80842,1940
+PW,CA,DEVA,Death Valley National Park,National Park,100829,1941
+PW,CA,DEVA,Death Valley National Park,National Park,44755,1942
+PW,CA,DEVA,Death Valley National Park,National Park,14374,1943
+PW,CA,DEVA,Death Valley National Park,National Park,13661,1944
+PW,CA,DEVA,Death Valley National Park,National Park,31112,1945
+PW,CA,DEVA,Death Valley National Park,National Park,100976,1946
+PW,CA,DEVA,Death Valley National Park,National Park,161953,1947
+PW,CA,DEVA,Death Valley National Park,National Park,162150,1948
+PW,CA,DEVA,Death Valley National Park,National Park,208557,1949
+PW,CA,DEVA,Death Valley National Park,National Park,189045,1950
+PW,CA,DEVA,Death Valley National Park,National Park,219520,1951
+PW,CA,DEVA,Death Valley National Park,National Park,296106,1952
+PW,CA,DEVA,Death Valley National Park,National Park,338899,1953
+PW,CA,DEVA,Death Valley National Park,National Park,337900,1954
+PW,CA,DEVA,Death Valley National Park,National Park,342200,1955
+PW,CA,DEVA,Death Valley National Park,National Park,300100,1956
+PW,CA,DEVA,Death Valley National Park,National Park,333400,1957
+PW,CA,DEVA,Death Valley National Park,National Park,334300,1958
+PW,CA,DEVA,Death Valley National Park,National Park,335700,1959
+PW,CA,DEVA,Death Valley National Park,National Park,355900,1960
+PW,CA,DEVA,Death Valley National Park,National Park,397900,1961
+PW,CA,DEVA,Death Valley National Park,National Park,363400,1962
+PW,CA,DEVA,Death Valley National Park,National Park,408100,1963
+PW,CA,DEVA,Death Valley National Park,National Park,403600,1964
+PW,CA,DEVA,Death Valley National Park,National Park,453000,1965
+PW,CA,DEVA,Death Valley National Park,National Park,437800,1966
+PW,CA,DEVA,Death Valley National Park,National Park,476700,1967
+PW,CA,DEVA,Death Valley National Park,National Park,469600,1968
+PW,CA,DEVA,Death Valley National Park,National Park,458800,1969
+PW,CA,DEVA,Death Valley National Park,National Park,580500,1970
+PW,CA,DEVA,Death Valley National Park,National Park,290900,1971
+PW,CA,DEVA,Death Valley National Park,National Park,293999,1972
+PW,CA,DEVA,Death Valley National Park,National Park,315400,1973
+PW,CA,DEVA,Death Valley National Park,National Park,368800,1974
+PW,CA,DEVA,Death Valley National Park,National Park,545500,1975
+PW,CA,DEVA,Death Valley National Park,National Park,582400,1976
+PW,CA,DEVA,Death Valley National Park,National Park,620400,1977
+PW,CA,DEVA,Death Valley National Park,National Park,673610,1978
+PW,CA,DEVA,Death Valley National Park,National Park,631152,1979
+PW,CA,DEVA,Death Valley National Park,National Park,618140,1980
+PW,CA,DEVA,Death Valley National Park,National Park,630402,1981
+PW,CA,DEVA,Death Valley National Park,National Park,679992,1982
+PW,CA,DEVA,Death Valley National Park,National Park,635582,1983
+PW,CA,DEVA,Death Valley National Park,National Park,621197,1984
+PW,CA,DEVA,Death Valley National Park,National Park,576679,1985
+PW,CA,DEVA,Death Valley National Park,National Park,586668,1986
+PW,CA,DEVA,Death Valley National Park,National Park,665345,1987
+PW,CA,DEVA,Death Valley National Park,National Park,692267,1988
+PW,CA,DEVA,Death Valley National Park,National Park,664449,1989
+PW,CA,DEVA,Death Valley National Park,National Park,690965,1990
+PW,CA,DEVA,Death Valley National Park,National Park,743608,1991
+PW,CA,DEVA,Death Valley National Park,National Park,869183,1992
+PW,CA,DEVA,Death Valley National Park,National Park,998474,1993
+PW,CA,DEVA,Death Valley National Park,National Park,971487,1994
+PW,CA,DEVA,Death Valley National Park,National Park,1109421,1995
+PW,CA,DEVA,Death Valley National Park,National Park,1189215,1996
+PW,CA,DEVA,Death Valley National Park,National Park,1188212,1997
+PW,CA,DEVA,Death Valley National Park,National Park,1177746,1998
+PW,CA,DEVA,Death Valley National Park,National Park,1227583,1999
+PW,CA,DEVA,Death Valley National Park,National Park,1179094,2000
+PW,CA,DEVA,Death Valley National Park,National Park,1014636,2001
+PW,CA,DEVA,Death Valley National Park,National Park,897596,2002
+PW,CA,DEVA,Death Valley National Park,National Park,890375,2003
+PW,CA,DEVA,Death Valley National Park,National Park,764820,2004
+PW,CA,DEVA,Death Valley National Park,National Park,800113,2005
+PW,CA,DEVA,Death Valley National Park,National Park,744440,2006
+PW,CA,DEVA,Death Valley National Park,National Park,704122,2007
+PW,CA,DEVA,Death Valley National Park,National Park,871938,2008
+PW,CA,DEVA,Death Valley National Park,National Park,828574,2009
+PW,CA,DEVA,Death Valley National Park,National Park,984775,2010
+PW,CA,DEVA,Death Valley National Park,National Park,946867,2011
+PW,CA,DEVA,Death Valley National Park,National Park,984568,2012
+PW,CA,DEVA,Death Valley National Park,National Park,951972,2013
+PW,CA,DEVA,Death Valley National Park,National Park,1101312,2014
+PW,CA,DEVA,Death Valley National Park,National Park,1154843,2015
+PW,CA,DEVA,Death Valley National Park,National Park,1296283,2016
+PW,CA,JOTR,Joshua Tree National Park,National Park,31285,1941
+PW,CA,JOTR,Joshua Tree National Park,National Park,23691,1942
+PW,CA,JOTR,Joshua Tree National Park,National Park,17414,1943
+PW,CA,JOTR,Joshua Tree National Park,National Park,7640,1944
+PW,CA,JOTR,Joshua Tree National Park,National Park,18275,1945
+PW,CA,JOTR,Joshua Tree National Park,National Park,36605,1946
+PW,CA,JOTR,Joshua Tree National Park,National Park,57801,1947
+PW,CA,JOTR,Joshua Tree National Park,National Park,59157,1948
+PW,CA,JOTR,Joshua Tree National Park,National Park,66991,1949
+PW,CA,JOTR,Joshua Tree National Park,National Park,79129,1950
+PW,CA,JOTR,Joshua Tree National Park,National Park,93615,1951
+PW,CA,JOTR,Joshua Tree National Park,National Park,141416,1952
+PW,CA,JOTR,Joshua Tree National Park,National Park,172423,1953
+PW,CA,JOTR,Joshua Tree National Park,National Park,260700,1954
+PW,CA,JOTR,Joshua Tree National Park,National Park,280600,1955
+PW,CA,JOTR,Joshua Tree National Park,National Park,312900,1956
+PW,CA,JOTR,Joshua Tree National Park,National Park,320300,1957
+PW,CA,JOTR,Joshua Tree National Park,National Park,365300,1958
+PW,CA,JOTR,Joshua Tree National Park,National Park,299600,1959
+PW,CA,JOTR,Joshua Tree National Park,National Park,320100,1960
+PW,CA,JOTR,Joshua Tree National Park,National Park,301500,1961
+PW,CA,JOTR,Joshua Tree National Park,National Park,331500,1962
+PW,CA,JOTR,Joshua Tree National Park,National Park,346300,1963
+PW,CA,JOTR,Joshua Tree National Park,National Park,343400,1964
+PW,CA,JOTR,Joshua Tree National Park,National Park,336000,1965
+PW,CA,JOTR,Joshua Tree National Park,National Park,408600,1966
+PW,CA,JOTR,Joshua Tree National Park,National Park,416500,1967
+PW,CA,JOTR,Joshua Tree National Park,National Park,489400,1968
+PW,CA,JOTR,Joshua Tree National Park,National Park,550300,1969
+PW,CA,JOTR,Joshua Tree National Park,National Park,643000,1970
+PW,CA,JOTR,Joshua Tree National Park,National Park,576000,1971
+PW,CA,JOTR,Joshua Tree National Park,National Park,602752,1972
+PW,CA,JOTR,Joshua Tree National Park,National Park,589600,1973
+PW,CA,JOTR,Joshua Tree National Park,National Park,509900,1974
+PW,CA,JOTR,Joshua Tree National Park,National Park,552200,1975
+PW,CA,JOTR,Joshua Tree National Park,National Park,728900,1976
+PW,CA,JOTR,Joshua Tree National Park,National Park,745600,1977
+PW,CA,JOTR,Joshua Tree National Park,National Park,602453,1978
+PW,CA,JOTR,Joshua Tree National Park,National Park,590543,1979
+PW,CA,JOTR,Joshua Tree National Park,National Park,545357,1980
+PW,CA,JOTR,Joshua Tree National Park,National Park,612966,1981
+PW,CA,JOTR,Joshua Tree National Park,National Park,673201,1982
+PW,CA,JOTR,Joshua Tree National Park,National Park,671426,1983
+PW,CA,JOTR,Joshua Tree National Park,National Park,663798,1984
+PW,CA,JOTR,Joshua Tree National Park,National Park,641172,1985
+PW,CA,JOTR,Joshua Tree National Park,National Park,783224,1986
+PW,CA,JOTR,Joshua Tree National Park,National Park,830085,1987
+PW,CA,JOTR,Joshua Tree National Park,National Park,955246,1988
+PW,CA,JOTR,Joshua Tree National Park,National Park,990214,1989
+PW,CA,JOTR,Joshua Tree National Park,National Park,1022396,1990
+PW,CA,JOTR,Joshua Tree National Park,National Park,1145458,1991
+PW,CA,JOTR,Joshua Tree National Park,National Park,1220539,1992
+PW,CA,JOTR,Joshua Tree National Park,National Park,1252401,1993
+PW,CA,JOTR,Joshua Tree National Park,National Park,1184871,1994
+PW,CA,JOTR,Joshua Tree National Park,National Park,1235702,1995
+PW,CA,JOTR,Joshua Tree National Park,National Park,1095046,1996
+PW,CA,JOTR,Joshua Tree National Park,National Park,1226273,1997
+PW,CA,JOTR,Joshua Tree National Park,National Park,1410312,1998
+PW,CA,JOTR,Joshua Tree National Park,National Park,1316340,1999
+PW,CA,JOTR,Joshua Tree National Park,National Park,1233935,2000
+PW,CA,JOTR,Joshua Tree National Park,National Park,1280917,2001
+PW,CA,JOTR,Joshua Tree National Park,National Park,1178376,2002
+PW,CA,JOTR,Joshua Tree National Park,National Park,1283346,2003
+PW,CA,JOTR,Joshua Tree National Park,National Park,1243659,2004
+PW,CA,JOTR,Joshua Tree National Park,National Park,1375111,2005
+PW,CA,JOTR,Joshua Tree National Park,National Park,1256421,2006
+PW,CA,JOTR,Joshua Tree National Park,National Park,1298979,2007
+PW,CA,JOTR,Joshua Tree National Park,National Park,1392446,2008
+PW,CA,JOTR,Joshua Tree National Park,National Park,1304471,2009
+PW,CA,JOTR,Joshua Tree National Park,National Park,1434976,2010
+PW,CA,JOTR,Joshua Tree National Park,National Park,1396237,2011
+PW,CA,JOTR,Joshua Tree National Park,National Park,1396117,2012
+PW,CA,JOTR,Joshua Tree National Park,National Park,1383340,2013
+PW,CA,JOTR,Joshua Tree National Park,National Park,1589904,2014
+PW,CA,JOTR,Joshua Tree National Park,National Park,2025756,2015
+PW,CA,JOTR,Joshua Tree National Park,National Park,2505286,2016
+PW,CA,KICA,Kings Canyon National Park,National Park,1000,1904
+PW,CA,KICA,Kings Canyon National Park,National Park,1000,1905
+PW,CA,KICA,Kings Canyon National Park,National Park,900,1906
+PW,CA,KICA,Kings Canyon National Park,National Park,1100,1907
+PW,CA,KICA,Kings Canyon National Park,National Park,1773,1908
+PW,CA,KICA,Kings Canyon National Park,National Park,798,1909
+PW,CA,KICA,Kings Canyon National Park,National Park,1178,1910
+PW,CA,KICA,Kings Canyon National Park,National Park,2160,1911
+PW,CA,KICA,Kings Canyon National Park,National Park,2240,1912
+PW,CA,KICA,Kings Canyon National Park,National Park,2756,1913
+PW,CA,KICA,Kings Canyon National Park,National Park,3735,1914
+PW,CA,KICA,Kings Canyon National Park,National Park,10523,1915
+PW,CA,KICA,Kings Canyon National Park,National Park,15360,1916
+PW,CA,KICA,Kings Canyon National Park,National Park,17390,1917
+PW,CA,KICA,Kings Canyon National Park,National Park,15496,1918
+PW,CA,KICA,Kings Canyon National Park,National Park,21574,1919
+PW,CA,KICA,Kings Canyon National Park,National Park,19661,1920
+PW,CA,KICA,Kings Canyon National Park,National Park,30312,1921
+PW,CA,KICA,Kings Canyon National Park,National Park,50456,1922
+PW,CA,KICA,Kings Canyon National Park,National Park,46230,1923
+PW,CA,KICA,Kings Canyon National Park,National Park,35020,1924
+PW,CA,KICA,Kings Canyon National Park,National Park,40517,1925
+PW,CA,KICA,Kings Canyon National Park,National Park,50597,1926
+PW,CA,KICA,Kings Canyon National Park,National Park,47996,1927
+PW,CA,KICA,Kings Canyon National Park,National Park,51988,1928
+PW,CA,KICA,Kings Canyon National Park,National Park,44783,1929
+PW,CA,KICA,Kings Canyon National Park,National Park,43547,1930
+PW,CA,KICA,Kings Canyon National Park,National Park,51995,1931
+PW,CA,KICA,Kings Canyon National Park,National Park,40806,1932
+PW,CA,KICA,Kings Canyon National Park,National Park,50081,1933
+PW,CA,KICA,Kings Canyon National Park,National Park,66024,1934
+PW,CA,KICA,Kings Canyon National Park,National Park,116739,1935
+PW,CA,KICA,Kings Canyon National Park,National Park,148568,1936
+PW,CA,KICA,Kings Canyon National Park,National Park,157810,1937
+PW,CA,KICA,Kings Canyon National Park,National Park,148116,1938
+PW,CA,KICA,Kings Canyon National Park,National Park,161080,1939
+PW,CA,KICA,Kings Canyon National Park,National Park,201545,1940
+PW,CA,KICA,Kings Canyon National Park,National Park,173587,1941
+PW,CA,KICA,Kings Canyon National Park,National Park,97745,1942
+PW,CA,KICA,Kings Canyon National Park,National Park,60651,1943
+PW,CA,KICA,Kings Canyon National Park,National Park,35203,1944
+PW,CA,KICA,Kings Canyon National Park,National Park,82442,1945
+PW,CA,KICA,Kings Canyon National Park,National Park,221990,1946
+PW,CA,KICA,Kings Canyon National Park,National Park,236687,1947
+PW,CA,KICA,Kings Canyon National Park,National Park,279231,1948
+PW,CA,KICA,Kings Canyon National Park,National Park,294021,1949
+PW,CA,KICA,Kings Canyon National Park,National Park,337840,1950
+PW,CA,KICA,Kings Canyon National Park,National Park,450031,1951
+PW,CA,KICA,Kings Canyon National Park,National Park,448156,1952
+PW,CA,KICA,Kings Canyon National Park,National Park,435548,1953
+PW,CA,KICA,Kings Canyon National Park,National Park,551500,1954
+PW,CA,KICA,Kings Canyon National Park,National Park,556100,1955
+PW,CA,KICA,Kings Canyon National Park,National Park,669800,1956
+PW,CA,KICA,Kings Canyon National Park,National Park,638500,1957
+PW,CA,KICA,Kings Canyon National Park,National Park,683900,1958
+PW,CA,KICA,Kings Canyon National Park,National Park,718500,1959
+PW,CA,KICA,Kings Canyon National Park,National Park,759800,1960
+PW,CA,KICA,Kings Canyon National Park,National Park,748600,1961
+PW,CA,KICA,Kings Canyon National Park,National Park,826100,1962
+PW,CA,KICA,Kings Canyon National Park,National Park,778600,1963
+PW,CA,KICA,Kings Canyon National Park,National Park,831600,1964
+PW,CA,KICA,Kings Canyon National Park,National Park,848900,1965
+PW,CA,KICA,Kings Canyon National Park,National Park,923400,1966
+PW,CA,KICA,Kings Canyon National Park,National Park,909900,1967
+PW,CA,KICA,Kings Canyon National Park,National Park,1064000,1968
+PW,CA,KICA,Kings Canyon National Park,National Park,946000,1969
+PW,CA,KICA,Kings Canyon National Park,National Park,1019000,1970
+PW,CA,KICA,Kings Canyon National Park,National Park,887000,1971
+PW,CA,KICA,Kings Canyon National Park,National Park,1051755,1972
+PW,CA,KICA,Kings Canyon National Park,National Park,899300,1973
+PW,CA,KICA,Kings Canyon National Park,National Park,1216800,1974
+PW,CA,KICA,Kings Canyon National Park,National Park,1031500,1975
+PW,CA,KICA,Kings Canyon National Park,National Park,1127900,1976
+PW,CA,KICA,Kings Canyon National Park,National Park,1041000,1977
+PW,CA,KICA,Kings Canyon National Park,National Park,864733,1978
+PW,CA,KICA,Kings Canyon National Park,National Park,804175,1979
+PW,CA,KICA,Kings Canyon National Park,National Park,819065,1980
+PW,CA,KICA,Kings Canyon National Park,National Park,776850,1981
+PW,CA,KICA,Kings Canyon National Park,National Park,831044,1982
+PW,CA,KICA,Kings Canyon National Park,National Park,765755,1983
+PW,CA,KICA,Kings Canyon National Park,National Park,937262,1984
+PW,CA,KICA,Kings Canyon National Park,National Park,874456,1985
+PW,CA,KICA,Kings Canyon National Park,National Park,1028785,1986
+PW,CA,KICA,Kings Canyon National Park,National Park,1081172,1987
+PW,CA,KICA,Kings Canyon National Park,National Park,1007695,1988
+PW,CA,KICA,Kings Canyon National Park,National Park,1037349,1989
+PW,CA,KICA,Kings Canyon National Park,National Park,1062867,1990
+PW,CA,KICA,Kings Canyon National Park,National Park,1071022,1991
+PW,CA,KICA,Kings Canyon National Park,National Park,637446,1992
+PW,CA,KICA,Kings Canyon National Park,National Park,636515,1993
+PW,CA,KICA,Kings Canyon National Park,National Park,725930,1994
+PW,CA,KICA,Kings Canyon National Park,National Park,832794,1995
+PW,CA,KICA,Kings Canyon National Park,National Park,502749,1996
+PW,CA,KICA,Kings Canyon National Park,National Park,484718,1997
+PW,CA,KICA,Kings Canyon National Park,National Park,540212,1998
+PW,CA,KICA,Kings Canyon National Park,National Park,559534,1999
+PW,CA,KICA,Kings Canyon National Park,National Park,528987,2000
+PW,CA,KICA,Kings Canyon National Park,National Park,541787,2001
+PW,CA,KICA,Kings Canyon National Park,National Park,545420,2002
+PW,CA,KICA,Kings Canyon National Park,National Park,555987,2003
+PW,CA,KICA,Kings Canyon National Park,National Park,525035,2004
+PW,CA,KICA,Kings Canyon National Park,National Park,594893,2005
+PW,CA,KICA,Kings Canyon National Park,National Park,552766,2006
+PW,CA,KICA,Kings Canyon National Park,National Park,580129,2007
+PW,CA,KICA,Kings Canyon National Park,National Park,574870,2008
+PW,CA,KICA,Kings Canyon National Park,National Park,609296,2009
+PW,CA,KICA,Kings Canyon National Park,National Park,598205,2010
+PW,CA,KICA,Kings Canyon National Park,National Park,566810,2011
+PW,CA,KICA,Kings Canyon National Park,National Park,591033,2012
+PW,CA,KICA,Kings Canyon National Park,National Park,567544,2013
+PW,CA,KICA,Kings Canyon National Park,National Park,502268,2014
+PW,CA,KICA,Kings Canyon National Park,National Park,468106,2015
+PW,CA,KICA,Kings Canyon National Park,National Park,607479,2016
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,8500,1917
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,2000,1918
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,2500,1919
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,2000,1920
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,10000,1921
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,10000,1922
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,9500,1923
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,12500,1924
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,12596,1925
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,18739,1926
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,20089,1927
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,26057,1928
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,26106,1929
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,31755,1930
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,56833,1931
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,41723,1932
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,45577,1933
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,51906,1934
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,52294,1935
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,76971,1936
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,86757,1937
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,73005,1938
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,100880,1939
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,104619,1940
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,109272,1941
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,48144,1942
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,18971,1943
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,19060,1944
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,45225,1945
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,99067,1946
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,149848,1947
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,160707,1948
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,172496,1949
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,183815,1950
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,203609,1951
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,212550,1952
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,225328,1953
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,282400,1954
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,304400,1955
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,303800,1956
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,327300,1957
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,346700,1958
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,379900,1959
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,401800,1960
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,460000,1961
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,399000,1962
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,369300,1963
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,407700,1964
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,400300,1965
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,462500,1966
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,358300,1967
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,442800,1968
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,435700,1969
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,466600,1970
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,447400,1971
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,504641,1972
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,496200,1973
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,408700,1974
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,444500,1975
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,461400,1976
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,381200,1977
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,442192,1978
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,380014,1979
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,394425,1980
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,415045,1981
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,414859,1982
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,429867,1983
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,463275,1984
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,451497,1985
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,439723,1986
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,472431,1987
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,495628,1988
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,466115,1989
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,460917,1990
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,463179,1991
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,468011,1992
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,434264,1993
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,385489,1994
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,351001,1995
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,351632,1996
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,391816,1997
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,318049,1998
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,353756,1999
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,374911,2000
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,376695,2001
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,388149,2002
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,404384,2003
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,379667,2004
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,365535,2005
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,388741,2006
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,395057,2007
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,377361,2008
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,365639,2009
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,384570,2010
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,351269,2011
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,407653,2012
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,427409,2013
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,432977,2014
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,468092,2015
+PW,CA,LAVO,Lassen Volcanic National Park,National Park,536068,2016
+PW,CA,PINN,Pinnacles National Park,National Park,6500,1923
+PW,CA,PINN,Pinnacles National Park,National Park,8973,1924
+PW,CA,PINN,Pinnacles National Park,National Park,10000,1925
+PW,CA,PINN,Pinnacles National Park,National Park,10167,1926
+PW,CA,PINN,Pinnacles National Park,National Park,11265,1927
+PW,CA,PINN,Pinnacles National Park,National Park,13216,1928
+PW,CA,PINN,Pinnacles National Park,National Park,10756,1929
+PW,CA,PINN,Pinnacles National Park,National Park,11862,1930
+PW,CA,PINN,Pinnacles National Park,National Park,12813,1931
+PW,CA,PINN,Pinnacles National Park,National Park,14238,1932
+PW,CA,PINN,Pinnacles National Park,National Park,9957,1933
+PW,CA,PINN,Pinnacles National Park,National Park,20129,1934
+PW,CA,PINN,Pinnacles National Park,National Park,17872,1935
+PW,CA,PINN,Pinnacles National Park,National Park,18614,1936
+PW,CA,PINN,Pinnacles National Park,National Park,22426,1937
+PW,CA,PINN,Pinnacles National Park,National Park,22266,1938
+PW,CA,PINN,Pinnacles National Park,National Park,24717,1939
+PW,CA,PINN,Pinnacles National Park,National Park,25068,1940
+PW,CA,PINN,Pinnacles National Park,National Park,27131,1941
+PW,CA,PINN,Pinnacles National Park,National Park,10311,1942
+PW,CA,PINN,Pinnacles National Park,National Park,4570,1943
+PW,CA,PINN,Pinnacles National Park,National Park,3845,1944
+PW,CA,PINN,Pinnacles National Park,National Park,7494,1945
+PW,CA,PINN,Pinnacles National Park,National Park,16298,1946
+PW,CA,PINN,Pinnacles National Park,National Park,18328,1947
+PW,CA,PINN,Pinnacles National Park,National Park,20331,1948
+PW,CA,PINN,Pinnacles National Park,National Park,24557,1949
+PW,CA,PINN,Pinnacles National Park,National Park,24814,1950
+PW,CA,PINN,Pinnacles National Park,National Park,27090,1951
+PW,CA,PINN,Pinnacles National Park,National Park,28236,1952
+PW,CA,PINN,Pinnacles National Park,National Park,42199,1953
+PW,CA,PINN,Pinnacles National Park,National Park,38300,1954
+PW,CA,PINN,Pinnacles National Park,National Park,36500,1955
+PW,CA,PINN,Pinnacles National Park,National Park,40300,1956
+PW,CA,PINN,Pinnacles National Park,National Park,53200,1957
+PW,CA,PINN,Pinnacles National Park,National Park,54900,1958
+PW,CA,PINN,Pinnacles National Park,National Park,71400,1959
+PW,CA,PINN,Pinnacles National Park,National Park,72000,1960
+PW,CA,PINN,Pinnacles National Park,National Park,76900,1961
+PW,CA,PINN,Pinnacles National Park,National Park,81500,1962
+PW,CA,PINN,Pinnacles National Park,National Park,97000,1963
+PW,CA,PINN,Pinnacles National Park,National Park,103200,1964
+PW,CA,PINN,Pinnacles National Park,National Park,118000,1965
+PW,CA,PINN,Pinnacles National Park,National Park,117900,1966
+PW,CA,PINN,Pinnacles National Park,National Park,160600,1967
+PW,CA,PINN,Pinnacles National Park,National Park,147000,1968
+PW,CA,PINN,Pinnacles National Park,National Park,147000,1969
+PW,CA,PINN,Pinnacles National Park,National Park,166200,1970
+PW,CA,PINN,Pinnacles National Park,National Park,169200,1971
+PW,CA,PINN,Pinnacles National Park,National Park,168896,1972
+PW,CA,PINN,Pinnacles National Park,National Park,155500,1973
+PW,CA,PINN,Pinnacles National Park,National Park,138500,1974
+PW,CA,PINN,Pinnacles National Park,National Park,162200,1975
+PW,CA,PINN,Pinnacles National Park,National Park,156900,1976
+PW,CA,PINN,Pinnacles National Park,National Park,160500,1977
+PW,CA,PINN,Pinnacles National Park,National Park,155822,1978
+PW,CA,PINN,Pinnacles National Park,National Park,153717,1979
+PW,CA,PINN,Pinnacles National Park,National Park,163626,1980
+PW,CA,PINN,Pinnacles National Park,National Park,155205,1981
+PW,CA,PINN,Pinnacles National Park,National Park,171026,1982
+PW,CA,PINN,Pinnacles National Park,National Park,170631,1983
+PW,CA,PINN,Pinnacles National Park,National Park,166258,1984
+PW,CA,PINN,Pinnacles National Park,National Park,191578,1985
+PW,CA,PINN,Pinnacles National Park,National Park,198236,1986
+PW,CA,PINN,Pinnacles National Park,National Park,204705,1987
+PW,CA,PINN,Pinnacles National Park,National Park,212094,1988
+PW,CA,PINN,Pinnacles National Park,National Park,218601,1989
+PW,CA,PINN,Pinnacles National Park,National Park,214268,1990
+PW,CA,PINN,Pinnacles National Park,National Park,192610,1991
+PW,CA,PINN,Pinnacles National Park,National Park,191683,1992
+PW,CA,PINN,Pinnacles National Park,National Park,194757,1993
+PW,CA,PINN,Pinnacles National Park,National Park,172642,1994
+PW,CA,PINN,Pinnacles National Park,National Park,177527,1995
+PW,CA,PINN,Pinnacles National Park,National Park,164465,1996
+PW,CA,PINN,Pinnacles National Park,National Park,171971,1997
+PW,CA,PINN,Pinnacles National Park,National Park,94639,1998
+PW,CA,PINN,Pinnacles National Park,National Park,164854,1999
+PW,CA,PINN,Pinnacles National Park,National Park,162110,2000
+PW,CA,PINN,Pinnacles National Park,National Park,178243,2001
+PW,CA,PINN,Pinnacles National Park,National Park,162266,2002
+PW,CA,PINN,Pinnacles National Park,National Park,162791,2003
+PW,CA,PINN,Pinnacles National Park,National Park,157397,2004
+PW,CA,PINN,Pinnacles National Park,National Park,170994,2005
+PW,CA,PINN,Pinnacles National Park,National Park,158824,2006
+PW,CA,PINN,Pinnacles National Park,National Park,161019,2007
+PW,CA,PINN,Pinnacles National Park,National Park,166988,2008
+PW,CA,PINN,Pinnacles National Park,National Park,171112,2009
+PW,CA,PINN,Pinnacles National Park,National Park,246575,2010
+PW,CA,PINN,Pinnacles National Park,National Park,393219,2011
+PW,CA,PINN,Pinnacles National Park,National Park,224476,2012
+PW,CA,PINN,Pinnacles National Park,National Park,237677,2013
+PW,CA,PINN,Pinnacles National Park,National Park,196635,2014
+PW,CA,PINN,Pinnacles National Park,National Park,206533,2015
+PW,CA,PINN,Pinnacles National Park,National Park,215555,2016
+PW,CA,REDW,Redwood National Park,National Park,34500,1971
+PW,CA,REDW,Redwood National Park,National Park,104304,1972
+PW,CA,REDW,Redwood National Park,National Park,210500,1973
+PW,CA,REDW,Redwood National Park,National Park,297400,1974
+PW,CA,REDW,Redwood National Park,National Park,368200,1975
+PW,CA,REDW,Redwood National Park,National Park,421700,1976
+PW,CA,REDW,Redwood National Park,National Park,477900,1977
+PW,CA,REDW,Redwood National Park,National Park,448012,1978
+PW,CA,REDW,Redwood National Park,National Park,413917,1979
+PW,CA,REDW,Redwood National Park,National Park,471710,1980
+PW,CA,REDW,Redwood National Park,National Park,549461,1981
+PW,CA,REDW,Redwood National Park,National Park,467126,1982
+PW,CA,REDW,Redwood National Park,National Park,473711,1983
+PW,CA,REDW,Redwood National Park,National Park,467155,1984
+PW,CA,REDW,Redwood National Park,National Park,505791,1985
+PW,CA,REDW,Redwood National Park,National Park,567849,1986
+PW,CA,REDW,Redwood National Park,National Park,610897,1987
+PW,CA,REDW,Redwood National Park,National Park,677135,1988
+PW,CA,REDW,Redwood National Park,National Park,654115,1989
+PW,CA,REDW,Redwood National Park,National Park,348458,1990
+PW,CA,REDW,Redwood National Park,National Park,366280,1991
+PW,CA,REDW,Redwood National Park,National Park,387781,1992
+PW,CA,REDW,Redwood National Park,National Park,421027,1993
+PW,CA,REDW,Redwood National Park,National Park,475033,1994
+PW,CA,REDW,Redwood National Park,National Park,552464,1995
+PW,CA,REDW,Redwood National Park,National Park,426938,1996
+PW,CA,REDW,Redwood National Park,National Park,382488,1997
+PW,CA,REDW,Redwood National Park,National Park,383188,1998
+PW,CA,REDW,Redwood National Park,National Park,369726,1999
+PW,CA,REDW,Redwood National Park,National Park,383253,2000
+PW,CA,REDW,Redwood National Park,National Park,388352,2001
+PW,CA,REDW,Redwood National Park,National Park,404789,2002
+PW,CA,REDW,Redwood National Park,National Park,408126,2003
+PW,CA,REDW,Redwood National Park,National Park,392029,2004
+PW,CA,REDW,Redwood National Park,National Park,394144,2005
+PW,CA,REDW,Redwood National Park,National Park,383780,2006
+PW,CA,REDW,Redwood National Park,National Park,385171,2007
+PW,CA,REDW,Redwood National Park,National Park,396899,2008
+PW,CA,REDW,Redwood National Park,National Park,444426,2009
+PW,CA,REDW,Redwood National Park,National Park,418820,2010
+PW,CA,REDW,Redwood National Park,National Park,380167,2011
+PW,CA,REDW,Redwood National Park,National Park,352517,2012
+PW,CA,REDW,Redwood National Park,National Park,393364,2013
+PW,CA,REDW,Redwood National Park,National Park,429166,2014
+PW,CA,REDW,Redwood National Park,National Park,527143,2015
+PW,CA,REDW,Redwood National Park,National Park,536297,2016
+PW,CA,SEQU,Sequoia National Park,National Park,700,1906
+PW,CA,SEQU,Sequoia National Park,National Park,900,1907
+PW,CA,SEQU,Sequoia National Park,National Park,1251,1908
+PW,CA,SEQU,Sequoia National Park,National Park,854,1909
+PW,CA,SEQU,Sequoia National Park,National Park,2407,1910
+PW,CA,SEQU,Sequoia National Park,National Park,3114,1911
+PW,CA,SEQU,Sequoia National Park,National Park,2923,1912
+PW,CA,SEQU,Sequoia National Park,National Park,3823,1913
+PW,CA,SEQU,Sequoia National Park,National Park,4667,1914
+PW,CA,SEQU,Sequoia National Park,National Park,7647,1915
+PW,CA,SEQU,Sequoia National Park,National Park,10780,1916
+PW,CA,SEQU,Sequoia National Park,National Park,18510,1917
+PW,CA,SEQU,Sequoia National Park,National Park,15001,1918
+PW,CA,SEQU,Sequoia National Park,National Park,30443,1919
+PW,CA,SEQU,Sequoia National Park,National Park,31508,1920
+PW,CA,SEQU,Sequoia National Park,National Park,28263,1921
+PW,CA,SEQU,Sequoia National Park,National Park,27514,1922
+PW,CA,SEQU,Sequoia National Park,National Park,30158,1923
+PW,CA,SEQU,Sequoia National Park,National Park,34468,1924
+PW,CA,SEQU,Sequoia National Park,National Park,46677,1925
+PW,CA,SEQU,Sequoia National Park,National Park,89404,1926
+PW,CA,SEQU,Sequoia National Park,National Park,100684,1927
+PW,CA,SEQU,Sequoia National Park,National Park,98035,1928
+PW,CA,SEQU,Sequoia National Park,National Park,111385,1929
+PW,CA,SEQU,Sequoia National Park,National Park,129221,1930
+PW,CA,SEQU,Sequoia National Park,National Park,143573,1931
+PW,CA,SEQU,Sequoia National Park,National Park,131398,1932
+PW,CA,SEQU,Sequoia National Park,National Park,126464,1933
+PW,CA,SEQU,Sequoia National Park,National Park,147533,1934
+PW,CA,SEQU,Sequoia National Park,National Park,205783,1935
+PW,CA,SEQU,Sequoia National Park,National Park,230714,1936
+PW,CA,SEQU,Sequoia National Park,National Park,243661,1937
+PW,CA,SEQU,Sequoia National Park,National Park,260139,1938
+PW,CA,SEQU,Sequoia National Park,National Park,275329,1939
+PW,CA,SEQU,Sequoia National Park,National Park,282198,1940
+PW,CA,SEQU,Sequoia National Park,National Park,302530,1941
+PW,CA,SEQU,Sequoia National Park,National Park,154880,1942
+PW,CA,SEQU,Sequoia National Park,National Park,62780,1943
+PW,CA,SEQU,Sequoia National Park,National Park,54600,1944
+PW,CA,SEQU,Sequoia National Park,National Park,137875,1945
+PW,CA,SEQU,Sequoia National Park,National Park,315365,1946
+PW,CA,SEQU,Sequoia National Park,National Park,373892,1947
+PW,CA,SEQU,Sequoia National Park,National Park,403968,1948
+PW,CA,SEQU,Sequoia National Park,National Park,367627,1949
+PW,CA,SEQU,Sequoia National Park,National Park,379218,1950
+PW,CA,SEQU,Sequoia National Park,National Park,452538,1951
+PW,CA,SEQU,Sequoia National Park,National Park,472062,1952
+PW,CA,SEQU,Sequoia National Park,National Park,501259,1953
+PW,CA,SEQU,Sequoia National Park,National Park,484700,1954
+PW,CA,SEQU,Sequoia National Park,National Park,518000,1955
+PW,CA,SEQU,Sequoia National Park,National Park,538100,1956
+PW,CA,SEQU,Sequoia National Park,National Park,535800,1957
+PW,CA,SEQU,Sequoia National Park,National Park,512200,1958
+PW,CA,SEQU,Sequoia National Park,National Park,547300,1959
+PW,CA,SEQU,Sequoia National Park,National Park,610800,1960
+PW,CA,SEQU,Sequoia National Park,National Park,610200,1961
+PW,CA,SEQU,Sequoia National Park,National Park,687400,1962
+PW,CA,SEQU,Sequoia National Park,National Park,631700,1963
+PW,CA,SEQU,Sequoia National Park,National Park,654100,1964
+PW,CA,SEQU,Sequoia National Park,National Park,877300,1965
+PW,CA,SEQU,Sequoia National Park,National Park,797800,1966
+PW,CA,SEQU,Sequoia National Park,National Park,746900,1967
+PW,CA,SEQU,Sequoia National Park,National Park,874300,1968
+PW,CA,SEQU,Sequoia National Park,National Park,919300,1969
+PW,CA,SEQU,Sequoia National Park,National Park,875700,1970
+PW,CA,SEQU,Sequoia National Park,National Park,878500,1971
+PW,CA,SEQU,Sequoia National Park,National Park,867051,1972
+PW,CA,SEQU,Sequoia National Park,National Park,845500,1973
+PW,CA,SEQU,Sequoia National Park,National Park,686600,1974
+PW,CA,SEQU,Sequoia National Park,National Park,957000,1975
+PW,CA,SEQU,Sequoia National Park,National Park,1040600,1976
+PW,CA,SEQU,Sequoia National Park,National Park,978200,1977
+PW,CA,SEQU,Sequoia National Park,National Park,973056,1978
+PW,CA,SEQU,Sequoia National Park,National Park,799576,1979
+PW,CA,SEQU,Sequoia National Park,National Park,862397,1980
+PW,CA,SEQU,Sequoia National Park,National Park,1083002,1981
+PW,CA,SEQU,Sequoia National Park,National Park,1020500,1982
+PW,CA,SEQU,Sequoia National Park,National Park,854233,1983
+PW,CA,SEQU,Sequoia National Park,National Park,979632,1984
+PW,CA,SEQU,Sequoia National Park,National Park,939468,1985
+PW,CA,SEQU,Sequoia National Park,National Park,1056527,1986
+PW,CA,SEQU,Sequoia National Park,National Park,1139389,1987
+PW,CA,SEQU,Sequoia National Park,National Park,1031129,1988
+PW,CA,SEQU,Sequoia National Park,National Park,1056020,1989
+PW,CA,SEQU,Sequoia National Park,National Park,1063538,1990
+PW,CA,SEQU,Sequoia National Park,National Park,1120278,1991
+PW,CA,SEQU,Sequoia National Park,National Park,961095,1992
+PW,CA,SEQU,Sequoia National Park,National Park,1066552,1993
+PW,CA,SEQU,Sequoia National Park,National Park,1034133,1994
+PW,CA,SEQU,Sequoia National Park,National Park,844582,1995
+PW,CA,SEQU,Sequoia National Park,National Park,838060,1996
+PW,CA,SEQU,Sequoia National Park,National Park,1008931,1997
+PW,CA,SEQU,Sequoia National Park,National Park,861303,1998
+PW,CA,SEQU,Sequoia National Park,National Park,873229,1999
+PW,CA,SEQU,Sequoia National Park,National Park,838947,2000
+PW,CA,SEQU,Sequoia National Park,National Park,870327,2001
+PW,CA,SEQU,Sequoia National Park,National Park,920292,2002
+PW,CA,SEQU,Sequoia National Park,National Park,979297,2003
+PW,CA,SEQU,Sequoia National Park,National Park,1000177,2004
+PW,CA,SEQU,Sequoia National Park,National Park,1004843,2005
+PW,CA,SEQU,Sequoia National Park,National Park,954507,2006
+PW,CA,SEQU,Sequoia National Park,National Park,979537,2007
+PW,CA,SEQU,Sequoia National Park,National Park,930011,2008
+PW,CA,SEQU,Sequoia National Park,National Park,965170,2009
+PW,CA,SEQU,Sequoia National Park,National Park,1002979,2010
+PW,CA,SEQU,Sequoia National Park,National Park,1006583,2011
+PW,CA,SEQU,Sequoia National Park,National Park,1106584,2012
+PW,CA,SEQU,Sequoia National Park,National Park,909274,2013
+PW,CA,SEQU,Sequoia National Park,National Park,1039137,2014
+PW,CA,SEQU,Sequoia National Park,National Park,1097464,2015
+PW,CA,SEQU,Sequoia National Park,National Park,1254688,2016
+PW,CA,YOSE,Yosemite National Park,National Park,5414,1906
+PW,CA,YOSE,Yosemite National Park,National Park,7102,1907
+PW,CA,YOSE,Yosemite National Park,National Park,8850,1908
+PW,CA,YOSE,Yosemite National Park,National Park,13182,1909
+PW,CA,YOSE,Yosemite National Park,National Park,13619,1910
+PW,CA,YOSE,Yosemite National Park,National Park,12530,1911
+PW,CA,YOSE,Yosemite National Park,National Park,10884,1912
+PW,CA,YOSE,Yosemite National Park,National Park,13735,1913
+PW,CA,YOSE,Yosemite National Park,National Park,15145,1914
+PW,CA,YOSE,Yosemite National Park,National Park,33452,1915
+PW,CA,YOSE,Yosemite National Park,National Park,33390,1916
+PW,CA,YOSE,Yosemite National Park,National Park,34510,1917
+PW,CA,YOSE,Yosemite National Park,National Park,33527,1918
+PW,CA,YOSE,Yosemite National Park,National Park,58362,1919
+PW,CA,YOSE,Yosemite National Park,National Park,68906,1920
+PW,CA,YOSE,Yosemite National Park,National Park,91513,1921
+PW,CA,YOSE,Yosemite National Park,National Park,100506,1922
+PW,CA,YOSE,Yosemite National Park,National Park,130046,1923
+PW,CA,YOSE,Yosemite National Park,National Park,105894,1924
+PW,CA,YOSE,Yosemite National Park,National Park,209166,1925
+PW,CA,YOSE,Yosemite National Park,National Park,274209,1926
+PW,CA,YOSE,Yosemite National Park,National Park,490430,1927
+PW,CA,YOSE,Yosemite National Park,National Park,460619,1928
+PW,CA,YOSE,Yosemite National Park,National Park,461257,1929
+PW,CA,YOSE,Yosemite National Park,National Park,458566,1930
+PW,CA,YOSE,Yosemite National Park,National Park,461855,1931
+PW,CA,YOSE,Yosemite National Park,National Park,498289,1932
+PW,CA,YOSE,Yosemite National Park,National Park,296088,1933
+PW,CA,YOSE,Yosemite National Park,National Park,309431,1934
+PW,CA,YOSE,Yosemite National Park,National Park,372317,1935
+PW,CA,YOSE,Yosemite National Park,National Park,431192,1936
+PW,CA,YOSE,Yosemite National Park,National Park,481492,1937
+PW,CA,YOSE,Yosemite National Park,National Park,443325,1938
+PW,CA,YOSE,Yosemite National Park,National Park,466552,1939
+PW,CA,YOSE,Yosemite National Park,National Park,506781,1940
+PW,CA,YOSE,Yosemite National Park,National Park,597863,1941
+PW,CA,YOSE,Yosemite National Park,National Park,319816,1942
+PW,CA,YOSE,Yosemite National Park,National Park,116682,1943
+PW,CA,YOSE,Yosemite National Park,National Park,120494,1944
+PW,CA,YOSE,Yosemite National Park,National Park,290569,1945
+PW,CA,YOSE,Yosemite National Park,National Park,640483,1946
+PW,CA,YOSE,Yosemite National Park,National Park,777622,1947
+PW,CA,YOSE,Yosemite National Park,National Park,745899,1948
+PW,CA,YOSE,Yosemite National Park,National Park,808372,1949
+PW,CA,YOSE,Yosemite National Park,National Park,820953,1950
+PW,CA,YOSE,Yosemite National Park,National Park,858405,1951
+PW,CA,YOSE,Yosemite National Park,National Park,973971,1952
+PW,CA,YOSE,Yosemite National Park,National Park,969225,1953
+PW,CA,YOSE,Yosemite National Park,National Park,1008000,1954
+PW,CA,YOSE,Yosemite National Park,National Park,984200,1955
+PW,CA,YOSE,Yosemite National Park,National Park,1114200,1956
+PW,CA,YOSE,Yosemite National Park,National Park,1138700,1957
+PW,CA,YOSE,Yosemite National Park,National Park,1139300,1958
+PW,CA,YOSE,Yosemite National Park,National Park,1061500,1959
+PW,CA,YOSE,Yosemite National Park,National Park,1150400,1960
+PW,CA,YOSE,Yosemite National Park,National Park,1227100,1961
+PW,CA,YOSE,Yosemite National Park,National Park,1505500,1962
+PW,CA,YOSE,Yosemite National Park,National Park,1473400,1963
+PW,CA,YOSE,Yosemite National Park,National Park,1547000,1964
+PW,CA,YOSE,Yosemite National Park,National Park,1635400,1965
+PW,CA,YOSE,Yosemite National Park,National Park,1817100,1966
+PW,CA,YOSE,Yosemite National Park,National Park,2238300,1967
+PW,CA,YOSE,Yosemite National Park,National Park,2281100,1968
+PW,CA,YOSE,Yosemite National Park,National Park,2291300,1969
+PW,CA,YOSE,Yosemite National Park,National Park,2277200,1970
+PW,CA,YOSE,Yosemite National Park,National Park,2342200,1971
+PW,CA,YOSE,Yosemite National Park,National Park,2190301,1972
+PW,CA,YOSE,Yosemite National Park,National Park,2254300,1973
+PW,CA,YOSE,Yosemite National Park,National Park,2274600,1974
+PW,CA,YOSE,Yosemite National Park,National Park,2537400,1975
+PW,CA,YOSE,Yosemite National Park,National Park,2682400,1976
+PW,CA,YOSE,Yosemite National Park,National Park,2392600,1977
+PW,CA,YOSE,Yosemite National Park,National Park,2569268,1978
+PW,CA,YOSE,Yosemite National Park,National Park,2350782,1979
+PW,CA,YOSE,Yosemite National Park,National Park,2490282,1980
+PW,CA,YOSE,Yosemite National Park,National Park,2516893,1981
+PW,CA,YOSE,Yosemite National Park,National Park,2415587,1982
+PW,CA,YOSE,Yosemite National Park,National Park,2457464,1983
+PW,CA,YOSE,Yosemite National Park,National Park,2738467,1984
+PW,CA,YOSE,Yosemite National Park,National Park,2831952,1985
+PW,CA,YOSE,Yosemite National Park,National Park,2876717,1986
+PW,CA,YOSE,Yosemite National Park,National Park,3152275,1987
+PW,CA,YOSE,Yosemite National Park,National Park,3216681,1988
+PW,CA,YOSE,Yosemite National Park,National Park,3308159,1989
+PW,CA,YOSE,Yosemite National Park,National Park,3124939,1990
+PW,CA,YOSE,Yosemite National Park,National Park,3423101,1991
+PW,CA,YOSE,Yosemite National Park,National Park,3819518,1992
+PW,CA,YOSE,Yosemite National Park,National Park,3839645,1993
+PW,CA,YOSE,Yosemite National Park,National Park,3962117,1994
+PW,CA,YOSE,Yosemite National Park,National Park,3958406,1995
+PW,CA,YOSE,Yosemite National Park,National Park,4046207,1996
+PW,CA,YOSE,Yosemite National Park,National Park,3669970,1997
+PW,CA,YOSE,Yosemite National Park,National Park,3657132,1998
+PW,CA,YOSE,Yosemite National Park,National Park,3493607,1999
+PW,CA,YOSE,Yosemite National Park,National Park,3400903,2000
+PW,CA,YOSE,Yosemite National Park,National Park,3368731,2001
+PW,CA,YOSE,Yosemite National Park,National Park,3361867,2002
+PW,CA,YOSE,Yosemite National Park,National Park,3378664,2003
+PW,CA,YOSE,Yosemite National Park,National Park,3280911,2004
+PW,CA,YOSE,Yosemite National Park,National Park,3304144,2005
+PW,CA,YOSE,Yosemite National Park,National Park,3242644,2006
+PW,CA,YOSE,Yosemite National Park,National Park,3503428,2007
+PW,CA,YOSE,Yosemite National Park,National Park,3431514,2008
+PW,CA,YOSE,Yosemite National Park,National Park,3737472,2009
+PW,CA,YOSE,Yosemite National Park,National Park,3901408,2010
+PW,CA,YOSE,Yosemite National Park,National Park,3951393,2011
+PW,CA,YOSE,Yosemite National Park,National Park,3853404,2012
+PW,CA,YOSE,Yosemite National Park,National Park,3691191,2013
+PW,CA,YOSE,Yosemite National Park,National Park,3882642,2014
+PW,CA,YOSE,Yosemite National Park,National Park,4150217,2015
+PW,CA,YOSE,Yosemite National Park,National Park,5028868,2016

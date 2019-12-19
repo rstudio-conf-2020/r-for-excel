@@ -1,0 +1,397 @@
+# Tidying
+
+TODO: janitor: adorn and kable
+
+## Summary
+
+In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by *reshaping* data frames (converting from long-to-wide, or wide-to-long format), *separating* and *uniting* variable (column) contents, converting between *explicit* and *implicit* missing (`NA`) values, and cleaning up our column names with the `janitor` package. 
+
+## Objectives
+
+- Reshape data frames with `tidyr::pivot_wider()` and `tidyr::pivot_longer()`
+- Convert column names with `janitor::clean_names()`
+- Combine or separate information from columns with `tidyr::unite()` and `tidyr::separate()`
+- Make implicit missings *explicit* with `tidyr::complete()`
+- Make explicit missings *implicit* with `tidyr::drop_na()`
+- Use our new skills as part of a bigger wrangling sequence
+- Make a customized table (TODO: or introduce Kable if not time in pivot tables chapter)
+
+## Resources
+
+-- [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
+- [`tidyr` documentation from tidyverse.org](https://tidyr.tidyverse.org/)
+- [`janitor` repo / information](https://github.com/sfirke/janitor) from Sam Firke
+
+## Lesson
+
+### Lesson Prep
+
+#### Create a new R Markdown and attach packages
+
+Within your day 2 R Project, create a new .Rmd. Attach the `tidyverse`, `janitor` and `readxl` packages with `library(package_name)`. Knit and save your new .Rmd within the project folder. 
+
+```{r, include = FALSE}
+# Attach packages
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(kableExtra)
+```
+
+```{r, eval = FALSE}
+# Attach packages
+library(tidyverse)
+library(janitor)
+library(readxl)
+```
+
+#### Read in data
+
+Use `readxl::read_excel()` to import the "invert_counts_curated.xlsx" data:
+```{r, include = FALSE}
+inverts_df <- readxl::read_excel(here::here("curation", "invert_counts_curated.xlsx"))
+```
+
+```{r, eval = FALSE}
+inverts_df <- readxl::read_excel("invert_counts_curated.xlsx")
+```
+
+Be sure to explore the imported data a bit: 
+
+- `View()`
+- `names()`
+- `summary()`
+
+### Reshaping with `tidyr::pivot_longer()` and `tidyr::pivot_wider()`
+
+#### Wide-to-longer format with `tidyr::pivot_longer()`
+
+In *tidy format*, each variable is contained within a single column. If we look at *inverts_df*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
+
+There may be times when you want to have data in wide format, but often with code it is more efficient to convert to **long format** by gathering together observations for a variable that is currently split into multiple columns. 
+
+Schematically, converting from wide to long format looks like this: 
+
+![](img/tidyr_pivot_longer.png)
+
+Generally, the code to gather wide columns together using `tidyr::pivot_longer()` looks like this: 
+
+TODO: Add pivot_longer() schematic
+
+We'll use `tidyr::pivot_longer()` to gather data from all years in *inverts_df* into two columns: one called *year*, which contains the year (as a number), and another called *sp_count* that contains the number of each species observed. The new data frame will be stored as *inverts_long*:
+
+```{r}
+
+inverts_long <- tidyr::pivot_longer(data = inverts_df, 
+                                    cols = '2016':'2018',
+                                    names_to = "year",
+                                    values_to = "sp_count")
+
+```
+
+The outcome is the new long-format *inverts_long* data frame:
+```{r}
+inverts_long
+```
+
+Hooray, long format! 
+
+One thing that isn't obvious at first (but would become obvious if you continued working with this data) is that since those year numbers were initially column names (characters), when they are stacked into the *year* column, their class wasn't auto-updated to numeric. 
+
+Explore the class of *year* in *inverts_long*:
+
+```{r}
+class(inverts_long$year)
+```
+
+We'll use `dplyr::mutate()` in a different way here: to create a new column (that's how we've used `mutate()` previously) that has the same name of an existing column, in order to update and overwrite the existing column. 
+
+In this case, we'll `mutate()` to add a column called *year*, which contains an `as.numeric()` version of the existing *year* variable: 
+
+```{r}
+
+# Coerce "year" class to numeric: 
+
+inverts_long <- inverts_long %>% 
+  mutate(year = as.numeric(year))
+
+```
+
+Checking the class again, we see that *year* has been updated to a numeric variable:
+
+```{r}
+class(inverts_long$year)
+```
+
+#### Long-to-wider format with `tidyr::pivot_wider()`
+
+In the previous example, we had information spread over multiple columns that we wanted to *gather*. Sometimes, we'll have data that we want to *spread* over multiple columns. 
+
+For example, imagine that starting from *inverts_long* we want each species in the *common_name* column to exist as its **own column**. In that case, we would be converting from a longer to a wider format, and will use `tidyr::pivot_wider()` as follows: 
+
+TODO: Add pivot_wider() schematic
+
+Specifically for our data, we write code to spread the *common_name* column as follows: 
+```{r}
+
+inverts_wide <- inverts_long %>% 
+  tidyr::pivot_wider(names_from = common_name, 
+                     values_from = sp_count)
+
+```
+
+```{r}
+inverts_wide
+```
+
+We can see that now each *species* has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format...
+
+#### Meet the `janitor` package
+
+The `janitor` package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Like:
+
+- `janitor::clean_names()`: update column headers to a case of your choosing
+- `janitor::get_dupes()`: see all rows that are duplicates within variables you choose
+- `janitor::remove_empty()`: remove empty rows and/or columns
+- `janitor::andorn_*()`: jazz up frequency tables of counts (we'll return to this for a table example in TODO: Session 8)
+- ...and more! 
+
+Here, we'll use `janitor::clean_names()` to convert all of our column headers to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
+
+For example, `janitor::clean_names()` would update these nightmare column names into much nicer forms:
+
+- `My...RECENT-income!` becomes `my_recent_income`
+- `SAMPLE2.!test1` becomes `sample2_test1`
+- `ThisIsTheName` becomes `this_is_the_name`
+- `2015` becomes `x2015`
+
+If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with `janitor::clean_names()`:
+
+```{r}
+inverts_wide <- inverts_wide %>% 
+  janitor::clean_names()
+```
+
+```{r}
+names(inverts_wide)
+```
+
+And there are other options for the case, like: 
+
+- "snake" produces snake_case
+- "lower_camel" or "small_camel" produces lowerCamel
+- "upper_camel" or "big_camel" produces UpperCamel
+- "screaming_snake" or "all_caps" produces ALL_CAPS
+- "lower_upper" produces lowerUPPER
+- "upper_lower" produces UPPERlower
+
+### Combine or separate information in columns with `tidyr::unite()` and `tidyr::separate()`
+
+Sometimes we'll want to *separate* contents of a single column into multiple columns, or *combine* entries from different columns into a single column. 
+
+For example, the following data frame has *genus* and *species* in separate columns:
+```{r, echo = FALSE}
+unite_ex <- tribble(
+  ~id, ~genus, ~species, ~common_name,
+  1, "Scorpaena", "guttata", "sculpin",
+  2, "Sebastes", "miniatus", "vermillion"
+)
+
+kable(unite_ex)
+```
+
+We may want to combine the genus and species into a single column, *scientific_name*: 
+```{r, echo = FALSE}
+unite_ex_sci_name <- unite_ex %>% 
+  unite("scientific_name", 
+        c(genus, species),
+        sep = " ")
+
+kable(unite_ex_sci_name)
+```
+
+Or we may want to do the reverse (separate information from a single column into multiple columns). Here, we'll learn `tidyr::unite()` and `tidyr::separate()` to help us do both. 
+
+#### `tidyr::unite()` to merge information from separate columns
+
+Use `tidyr::unite()` to combine (paste) information from multiple columns into a single column (as for the scientific name example above)
+
+![](img/rstudio-cheatsheet-unite.png)
+
+To demonstrate uniting information from separate columns, we'll make a single column that has the combined information from *site* abbreviation and *year* in *inverts_wide*. 
+
+We need to give `tidyr::unite()` several arguments:
+
+- **data:** the data frame containing columns we want to combine (or pipe into the function from the data frame)
+- **col:** the name of the new "united" column
+- the **columns you are uniting**
+- **sep:** the symbol, value or character to put between the united information from each column
+
+```{r}
+
+inverts_unite <- inverts_wide %>% 
+  tidyr::unite(col = "site_year", # What to name the new united column
+               c(site, year), # The columns we'll unite (site, year)
+               sep = "_") # How to separate the things we're uniting
+
+```
+
+```{r, echo = FALSE}
+head(inverts_unite)
+```
+
+Try updating the separator from "_" to "_hello!_" to see what the outcome column contains.
+
+`tidyr::unite()` can also combine information from *more* than two columns. For example, to combine the *site*, *common_name* and *year* columns from *inverts_long*, we could use:
+
+```{r}
+
+# Uniting more than 2 columns: 
+
+inverts_triple_unite <- inverts_long %>% 
+  tidyr::unite(col = "year_site_name",
+               c(year, site, common_name),
+               sep = "-")
+
+```
+
+```{r}
+head(inverts_triple_unite)
+```
+
+#### `tidyr::separate()` to separate information into multiple columns
+
+While `tidyr::unite()` allows us to combine information from multiple columns, it's more likely that you'll *start* with a single column that you want to split up into pieces.
+
+For example, I might want to split up a column containing the *genus* and *species* (*Scorpaena guttata*) into two separate columns (*Scorpaena* | *guttata*), so that I can count how many *Scorpaena* organisms exist in my dataset at the genus level. 
+
+Use `tidyr::separate()` to "separate a character column into multiple columns using a regular expression separator." 
+
+![](img/rstudio-cheatsheet-separate.png)
+
+Let's start again with *inverts_unite*, where we have combined the *site* and *year* into a single column called *site_year*. If we want to **separate** those, we can use:
+
+```{r}
+
+inverts_sep <- inverts_triple_unite %>% 
+  tidyr::separate(year_site_name, into = c("my_year", "my_site_name"))
+
+```
+
+What is that warning `Expected 2 pieces...` telling us? If we take a look at the resulting data frame *inverts_sep*, we see that it only keeps the first **two** pieces, and gets rid of the third (name). Which is a bit concerning, because we rarely want to just throw away information in a data frame. 
+
+```{r}
+head(inverts_sep)
+```
+
+That's problematic. How can we make sure we're keeping as many different elements as exist in the united column? 
+
+We have a couple of options: 
+
+1. Create the *number* of columns that are needed to retain as many elements as exist (in this case, 3, but we only created two new columns in the example above)
+
+```{r}
+inverts_sep3 <- inverts_triple_unite %>% 
+  tidyr::separate(year_site_name, into = c("the_year", "the_site", "the_name"))
+```
+
+Another warning. What is that about? Let's take a look at the resulting data frame and think about what's missing (what are the "pieces discarded"?):
+
+```{r}
+head(inverts_sep3)
+```
+
+
+Aha! Only the *first word* of the common name was retained, and anything else was trashed. We want to keep everything after the second dash in the new *the_name* column. 
+
+That's because the **default is `extra = "warn"`**, which means that if you have more pieces than columns you're separating into, it will populate the columns that have been allotted (in our case, just 3) then drop any additional information, giving you a warning that pieces have been dropped.
+
+To keep the extra pieces that have been dropped, add the `extra = "merge"` argument within `tidyr::separate()` to override:
+
+```{r}
+inverts_sep_all <- inverts_triple_unite %>% 
+  separate(year_site_name, 
+           into = c("sample_year", "location", "sp_name"), 
+           extra = "merge")
+```
+
+No warning there about things being discarded. Explore *inverts_sep_all*:
+
+```{r, echo = FALSE}
+inverts_sep_all
+```
+
+We see that the resulting data frame has split *year_site_name* into three separate columns, *sample_year*, *location*, and *sp_name*, but now everything after the second break ("-") remains together in *sp_name* instead of dropping pieces following the third word. 
+
+### Convert between explicit and implicit missings (`NA`s)
+
+An *explicit missing* is when every possible outcome actually appears in a data frame as a row, even if a variable of interest for that row is missing (`NA`).
+
+Conversely, an *implicit missing* is when an observation (row) does *not* appear in the data frame because a variable of interest contains an `NA` missing value. 
+
+Consider the following data: 
+
+```{r, echo = FALSE}
+df_missings <- tribble(
+  ~animal, ~day, ~food_choice,
+  "eagle", "Monday", "fish",
+  "mountain lion", "Monday", "squirrel",
+  "toad", "Monday", NA,
+  "eagle", "Tuesday", "fish",
+  "mountain lion", "Tuesday", "deer",
+  "toad", "Tuesday", "flies"
+) %>% 
+  select(day, animal, food_choice)
+
+kable(df_missings)
+```
+
+
+Notice that the row for **toad** still appears in the dataset for **Tuesday**, despite having a missing food choice for that day. This is an *explicit missing* because the row still appears in the data frame. 
+
+If that row was removed, the resulting dataset would look like this: 
+
+```{r}
+df_missings %>% 
+  drop_na(food_choice) %>% 
+  kable()
+```
+
+...and if your reaction is "But then how do I know there's a toad from **MONDAY**?", then you can see how it can be a bit risky to have *implicit missings* instead of *explicit missings*. 
+
+Whichever we choose, we can convert between the two forms using `tidyr::drop_na()` or `tidyr::complete()`:
+
+- `tidyr::drop_na()`: removes observations (rows) that contain `NA` for variable(s) of interest
+- `tidyr::complete()`: turns implicit missing values into explicit missing values by completing a data frame with missing combinations of data
+
+We'll use both here, starting with the *inverts_long* data frame we created above. 
+
+Looking through *inverts_long*, we'll see that there are `NA` observations for every species at site **bull** in 2018 - but those `NA` counts do show up. First, we'll use `tidyr::drop_na()` to make those missings implicit (invisible) instead: 
+
+```{r}
+
+inverts_implicit_NA <- inverts_long %>% 
+  drop_na(sp_count)
+
+```
+
+See that now, the rows that contained an `NA` in the *sp_count* column from *inverts_long* have been removed. 
+
+WAIT, I want them back! We can ask R to create explicit missings (by identifying which combinations of groups currently don't appear in the data frame) using `tidyr::complete()`:
+
+```{r}
+
+inverts_explicit_NA <- inverts_implicit_NA %>% 
+  complete(month, site, common_name, year)
+
+```
+
+Now you'll see `inverts_explicit_NA` has those 5 "missing" observations shown in the data frame. 
+
+### Activities
+
+TODO
+
+### Fun facts / insights
+
+TODO

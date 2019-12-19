@@ -1,0 +1,95 @@
+---
+title: "Invertebrate counts data curation"
+author: "Julie Lowndes"
+date: "09/02/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+
+devtools::install_github("tidyverse/tidyr")
+```
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidyr) # for pivot_wider
+library(janitor)
+library(here)
+library(skimr)
+library(writexl) # install.packages('writexl')
+```
+
+Curating the 'invertebrate counts' LTER data into a wide, needs-janitor-to-be-joined to kelp Google Sheet. 
+
+**Info:** https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=19&revision=newest
+
+**Citation:** Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Invertebrate and algal density. Environmental Data Initiative. https://doi.org/10.6073/pasta/748ee568669ca2b740e9b8f5f8a085d8. Dataset accessed 9/02/2019.
+
+**Description:** These data describe the density and size of a select group of about 50 species of benthic invertebrates and understory algae in fixed plots (either 1m x 1m or 20m x 1m) along permanent transects. These data are part of SBCLTER’s kelp forest monitoring program to track long-term patterns in species abundance and diversity of reef-associated organisms in the Santa Barbara Channel, California, USA. The sampling locations in this dataset are at nine reef sites along the mainland coast of the Santa Barbara Channel and at two sites on the north side of Santa Cruz Island. These sites reflect several oceanographic regimes in the channel and vary in distance from sources of terrestrial runoff. 
+
+## 1. Get the raw data:
+
+This is a big data file. 
+
+```{r}
+
+data_raw <- read_csv(here("curation/annual_quad_swath_all_years.csv")) %>% 
+  clean_names()
+
+head(data_raw)
+skim(data_raw)
+
+data_clean <- data_raw %>% 
+  janitor::clean_names() %>% 
+  purrr::map(tolower) %>% 
+  as.data.frame()
+
+
+```
+60 common names, 62 scientific names
+
+## 2. Explore possible curations
+
+Filtering rows...
+```{r}
+
+invert_subset <- data_clean %>% 
+  filter(common_name %in% c("orange cup coral", "califonia cone snail", "rock scallop",
+                            "purple urchin", "california spiny lobster")) %>% 
+  filter(year %in% 2016:2018, 
+         month == 7) %>%
+  drop_na(count) %>% 
+  mutate(count = as.numeric(count), 
+         common_name = str_replace_all(common_name, "califonia cone snail", "california cone snail")) %>% 
+  group_by(year, month, site, common_name) %>% 
+  summarize(
+    tot_count = sum(count)
+  )
+
+unique(invert_subset$site) 
+
+
+```
+Inverts has `r length(unique(invert_subset$site))` unique sites, while fish counts have only 3; this will be great to demo inner joins, etc. 
+
+Data are only from month 7 and 8 in 2018; only month 7 in 2017. 
+
+
+Pivot wider!
+```{r}
+
+invert_wide <- invert_subset %>%
+  tidyr::pivot_wider(names_from = year, values_from = tot_count)
+
+```
+can also teach about numeric column headers!
+
+
+Write to xl!
+
+```{r}
+# Write to an Excel file: 
+write_xlsx(invert_wide, here("curation", "invert_counts_curated.xlsx"))
+```
+

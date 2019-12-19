@@ -1,6 +1,6 @@
 R for Excel Users
 ================
-
+ 
 ### rstudio::conf 2020
 
 by Julia Lowndes and Allison Horst 

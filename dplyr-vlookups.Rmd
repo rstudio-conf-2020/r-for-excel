@@ -13,6 +13,7 @@ In this session, we'll expand our data wrangling toolkit using:
 
 - `filter()` to conditionally subset our data by **rows**, and
 - `*_join()` functions to merge data frames together
+- Make a nicely formatted table with `kable()` and `kableExtra`
 
 The combination of `filter()` and `*_join()` - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel. 
 
@@ -27,6 +28,7 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 - [`filter()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/filter.html)
 - [`join()` documentation from tidyverse.org](https://dplyr.tidyverse.org/reference/join.html)
 - [Chapters 5 and 13 in *R for Data Science* by Garrett Grolemund and Hadley Wickham](https://r4ds.had.co.nz/)
+- ["Create awesome HTML tables with knitr::kable() and kableExtra" by Hao Zhu](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
 
 ## Lessons
 
@@ -34,22 +36,24 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 
 Create a new R Markdown document in your r-workshop project and knit to save as **filter_join.Rmd**. Remove all the example code (everything below the set-up code chunk). 
 
-In this session, we'll use three packages: 
+In this session, we'll use four packages: 
 
 - `tidyverse`
 - `readxl`
 - `here`
+- `kableExtra`
 
 Attach the packages in the setup code chunk in your .Rmd:
 ```{r, include = FALSE}
 library(tidyverse)
 library(readxl)
-library(here) # They won't have this (files directly in top WD)
+library(here) 
+library(kableExtra)
 
 # Read in the data
-invert_counts <- read_excel(here("curation","invert_counts_curated.xlsx"))
-fish_counts <- read_csv(here("curation", "fish_counts_curated.csv"))
-kelp_counts_abur <- read_excel(here("curation","kelp_counts_curated.xlsx"))
+inverts <- read_excel(here("data","inverts.xlsx"))
+fish <- read_csv(here("data", "fish.csv"))
+kelp_abur <- read_excel(here("data","kelp.xlsx")) # Reads in first worksheet, Arroyo Burro kelp counts
 ```
 
 ```{r, eval = FALSE}
@@ -57,26 +61,28 @@ kelp_counts_abur <- read_excel(here("curation","kelp_counts_curated.xlsx"))
 library(tidyverse)
 library(readxl)
 library(here)
+library(kableExtra)
 ```
 
 Then create a new code chunk to read in three files from your 'data' subfolder:
 
-- invert_counts_curated.xlsx
-- fish_counts_curated.csv
-- kelp_counts_curated.xlsx
+- inverts.xlsx
+- fish.csv
+- kelp.xlsx
+
 ```{r, eval = FALSE}
 # Read in data: 
-invert_counts <- read_excel(here("data", "invert_counts_curated.xlsx"))
-fish_counts <- read_csv(here("data", "fish_counts_curated.csv"))
-kelp_counts_abur <- read_excel(here("data", "kelp_counts_curated.xlsx"))
+inverts <- read_excel(here("data", "inverts.xlsx"))
+fish <- read_csv(here("data", "fish.csv"))
+kelp <- read_excel(here("data", "kelp.xlsx"))
 
 ```
 
-We should always explore the data we've read in using functions like `View()`, `names()`, `summary()`, `head()` and `tail()` to ensure that the data we *think* we've read in is *actually* the data we've read in. 
+We should always explore the data we've read in using functions. Use `View()`, `names()`, `summary()`, `head()` and `tail()` to check it out. 
 
 Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
-### `filter()` to conditionally subset by rows
+## `dplyr::filter()` to conditionally subset by rows
 
 Use `filter()` to let R know which **rows** you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables. 
 
@@ -97,96 +103,96 @@ Here, we'll learn some common ways to use `filter()`.
 
 #### Filter rows by matching a single character string
 
-Let's say we want to keep all observations from the fish_counts data frame where the common name is "garibaldi." Here, we need to tell R to only *keep rows* from the **fish_counts** data frame when the common name (**common_name** variable) exactly matches **garibaldi**. 
+Let's say we want to keep all observations from the **fish** data frame where the common name is "garibaldi." Here, we need to tell R to only *keep rows* from the **fish** data frame when the common name (**common_name** variable) exactly matches **garibaldi**. 
 Use `==` to ask R to look for matching strings:
 
 ```{r, include = FALSE}
-fish_garibaldi <- filter(fish_counts, common_name == "garibaldi")
+fish_garibaldi <- filter(fish, common_name == "garibaldi")
 ```
 
 ```{r, eval = FALSE}
-fish_garibaldi <- filter(fish_counts, common_name == "garibaldi")
+fish_garibaldi <- filter(fish, common_name == "garibaldi")
 ```
 
 Check out the **fish_garibaldi** object to ensure that only *garibaldi* observations remain. 
 
 You could also do this using the pipe operator `%>%`: 
 ```{r, eval = FALSE}
-fish_garibaldi <- fish_counts %>% 
+fish_garibaldi <- fish %>% 
   filter(common_name == "garibaldi")
 ```
 
-#### Activity
+### Activity
 
-**Task**: Create a subset from the **fish_counts** data frame, stored as object **fish_abur**, that only contains observations from Arroyo Burro (site 'abur'). 
+**Task**: Create a subset from the **fish** data frame, stored as object **fish_abur**, that only contains observations from Arroyo Burro (site 'abur'). 
 
 **Solution**: 
 ```{r, eval = FALSE}
 
-fish_abur <- fish_counts %>% 
+fish_abur <- fish %>% 
   filter(site == "abur")
 
 ```
 
 Explore the subset you just created to ensure that only Arroyo Burro observations are returned. 
 
-#### Filter rows based on numeric conditions
+### Filter rows based on numeric conditions
 
 Use expected operators (>, <, >=, <=, ==) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the **total_count** column value is >= 50:
 
 ```{r, include = FALSE}
-fish_over50 <- filter(fish_counts, total_count >= 50)
+fish_over50 <- filter(fish, total_count >= 50)
 ```
 
 ```{r, eval = FALSE}
-fish_over50 <- filter(fish_counts, total_count >= 50)
+fish_over50 <- filter(fish, total_count >= 50)
 ```
 
 Or, using the pipe: 
 ```{r, eval = FALSE}
-fish_over50 <- fish_counts %>% 
+fish_over50 <- fish %>% 
   filter(total_count >= 50)
 ```
 
-#### Filter to return rows that match *this* OR *that* OR *that*
+### Filter to return rows that match *this* OR *that* OR *that*
 
-What if we want to return a subset of the fish_counts df that contains *garibaldi*, *blacksmith* OR *black surfperch*?
+What if we want to return a subset of the **fish** df that contains *garibaldi*, *blacksmith* OR *black surfperch*?
 
-There are several ways to write an "OR" statement for filtering, which will keep any observations that match Condition A *or* Condition B *or* Condition C. In this example, we will create a subset from **fish_counts** that only contains rows where the **common_name** is *garibaldi* or *blacksmith* or *black surfperch*.
+There are several ways to write an "OR" statement for filtering, which will keep any observations that match Condition A *or* Condition B *or* Condition C. In this example, we will create a subset from **fish** that only contains rows where the **common_name** is *garibaldi* or *blacksmith* or *black surfperch*.
 
 Use `%in%` to ask R to look for *any matches* within a combined vector of strings: 
 
 ```{r, include = FALSE}
-fish_3sp <- fish_counts %>% 
+fish_3sp <- fish %>% 
   filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
 ```
 
 ```{r, eval = FALSE}
-fish_3sp <- fish_counts %>% 
+fish_3sp <- fish %>% 
   filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
 ```
 
 Alternatively, you can indicate **OR** using the vertical line operator `|` to do the same thing (but you can see that it's more repetitive when looking for matches within the same variable): 
 ```{r, eval = FALSE}
 
-fish_3sp <- fish_counts %>% 
+fish_3sp <- fish %>% 
   filter(common_name == "garibaldi" | common_name == "blacksmith" | common_name == "black surfperch")
 
 ```
 
-#### Filter to return rows that match conditions for multiple variables
+### Filter to return rows that match conditions for multiple variables
 
 In the previous examples, we set filter conditions based on a single variable (e.g. common_name). What if we want to return observations that satisfy conditions for multiple variables? 
 
-For example: We want to create a subset that only returns rows from 'invert_counts' where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." In `filter()`, add a comma (or ampersand, &) between arguments for multiple *AND* conditions:
+For example: We want to create a subset that only returns rows from **inverts** where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." In `filter()`, add a comma (or ampersand '&') between arguments for multiple "and" conditions:
 
 ```{r, include = FALSE}
-urchin_abur_mohk <- invert_counts %>% 
+urchin_abur_mohk <- inverts %>% 
   filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
 
 ```{r, eval = FALSE}
-urchin_abur_mohk <- invert_counts %>% 
+urchin_abur_mohk <- inverts %>% 
   filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
 
@@ -199,7 +205,7 @@ Like most things in R, there are other ways to do the same thing. For example, y
 ```{r, eval = FALSE}
 # Use the ampersand (&) to add another condition "and this must be true":
 
-urchin_abur_mohk <- invert_counts %>% 
+urchin_abur_mohk <- inverts %>% 
   filter(site %in% c("abur","mohk") & common_name == "purple urchin")
 ```
 
@@ -208,14 +214,14 @@ Or you could just do two filter steps in sequence:
 ```{r, eval = FALSE}
 # Written as sequential filter steps:
 
-urchin_abur_mohk <- invert_counts %>% 
+urchin_abur_mohk <- inverts %>% 
   filter(site %in% c("abur", "mohk")) %>% 
   filter(common_name == "purple urchin")
 ```
 
-##### Activity: combined filter conditions
+### Activity: combined filter conditions
 
-**Task:** Create a subset from the **fish_counts** data frame, called **low_gb_wr** that only contains:
+**Task:** Create a subset from the **fish** data frame, called **low_gb_wr** that only contains:
 
 - Observations of *garibaldi* and *rock wrasse*
 - Where the *total_count* is *less than or equal to 10*
@@ -223,67 +229,18 @@ urchin_abur_mohk <- invert_counts %>%
 **Solution:**
 ```{r, eval = FALSE}
 
-low_gb_wr <- fish_counts %>% 
+low_gb_wr <- fish %>% 
   filter(common_name %in% c("garibaldi", "rock wrasse"), 
          total_count <= 10)
 ```
 
 **Sync your local project to your repo on GitHub.**
 
-#### Filter to return rows that *do not* match conditions
-
-Sometimes we might want to exclude observations. Here, let's say we want to make a subset that contains all rows from **fish_counts** except those recorded at the Mohawk Reef site ("mohk" in the *site* variable). 
-
-We use `!=` to return observations that **do not match** a condition. 
-
-Like this: 
-```{r, include = FALSE}
-fish_no_mohk <- fish_counts %>% 
-  filter(site != "mohk")
-```
-
-```{r, eval = FALSE}
-fish_no_mohk <- fish_counts %>% 
-  filter(site != "mohk")
-```
-
-This similarly works to exclude observations by a value. 
-
-For example, if we want to return all observations *except* those where the total fish count is 1, we use:
-```{r, include = FALSE}
-fish_more_one <- fish_counts %>% 
-  filter(total_count != 1)
-```
-
-```{r, eval = FALSE}
-fish_more_one <- fish_counts %>% 
-  filter(total_count != 1)
-```
-
-What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species **is not** garibaldi **or** rock wrasse. 
-
-We can use `filter(!variable %in% c("apple", "orange"))` to return rows where the variable does **not** match "apple" or "orange". For our fish example, that looks like this: 
-
-```{r, include = FALSE}
-fish_subset <- fish_counts %>% 
-  filter(!common_name %in% c("garibaldi", "rock wrasse"))
-```
-
-```{r, eval = FALSE}
-fish_subset <- fish_counts %>% 
-  filter(!common_name %in% c("garibaldi", "rock wrasse"))
-```
-
-Which then only returns observations for the other fish species in the dataset. 
-```{r}
-head(fish_subset)
-```
-
-#### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
+### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
 
 We can also use `filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
 
-Here, we'll start with the `invert_counts` data frame and create a subset that:
+Here, we'll start with the `inverts` data frame and create a subset that:
 
 - Converts to long(er) format with `pivot_longer()`
 - Only keeps observations for rock scallops
@@ -293,7 +250,7 @@ Here, we'll start with the `invert_counts` data frame and create a subset that:
 
 # Counts of scallops by site (all years included):
 
-scallop_count_by_site <- invert_counts %>% 
+scallop_count_by_site <- inverts %>% 
   pivot_longer(cols = '2016':'2018', 
                names_to = "year", 
                values_to = "sp_count") %>% 
@@ -305,7 +262,7 @@ scallop_count_by_site <- invert_counts %>%
 
 ```{r, eval = FALSE}
 # Counts of scallops by site (all years included):
-scallop_count_by_site <- invert_counts %>% 
+scallop_count_by_site <- inverts %>% 
   pivot_longer(cols = '2016':'2018', 
                names_to = "year", 
                values_to = "sp_count") %>% 
@@ -318,7 +275,7 @@ scallop_count_by_site <- invert_counts %>%
 scallop_count_by_site
 ```
 
-### Merging data frames with `*_join()` 
+## Join data frames with `dplyr::*_join()` 
 
 Excel's `VLOOKUP` can also be used to merge data from separate tables or worksheets. Here, we'll use the `*_join()` functions to merge separate data frames in R. 
 
@@ -335,16 +292,16 @@ From R Documentation (`?join`):
 Schematic (from RStudio data wrangling cheat sheet): 
 ![](img/rstudio-cheatsheet-combine-options1.png)
 
-To clarify what the different joins are doing, let's first make a subset of the *fish_counts* data frame that only contains observations from 2016 and 2017. 
+To clarify what the different joins are doing, let's first make a subset of the *fish* data frame that only contains observations from 2016 and 2017. 
 
 ```{r}
-fish_2016_2017 <- fish_counts %>% 
+fish_2016_2017 <- fish %>% 
   filter(year == 2016 | year == 2017)
 ```
 
-Take a look to ensure that only those years are included with `View(fish_2016_2017)`. Now, let's merge it with our kelp fronds data in different ways. 
+Take a look to ensure that only those years are included with `View(fish_2016_2017)`. Now, let's merge it with our Arroyo Burro kelp fronds data (kelp_abur) in different ways. 
 
-#### `full_join()` to merge data frames, keeping everything
+### `full_join()` to merge data frames, keeping everything
 
 When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):
 
@@ -355,9 +312,9 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 ```{r, eval = FALSE}
 
-# Join the fish_counts and kelp_counts_abur together: 
+# Join the fish_2016_2017 and kelp_abur
 abur_kelp_join <- fish_2016_2017 %>% 
-  full_join(kelp_counts_abur, by = c("year", "site")) # Uh oh. An error message.
+  full_join(kelp_abur, by = c("year", "site")) # Uh oh. An error message.
 
 ```
 
@@ -366,15 +323,15 @@ When we try to do that join, we get an error message:
 
 Let's google this. That means copying this from the console and pasting it into Google. 
 
-What's going on here? First, there's something fishy (ha) going on with the class of the *year* variable in `kelp_counts_abur`. Use the `class()` function to see how R understands that variable (remember, we use `$` to return a specific column from a data frame). 
+What's going on here? First, there's something fishy (ha) going on with the class of the *year* variable in `kelp_abur`. Use the `class()` function to see how R understands that variable (remember, we use `$` to return a specific column from a data frame). 
 
 ```{r}
-class(kelp_counts_abur$year)
+class(kelp_abur$year)
 ```
 
 So the variable is currently stored as a character. Why? 
 
-If we go back to the kelp_counts_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as *text*. There are several hints Excel gives us: 
+If we go back to the kelp.xlsx file, we'll see that the numbers in both the year and month column have been stored as *text*. There are several hints Excel gives us: 
 
 - Cells are left aligned, when values stored as numbers are right aligned
 - The green triangles in the corner indicate some formatting
@@ -384,13 +341,13 @@ There are a number of ways to do this in R. We'll use `mutate()` to overwrite th
 
 ```{r}
 # Coerce the class of 'year' to numeric
-kelp_counts_abur <- kelp_counts_abur %>% 
+kelp_abur <- kelp_abur %>% 
   mutate(year = as.numeric(year))
 ```
 
 Now if we check the class of the *year* variable in `kelp_counts_abur`, we'll see that it has been coerced to 'numeric':
 ```{r}
-class(kelp_counts_abur$year)
+class(kelp_abur$year)
 ```
 
 **Question: Isn't it bad practice to overwrite variables, instead of just making a new one?** Great question, and usually the answer is yes. Here, we feel fine with "overwriting" the year column because we're not changing anything about what's contained within the column, we're only changing how R understands it. Always use caution if overwriting variables, and if in doubt, add one instead! 
@@ -399,7 +356,7 @@ OK, so now the class of *year* in the data frames we're joining is the same. Let
 
 ```{r}
 abur_kelp_join <- fish_2016_2017 %>% 
-  full_join(kelp_counts_abur, by = c("year", "site"))
+  full_join(kelp_abur, by = c("year", "site"))
 ```
 
 Let's look at the merged data frame with `View(abur_kelp_join)`. A few things to notice about how `full_join()` has worked: 
@@ -409,82 +366,77 @@ Let's look at the merged data frame with `View(abur_kelp_join)`. A few things to
 3. The kelp frond data is joined to *all observations* where the joining variables (*year*, *site*) are a match, which is why it is repeated 5 times for each year (once for each fish species).
 
 Because all data (observations & columns) are retained, `full_join()` is the safest option if you're unclear about how to merge data frames. 
-#### `left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
-Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_counts_abur* while only keeping observations from *kelp_counts_abur* that match an observation within *fish_2016_2017*. So when we use `left_join()`, any information on kelp counts from 2018 should be dropped. 
+### `left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
+
+Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_abur* while only keeping observations from *kelp_abur* that match an observation within *fish_2016_2017*. So when we use `left_join()`, any information on kelp frond counts from 2018 should be dropped, because those wouldn't have a match in the left data frame. 
 
 ```{r}
 fish_kelp_2016_2017 <- fish_2016_2017 %>% 
-  left_join(kelp_counts_abur)
+  left_join(kelp_abur)
 ```
 
-Notice when you look at `fish_kelp_2016_2017`, the 2018 data that **does** exist in `kelp_counts_abur` does **not** get joined to the `fish_2016_2017` data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
+Notice when you look at `fish_kelp_2016_2017`, the 2018 data that **does** exist in `kelp_abur` does **not** get joined to the `fish_2016_2017` data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
 
-#### `inner_join()` to merge data frames, only keeping observations with a match in **both**
+### `inner_join()` to merge data frames, only keeping observations with a match in **both**
 
-When we used `left_join(df_a, df_b)`, we kept all observations in `df_a` but *only observations from `df_b` that matched an entry in `df_a`* (in other words, some entries from `df_b` were excluded).
+Use `inner_join()` if you **only** want to retain observations that have matches across **both data** frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do! 
 
-Use `inner_join()` if you know that you **only** want to retain observations when they match across **both data** frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do! 
-
-For example, if we use `inner_join()` to merge fish_counts and kelp_counts_abur, then we are asking R to **only return observations where the joining variables (*year* and *site*) have matches in both data frames.** Let's see what the outcome is: 
+For example, if we use `inner_join()` to merge fish and kelp_abur, then we are asking R to **only return observations where the joining variables (*year* and *site*) have matches in both data frames.** Let's see what the outcome is: 
 ```{r}
-abur_kelp_inner_join <- fish_counts %>% 
-  inner_join(kelp_counts_abur)
+kelp_fish_injoin <- fish %>% 
+  inner_join(kelp_abur)
 
-abur_kelp_inner_join
+# kelp_fish_injoin
 ```
 
-Here, we see that only observations where there is a match for *year* and *site* in both data frames are returned.
+Here, we see that only observations (rows) where there is a match for *year* and *site* in both data frames are returned.
 
-#### `*_join()` in a sequence
-
-We can also merge data frames as part of a sequence of wrangling steps. 
-
-As an example: Starting with the `invert_counts` data frame, we want to:
-
-- First, use `pivot_longer()` to get year and counts each into a single column
-- Convert the class of *year* to numeric (so it can join with another numeric year variable)
-- Then, only keep observations for "california spiny lobster"
-- Next, join the `kelp_counts_abur` to the resulting subset above, **only keeping observations that have a match in both data frames**
-
-That might look like this: 
-
-```{r}
-
-abur_lobster_kelp <- invert_counts %>% 
-  pivot_longer('2016':'2018', names_to = "year", values_to = "total_counts") %>% 
-  mutate(year = as.numeric(year)) %>% 
-  filter(common_name == "california spiny lobster") %>% 
-  inner_join(kelp_counts_abur)
-
-```
-
-```{r}
-abur_lobster_kelp
-```
-
-##### Activity 
+### Using `filter()` and `join()` in a sequence  
 
 Now let's combine what we've learned about piping, filtering and joining!
 
-**Task:** Complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called `my_fish_join`:
+Let's complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called `my_fish_join`:
 
-- Start with `fish_counts` data frame
-- Filter to only including observations for 2017 at Arroyo Burro
-- Join the `kelp_counts_abur` data frame to the resulting subset using `left_join()`
+- Start with **fish** data frame
+- Filter **fish** to only including observations for 2017 at Arroyo Burro
+- Join the **kelp_abur** data frame to the resulting subset using `left_join()`
 - Add a new column that contains the 'fish per kelp fronds' density (total_count / total_fronds)
 
-**Solution:**
-```{r, include = FALSE}
+That sequence might look like this: 
+```{r}
 
-my_fish_join <- fish_counts %>% 
+my_fish_join <- fish %>% 
   filter(year == 2017, site == "abur") %>% 
-  left_join(kelp_counts_abur) %>% 
+  left_join(kelp_abur, by = c("year", "site")) %>% 
   mutate(fish_per_frond = total_count / total_fronds)
 
 ```
 
-**Sync your project with your repo on GitHub.**
+Explore the resulting **my_fish_join** data frame. 
+
+## A nice HTML table with `kable()` and `kableExtra`
+
+With any data frame, you can a nicer looking table in your knitted HTML using `knitr::kable()` and functions in the `kableExtra` package. 
+
+Start by using `kable()` with my_fish_join, and see what the default HTML table looks like in your knitted document:
+```{r}
+kable(kelp_abur)
+```
+
+Simple, but quick to get a clear & useful table! Now let's spruce it up a bit with `kableExtra::kable_styling()` to modify HTML table styles:
+
+```{r}
+kelp_abur %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = "striped", full_width = FALSE)
+```
+
+...with many other options for customizing HTML tables! Make sure to check out ["Create awesome HTML tables with knitr::kable() and kableExtra" by Hao Zhu](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) for more examples and options.
+
+We'll make several more tables later on in the workshop. 
+
+### Sync your project with your repo on GitHub
 
 ## Fun / kind of scary facts
 
@@ -498,13 +450,9 @@ So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, 
 
 (2) `VLOOKUP` will look for and return information from the *first observation* that matches (or approximately matches) a condition. `filter()` will return all observations (rows) that exactly match a condition. 
 
-## Interludes (deep thoughts/openscapes)
-
-- Not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc. 
-
-- The risk of partial joins (& a case for full_join + drop_na instead?)
-
 ## Efficiency Tips
 
 - Comment out multiline code with Command + Shift + C
 - Knit with Command + Shift + K
+
+## End `filter()` + `join()` section

@@ -89,6 +89,7 @@ To get the full functionality of Github, you will eventually want to learn other
 <br />
 <br />
 
+<!---
 ## Setup Git & GitHub
 
 We're going to switch gears from R for a moment and set up Git and GitHub, which we will be using along with R and RStudio for the rest of the workshop. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together. 
@@ -172,6 +173,7 @@ Quit RStudio.
 Then relaunch RStudio.  
 
 Try syncing or cloning, and if that works and then you don’t need to worry about typing into the Terminal, you’re all done!
+--->
 
 
 ## Create a repository on Github.com

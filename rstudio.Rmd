@@ -9,7 +9,7 @@ We'll learn RMarkdown, which helps you tell a story with your data analysis beca
 In this lesson we will:
 
 - get oriented to the RStudio interface
-- explore RMarkdown. This will be your notes.
+- explore RMarkdown.
 - discuss RMarkdown files vs Console (running vs knitting)
 - learn a few base R functions (`c()`)
 - error messages and help pages
@@ -108,23 +108,48 @@ knitr::include_graphics("img/rmarkdown_side_by_side.png")
 
 Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
 
+### Markdown text
+
+The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
+
+Notice the syntax for:
+
+- **headers** get rendered at multiple levels: `#`, `##`
+- **bold**: `**word**`
+
+There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
+
+<br>
+<br>
+
+This will be your notes.
+
+
 ### Code chunks
 
-Let's start of by looking at the 3 code chunks, which are grey. There are two things to look at: R code and code options
+Let's start of by looking at the 3 code chunks, which are grey. 
+<!---There are two things to look at: R code chunks and code chunk options --->
 
-#### R code
-
-
-
-#### Chunk options
-
-Each of them are start by 3 backticks and `{r LABEL}`, which signify that there will be R code inside. Anything inside the brackets (`{ }`) is instructions for RMarkdown about that code to run. For example:
+Each of them are start by 3 backticks and `{r label}`, which signify that there will be R code inside, and they are each given a unique name. Anything inside the brackets (`{ }`) is instructions for RMarkdown about that code to run. For example:
 
 - the first chunk says `include=FALSE`, and we don't see it included in the HTML document. 
 - the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
 - the third chunk says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
-- all three chunks say `r` as the language, and have a name (`setup`, `cars`, `pressure`. This is to help us navigate between them and keep them organized. They are optional.
 
+There are many more options available and we will explore more as we go.
+
+#### Naming code chunks (Deep thought?)
+
+All three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`. This is to help us navigate between them and keep them organized. They are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. Otherwise you will see an error when you try to knit: 
+
+```
+processing file: Untitled.Rmd
+Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
+Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
+Execution halted
+```
+
+In this case, you **read the error message** to identify the problem: "duplicate label 'cars'". 
 
 #### New code chunks
 
@@ -136,13 +161,107 @@ We can create a new chunk in your RMarkdown first in one of these ways:
    \```
 - if you haven't deleted a chunk that came with the new file, edit that one
 
-Now, let's write some code in R. Earlier we calculated `sum(cars$dist)`. Now let's do the average. In R, this is the `mean()` function
+### R code
+
+Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
 
 ```{r}
-mean_dist <- mean(cars$dist)
+
+plot(cars)
+
 ```
 
-### R code in the Console
+What is `plot` anyways? It is a function.
+
+## Functions
+ 
+*TODO, this is a placeholder. Do c().*
+
+Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
+
+R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
+
+Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
+
+Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
+
+Type the arguments `1, 10` and hit return. 
+```{r}
+seq(1, 10)
+```
+
+We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
+
+```{r, eval=F}
+?seq 
+help(seq) # same as ?seq
+```
+
+
+## Error messages are your friends
+
+### Help pages
+
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
+
+ - Description: An extended description of what the function does.
+ - Usage: The arguments of the function and their default values.
+ - Arguments: An explanation of the data each argument is expecting.
+ - Details: Any important details to be aware of.
+ - Value: The data the function returns.
+ - See Also: Any related functions you might find useful.
+ - Examples: Some examples for how to use the function.
+
+When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the `sum` page, it is pretty straight-forward and lets me know that yup, this is the function I want.
+
+I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
+
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
+
+```{r}
+seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
+seq(from = 1, to = 10, by = 2)
+```
+
+The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use `name = value`.
+
+The examples from the help pages can be copy-pasted into the console for you to understand what's going on. 
+
+<!---
+Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
+
+```{r sum2, eval=FALSE}
+sum(1, 2, 3)
+```
+
+R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
+
+Awesome. Let's try this on our `cars` data
+
+```{r sum-cars, eval=FALSE}
+sum(cars)
+```
+
+Alright. What is this number? It is the sum of ALL of the data in the `cars` dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
+
+Let's say we want to calculate the total distance:
+
+```{r sum-cars2, eval=FALSE}
+sum(cars$dist)
+```
+
+There are many functions that are built into R, and we'll learn more of them shortly.  
+--->
+
+Not all functions have (or require) arguments:
+```{r}
+date()
+```
+
+## Packages
+
+### R code in the Console -- where does this go
 
 Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
 
@@ -165,19 +284,7 @@ Cool tip: doesn't have to be only R, other languages supported.
 
 --->
 
-### Markdown text
 
-The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
-
-Notice the syntax for:
-
-- **headers** get rendered at multiple levels: `#`, `##`
-- **bold**: `**word**`
-
-There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
-
-<br>
-<br>
 
 <!---
 **Important**: note that the hashtag `#` is used differently in Markdown and in R: 
@@ -247,82 +354,6 @@ This opens the fourth pane of the RStudio IDE; when you work in R you will have 
 
 In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data. 
 
-## R functions, help pages
-
-Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
-
-R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
-
-Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
-
-Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
-
-Type the arguments `1, 10` and hit return. 
-```{r}
-seq(1, 10)
-```
-
-We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
-
-```{r, eval=F}
-?seq 
-help(seq) # same as ?seq
-```
-
-When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
-
- - Description: An extended description of what the function does.
- - Usage: The arguments of the function and their default values.
- - Arguments: An explanation of the data each argument is expecting.
- - Details: Any important details to be aware of.
- - Value: The data the function returns.
- - See Also: Any related functions you might find useful.
- - Examples: Some examples for how to use the function.
-
-When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the `sum` page, it is pretty straight-forward and lets me know that yup, this is the function I want.
-
-I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
-
-Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
-
-```{r}
-seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
-seq(from = 1, to = 10, by = 2)
-```
-
-The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
-argument or maybe the first two. After that, I always use `name = value`.
-
-The examples from the help pages can be copy-pasted into the console for you to understand what's going on. 
-
-Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
-
-```{r sum2, eval=FALSE}
-sum(1, 2, 3)
-```
-
-R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
-
-Awesome. Let's try this on our `cars` data
-
-```{r sum-cars, eval=FALSE}
-sum(cars)
-```
-
-Alright. What is this number? It is the sum of ALL of the data in the `cars` dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
-
-Let's say we want to calculate the total distance:
-
-```{r sum-cars2, eval=FALSE}
-sum(cars$dist)
-```
-
-There are many functions that are built into R, and we'll learn more of them shortly.  
-
-Not all functions have (or require) arguments:
-```{r}
-date()
-```
 
 ## Packages
 

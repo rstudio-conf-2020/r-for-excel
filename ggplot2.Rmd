@@ -2,13 +2,13 @@
 
 ## Summary
 
-Now that we know how to *get* some data, the next thing we'll probably want to do is *look* at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph *or* use that code again to make the same style graph with different data.
+Now that we know how to *get* some data, the next thing we'll probably want to do is look at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph *or* use that code again to make the same style graph with different data.
 
 Using `ggplot2`, the graphics package within the `tidyverse`, we'll write reproducible code to manually and thoughtfully build our graphs. 
 
 > "ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places." - [R4DS](http://r4ds.had.co.nz/data-visualisation.html)
 
-So yeah...that `gg` is from "grammar of graphics" - original source 
+So yeah...that `gg` is from "grammar of graphics."
 
 We'll use the `ggplot2` package, but the function we use to initialize a graph will be `ggplot`, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). Graphics with `ggplot` are built step-by-step, adding new elements as layers with a plus sign (`+`) between layers (note: this is different from the pipe operator, `%>%`. Adding layers in this fashion allows for extensive flexibility and customization of plots.
 
@@ -32,9 +32,7 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 - [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)  
 - ["Why I use ggplot2" - David Robinson Blog Post](http://varianceexplained.org/r/why-I-use-ggplot2/)
 
-## Lesson
-
-### Getting started - Create a new .Rmd, attach packages & get data
+## Getting started - Create a new .Rmd, attach packages & get data
 
 Within your existing version-controlled R project, create a new R Markdown document with title "Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "my_ggplot2". 
 
@@ -52,8 +50,8 @@ In this session, we'll use data for parks visitation from two files:
 
 Add a new code chunk to read in the data from the **data** subfolder within your working directory. 
 ```{r, include = FALSE}
-ca_np <- read_csv(here("curation", "ca_np.csv"))
-ci_np <- read_xlsx(here("curation", "ci_np.xlsx"))
+ca_np <- read_csv(here("data", "ca_np.csv"))
+ci_np <- read_xlsx(here("data", "ci_np.xlsx"))
 ```
 
 ```{r, eval = FALSE}
@@ -67,7 +65,7 @@ Let's take a quick look at the data to see what it contains. For example:
 - `names()`: to see the variable (column) names
 - `summary()`: see a quick summary of each variable
 
-### Our first ggplot graph: Visitors to Channel Islands NP
+## Our first ggplot graph: Visitors to Channel Islands NP
 
 To create a bare-bones ggplot graph, we need to tell R three basic things: 
 
@@ -116,7 +114,7 @@ We can see that updating to different `geom_*` types is quick, so long as the ty
 
 The data are there, now let's do some data viz customization. 
 
-### Intro to customizing `ggplot` graphs
+## Intro to customizing `ggplot` graphs
 
 First, we'll customize some aesthetics (e.g. colors, styles, axis labels, etc.) of our graphs based on non-variable values. 
 
@@ -153,11 +151,11 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
              alpha = 0.5)
 ```
 
-#### Activity: customize your own ggplot graph
+### Activity: customize your own ggplot graph
 
 Update one of the example graphs you created above to customize **at least** an element color and size!
 
-### Mapping variables onto aesthetics
+## Mapping variables onto aesthetics
 
 In the examples above, we have customized aesthetics based on constants that we input as arguments (e.g., the color / style / size isn't changing based on a variable characteristic or value). Sometimes, however, we **do** want the aesthetics of a graph to depend on a variable. To do that, we'll **map variables onto graph aesthetics**, meaning we'll change how an element on the graph looks based on a variable characteristic (usually, character or value). 
 
@@ -180,7 +178,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
 
 In the example above, notice that the two arguments that **do** depend on variables are within `aes()`, but since `alpha = 0.5` doesn't depend on a variable then it is *outside the `aes()` but still within the `geom_point()` layer*. 
 
-#### Activity: map variables onto graph aesthetics
+### Activity: map variables onto graph aesthetics
 
 Create a column plot of Channel Islands National Park visitation over time, where the **fill color** (argument: `fill = `) changes based on the number of **visitors**. 
 
@@ -191,7 +189,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
 
 **Sync your project with your GitHub repo.**
 
-### ggplot2 complete themes
+## ggplot2 complete themes
 
 While every element of a ggplot graph is manually customizable, there are also built-in themes (`theme_*()`) that you can add to your ggplot code to make some major headway before making smaller tweaks manually. 
 
@@ -212,7 +210,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
   theme_minimal()
 ```
 
-### Updating axis labels and titles
+## Updating axis labels and titles
 
 Use `labs()` to update axis labels, and add a title and/or subtitle to your ggplot graph. 
 
@@ -230,7 +228,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
 
 **Note**: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the `scales` package options (see more from the [R Cookbook](http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/)). 
 
-### Combining compatible geoms
+## Combining compatible geoms
 
 As long as the geoms are compatible, we can layer them on top of one another to further customize a graph. 
 
@@ -250,7 +248,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
   geom_line()
 ```
 
-### Multi-series ggplot graphs
+## Multi-series ggplot graphs
 
 In the examples above, we only had a single series - visitation at Channel Islands National Park. Often we'll want to visualize multiple series. For example, from the `ca_np` object we have stored, we might want to plot visitation for *all* California National Parks. 
 
@@ -271,7 +269,7 @@ ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
 
 **Note**: You could also add that aesthetic (`color = park_name`) in the `geom_line()` layer, instead of in the topmost `ggplot()` layer.
 
-### Faceting ggplot graphs
+## Faceting ggplot graphs
 
 When we facet graphs, we split them up into multiple plotting panels, where each panel contains a subset of the data. In our case, we'll split the graph above into different panels, each containing visitation data for a single park. 
 
@@ -285,7 +283,7 @@ ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
   facet_wrap(~ park_name)
 ```
 
-### Exporting a ggplot graph with `ggsave()`
+## Exporting a ggplot graph with `ggsave()`
 
 If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication. 
 
@@ -325,3 +323,4 @@ ggplot(data = ca_np, aes(x = park_name, y = visitors)) +
 
 **Sync your project with your GitHub repo.**
 
+## End `ggplot` session

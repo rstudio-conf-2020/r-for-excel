@@ -23,9 +23,7 @@ In this session, we'll pull together the skills that we've learned so far. We'll
 
 - [Project oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) by Jenny Bryan
 
-## Lesson
-
-### Set-up:
+## Set-up
 
 - In GitHub, create a new repository called `us-fisheries-landings`
 - Clone the repo to create a version controlled project (remember, copy & paste the URL from the GitHub Clone / Download)

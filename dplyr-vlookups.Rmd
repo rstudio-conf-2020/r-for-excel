@@ -30,9 +30,7 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 - [Chapters 5 and 13 in *R for Data Science* by Garrett Grolemund and Hadley Wickham](https://r4ds.had.co.nz/)
 - ["Create awesome HTML tables with knitr::kable() and kableExtra" by Hao Zhu](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html)
 
-## Lessons
-
-### Getting started - Create a new .Rmd, attach packages & get data
+## Set-up: Create a new .Rmd, attach packages & get data
 
 Create a new R Markdown document in your r-workshop project and knit to save as **filter_join.Rmd**. Remove all the example code (everything below the set-up code chunk). 
 

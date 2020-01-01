@@ -22,11 +22,9 @@ Here, we'll continue by *reshaping* data frames (converting from long-to-wide, o
 - [`tidyr` documentation from tidyverse.org](https://tidyr.tidyverse.org/)
 - [`janitor` repo / information](https://github.com/sfirke/janitor) from Sam Firke
 
-## Lesson
+## Set-up
 
-### Lesson Prep
-
-#### Create a new R Markdown and attach packages
+### Create a new R Markdown and attach packages
 
 Within your day 2 R Project, create a new .Rmd. Attach the following packages (using `library(package_name)`): 
 
@@ -74,9 +72,7 @@ Be sure to explore the imported data a bit:
 - `names()`
 - `summary()`
 
-## Reshaping with `tidyr::pivot_longer()` and `tidyr::pivot_wider()`
-
-### Wide-to-longer format with `tidyr::pivot_longer()`
+## Wide-to-longer format with `tidyr::pivot_longer()`
 
 In *tidy format*, each variable is contained within a single column. If we look at *inverts_df*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
 
@@ -136,7 +132,7 @@ Checking the class again, we see that *year* has been updated to a numeric varia
 class(inverts_long$year)
 ```
 
-### Long-to-wider format with `tidyr::pivot_wider()`
+## Long-to-wider format with `tidyr::pivot_wider()`
 
 In the previous example, we had information spread over multiple columns that we wanted to *gather*. Sometimes, we'll have data that we want to *spread* over multiple columns. 
 
@@ -157,8 +153,6 @@ inverts_wide
 We can see that now each *species* has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format...
 
 ## Clean up column names with `janitor::clean_names()`
-
-TODO: do we introduce clean_names before this? 
 
 The `janitor` package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Like:
 

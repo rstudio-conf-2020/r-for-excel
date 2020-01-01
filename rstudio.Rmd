@@ -9,29 +9,17 @@ We'll learn RMarkdown, which helps you tell a story with your data analysis beca
 In this lesson we will:
 
 - get oriented to the RStudio interface
-- explore RMarkdown. This will be your notes.
+- explore RMarkdown.
 - discuss RMarkdown files vs Console (running vs knitting)
 - learn a few base R functions (`c()`)
 - error messages and help pages
-- discuss and install packages (`here()`)
+- discuss and install packages (`here()`) usethis
 - intro pipe operator (`%>%`)
 - configure Git (to prepare for next session)
 
 ### Resources
 
 - [R for Excel Users](https://blog.shotwell.ca/posts/r_for_excel_users/) by Gordon Shotwell (blog)
-
-<!---
-## Why learn R with RStudio
-
-You are all here today to learn how to code. Coding made me a better scientist because I was able to think more clearly about analyses, and become more efficient in doing so. Data scientists are creating tools that make coding more intuitive for new coders like us, and there is a wealth of awesome instruction and resources available to learn more and get help.
-
-Here is an analogy to start us off. **Think of yourself as a pilot, and R is your airplane.** You can use R to go places! With practice you'll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. 
-
-And **if R were an airplane, RStudio is the airport**. RStudio provides support! Runways, communication, community, and other services that makes your life as a pilot much easier. So it's not only the infrastructure (the user interface or IDE), although it is a great way to learn and interact with your variables, files, and interact directly with GitHub. It's also a data science philosophy, R packages, community, and more. So although you can fly your plane without an airport and we could learn R without RStudio, that's not what we're going to do. 
-
-> We are learning R together with RStudio and its many supporting features. 
-
 
 ## RStudio Orientation
 
@@ -49,19 +37,287 @@ Notice the default panes:
   * Environment/History (tabbed in upper right)
   * Files/Plots/Packages/Help (tabbed in lower right)
 
-FYI: you can change the default location of the panes, among many other things: [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). 
+We won't click through this all immediately but we will become familiar with more of the options and capabilities throughout the next few days.
 
+Something critical to know now is that you can make everything you see BIGGER by going to the navigation pane: View > Zoom In. Learn these keyboard shortcuts; being able to see what you're typing will help avoid typos & help us help you.
+
+I think that **R is your airplane, and the RStudio IDE is your airport**. You are the pilot, and you use R to go places! With practice you'll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. And the RStudio IDE provides support! Runways, communication, community, and other services that makes your life as a pilot much easier. It provides not only the infrastructure but a hub for the community that you can interact with. 
+
+<!---
+FYI: you can change the default location of the panes, among many other things: [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). 
+--->
 
 An important first question: **where are we?** 
 
 If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the `~/` at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: `~/`. 
 
-
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/RStudio_IDE_homedir.png")  
 ```
 
-### R Console
+We are going to have our first experience with R through RMarkdown, so let's do the following.
+
+## Intro to RMarkdown
+
+An RMarkdown file is a plain text file that allow us to write code and text together, and when it is "knit", the code will be evaluated and the text formatted so that it creates a reproducible report or document that is nice to read as a human.
+
+This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc. 
+
+Let's experience this a bit ourselves and then we'll talk about it more. 
+
+### Create an RMarkdown file
+
+Let's do this together:
+
+File -> New File -> RMarkdown... (or alternatively you can click the green plus in the top left -> RMarkdown). 
+
+Let's title it "Testing" and write our name as author, then click OK with the recommended Default Output Format, which is HTML.
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rstudio_new-rmd-doc-html.png")  
+```
+
+OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
+
+Let's have a look at this file — it's not blank; there is some initial text is already provided for you. Let's have a high-level look through of it: 
+
+- The top part has the Title and Author we provided, as well as today's date and the output type as an HTML document like we selected above.
+- There are white and grey sections. These are the 2 main languages that make up an RMarkdown file. 
+  - **Grey sections are R code**
+  - **White sections are Markdown text**
+- There is black and blue text.  
+  
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rmarkdown.png")  
+```
+
+### Knit your RMarkdown file
+
+Let's go ahead and "Knit" by clicking the blue yarn at the top of the RMarkdown file. 
+It's going to ask us to save first, I'll name mine "testing.Rmd". Note that this is by default going to save this file in your home directory `/~`. Since this is a testing document this is fine to save here; we will get more organized about where we save files very soon. Once you click Save, the knit process will be able to continue.
+
+OK so how cool is this, we've just made an html file! This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered — we also say formatted — both the Markdown text (white) and the R code (grey), and the it also executed — we also say ran — the R code.  
+
+Let's have a look at them side-by-side: 
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rmarkdown_side_by_side.png")  
+```
+
+Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
+
+### Markdown text
+
+The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
+
+Notice the syntax for:
+
+- **headers** get rendered at multiple levels: `#`, `##`
+- **bold**: `**word**`
+
+There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
+
+<br>
+<br>
+
+This will be your notes.
+
+
+### Code chunks
+
+Let's start of by looking at the 3 code chunks, which are grey. 
+<!---There are two things to look at: R code chunks and code chunk options --->
+
+Each of them are start by 3 backticks and `{r label}`, which signify that there will be R code inside, and they are each given a unique name. Anything inside the brackets (`{ }`) is instructions for RMarkdown about that code to run. For example:
+
+- the first chunk says `include=FALSE`, and we don't see it included in the HTML document. 
+- the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
+- the third chunk says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
+
+There are many more options available and we will explore more as we go.
+
+#### Naming code chunks (Deep thought?)
+
+All three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`. This is to help us navigate between them and keep them organized. They are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. Otherwise you will see an error when you try to knit: 
+
+```
+processing file: Untitled.Rmd
+Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
+Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
+Execution halted
+```
+
+In this case, you **read the error message** to identify the problem: "duplicate label 'cars'". 
+
+#### New code chunks
+
+We can create a new chunk in your RMarkdown first in one of these ways: 
+
+- click "Insert > R" at the top of the editor pane
+- type by hand 
+   \```{r}
+   \```
+- if you haven't deleted a chunk that came with the new file, edit that one
+
+### R code
+
+Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
+
+```{r}
+
+plot(cars)
+
+```
+
+What is `plot` anyways? It is a function.
+
+## Functions
+ 
+*TODO, this is a placeholder. Do c().*
+
+Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
+
+R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
+
+Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
+
+Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
+
+Type the arguments `1, 10` and hit return. 
+```{r}
+seq(1, 10)
+```
+
+We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
+
+```{r, eval=F}
+?seq 
+help(seq) # same as ?seq
+```
+
+
+## Error messages are your friends
+
+### Help pages
+
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
+
+ - Description: An extended description of what the function does.
+ - Usage: The arguments of the function and their default values.
+ - Arguments: An explanation of the data each argument is expecting.
+ - Details: Any important details to be aware of.
+ - Value: The data the function returns.
+ - See Also: Any related functions you might find useful.
+ - Examples: Some examples for how to use the function.
+
+When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the `sum` page, it is pretty straight-forward and lets me know that yup, this is the function I want.
+
+I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
+
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
+
+```{r}
+seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
+seq(from = 1, to = 10, by = 2)
+```
+
+The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use `name = value`.
+
+The examples from the help pages can be copy-pasted into the console for you to understand what's going on. 
+
+<!---
+Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
+
+```{r sum2, eval=FALSE}
+sum(1, 2, 3)
+```
+
+R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
+
+Awesome. Let's try this on our `cars` data
+
+```{r sum-cars, eval=FALSE}
+sum(cars)
+```
+
+Alright. What is this number? It is the sum of ALL of the data in the `cars` dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
+
+Let's say we want to calculate the total distance:
+
+```{r sum-cars2, eval=FALSE}
+sum(cars$dist)
+```
+
+There are many functions that are built into R, and we'll learn more of them shortly.  
+--->
+
+Not all functions have (or require) arguments:
+```{r}
+date()
+```
+
+## Packages
+
+### R code in the Console -- where does this go
+
+Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+1. copy-paste this line into the console.
+1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
+    a. the bar above the file (green arrow)
+    b. the menu bar: Code > Run Selected Line(s)
+    c. keyboard shortcut: command-return
+1. click the green arrow at the right of the code chunk
+
+And when we do this, we see the `mean_dist` object appear in he Environment pane. 
+
+Cool tip: doesn't have to be only R, other languages supported. 
+
+<!---
+#### Activity
+
+> Calculate the maximum cars distance in your RMarkdown file by typing `max(cars$dist)`. Remember to write your R code within a code chunk (grey)!  
+> Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
+
+--->
+
+
+
+<!---
+**Important**: note that the hashtag `#` is used differently in Markdown and in R: 
+
+- in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: `#` is equivalent to `######`. It's a matter of style. I use two `##` to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
+- in Markdown, a hashtag indicates a level of a header. And the number you use matters: `#` is a "level one header", meaning the biggest font and the top of the hierarchy. `###` is a level three header, and will show up nested below the `#` and `##` headers.
+
+If this seems confusing, take comfort in the fact that you are already used to using `#`s in a few ways in real life: it can mean "number" or "pound" or hashtags on social media.
+--->
+
+Learn more: http://rmarkdown.rstudio.com/
+
+#### Activity
+
+1. In Markdown write some italic text, make a numbered list, and add a few subheaders.
+ Use the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
+1. Reknit your html file. 
+
+#### Restart R
+
+To end our work from this session, save, knit, and then restart R (Go to the top menus: Session > Restart R.) 
+
+Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like `mean_dist`) don't show up in my Environment. This is because R isn't actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don't want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.
+
+### What is RMarkdown? (1-minute video)
+
+Let's watch this to demonstrate all the amazing things you can now do: 
+
+[What is RMarkdown?](https://vimeo.com/178485416)
+
+
+
+## R Console
 
 OK let's go into the Console, where we interact with the live R process.
 
@@ -98,89 +354,8 @@ This opens the fourth pane of the RStudio IDE; when you work in R you will have 
 
 In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data. 
 
-### R functions, help pages
 
-Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
-
-R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
-
-Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
-
-Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
-
-Type the arguments `1, 10` and hit return. 
-```{r}
-seq(1, 10)
-```
-
-We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
-
-```{r, eval=F}
-?seq 
-help(seq) # same as ?seq
-```
-
-When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
-
- - Description: An extended description of what the function does.
- - Usage: The arguments of the function and their default values.
- - Arguments: An explanation of the data each argument is expecting.
- - Details: Any important details to be aware of.
- - Value: The data the function returns.
- - See Also: Any related functions you might find useful.
- - Examples: Some examples for how to use the function.
-
-When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the `sum` page, it is pretty straight-forward and lets me know that yup, this is the function I want.
-
-I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
-
-Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
-
-```{r}
-seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
-seq(from = 1, to = 10, by = 2)
-```
-
-The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
-argument or maybe the first two. After that, I always use `name = value`.
-
-The examples from the help pages can be copy-pasted into the console for you to understand what's going on. Remember we were talking about expecting there to be a function for something you want to do? Let's try it. 
-
-### Activity
-
-> Exercise: Talk to your neighbor(s) and look up the help file for a function that you know or expect to exist. Here are some ideas: `?getwd()`, `?plot()`,  `min()`, `max()`, `?mean()`, `?log()`).
-
-
-Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
-
-```{r sum2, eval=FALSE}
-sum(1, 2, 3)
-```
-
-R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
-
-Awesome. Let's try this on our `cars` data
-
-```{r sum-cars, eval=FALSE}
-sum(cars)
-```
-
-Alright. What is this number? It is the sum of ALL of the data in the `cars` dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
-
-Let's say we want to calculate the total distance:
-
-```{r sum-cars2, eval=FALSE}
-sum(cars$dist)
-```
-
-There are many functions that are built into R, and we'll learn more of them shortly.  
-
-Not all functions have (or require) arguments:
-```{r}
-date()
-```
-
-### Packages
+## Packages
 
 So far we've been using a couple functions from base R, such as `sum()` and `date()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
 
@@ -253,23 +428,6 @@ Remember that this is a language, not unsimilar to English! There are times you 
 
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
-### Logical operators and expressions
-
-A moment about **logical operators and expressions**. We can ask questions about the objects we made. This is not assigning a new value to our `sum_dist` object.
-
-- `==` means 'is equal to'
-- `!=` means 'is not equal to'
-- `<` means ` is less than'
-- `>` means ` is greater than'
-- `<=` means ` is less than or equal to'
-- `>=` means ` is greater than or equal to'
-
-```{r}
-sum_dist == 2
-sum_dist <= 3000
-sum_dist != 500
-```
-
 > Shortcuts
 You will make lots of assignments and the operator `<-` is a pain to type. Don't be lazy and use `=`, although it would work, because it will just sow confusion later. Instead, utilize **RStudio's keyboard shortcut: Alt + - (the minus sign)**.
 Notice that RStudio automagically surrounds `<-` with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.
@@ -289,134 +447,93 @@ Don't save the workspace!
 
 So this is great, but if we were going to do any kind of real analysis, we need to be able to write it in a document rather than this command line prompt in the Console. Let's do something much more interesting and really start feeling its power. 
 
-## Intro to RMarkdown
 
-An RMarkdown file is a special type of file for making reports — it allow us to weave markdown text with chunks of R code to be evaluated and output content like tables and plots. 
+## Setup Git & GitHub
 
-This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc. 
+Before we break, we are going to set up Git and GitHub for our next lesson (and if you have trouble please stay a few extra minutes).
 
-Let's experience this a bit ourselves and then we'll talk about it more. 
 
-### Create an RMarkdown file
+We're going to switch gears from R for a moment and set up Git and GitHub, which we will be using along with R and RStudio for the rest of the workshop. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together. 
 
-File -> New File -> RMarkdown... -> Document of output format HTML, OK.
+1. We will use the `usethis` package to configure **git** with global commands, which means it will apply 'globally' to all files on your computer, rather than to a specific folder. 
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/rstudio_new-rmd-doc-html.png")  
+```{r use this, eval=FALSE}
+
+install.packages("usethis")
+library(usethis)
+
+use_git_config(user.name = "jules32", user.email = "jules32@example.org")
+
 ```
 
-You can give it a Title like "Testing" (a name that's totally ok to use as you're trying something out). Then click OK. 
+*BACKUP PLAN* If `usethis` fails, the following is the classic approach to configuring **git**.  Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:
 
-OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
+        # display your version of git
+        git --version
+        
+        # replace USER with your Github user account
+        git config --global user.name USER
+        
+        # replace NAME@EMAIL.EDU with the email you used to register with Github
+        git config --global user.email NAME@EMAIL.EDU
+        
+        # list your config to confirm user.* variables set
+        git config --list
 
-Let's have a look at this file — it's not blank; there is some initial text is already provided for you. Notice a few things about it: 
+Not only have you just set up git as a one-time-only thing, you have just used the command line. We don't have time to learn much of the command line today, but you just successfully used it following explicit instructions, which is huge! There are great resources for learning the command line, check out [this tutorial from SWC at UCSB](http://remi-daigle.github.io/2016-04-15-UCSB/shell/). 
 
-- Title and Author are auto-filled, and the today's date has been added
-- There are white and grey sections. These are the 2 main languages that make up an RMarkdown file. 
-  - **Grey sections are R code**
-  - **White sections are Markdown text**
+### Troubleshooting
+
+If you have problems setting up git, please see the [Troubleshooting section](http://happygitwithr.com/troubleshooting.html) in Jenny Bryan's amazing [HappyGitWithR](http://happygitwithr.com). 
+
+#### New(ish) Error on a Mac
+We've also seen the following errors from RStudio: 
+
+```
+error key does not contain a section --global terminal
+```
+and
+```
+fatal: not in a git directory
+```
+
+To solve this, go to the Terminal and type:
+    ```
+which git
+```
+
+<img src="img/git_whichgit.png" width="250px">
+
   
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/rmarkdown.png")  
-```
+Look at the filepath that is returned. Does it say anything to do with Apple?
 
+-> If yes, then the [Git you downloaded](https://git-scm.com/downloads) isn't installed, please redownload if necessary, and follow instructions to install.  
 
-### Knit your RMarkdown file
+-> If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
 
-Let's go ahead and "Knit" by clicking the blue yarn at the top of the RMarkdown file. It's going to ask us to save first, I'll name mine "testing.Rmd".
+In RStudio, navigate to: Tools > Global Options > Git/SVN. 
 
-How cool is this, we've just made an html file, a webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered — we also say formatted — both the Markdown text (white) and the R code (grey), and the it also executed — we also say ran — the R code.  
+<img src="img/git_options.png" width="250px">
 
-Let's have a look at them side-by-side: 
 
 <br>
 
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/rmarkdown_side_by_side.png")  
-```
-
-Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
-
-### R code chunks
-
-Notice how the grey **R code chunks** are surrounded by 3 backticks and `{r LABEL}`. These are evaluated and return the output text in the case of `summary(cars)` and the output plot in the case of `plot(pressure)`.
-
-Notice how the code `plot(pressure)` is not shown in the HTML output because of the R code chunk option `echo=FALSE`. 
-
-We can create a new chunk in your RMarkdown first in one of these ways: 
-
-- click "Insert > R" at the top of the editor pane
-- type by hand 
-   \```{r}
-   \```
-- if you haven't deleted a chunk that came with the new file, edit that one
-
-Now, let's write some code in R. Earlier we calculated `sum(cars$dist)`. Now let's do the average. In R, this is the `mean()` function
-
-```{r}
-mean_dist <- mean(cars$dist)
-```
-
-Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
-
-1. copy-paste this line into the console.
-1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
-    a. the bar above the file (green arrow)
-    b. the menu bar: Code > Run Selected Line(s)
-    c. keyboard shortcut: command-return
-1. click the green arrow at the right of the code chunk
-
-And when we do this, we see the `mean_dist` object appear in he Environment pane. 
-
-Cool tip: doesn't have to be only R, other languages supported. 
-
-### Activity (3 min)
-
-> Calculate the maximum cars distance in your RMarkdown file by typing `max(cars$dist)`. Remember to write your R code within a code chunk (grey)!  
-> Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
-
-### Markdown sections
-
-The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
-
-Notice the syntax for:
-
-- **headers** get rendered at multiple levels: `#`, `##`
-- **bold**: `**word**`
-
-There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
+Does the **“Git executable”** filepath match what the url in Terminal says? 
 
 <br>
-<br>
 
-<!---
-**Important**: note that the hashtag `#` is used differently in Markdown and in R: 
+<img src="img/git_options_filepath.png" width="500px">
 
-- in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: `#` is equivalent to `######`. It's a matter of style. I use two `##` to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
-- in Markdown, a hashtag indicates a level of a header. And the number you use matters: `#` is a "level one header", meaning the biggest font and the top of the hierarchy. `###` is a level three header, and will show up nested below the `#` and `##` headers.
 
-If this seems confusing, take comfort in the fact that you are already used to using `#`s in a few ways in real life: it can mean "number" or "pound" or hashtags on social media.
---->
+If not, click the browse button and navigate there.   
 
-Learn more: http://rmarkdown.rstudio.com/
+>*Note*: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
 
-### Activity
+Quit RStudio.   
 
-1. In Markdown write some italic text, make a numbered list, and add a few subheaders.
- Use the Markdown Quick Reference (in the menu bar: Help > Markdown Quick Reference). 
-1. Reknit your html file. 
+Then relaunch RStudio.  
 
-### Restart R
-
-To end our work from this session, save, knit, and then restart R (Go to the top menus: Session > Restart R.) 
-
-Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like `mean_dist`) don't show up in my Environment. This is because R isn't actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don't want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.
-
-### What is RMarkdown? (1-minute video)
-
-Let's watch this to demonstrate all the amazing things you can now do: 
-
-[What is RMarkdown?](https://vimeo.com/178485416)
+Try syncing or cloning, and if that works and then you don’t need to worry about typing into the Terminal, you’re all done!
 
 
 <!---

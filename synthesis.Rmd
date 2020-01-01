@@ -2,7 +2,7 @@
 
 TODO:
 - stringr
-- Argaux, 
+- Argaux, (?) or NOAA landings 
 - Closing (15 mins)
 
 
@@ -15,119 +15,120 @@ In this session, we'll pull together the skills that we've learned so far. We'll
 ## Objectives
 
 - Create a new repo on GitHub
-- Start a new R project, connected to the repo 
+- Clone the repo to create a new version-controlled R project 
 - Create a new R Markdown document 
-- Attach necessary packages (`googlesheets4`, `tidyverse`, `here`)
+- Attach necessary packages (`tidyverse`, `here`, `janitor`, `kableExtra`)
 - Use `here::here()` for simpler (and safer) file paths
-- Read in data from a Google sheet with the `googlesheets4` package in R
 - Basic data wrangling (`dplyr`, `tidyr`, etc.)
+- HTL tables with `kable()` and `kableExtra`
 - Data visualization (`ggplot2`)
 - Publish with a useful ReadMe to share
 
 ## Resources
 
-- The [`here` package](https://github.com/r-lib/here)
-- [googlesheets4](https://github.com/tidyverse/googlesheets4) information
 - [Project oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) by Jenny Bryan
 
 ## Lesson
 
 ### Set-up:
 
-- Log in to your GitHub account and create a new repository called `sea-creature-synthesis`
+- In GitHub, create a new repository called `us_fisheries_landings`
 - Clone the repo to create a version controlled project (remember, copy & paste the URL from the GitHub Clone / Download)
 - In the local project folder, create a subfolder called 'data'
-- Copy and paste the `fish_counts_curated.csv` and `lobster_counts.csv` into the 'data' subfolder
-- Create a new R Markdown document within your `sea-creature-synthesis` project
-- Knit your .Rmd to html, saving as `sb_sea_creatures.Rmd`
+- Copy and paste the **noaa_fisheries.csv** file into the 'data' folder
+- Create a new R Markdown document within your `us_fisheries_landings` project
+- Knit your .Rmd to html, saving as `us_landings.Rmd`
 
-### Attach packages and read in the data
+**Data:**
+NOAA Commercial Fisheries Landing data (1950 - 2017)
+Accessed from: https://www.st.nmfs.noaa.gov/commercial-fisheries/commercial-landings/
+Source: Fisheries Statistics Division of the NOAA Fisheries
+
+*Note on the data:* "aggregate" here means "These names represent aggregations of more than one species. They are not inclusive, but rather represent landings where we do not have species-specific data. Selecting "Sharks", for example, will not return all sharks but only those where we do not have more specific information."
+
+## Attach packages, read in and explore the data
 
 Attach (load) packages with `library()`:
-```{r, include = FALSE}
+
+```{r, message = FALSE, warning = FALSE}
 
 library(tidyverse)
-library(googlesheets4)
+library(readxl)
 library(here)  
 library(janitor) 
+library(kableExtra)
+
 ```
 
+Read in the noaa_fisheries.csv data as object **us_landings**:
+
+```{r}
+us_landings <- read_csv(here("data","noaa_fisheries.csv"))
+```
+
+Go exploring a bit:
 ```{r, eval = FALSE}
-
-library(tidyverse)
-library(googlesheets4)
-library(here)  
-library(janitor) 
+summary(us_landings)
+View(us_landings)
+names(us_landings)
+head(us_landings)
+tail(us_landings)
 ```
 
-Now we'll read in our files with `readr::read_csv()`, but our files aren't in our **project root**. They're in the `data` subfolder.
+## Some data cleaning
 
-Use `here::here()` to direct R where to look for files, if they're not in the project root. Not sure where that is? Type `here()` in the Console, and it will tell you! 
+- Clean up column names (`clean_names()`)
+- Convert everything to lower case (`tolower()`)
+- Remove dollar signs in value column (`parse_number()`)
+- Remove the "aggregate" grouping indicator in species (`str_remove()`) %>% 
+- Keep only observations that include "salmon"
+- Separate the grouped name ("salmon") from any additional refined information (`separate()`)
 
-```{r, eval = FALSE}
-here::here()
-```
-
-`"/returns/your/project/root/"`
-
-Go ahead, find your project root!
-
-Then use `here::here()` *again* to easily locate a file somewhere outside of the exact project root. In our case, the files we want to read in are in the `data` subfolder - so we have to tell R how to get there from the root:
-
-```{r, include = FALSE}
-# Read in the data
-fish_counts <- read_csv(here::here("curation", "fish_counts_curated.csv"))
-
-# Notice after first line (before proceeding): bad column names, -99999
-lobster_counts <- read_csv(here::here("curation","lobster_counts.csv"),
-                           na = "-99999") %>% 
-  clean_names() # That's better! TODO: Did Julie do this all previously? Fine to repeat eithe way, but best to know what's being repeated or not...
+```{r}
+salmon_landings <- us_landings %>% 
+  clean_names() %>% # Make column headers snake_case
+  map_df(tolower) %>% # Converts character columns to lowercase, makes df (instead of list)
+  mutate(dollars_usd = parse_number(dollars_usd)) %>% 
+  mutate(afs_name = str_remove(afs_name, pattern = "aggregate")) %>% 
+  filter(str_detect(afs_name, pattern = "salmon")) %>% # Detect matches for crab
+  separate(afs_name, into = c("group","species"), sep = ",")
   
+
 ```
 
-```{r, eval = FALSE}
-# Read in CSV files
-fish_counts <- readr::read_csv(here::here("data", "fish_counts_curated.csv"))
-lobster_counts <- readr::read_csv(here::here("data", "lobster_counts.csv"))
+Explore **salmon_landings**. 
+
+## Find grouped summary data
+
+Find the annual total US landings and dollar value (summing across all states) for each type of salmon using `group_by()` + `summarize()`:
+
+```{r}
+
+salmon_summary <- salmon_landings %>% 
+  mutate(landings_pounds = as.numeric(landings_pounds),
+         year = as.numeric(year)) %>% 
+  group_by(year, species) %>% 
+  summarize(
+    tot_landings = sum(landings_pounds),
+    tot_value = sum(dollars_usd)
+  )
+
 ```
 
-Check out the two data frames (`fish_counts` and `lobster_counts`). 
+## Make a graph of total landings by species over time
 
-The `fish_counts` data frame is in pretty good shape. But the `lobster_counts` df could use some love, because there are "-99999" entries indicating `NA` values, and the column names would be difficult to write code with. 
-
-When reading in the lobster data, let's:
-
-- convert every "-99999" to an `NA`
-- get the column names into lower snake case using `janitor::clean_names()`
-
-```{r, eval = FALSE}
-lobster_counts <- read_csv(here::here("curation", "lobster_counts.csv"),
-                           na = "-99999") %>% 
-                  clean_names() 
+```{r}
+ggplot(salmon_summary, aes(x = year, y = tot_landings, group = species)) +
+  geom_line(aes(color = species)) +
+  theme_bw() +
+  labs(x = "year", y = "US commercial landings (pounds)")
 ```
 
-Look at it again to check (always look at your data) - now both data frames seem pretty coder-friendly to work with. 
-
-### Data wrangling 
-
-- join?
-- filter?
-- unite/separate
-
-- Read in lobster data
-- Join with another existing data frame (or 2?)
-- Pivoting
-- Transforming / subsetting
-- Grouping & summarizing (for means, sd, count)
-- Make a table 
-- Make a graph
-
-Possible new things: 
-complete() 
+TODO: Keep working on this to finish up. Another graph? Nice table? 
 
 ## Fun facts (quirky things) - making a note of these wherever possible for interest (little “Did you know?” sections)
 
-## Interludes (deep thoughts/openscapes)
+## Interludes
 
 ## Efficiency Tips
 

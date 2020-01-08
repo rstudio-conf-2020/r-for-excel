@@ -110,7 +110,7 @@ Let's take a deeper look at these two files. So much of learning to code is look
 
 ### Markdown text
 
-The second language is Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
+To warm us up for R, let's start by talking about another language, Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
 
 Notice the syntax for:
 
@@ -119,11 +119,15 @@ Notice the syntax for:
 
 There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
 
-<br>
-<br>
+### R code
 
-This will be your notes.
+Let's look at the R code that we see executed in our knitted document. 
 
+We see that `summary(cars)` produces a table
+
+And we see that `plot(pressure)` produces a plot. 
+
+`cars` and `pressure` are small datasets that come with R out-of-the-box. 
 
 ### Code chunks
 
@@ -149,7 +153,7 @@ Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_bloc
 Execution halted
 ```
 
-In this case, you **read the error message** to identify the problem: "duplicate label 'cars'". 
+In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: "duplicate label 'cars'". 
 
 #### New code chunks
 
@@ -161,8 +165,6 @@ We can create a new chunk in your RMarkdown first in one of these ways:
    \```
 - if you haven't deleted a chunk that came with the new file, edit that one
 
-### R code
-
 Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
 
 ```{r}
@@ -171,38 +173,27 @@ plot(cars)
 
 ```
 
-What is `plot` anyways? It is a function.
+We can knit this and see the plot of cars. This is the same data that we made the summary table with. 
 
-## Functions
+> Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences correct?
+
+What is `plot` anyways? It is a function. Let's talk about that next. 
+
+## Help pages
  
-*TODO, this is a placeholder. Do c().*
+*TODO - complete*
 
 Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
-R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do. `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
+R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.
 
-Let's try using `seq()` which makes regular sequences of numbers and, while we're at it, demo more helpful features of RStudio.
+TODO: Add Horst illustration
 
-Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
+`function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
 
-Type the arguments `1, 10` and hit return. 
-```{r}
-seq(1, 10)
-```
+A good way to learn about functions is to look at the help pages. Let's navigate over to the Help tab and type `plot`. All help pages will have the same format, here is how I look at it: 
 
-We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
-
-```{r, eval=F}
-?seq 
-help(seq) # same as ?seq
-```
-
-
-## Error messages are your friends
-
-### Help pages
-
-When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. The help page tells the name of the package in the top left, and broken down into sections:
+The help page tells the name of the package in the top left, and broken down into sections:
 
  - Description: An extended description of what the function does.
  - Usage: The arguments of the function and their default values.
@@ -217,6 +208,45 @@ When I look at a help page, I start with the description, which might be too in-
 I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
 
 Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
+
+```{r plot-help-example}
+plot(sin, -pi, 2*pi)
+```
+
+#TODO: transition
+
+Let's try using `c()` which combines values together and, while we're at it, demo more helpful features of RStudio.
+
+So let's create a new R code chunk. And we'll write: 
+
+```{r}
+c(1, 5:9)
+```
+
+So you can see that this combines these values all into the same place, which is called a vector here. But let's learn more about what this does. 
+
+
+
+<!---
+Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
+
+Type the arguments `1, 10` and hit return. 
+```{r}
+seq(1, 10)
+```
+
+We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
+
+```{r, eval=F}
+?seq 
+help(seq) # same as ?seq
+```
+
+--->
+
+### Help pages NOPE
+
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. 
 
 ```{r}
 seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
@@ -259,7 +289,7 @@ Not all functions have (or require) arguments:
 date()
 ```
 
-## Packages
+## Functions and Packages
 
 ### R code in the Console -- where does this go
 
@@ -457,7 +487,7 @@ We're going to switch gears from R for a moment and set up Git and GitHub, which
 
 1. We will use the `usethis` package to configure **git** with global commands, which means it will apply 'globally' to all files on your computer, rather than to a specific folder. 
 
-```{r use this, eval=FALSE}
+```{r usethis, eval=FALSE}
 
 install.packages("usethis")
 library(usethis)

@@ -16,9 +16,16 @@ Activity: reprex to GitHub "dplyr reprex"
 
 ### Resources
 
+- [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
 
 ## Lesson
 
+## Troubleshooting: help you help yourself
+
+Borrow/show Allison's slides
+- [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
+
+### Error messages are your friends
 
 ## Efficiency Tips
 

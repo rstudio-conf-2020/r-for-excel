@@ -643,9 +643,35 @@ Then, I usually scroll down to the bottom to the examples. This is where I can a
 
 \includegraphics{R-for-Excel-Users_files/figure-latex/plot-help-example-1.pdf}
 
-TODO: Revisit this, c() might be too complicated here?
+Let's try another function. In Excel, there is a ``SUM'' function to calculate a total. Let's expect that there is the same in R. I will type this into the Console:
 
-Let's try using \texttt{c()} which combines values together.
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+R is case-sensitive. So ``sum'' is a completely different thing to ``Sum'' or ``SUM''. And this is true for the names of functions, data sets, variable names, and data itself (``blue'' vs ``Blue'').
+
+Awesome. Let's try this on our \texttt{cars} data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+Alright. What is this number? It is the sum of ALL of the data in the \texttt{cars} dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the \texttt{\$} operator.
+
+Let's say we want to calculate the total distance:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's do one more: try using \texttt{c()} which combines values together.
 
 So let's create a new R code chunk. And we'll write:
 
@@ -661,16 +687,95 @@ So let's create a new R code chunk. And we'll write:
 
 So you can see that this combines these values all into the same place, which is called a vector here. But let's learn more about what this does.
 
+Let's do one more. Not all functions have (or require) arguments:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{date}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Thu Jan  9 09:13:52 2020"
+\end{verbatim}
+
+Let's try combining some of these things together.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(}\StringTok{"R is awesome"}\NormalTok{, }\KeywordTok{date}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "R is awesome"             "Thu Jan  9 09:13:52 2020"
+\end{verbatim}
+
+We can also save this as an object.
+
+\hypertarget{assigning-objects-with--}{%
+\section{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
+
+TODO refine
+
+\includegraphics[width=0.6\linewidth]{img/horst-naming-terms}
+
+This might be a really important thing that we want to be able to work with later. We can save this as its own object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_object <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"R is awesome"}\NormalTok{, }\KeywordTok{date}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
+
+Data can be a variety of formats, like numeric and text.
+
+We do this by writing the name along with the assignment operator \texttt{\textless{}-}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum_dist <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
+\end{Highlighting}
+\end{Shaded}
+
+And we can execute it. In my head I hear ``sum\_dist gets 2149''.
+
+Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a \href{http://en.wikipedia.org/wiki/Snake_case}{convention for demarcating words} in names.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# i_use_snake_case}
+\CommentTok{# other.people.use.periods}
+\CommentTok{# evenOthersUseCamelCase}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{console-vs.rmarkdownr-script}{%
+\section{Console vs.~RMarkdown/R script}\label{console-vs.rmarkdownr-script}}
+
+\hypertarget{r-code-in-the-console}{%
+\section{R code in the Console}\label{r-code-in-the-console}}
+
+There is another way to get to the help pages besides clicking on the Help tab --- we can write this in R with \texttt{?}.
+
+Let's try this with\ldots{}c()?
+
+Every time we run R code, it is sent to the Console.
+
 \hypertarget{r-packages}{%
 \section{R Packages}\label{r-packages}}
 
 TODO: update, with here()
 
-So far we've been using a couple functions from base R, such as \texttt{sum()} and \texttt{date()}. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.
+So far we've been using a couple functions from base R, such as \texttt{sum()} and \texttt{plot()}. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.
 
-The traditional place to download packages is from CRAN, the \href{https://cran.r-project.org/}{Comprehensive R Archive Network}, which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
+The traditional place to download packages is from CRAN, the \href{https://cran.r-project.org/}{Comprehensive R Archive Network}, which is where you downloaded R. CRAN is like a grocery store for vetted R packages.
 
-You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command \texttt{install.packages("package-name-in-quotes")}. Let's install a small, fun package \texttt{praise}. You need to use quotes around the package name.
+You can also install packages from GitHub, which we'll do tomorrow.
+
+You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command \texttt{install.packages("package-name-in-quotes")}. Let's install our first package \texttt{here}. You need to use quotes around the package name.
 
 Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
 
@@ -701,48 +806,6 @@ Now that we've loaded the \texttt{praise} package, we can use the single functio
 \begin{verbatim}
 ## [1] "/Users/lowndes/github/rstudio-conf-2020/r-for-excel"
 \end{verbatim}
-
-\hypertarget{assigning-objects-with--}{%
-\subsection{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
-
-TODO
-
-\includegraphics[width=0.6\linewidth]{img/horst-naming-terms}
-
-This might be a really important value that we want to have on hand. We can save this as its own object.
-
-This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
-
-Data can be a variety of formats, like numeric and text.
-
-We do this by writing the name along with the assignment operator \texttt{\textless{}-}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum_dist <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
-\end{Highlighting}
-\end{Shaded}
-
-And we can execute it. In my head I hear ``sum\_dist gets 2149''.
-
-Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a \href{http://en.wikipedia.org/wiki/Snake_case}{convention for demarcating words} in names.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# i_use_snake_case}
-\CommentTok{# other.people.use.periods}
-\CommentTok{# evenOthersUseCamelCase}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{r-code-in-the-console}{%
-\section{R code in the Console}\label{r-code-in-the-console}}
-
-There is another way to get to the help pages besides clicking on the Help tab --- we can write this in R with \texttt{?}.
-
-Let's try this with\ldots{}c()?
-
-Every time we run R code, it is sent to the Console.
 
 \hypertarget{recap}{%
 \section{Recap}\label{recap}}
@@ -1555,7 +1618,7 @@ Let's do that to create a line graph of visitors to Channel Islands National Par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-29-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 
@@ -1566,7 +1629,7 @@ Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-31-1.pdf}
 
 We could even do that for a column graph:
 
@@ -1577,7 +1640,7 @@ We could even do that for a column graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 Or an area plot\ldots{}
 
@@ -1588,7 +1651,7 @@ Or an area plot\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-32-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-33-1.pdf}
 
 We can see that updating to different \texttt{geom\_*} types is quick, so long as the types of graphs we're switching between are compatible.
 
@@ -1633,7 +1696,7 @@ Building on our first line graph, let's update the line color to ``purple'' and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 How do we know which color names ggplot will recognize? If you google ``R colors ggplot2'' you'll find a lot of good resources. Here's one: \href{http://sape.inf.usi.ch/quick-reference/ggplot2/colour}{SAPE ggplot2 colors quick reference guide}
 
@@ -1649,7 +1712,7 @@ Now let's update the point, style and size of points on our previous scatterplot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 \hypertarget{activity-customize-your-own-ggplot-graph}{%
 \subsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
@@ -1682,7 +1745,7 @@ Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aest
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-35-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 In the example above, notice that the two arguments that \textbf{do} depend on variables are within \texttt{aes()}, but since \texttt{alpha\ =\ 0.5} doesn't depend on a variable then it is \emph{outside the \texttt{aes()} but still within the \texttt{geom\_point()} layer}.
 
@@ -1698,7 +1761,7 @@ Create a column plot of Channel Islands National Park visitation over time, wher
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -1733,7 +1796,7 @@ Here, let's update our previous graph with \texttt{theme\_minimal()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{updating-axis-labels-and-titles}{%
 \section{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
@@ -1754,7 +1817,7 @@ Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to yo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-38-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \textbf{Note}: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the \texttt{scales} package options (see more from the \href{http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/}{R Cookbook}).
 
@@ -1774,7 +1837,7 @@ For example, adding points to a line graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 
@@ -1787,7 +1850,7 @@ Or, combine a column and line graph (not sure why you'd want to do this, but you
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 \hypertarget{multi-series-ggplot-graphs}{%
 \section{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
@@ -1803,7 +1866,7 @@ To do that, we need to add an aesthetic that lets \texttt{ggplot} know how thing
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-41-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 Well that's definitely a mess, and it's because ggplot has no idea that these \textbf{should be different series based on the different parks that appear in the `park\_name' column}.
 
@@ -1816,7 +1879,7 @@ We can make sure R does know by updating an aesthetic based on \emph{park\_name}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 \textbf{Note}: You could also add that aesthetic (\texttt{color\ =\ park\_name}) in the \texttt{geom\_line()} layer, instead of in the topmost \texttt{ggplot()} layer.
 
@@ -1837,7 +1900,7 @@ Also notice that any general theme changes made will be applied to \emph{all} of
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-44-1.pdf}
 
 \hypertarget{exporting-a-ggplot-graph-with-ggsave}{%
 \section{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
@@ -1886,7 +1949,7 @@ For the record: this is not a good option for showing the visitation data becaus
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-46-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -2415,7 +2478,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2436,7 +2499,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-2.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4171,7 +4234,7 @@ Find the annual total US landings and dollar value (summing across all states) f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-142-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 \hypertarget{export-your-salmon-value-graph-with-ggsave}{%
 \section{\texorpdfstring{Export your salmon value graph with \texttt{ggsave}}{Export your salmon value graph with ggsave}}\label{export-your-salmon-value-graph-with-ggsave}}

@@ -2,6 +2,13 @@
 
 TODO: add Star Wars illustrations & Wickham R4DS illustration (as slides?)
 
+<!---
+[Allison Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g64562b5505_0_41)
+There are often many solutions that work - try to focus on and use solutions that work and are clear, well-organized, and that use consistent/familiar syntax
+
+
+--->
+
 ## Welcome! 
 
 In this workshop you will learn hands-on how to begin to interoperate between Excel and R. But this workshop is not only about learning R; we will learn R using additional software: RStudio and GitHub. These tools will help us develop good habits for working in a reproducible and collaborative way — critical attributes of the modern analyst. 

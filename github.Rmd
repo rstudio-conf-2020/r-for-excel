@@ -458,6 +458,8 @@ Go to File > New File > R Markdown ... (or click the green plus in the top left 
 
 Let's set up this file so we can use it for the rest of the day. I'm going to delete all the text that is already there and write some new text.
 
+This will be your notes for the next session.
+
 Here's what I'm going to write in my R Markdown file to begin: 
 
 

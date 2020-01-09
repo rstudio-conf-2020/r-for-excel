@@ -195,7 +195,7 @@ And there are other case options in `clean_names()`, like:
 Sometimes we'll want to *separate* contents of a single column into multiple columns, or *combine* entries from different columns into a single column. 
 
 For example, the following data frame has *genus* and *species* in separate columns:
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval=FALSE}
 unite_ex <- tribble(
   ~id, ~genus, ~species, ~common_name,
   1, "Scorpaena", "guttata", "sculpin",
@@ -206,7 +206,7 @@ kable(unite_ex)
 ```
 
 We may want to combine the genus and species into a single column, *scientific_name*: 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval=FALSE}
 unite_ex_sci_name <- unite_ex %>% 
   unite("scientific_name", 
         c(genus, species),
@@ -361,7 +361,7 @@ Sometimes we'll want to find observations that contain a specific string pattern
 
 For example, consider the fantasy data below:
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval=FALSE}
 
 df_str_ex <- tribble(
   ~id, ~species,

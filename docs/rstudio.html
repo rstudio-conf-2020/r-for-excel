@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 R &amp; RStudio, RMarkdown | R for Excel Users</title>
+  <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 R &amp; RStudio, RMarkdown | R for Excel Users" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 R &amp; RStudio, RMarkdown | R for Excel Users" />
+  
+  <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+<meta name="author" content="Julie Lowndes &amp; Allison Horst" />
+
+
+<meta name="date" content="2020-01-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="overview.html"/>
+<link rel="next" href="github.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Excel Users</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.1</b> Agenda</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#welcome-1"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#why-learn-r-if-i-know-excel"><i class="fa fa-check"></i><b>2.2</b> Why learn R if I know Excel?</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.2.1</b> What to expect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.3</b> Guiding principles / recurring themes</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources-1"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.2</b> RStudio Orientation</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.1</b> Create an RMarkdown file</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.2</b> Knit your RMarkdown file</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#markdown-text"><i class="fa fa-check"></i><b>3.3.3</b> Markdown text</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#r-code"><i class="fa fa-check"></i><b>3.3.4</b> R code</a></li>
+<li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#code-chunks"><i class="fa fa-check"></i><b>3.3.5</b> Code chunks</a></li>
+<li class="chapter" data-level="3.3.6" data-path="rstudio.html"><a href="rstudio.html#running-r-code"><i class="fa fa-check"></i><b>3.3.6</b> Running R code</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.4</b> R Functions</a></li>
+<li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.5</b> Help pages</a></li>
+<li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.6</b> R Packages</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.6.1</b> Assigning objects with <code>&lt;-</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.7</b> R code in the Console</a></li>
+<li class="chapter" data-level="3.8" data-path="rstudio.html"><a href="rstudio.html#recap"><i class="fa fa-check"></i><b>3.8</b> Recap</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="rstudio.html"><a href="rstudio.html#what-is-rmarkdown-1-minute-video"><i class="fa fa-check"></i><b>3.8.1</b> What is RMarkdown? (1-minute video)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-console"><i class="fa fa-check"></i><b>3.9</b> R Console</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="rstudio.html"><a href="rstudio.html#viewing-data-in-r"><i class="fa fa-check"></i><b>3.9.1</b> Viewing data in R</a></li>
+<li class="chapter" data-level="3.9.2" data-path="rstudio.html"><a href="rstudio.html#error-messages-are-your-friends"><i class="fa fa-check"></i><b>3.9.2</b> Error messages are your friends</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#clearing-the-environment"><i class="fa fa-check"></i><b>3.10</b> Clearing the environment</a></li>
+<li class="chapter" data-level="3.11" data-path="rstudio.html"><a href="rstudio.html#setup-git-github"><i class="fa fa-check"></i><b>3.11</b> Setup Git &amp; GitHub</a><ul>
+<li class="chapter" data-level="3.11.1" data-path="rstudio.html"><a href="rstudio.html#troubleshooting"><i class="fa fa-check"></i><b>3.11.1</b> Troubleshooting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="rstudio.html"><a href="rstudio.html#deep-thoughts"><i class="fa fa-check"></i><b>3.12</b> Deep thoughts</a></li>
+<li class="chapter" data-level="3.13" data-path="rstudio.html"><a href="rstudio.html#efficiency-tips"><i class="fa fa-check"></i><b>3.13</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#summary-1"><i class="fa fa-check"></i><b>4.1</b> Summary</a></li>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#objectives-1"><i class="fa fa-check"></i><b>4.2</b> Objectives</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.4</b> Why should R users use Github?</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="github.html"><a href="github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>4.4.1</b> What are Git and Github?</a></li>
+<li class="chapter" data-level="4.4.2" data-path="github.html"><a href="github.html#some-github-terminology"><i class="fa fa-check"></i><b>4.4.2</b> Some Github terminology</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.5</b> Create a repository on Github.com</a></li>
+<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#create-a-gh-pages-branch"><i class="fa fa-check"></i><b>4.6</b> Create a gh-pages branch</a></li>
+<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.7</b> Clone your repository using RStudio</a></li>
+<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#inspect-your-repository"><i class="fa fa-check"></i><b>4.8</b> Inspect your repository</a></li>
+<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#add-files-to-our-local-repo"><i class="fa fa-check"></i><b>4.9</b> Add files to our local repo</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="github.html"><a href="github.html#get-data-files-into-your-working-directory"><i class="fa fa-check"></i><b>4.9.1</b> Get data files into your working directory</a></li>
+<li class="chapter" data-level="4.9.2" data-path="github.html"><a href="github.html#inspect-what-has-changed"><i class="fa fa-check"></i><b>4.9.2</b> Inspect what has changed</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#sync-from-rstudio-to-github"><i class="fa fa-check"></i><b>4.10</b> Sync from RStudio to GitHub</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.10.1</b> Pull</a></li>
+<li class="chapter" data-level="4.10.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.10.2</b> Stage</a></li>
+<li class="chapter" data-level="4.10.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.10.3</b> Commit</a></li>
+<li class="chapter" data-level="4.10.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.10.4</b> Push</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="github.html"><a href="github.html#explore-remote-github"><i class="fa fa-check"></i><b>4.11</b> Explore remote Github</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="github.html"><a href="github.html#activity-1"><i class="fa fa-check"></i><b>4.11.1</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="github.html"><a href="github.html#create-a-new-r-markdown-file"><i class="fa fa-check"></i><b>4.12</b> Create a new R Markdown file</a></li>
+<li class="chapter" data-level="4.13" data-path="github.html"><a href="github.html#explore-your-webpage"><i class="fa fa-check"></i><b>4.13</b> Explore your webpage</a></li>
+<li class="chapter" data-level="4.14" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.14</b> Committing - how often? Tracking changes in your files</a></li>
+<li class="chapter" data-level="4.15" data-path="github.html"><a href="github.html#happy-git-with-r"><i class="fa fa-check"></i><b>4.15</b> Happy Git with R</a></li>
+<li class="chapter" data-level="4.16" data-path="github.html"><a href="github.html#efficiency-tips-1"><i class="fa fa-check"></i><b>4.16</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a><ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>5.2</b> Getting started - Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>5.3</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
+<li class="chapter" data-level="5.4" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.4</b> Intro to customizing <code>ggplot</code> graphs</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-customize-your-own-ggplot-graph"><i class="fa fa-check"></i><b>5.4.1</b> Activity: customize your own ggplot graph</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.5</b> Mapping variables onto aesthetics</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-map-variables-onto-graph-aesthetics"><i class="fa fa-check"></i><b>5.5.1</b> Activity: map variables onto graph aesthetics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>5.6</b> ggplot2 complete themes</a></li>
+<li class="chapter" data-level="5.7" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>5.7</b> Updating axis labels and titles</a></li>
+<li class="chapter" data-level="5.8" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>5.8</b> Combining compatible geoms</a></li>
+<li class="chapter" data-level="5.9" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>5.9</b> Multi-series ggplot graphs</a></li>
+<li class="chapter" data-level="5.10" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>5.10</b> Faceting ggplot graphs</a></li>
+<li class="chapter" data-level="5.11" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.11</b> Exporting a ggplot graph with <code>ggsave()</code></a><ul>
+<li class="chapter" data-level="5.11.1" data-path="ggplot2.html"><a href="ggplot2.html#one-final-graph-example-jitter-and-boxplots"><i class="fa fa-check"></i><b>5.11.1</b> One final graph example: jitter and boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="ggplot2.html"><a href="ggplot2.html#end-ggplot-session"><i class="fa fa-check"></i><b>5.12</b> End <code>ggplot</code> session</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>6</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="6.1" data-path="pivot.html"><a href="pivot.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
+<li class="chapter" data-level="6.2" data-path="pivot.html"><a href="pivot.html#objectives-3"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
+<li class="chapter" data-level="6.3" data-path="pivot.html"><a href="pivot.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
+<li class="chapter" data-level="6.4" data-path="pivot.html"><a href="pivot.html#pivot-table-overview"><i class="fa fa-check"></i><b>6.4</b> Pivot table overview</a></li>
+<li class="chapter" data-level="6.5" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>6.5</b> RMarkdown setup</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>6.5.1</b> Our task</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.6</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>6.6.1</b> pivot one variable</a></li>
+<li class="chapter" data-level="6.6.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>6.6.2</b> pivot two variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>6.7</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="6.7.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>6.7.1</b> <code>group_by</code> one variable</a></li>
+<li class="chapter" data-level="6.7.2" data-path="pivot.html"><a href="pivot.html#rstudio-viewer"><i class="fa fa-check"></i><b>6.7.2</b> RStudio Viewer</a></li>
+<li class="chapter" data-level="6.7.3" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>6.7.3</b> <code>group_by</code> multiple variables</a></li>
+<li class="chapter" data-level="6.7.4" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>6.7.4</b> <code>summarize</code> multiple variables</a></li>
+<li class="chapter" data-level="6.7.5" data-path="pivot.html"><a href="pivot.html#activity-2"><i class="fa fa-check"></i><b>6.7.5</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="pivot.html"><a href="pivot.html#oh-no-our-colleague-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.8</b> Oh no, our colleague sent the wrong data!</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>6.8.1</b> Knit, push, &amp; show differences on GitHub</a></li>
+<li class="chapter" data-level="6.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>6.8.2</b> <code>dplyr::count()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>6.9</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>6.10</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts-1"><i class="fa fa-check"></i><b>6.11</b> Deep thoughts</a></li>
+<li class="chapter" data-level="6.12" data-path="pivot.html"><a href="pivot.html#efficiency-tips-2"><i class="fa fa-check"></i><b>6.12</b> Efficiency Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
+<li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#set-up"><i class="fa fa-check"></i><b>7.4</b> Set-up</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tidying.html"><a href="tidying.html#create-a-new-r-markdown-and-attach-packages"><i class="fa fa-check"></i><b>7.4.1</b> Create a new R Markdown and attach packages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidying.html"><a href="tidying.html#read-in-data-with-read_excel"><i class="fa fa-check"></i><b>7.4.2</b> Read in data with <code>read_excel()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#wide-to-longer-format-with-tidyrpivot_longer"><i class="fa fa-check"></i><b>7.5</b> Wide-to-longer format with <code>tidyr::pivot_longer()</code></a></li>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#long-to-wider-format-with-tidyrpivot_wider"><i class="fa fa-check"></i><b>7.6</b> Long-to-wider format with <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#clean-up-column-names-with-janitorclean_names"><i class="fa fa-check"></i><b>7.7</b> Clean up column names with <code>janitor::clean_names()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#combine-or-separate-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>7.8</b> Combine or separate columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a><ul>
+<li class="chapter" data-level="7.8.1" data-path="tidying.html"><a href="tidying.html#tidyrunite-to-merge-information-from-separate-columns"><i class="fa fa-check"></i><b>7.8.1</b> <code>tidyr::unite()</code> to merge information from separate columns</a></li>
+<li class="chapter" data-level="7.8.2" data-path="tidying.html"><a href="tidying.html#tidyrseparate-to-separate-information-into-multiple-columns"><i class="fa fa-check"></i><b>7.8.2</b> <code>tidyr::separate()</code> to separate information into multiple columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="tidying.html"><a href="tidying.html#get-just-the-numbers-with-readrparse_number"><i class="fa fa-check"></i><b>7.9</b> Get just the numbers with <code>readr::parse_number()</code></a></li>
+<li class="chapter" data-level="7.10" data-path="tidying.html"><a href="tidying.html#detecting-a-string-pattern-with-stringrstr_detect"><i class="fa fa-check"></i><b>7.10</b> Detecting a string pattern with <code>stringr::str_detect()</code></a><ul>
+<li class="chapter" data-level="7.10.1" data-path="tidying.html"><a href="tidying.html#activity-3"><i class="fa fa-check"></i><b>7.10.1</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="tidying.html"><a href="tidying.html#replacing-a-string-with-stringrstr_replace"><i class="fa fa-check"></i><b>7.11</b> Replacing a string with <code>stringr::str_replace()</code></a><ul>
+<li class="chapter" data-level="7.11.1" data-path="tidying.html"><a href="tidying.html#end-tidying-session"><i class="fa fa-check"></i><b>7.11.1</b> END <strong>tidying</strong> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>8</b> Dplyr and vlookups</a><ul>
+<li class="chapter" data-level="8.1" data-path="vlookup.html"><a href="vlookup.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-5"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-6"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="vlookup.html"><a href="vlookup.html#set-up-create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>8.2</b> Set-up: Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="8.3" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="vlookup.html"><a href="vlookup.html#activity-4"><i class="fa fa-check"></i><b>8.3.1</b> Activity</a></li>
+<li class="chapter" data-level="8.3.2" data-path="vlookup.html"><a href="vlookup.html#filter-rows-based-on-numeric-conditions"><i class="fa fa-check"></i><b>8.3.2</b> Filter rows based on numeric conditions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="vlookup.html"><a href="vlookup.html#filter-to-return-rows-that-match-this-or-that-or-that"><i class="fa fa-check"></i><b>8.3.3</b> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></a></li>
+<li class="chapter" data-level="8.3.4" data-path="vlookup.html"><a href="vlookup.html#filter-to-return-rows-that-match-conditions-for-multiple-variables"><i class="fa fa-check"></i><b>8.3.4</b> Filter to return rows that match conditions for multiple variables</a></li>
+<li class="chapter" data-level="8.3.5" data-path="vlookup.html"><a href="vlookup.html#activity-combined-filter-conditions"><i class="fa fa-check"></i><b>8.3.5</b> Activity: combined filter conditions</a></li>
+<li class="chapter" data-level="8.3.6" data-path="vlookup.html"><a href="vlookup.html#example-combining-filter-with-other-functions-using-the-pipe-operator"><i class="fa fa-check"></i><b>8.3.6</b> Example: combining <code>filter()</code> with other functions using the pipe operator (<code>%&gt;%</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="vlookup.html"><a href="vlookup.html#join-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>8.4</b> Join data frames with <code>dplyr::*_join()</code></a><ul>
+<li class="chapter" data-level="8.4.1" data-path="vlookup.html"><a href="vlookup.html#full_join-to-merge-data-frames-keeping-everything"><i class="fa fa-check"></i><b>8.4.1</b> <code>full_join()</code> to merge data frames, keeping everything</a></li>
+<li class="chapter" data-level="8.4.2" data-path="vlookup.html"><a href="vlookup.html#left_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame"><i class="fa fa-check"></i><b>8.4.2</b> <code>left_join()</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</a></li>
+<li class="chapter" data-level="8.4.3" data-path="vlookup.html"><a href="vlookup.html#inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both"><i class="fa fa-check"></i><b>8.4.3</b> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></a></li>
+<li class="chapter" data-level="8.4.4" data-path="vlookup.html"><a href="vlookup.html#using-filter-and-join-in-a-sequence"><i class="fa fa-check"></i><b>8.4.4</b> Using <code>filter()</code> and <code>join()</code> in a sequence</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="vlookup.html"><a href="vlookup.html#a-nice-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> A nice HTML table with <code>kable()</code> and <code>kableExtra</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="vlookup.html"><a href="vlookup.html#sync-your-project-with-your-repo-on-github"><i class="fa fa-check"></i><b>8.5.1</b> Sync your project with your repo on GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="vlookup.html"><a href="vlookup.html#fun-kind-of-scary-facts"><i class="fa fa-check"></i><b>8.6</b> Fun / kind of scary facts</a></li>
+<li class="chapter" data-level="8.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips-3"><i class="fa fa-check"></i><b>8.7</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="8.8" data-path="vlookup.html"><a href="vlookup.html#end-filter-join-section"><i class="fa fa-check"></i><b>8.8</b> End <code>filter()</code> + <code>join()</code> section</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating</a><ul>
+<li class="chapter" data-level="9.1" data-path="collaborating.html"><a href="collaborating.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="collaborating.html"><a href="collaborating.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="collaborating.html"><a href="collaborating.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="collaborating.html"><a href="collaborating.html#lesson"><i class="fa fa-check"></i><b>9.2</b> Lesson</a></li>
+<li class="chapter" data-level="9.3" data-path="collaborating.html"><a href="collaborating.html#troubleshooting-help-you-help-yourself"><i class="fa fa-check"></i><b>9.3</b> Troubleshooting: help you help yourself</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="collaborating.html"><a href="collaborating.html#error-messages-are-your-friends-1"><i class="fa fa-check"></i><b>9.3.1</b> Error messages are your friends</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="collaborating.html"><a href="collaborating.html#efficiency-tips-4"><i class="fa fa-check"></i><b>9.4</b> Efficiency Tips</a></li>
+<li class="chapter" data-level="9.5" data-path="collaborating.html"><a href="collaborating.html#additional-thoughts"><i class="fa fa-check"></i><b>9.5</b> Additional thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
+<li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-7"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
+<li class="chapter" data-level="10.2" data-path="synthesis.html"><a href="synthesis.html#objectives-7"><i class="fa fa-check"></i><b>10.2</b> Objectives</a></li>
+<li class="chapter" data-level="10.3" data-path="synthesis.html"><a href="synthesis.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+<li class="chapter" data-level="10.4" data-path="synthesis.html"><a href="synthesis.html#set-up-1"><i class="fa fa-check"></i><b>10.4</b> Set-up</a></li>
+<li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#attach-packages-read-in-and-explore-the-data"><i class="fa fa-check"></i><b>10.5</b> Attach packages, read in and explore the data</a></li>
+<li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#some-data-cleaning-to-get-salmon-landings"><i class="fa fa-check"></i><b>10.6</b> Some data cleaning to get salmon landings</a></li>
+<li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#find-grouped-summary-data"><i class="fa fa-check"></i><b>10.7</b> Find grouped summary data</a></li>
+<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2"><i class="fa fa-check"></i><b>10.8</b> Make a graph of US commercial fisheries value by species over time with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.9" data-path="synthesis.html"><a href="synthesis.html#export-your-salmon-value-graph-with-ggsave"><i class="fa fa-check"></i><b>10.9</b> Export your salmon value graph with <code>ggsave</code></a></li>
+<li class="chapter" data-level="10.10" data-path="synthesis.html"><a href="synthesis.html#commercial-fisheries-value-by-state"><i class="fa fa-check"></i><b>10.10</b> 2015 commercial fisheries value by state</a></li>
+<li class="chapter" data-level="10.11" data-path="synthesis.html"><a href="synthesis.html#making-a-nice-html-table"><i class="fa fa-check"></i><b>10.11</b> Making a nice HTML table</a></li>
+<li class="chapter" data-level="10.12" data-path="synthesis.html"><a href="synthesis.html#sync-with-github-remote"><i class="fa fa-check"></i><b>10.12</b> Sync with GitHub remote</a><ul>
+<li class="chapter" data-level="10.12.1" data-path="synthesis.html"><a href="synthesis.html#end-synthesis-session"><i class="fa fa-check"></i><b>10.12.1</b> End synthesis session!</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Excel Users</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rstudio" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> R &amp; RStudio, RMarkdown</h1>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">3.1</span> Summary</h2>
+<p>We’ll learn RMarkdown, which helps you tell a story with your data analysis because you can write text alongside the code. We are actually learning two languages at once: R and Markdown.</p>
+<div id="objectives" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Objectives</h3>
+<p>In this lesson we will:</p>
+<ul>
+<li>get oriented to the RStudio interface</li>
+<li>explore RMarkdown.</li>
+<li>discuss RMarkdown files vs Console (running vs knitting)</li>
+<li>learn a few base R functions (<code>c()</code>)</li>
+<li>error messages and help pages</li>
+<li>discuss and install packages (<code>here()</code>) usethis</li>
+<li>intro pipe operator (<code>%&gt;%</code>)</li>
+<li>configure Git (to prepare for next session)</li>
+</ul>
+</div>
+<div id="resources-1" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Resources</h3>
+<ul>
+<li><a href="https://blog.shotwell.ca/posts/r_for_excel_users/">R for Excel Users</a> by Gordon Shotwell (blog)</li>
+</ul>
+</div>
+</div>
+<div id="rstudio-orientation" class="section level2">
+<h2><span class="header-section-number">3.2</span> RStudio Orientation</h2>
+<p>Open RStudio for the first time.</p>
+<p>Launch RStudio/R.</p>
+<p><img src="img/RStudio_IDE.png" width="80%" /></p>
+<p>Notice the default panes:</p>
+<ul>
+<li>Console (entire left)</li>
+<li>Environment/History (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help (tabbed in lower right)</li>
+</ul>
+<p>We won’t click through this all immediately but we will become familiar with more of the options and capabilities throughout the next few days.</p>
+<p>Something critical to know now is that you can make everything you see BIGGER by going to the navigation pane: View &gt; Zoom In. Learn these keyboard shortcuts; being able to see what you’re typing will help avoid typos &amp; help us help you.</p>
+<p>I think that <strong>R is your airplane, and the RStudio IDE is your airport</strong>. You are the pilot, and you use R to go places! With practice you’ll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. And the RStudio IDE provides support! Runways, communication, community, and other services that makes your life as a pilot much easier. It provides not only the infrastructure but a hub for the community that you can interact with.</p>
+<!---
+FYI: you can change the default location of the panes, among many other things: [Customizing RStudio](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio). 
+--->
+<p>An important first question: <strong>where are we?</strong></p>
+<p>If you’ve have opened RStudio for the first time, you’ll be in your Home directory. This is noted by the <code>~/</code> at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won’t change where you are: even as you click through you’ll still be Home: <code>~/</code>.</p>
+<p><img src="img/RStudio_IDE_homedir.png" width="80%" /></p>
+<p>We are going to have our first experience with R through RMarkdown, so let’s do the following.</p>
+</div>
+<div id="intro-to-rmarkdown" class="section level2">
+<h2><span class="header-section-number">3.3</span> Intro to RMarkdown</h2>
+<p>An RMarkdown file is a plain text file that allow us to write code and text together, and when it is “knit”, the code will be evaluated and the text formatted so that it creates a reproducible report or document that is nice to read as a human.</p>
+<p>This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc.</p>
+<p>Let’s experience this a bit ourselves and then we’ll talk about it more.</p>
+<div id="create-an-rmarkdown-file" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Create an RMarkdown file</h3>
+<p>Let’s do this together:</p>
+<p>File -&gt; New File -&gt; RMarkdown… (or alternatively you can click the green plus in the top left -&gt; RMarkdown).</p>
+<p>Let’s title it “Testing” and write our name as author, then click OK with the recommended Default Output Format, which is HTML.</p>
+<p><img src="img/rstudio_new-rmd-doc-html.png" width="80%" /></p>
+<p>OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.</p>
+<p>Let’s have a look at this file — it’s not blank; there is some initial text is already provided for you. Let’s have a high-level look through of it:</p>
+<ul>
+<li>The top part has the Title and Author we provided, as well as today’s date and the output type as an HTML document like we selected above.</li>
+<li>There are white and grey sections. These are the 2 main languages that make up an RMarkdown file.
+<ul>
+<li><strong>Grey sections are R code</strong></li>
+<li><strong>White sections are Markdown text</strong></li>
+</ul></li>
+<li>There is black and blue text.</li>
+</ul>
+<p><img src="img/rmarkdown.png" width="80%" /></p>
+</div>
+<div id="knit-your-rmarkdown-file" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Knit your RMarkdown file</h3>
+<p>Let’s go ahead and “Knit” by clicking the blue yarn at the top of the RMarkdown file.
+It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note that this is by default going to save this file in your home directory <code>/~</code>. Since this is a testing document this is fine to save here; we will get more organized about where we save files very soon. Once you click Save, the knit process will be able to continue.</p>
+<p>OK so how cool is this, we’ve just made an html file! This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered — we also say formatted — both the Markdown text (white) and the R code (grey), and the it also executed — we also say ran — the R code.</p>
+<p>Let’s have a look at them side-by-side:</p>
+<p><br></p>
+<p><img src="img/rmarkdown_side_by_side.png" width="80%" /></p>
+<p>Let’s take a deeper look at these two files. So much of learning to code is looking for patterns.</p>
+</div>
+<div id="markdown-text" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> Markdown text</h3>
+<p>To warm us up for R, let’s start by talking about another language, Markdown. This is a formatting language for plain text, and there are only about 15 rules to know.</p>
+<p>Notice the syntax for:</p>
+<ul>
+<li><strong>headers</strong> get rendered at multiple levels: <code>#</code>, <code>##</code></li>
+<li><strong>bold</strong>: <code>**word**</code></li>
+</ul>
+<p>There are some good <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">cheatsheets</a> to get you started, and here is one built into RStudio: Go to Help &gt; Markdown Quick Reference</p>
+</div>
+<div id="r-code" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> R code</h3>
+<p>Let’s look at the R code that we see executed in our knitted document.</p>
+<p>We see that <code>summary(cars)</code> produces a table</p>
+<p>And we see that <code>plot(pressure)</code> produces a plot.</p>
+<p><code>cars</code> and <code>pressure</code> are small datasets that come with R out-of-the-box.</p>
+</div>
+<div id="code-chunks" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Code chunks</h3>
+<p>Let’s start of by looking at the 3 code chunks, which are grey.
+<!---There are two things to look at: R code chunks and code chunk options ---></p>
+<p>Each of them are start by 3 backticks and <code>{r label}</code>, which signify that there will be R code inside, and they are each given a unique name. Anything inside the brackets (<code>{ }</code>) is instructions for RMarkdown about that code to run. For example:</p>
+<ul>
+<li>the first chunk says <code>include=FALSE</code>, and we don’t see it included in the HTML document.</li>
+<li>the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)</li>
+<li>the third chunk says <code>echo=FALSE</code>, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.</li>
+</ul>
+<p>There are many more options available and we will explore more as we go.</p>
+<div id="naming-code-chunks-deep-thought" class="section level4">
+<h4><span class="header-section-number">3.3.5.1</span> Naming code chunks (Deep thought?)</h4>
+<p>All three chunks say <code>r</code> as the language, and have a label (<code>setup</code>, <code>cars</code>, <code>pressure</code>. This is to help us navigate between them and keep them organized. They are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. Otherwise you will see an error when you try to knit:</p>
+<pre><code>processing file: Untitled.Rmd
+Error in parse_block(g[-1], g[1], params.src) : duplicate label &#39;cars&#39;
+Calls: &lt;Anonymous&gt; ... process_file -&gt; split_file -&gt; lapply -&gt; FUN -&gt; parse_block
+Execution halted</code></pre>
+<p>In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: “duplicate label ‘cars’”.</p>
+</div>
+<div id="delete-everything-and-reknit" class="section level4">
+<h4><span class="header-section-number">3.3.5.2</span> Delete everything and reknit</h4>
+<p>R knows that a file with extension .Rmd is a special file to be knit. But it does not rely on any of this stuff that is in the template file.</p>
+<p>Do this: delete all the content from this file. You can do this by dragging your cursor to highlight all text, or use the keyboard shortcut Command-A. And then delete. You should now have a blank document.</p>
+<p>To demo that it will still knit, let’s write <code># Julie's workshop notes</code> (with your name) and reknit.</p>
+<p>This will be your notes.</p>
+<p>The reason we use RMarkdown or an R script is so that we can write down our code once in our script but then can execute it as many times as we want.</p>
+</div>
+<div id="new-code-chunks" class="section level4">
+<h4><span class="header-section-number">3.3.5.3</span> New code chunks</h4>
+<p>We can create a new chunk in your RMarkdown first in one of these ways:</p>
+<ul>
+<li>click “Insert &gt; R” at the top of the editor pane</li>
+<li>type by hand
+```{r}
+```</li>
+<li>if you haven’t deleted a chunk that came with the new file, edit that one</li>
+</ul>
+<blockquote>
+<p>Cool tip: doesn’t have to be only R, other languages supported.</p>
+</blockquote>
+<p>Now, let’s write some code in R. Let’s say we want to plot the cars data. I’m going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">plot</span>(cars)</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We can knit this and see the plot of cars. This is the same data that we made the summary table with.</p>
+<blockquote>
+<p>Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open <code>(</code> and close <code>)</code> parentheses? Are your code chunk fences correct?</p>
+</blockquote>
+</div>
+</div>
+<div id="running-r-code" class="section level3">
+<h3><span class="header-section-number">3.3.6</span> Running R code</h3>
+<p>Knitting the document is great, and you can see all your updates rendered nicely. But you can imagine that this would be tedious that if every time you made an update you needed to knit this document. We can run R code in the Console.</p>
+<p>TODO: build out more about Console</p>
+<p>To run, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let’s do each of them):</p>
+<ol style="list-style-type: decimal">
+<li>copy-paste this line into the console.</li>
+<li>select the line (or simply put the cursor there), and click ‘Run’. This is available from
+<ol style="list-style-type: lower-alpha">
+<li>the bar above the file (green arrow)</li>
+<li>the menu bar: Code &gt; Run Selected Line(s)</li>
+<li>keyboard shortcut: command-return</li>
+</ol></li>
+<li>click the green arrow at the right of the code chunk</li>
+</ol>
+<blockquote>
+<p>Troubleshooting: The following error is because you also highlighted and asked to run ```<code>{r}</code>, and this is the code fencing, not R code itself.</p>
+</blockquote>
+<pre><code>Error: attempt to use zero-length variable name</code></pre>
+<p>What is <code>plot</code> anyways? It is a function. Let’s talk about that next.</p>
+</div>
+</div>
+<div id="r-functions" class="section level2">
+<h2><span class="header-section-number">3.4</span> R Functions</h2>
+<p>TODO — add c()?</p>
+<p>Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we’ll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).</p>
+<p>R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.</p>
+<p><br>
+TODO: swap out for simpler
+<img src="img/horst-naming-terms.png" width="60%" /></p>
+<p><br></p>
+<p><code>function_name(argument1 = value1, argument2 = value2, ...)</code>. When you see this syntax, we say we are “calling the function”.</p>
+<p>So with <code>plot()</code>, the arguments it requires are <code>x</code> and <code>y</code>, and when we pass <code>cars</code> to plot(), R is able to understand that it should use the two columns in that dataset as x and y.</p>
+</div>
+<div id="help-pages" class="section level2">
+<h2><span class="header-section-number">3.5</span> Help pages</h2>
+<p><em>TODO - complete</em></p>
+<p>A good way to learn about functions is to look at the help pages. Let’s navigate over to the Help tab and type <code>plot</code>. All help pages will have the same format, here is how I look at it:</p>
+<p>The help page tells the name of the package in the top left, and broken down into sections:</p>
+<ul>
+<li>Description: An extended description of what the function does.</li>
+<li>Usage: The arguments of the function and their default values.</li>
+<li>Arguments: An explanation of the data each argument is expecting.</li>
+<li>Details: Any important details to be aware of.</li>
+<li>Value: The data the function returns.</li>
+<li>See Also: Any related functions you might find useful.</li>
+<li>Examples: Some examples for how to use the function.</li>
+</ul>
+<p>When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the <code>sum</code> page, it is pretty straight-forward and lets me know that yup, this is the function I want.</p>
+<p>I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the “…” means. And the “na.rm=FALSE” means that by default, it will not remove NAs (I read this as: “remove NAs? FALSE!”)</p>
+<p>Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let’s try it:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">plot</span>(sin, <span class="op">-</span>pi, <span class="dv">2</span><span class="op">*</span>pi)</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/plot-help-example-1.png" width="672" /></p>
+<p>TODO: Revisit this, c() might be too complicated here?</p>
+<p>Let’s try using <code>c()</code> which combines values together.</p>
+<p>So let’s create a new R code chunk. And we’ll write:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">9</span>)</a></code></pre></div>
+<pre><code>## [1] 1 7 8 9</code></pre>
+<p>So you can see that this combines these values all into the same place, which is called a vector here. But let’s learn more about what this does.</p>
+<!---Likely delete: 
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. 
+
+
+```r
+seq(from = 1, to = 10) # same as seq(1, 10); R assumes by position
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+```r
+seq(from = 1, to = 10, by = 2)
+```
+
+```
+## [1] 1 3 5 7 9
+```
+
+The above also demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence `from = 1` that goes `to = 10`. Since we didn't specify step size, the default value of `by` in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use `name = value`.
+
+The examples from the help pages can be copy-pasted into the console for you to understand what's going on. 
+
+--->
+<!---
+Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
+
+
+```r
+sum(1, 2, 3)
+```
+
+R is case-sensitive. So "sum" is a completely different thing to "Sum" or "SUM". And this is true for the names of functions, data sets, variable names, and data itself ("blue" vs "Blue"). 
+
+Awesome. Let's try this on our `cars` data
+
+
+```r
+sum(cars)
+```
+
+Alright. What is this number? It is the sum of ALL of the data in the `cars` dataset. Maybe in some analysis this would be a useful operation, but I would worry about the way your data is set up and your analyses if this is ever something you'd want to do. More likely, you'd want to take the sum of a specific column. In R, you can do that with the `$` operator. 
+
+Let's say we want to calculate the total distance:
+
+
+```r
+sum(cars$dist)
+```
+
+There are many functions that are built into R, and we'll learn more of them shortly.  
+--->
+</div>
+<div id="r-packages" class="section level2">
+<h2><span class="header-section-number">3.6</span> R Packages</h2>
+<p>TODO: update, with here()</p>
+<p>So far we’ve been using a couple functions from base R, such as <code>sum()</code> and <code>date()</code>. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R’s capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.</p>
+<p>The traditional place to download packages is from CRAN, the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a>, which is where you downloaded R. You can also install packages from GitHub, which we’ll do tomorrow.</p>
+<p>You don’t need to go to CRAN’s website to install packages, this can be accomplished within R using the command <code>install.packages(&quot;package-name-in-quotes&quot;)</code>. Let’s install a small, fun package <code>praise</code>. You need to use quotes around the package name.</p>
+<p>Do this in the Console instead of in your RMarkdown file because we don’t want this to load every time:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;here&quot;</span>)</a></code></pre></div>
+<p>Now we’ve installed the package, but we need to tell R that we are going to use the functions within the <code>praise</code> package. We do this by using the function <code>library()</code>.</p>
+<p>In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is <code>install.packages</code>. But then you need to turn on the lights each time you need them (R Session).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(here)</a></code></pre></div>
+<pre><code>## here() starts at /Users/lowndes/github/rstudio-conf-2020/r-for-excel</code></pre>
+<p>Now that we’ve loaded the <code>praise</code> package, we can use the single function in the package, <code>praise()</code>, which returns a randomized praise to make you feel better.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">here</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;/Users/lowndes/github/rstudio-conf-2020/r-for-excel&quot;</code></pre>
+<div id="assigning-objects-with--" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Assigning objects with <code>&lt;-</code></h3>
+<p>TODO</p>
+<p><br>
+<img src="img/horst-naming-terms.png" width="60%" /></p>
+<p><br></p>
+<p>This might be a really important value that we want to have on hand. We can save this as its own object.</p>
+<p>This is a big difference with Excel, where you usually identify data by its location on the grid, like <code>$A1:D$20</code>. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)</p>
+<p>Data can be a variety of formats, like numeric and text.</p>
+<p>We do this by writing the name along with the assignment operator <code>&lt;-</code></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">sum_dist &lt;-<span class="st"> </span><span class="kw">sum</span>(cars<span class="op">$</span>dist)</a></code></pre></div>
+<p>And we can execute it. In my head I hear “sum_dist gets 2149”.</p>
+<p>Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a <a href="http://en.wikipedia.org/wiki/Snake_case">convention for demarcating words</a> in names.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># i_use_snake_case</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># other.people.use.periods</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># evenOthersUseCamelCase</span></a></code></pre></div>
+</div>
+</div>
+<div id="r-code-in-the-console" class="section level2">
+<h2><span class="header-section-number">3.7</span> R code in the Console</h2>
+<p>There is another way to get to the help pages besides clicking on the Help tab — we can write this in R with <code>?</code>.</p>
+<p>Let’s try this with…c()?</p>
+<p>Every time we run R code, it is sent to the Console.</p>
+</div>
+<div id="recap" class="section level2">
+<h2><span class="header-section-number">3.8</span> Recap</h2>
+<p>R console executes</p>
+<p>running code
+knitting</p>
+<!---
+#### Activity
+
+> Calculate the maximum cars distance in your RMarkdown file by typing `max(cars$dist)`. Remember to write your R code within a code chunk (grey)!  
+> Execute your commands by trying the three ways above. Then, knit your R Markdown file, which will also save the Rmd by default. 
+
+--->
+<!---
+**Important**: note that the hashtag `#` is used differently in Markdown and in R: 
+
+- in R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: `#` is equivalent to `######`. It's a matter of style. I use two `##` to indicate a comment so that it's clearer what is a comment versus what I don't want to run at the moment.
+- in Markdown, a hashtag indicates a level of a header. And the number you use matters: `#` is a "level one header", meaning the biggest font and the top of the hierarchy. `###` is a level three header, and will show up nested below the `#` and `##` headers.
+
+If this seems confusing, take comfort in the fact that you are already used to using `#`s in a few ways in real life: it can mean "number" or "pound" or hashtags on social media.
+--->
+<p>Learn more: <a href="http://rmarkdown.rstudio.com/" class="uri">http://rmarkdown.rstudio.com/</a></p>
+<div id="activity" class="section level4">
+<h4><span class="header-section-number">3.8.0.1</span> Activity</h4>
+<ol style="list-style-type: decimal">
+<li>In Markdown write some italic text, make a numbered list, and add a few subheaders.
+Use the Markdown Quick Reference (in the menu bar: Help &gt; Markdown Quick Reference).</li>
+<li>Reknit your html file.</li>
+</ol>
+</div>
+<div id="restart-r" class="section level4">
+<h4><span class="header-section-number">3.8.0.2</span> Restart R</h4>
+<p>To end our work from this session, save, knit, and then restart R (Go to the top menus: Session &gt; Restart R.)</p>
+<p>Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like <code>mean_dist</code>) don’t show up in my Environment. This is because R isn’t actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don’t want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.</p>
+</div>
+<div id="what-is-rmarkdown-1-minute-video" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> What is RMarkdown? (1-minute video)</h3>
+<p>Let’s watch this to demonstrate all the amazing things you can now do:</p>
+<p><a href="https://vimeo.com/178485416">What is RMarkdown?</a></p>
+</div>
+</div>
+<div id="r-console" class="section level2">
+<h2><span class="header-section-number">3.9</span> R Console</h2>
+<p>OK let’s go into the Console, where we interact with the live R process.</p>
+<p>We can do math:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="dv">52</span><span class="op">*</span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="dv">365</span><span class="op">/</span><span class="dv">12</span></a></code></pre></div>
+<p>But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it’s by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular.</p>
+<div id="viewing-data-in-r" class="section level3">
+<h3><span class="header-section-number">3.9.1</span> Viewing data in R</h3>
+<p>Let’s have a look at some data in R. Unlike Excel, R comes out-of-the-box with several built-in data sets that we can look at and work with.</p>
+<p>One of these datasets is called <code>cars</code>. If I write this in the Console, it will print the data in the console.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">cars</a></code></pre></div>
+<p>This returns data. To me this is not super interesting data, but I can appreciate that there are different variables listed as column headers and then numeric values for each type of row observation. (Unfortunately I don’t know if these are different cars or trials or conditions but we won’t focus on that for now).</p>
+<p>I can also use RStudio’s Viewer to see this in a more familiar-looking format. Let’s type this — and make sure it’s a capital V and open and closed parentheses:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">View</span>(cars)</a></code></pre></div>
+<p>This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.</p>
+<blockquote>
+<p><strong><em>Aside</em></strong> The basic R data structure is a vector. You can think of a vector like a column in an Excel spreadsheet with the limitation that all the data in that vector must be of the same type. If it is a character vector, every element must be a character; if it is a logical vector, every element must be TRUE or FALSE; if it’s numeric you can trust that every element is a number. There’s no such constraint in Excel: you might have a column which has a bunch of numbers, but then some explanatory test intermingled with the numbers. This isn’t allowed in R. - <a href="https://blog.shotwell.ca/posts/r_for_excel_users/">Gordon Shotwell</a></p>
+</blockquote>
+<p>In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.</p>
+<p>Notice that as I start typing <code>sum_dist</code> in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">sumdist</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co"># Error: object &#39;sumdist&#39; not found</span></a></code></pre></div>
+<p>OK this is an error, but I didn’t break R — error messages are your friends.</p>
+<p>The first thing to do with an error message is read it. Yes it’s in angry red text and it’s unexpected — but most error messages are doing their best to help you solve the problem. And you’ll get more familiar with they way they tell you. By saying “object ‘sumdist’ not found” alerts me immediately to the fact that this thing I think exists R doesn’t think exists — so maybe it’s a typo or not loaded?</p>
+</div>
+<div id="error-messages-are-your-friends" class="section level3">
+<h3><span class="header-section-number">3.9.2</span> Error messages are your friends</h3>
+<p>As <a href="https://stat545.com/r-basics.html">Jenny Bryan says</a>:</p>
+<blockquote>
+<p>Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.</p>
+</blockquote>
+<p>Remember that this is a language, not unsimilar to English! There are times you aren’t understood – it’s going to happen. There are different ways this can happen. Sometimes you’ll get an error. This is like someone saying ‘What?’ or ‘Pardon’? Error messages can also be more useful, like when they say ‘I didn’t understand what you said, I was expecting you to say blah’. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.</p>
+<p>And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I’ve gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused… Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!</p>
+<blockquote>
+<p>Shortcuts
+You will make lots of assignments and the operator <code>&lt;-</code> is a pain to type. Don’t be lazy and use <code>=</code>, although it would work, because it will just sow confusion later. Instead, utilize <strong>RStudio’s keyboard shortcut: Alt + - (the minus sign)</strong>.
+Notice that RStudio automagically surrounds <code>&lt;-</code> with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.
+RStudio offers many handy <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts">keyboard shortcuts</a>. Also, Alt+Shift+K brings up a keyboard shortcut reference card.</p>
+</blockquote>
+<blockquote>
+<p>My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.</p>
+</blockquote>
+</div>
+</div>
+<div id="clearing-the-environment" class="section level2">
+<h2><span class="header-section-number">3.10</span> Clearing the environment</h2>
+<p>Now look at the objects in your environment (workspace) – in the upper right pane. The workspace is where user-defined objects accumulate.</p>
+<p>For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don’t want your whole analysis to only work in whatever way you’ve been working right now — you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis.</p>
+<p>We will keep coming back to this theme but let’s restart our R session together: Go to the top menus: Session &gt; Restart R.</p>
+<p>Don’t save the workspace!</p>
+<p>So this is great, but if we were going to do any kind of real analysis, we need to be able to write it in a document rather than this command line prompt in the Console. Let’s do something much more interesting and really start feeling its power.</p>
+</div>
+<div id="setup-git-github" class="section level2">
+<h2><span class="header-section-number">3.11</span> Setup Git &amp; GitHub</h2>
+<p>Before we break, we are going to set up Git and GitHub for our next lesson (and if you have trouble please stay a few extra minutes).</p>
+<p>We’re going to switch gears from R for a moment and set up Git and GitHub, which we will be using along with R and RStudio for the rest of the workshop. This set up is a one-time thing! You will only have to do this once per computer. We’ll walk through this together.</p>
+<ol style="list-style-type: decimal">
+<li>We will use the <code>usethis</code> package to configure <strong>git</strong> with global commands, which means it will apply ‘globally’ to all files on your computer, rather than to a specific folder.</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;usethis&quot;</span>)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">library</span>(usethis)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;jules32&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;jules32@example.org&quot;</span>)</a></code></pre></div>
+<p><em>BACKUP PLAN</em> If <code>usethis</code> fails, the following is the classic approach to configuring <strong>git</strong>. Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:</p>
+<pre><code>    # display your version of git
+    git --version
+    
+    # replace USER with your Github user account
+    git config --global user.name USER
+    
+    # replace NAME@EMAIL.EDU with the email you used to register with Github
+    git config --global user.email NAME@EMAIL.EDU
+    
+    # list your config to confirm user.* variables set
+    git config --list</code></pre>
+<p>Not only have you just set up git as a one-time-only thing, you have just used the command line. We don’t have time to learn much of the command line today, but you just successfully used it following explicit instructions, which is huge! There are great resources for learning the command line, check out <a href="http://remi-daigle.github.io/2016-04-15-UCSB/shell/">this tutorial from SWC at UCSB</a>.</p>
+<div id="troubleshooting" class="section level3">
+<h3><span class="header-section-number">3.11.1</span> Troubleshooting</h3>
+<p>If you have problems setting up git, please see the <a href="http://happygitwithr.com/troubleshooting.html">Troubleshooting section</a> in Jenny Bryan’s amazing <a href="http://happygitwithr.com">HappyGitWithR</a>.</p>
+<div id="newish-error-on-a-mac" class="section level4">
+<h4><span class="header-section-number">3.11.1.1</span> New(ish) Error on a Mac</h4>
+<p>We’ve also seen the following errors from RStudio:</p>
+<pre><code>error key does not contain a section --global terminal</code></pre>
+<p>and</p>
+<pre><code>fatal: not in a git directory</code></pre>
+<p>To solve this, go to the Terminal and type:
+<code>which git</code></p>
+<p><img src="img/git_whichgit.png" width="250px"></p>
+<p>Look at the filepath that is returned. Does it say anything to do with Apple?</p>
+<p>-&gt; If yes, then the <a href="https://git-scm.com/downloads">Git you downloaded</a> isn’t installed, please redownload if necessary, and follow instructions to install.</p>
+<p>-&gt; If no, (in the example image, the filepath does not say anything with Apple) then proceed below:</p>
+<p>In RStudio, navigate to: Tools &gt; Global Options &gt; Git/SVN.</p>
+<p><img src="img/git_options.png" width="250px"></p>
+<p><br></p>
+<p>Does the <strong>“Git executable”</strong> filepath match what the url in Terminal says?</p>
+<p><br></p>
+<p><img src="img/git_options_filepath.png" width="500px"></p>
+<p>If not, click the browse button and navigate there.</p>
+<blockquote>
+<p><em>Note</em>: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.</p>
+</blockquote>
+<p>Quit RStudio.</p>
+<p>Then relaunch RStudio.</p>
+<p>Try syncing or cloning, and if that works and then you don’t need to worry about typing into the Terminal, you’re all done!</p>
+<!---
+### Activity
+
+1. knit!
+
+Delete everything in the file! Just by being an .Rmd file, this will knit
+
+--->
+</div>
+</div>
+</div>
+<div id="deep-thoughts" class="section level2">
+<h2><span class="header-section-number">3.12</span> Deep thoughts</h2>
+<p>Comments! Organization (spacing, subsections, vertical structure, indentation, etc.)! Well-named variables! Also, well-named operations so analyses (select(data, columnname)) instead of data[1:6,5] and excel equivalent. (Ex with strings)
+Not so brittle/sensitive to minor changes.</p>
+</div>
+<div id="efficiency-tips" class="section level2">
+<h2><span class="header-section-number">3.13</span> Efficiency Tips</h2>
+<!---
+## R Scripts
+
+OK so working in the Console is great for quick things, but it gets messy. Keeping  track at what I've done and trying to build upon it would be a nightmare. 
+
+Instead of working in the Console, we can be more organized by writing analyses in a script. This is a really powerful way to work in R. *TODO dev more* Scripts are a written record of the analyses you do, unlike Excel. And they can be re-run easily...
+
+In this script, we're going to make our first figure in R. Let's all do this together. 
+
+
+File > New File > R Script. 
+
+This is a blank slate for us to write our code; but there are some good practices we can start off with. Let's add a useful header to the top of it. For example, at a minimum: 
+
+
+```r
+# --------------------------------
+# A descriptive title
+# Your name
+# Contact information
+# Date
+# --------------------------------
+```
+
+
+And then let's save it, naming it something like "my_first_figure.R". Let's get into good habits now with this filename: no spaces! Use underscores `_` or dashes `-` or no space at all. 
+
+Since we're working in or Project, this script is now nicely saved in our Project. You can see our `.R` show up in our Files pane on the bottom right. 
+
+Let's attach a package. Since you've already installed tidyverse, 
+
+
+```r
+# Attach the tidyverse
+library(tidyverse)
+```
+
+
+What is the tidyverse? *TODO*
+- ggplot2
+
+Let's look at one of the datasets that is built into the ggplot2 package. Type this into your R script: 
+
+
+```r
+View(diamonds)
+```
+
+So this is not immediately executed like when we were typing in the Console. That's because an R script is really just a text file that doesn't do anything on its own; you need to tell R to execute it. You do that in a few ways (let's do each of them):
+
+1. copy-paste this line into the console.
+1. click Run (with green arrow at the top-right of your script) to run the line where your cursor is or any highlighted selection
+1. click Source (top right of your script) to run the whole script. 
+
+Now let's plot it. Type this or copy-paste and then we'll discuss:
+
+
+```r
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point()
+```
+
+<img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+
+--->
+<!---
+
+## Credit
+
+This material builds from a lot of fantastic materials developed by others in the open data science community. In particular, it pulls from the following resources, which are highly recommended for further learning and as resources later on. Specific lessons will also cite more resources.
+
+- [R for Data Science](http://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund
+- [STAT 545](http://stat545.com/) by Jenny Bryan
+- [Happy Git with R](http://happygitwithr.com) by Jenny Bryan
+- [Software Carpentry](https://software-carpentry.org/lessons/) by the Carpentries
+
+References Brainstorm
+
+- Broman & Woo 2017: https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989
+--->
+<!---
+### RStudio Projects
+
+Create a new Project called 'r-for-excel-users'. File > New Project... > New Directory > New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
+
+What is a Project? It is a way to organize all of the relevant things you need for an analysis in the same place. This means data, code, figures, notes, etc. 
+
+Why does this matter? Keeping everything you need for your analysis together makes it less brittle and more portable — across people, time, and computers.  
+
+Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
+
+Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
+
+<img src="img/RStudio_IDE_projdir.png" width="80%" />
+
+--->
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R for Excel Users.pdf", "R for Excel Users.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

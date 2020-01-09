@@ -155,6 +155,18 @@ Execution halted
 
 In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: "duplicate label 'cars'". 
 
+#### Delete everything and reknit
+
+R knows that a file with extension .Rmd is a special file to be knit. But it does not rely on any of this stuff that is in the template file. 
+
+Do this: delete all the content from this file. You can do this by dragging your cursor to highlight all text, or use the keyboard shortcut Command-A. And then delete. You should now have a blank document. 
+
+To demo that it will still knit, let's write `# Julie's workshop notes` (with your name) and reknit. 
+
+This will be your notes. 
+
+The reason we use RMarkdown or an R script is so that we can write down our code once in our script but then can execute it as many times as we want.
+
 #### New code chunks
 
 We can create a new chunk in your RMarkdown first in one of these ways: 
@@ -164,6 +176,8 @@ We can create a new chunk in your RMarkdown first in one of these ways:
    \```{r}
    \```
 - if you haven't deleted a chunk that came with the new file, edit that one
+
+> Cool tip: doesn't have to be only R, other languages supported. 
 
 Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
 
@@ -177,19 +191,52 @@ We can knit this and see the plot of cars. This is the same data that we made th
 
 > Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences correct?
 
+### Running R code
+
+Knitting the document is great, and you can see all your updates rendered nicely. But you can imagine that this would be tedious that if every time you made an update you needed to knit this document. We can run R code in the Console. 
+
+TODO: build out more about Console
+
+To run, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+1. copy-paste this line into the console.
+1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
+    a. the bar above the file (green arrow)
+    b. the menu bar: Code > Run Selected Line(s)
+    c. keyboard shortcut: command-return
+1. click the green arrow at the right of the code chunk
+
+> Troubleshooting: The following error is because you also highlighted and asked to run ````{r}`, and this is the code fencing, not R code itself.
+
+```
+Error: attempt to use zero-length variable name
+```
+
 What is `plot` anyways? It is a function. Let's talk about that next. 
 
-## Help pages
- 
-*TODO - complete*
+## R Functions
+
+TODO — add c()?
 
 Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.
 
-TODO: Add Horst illustration
+<br>
+TODO: swap out for simpler
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/horst-naming-terms.png")  
+```
+
+<br>
 
 `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
+
+So with `plot()`, the arguments it requires are `x` and `y`, and when we pass `cars` to plot(), R is able to understand that it should use the two columns in that dataset as x and y.
+
+## Help pages
+ 
+*TODO - complete*
 
 A good way to learn about functions is to look at the help pages. Let's navigate over to the Help tab and type `plot`. All help pages will have the same format, here is how I look at it: 
 
@@ -213,39 +260,20 @@ Then, I usually scroll down to the bottom to the examples. This is where I can a
 plot(sin, -pi, 2*pi)
 ```
 
-#TODO: transition
 
-Let's try using `c()` which combines values together and, while we're at it, demo more helpful features of RStudio.
+TODO: Revisit this, c() might be too complicated here?
+
+Let's try using `c()` which combines values together. 
 
 So let's create a new R code chunk. And we'll write: 
 
 ```{r}
-c(1, 5:9)
+c(1, 7:9)
 ```
 
 So you can see that this combines these values all into the same place, which is called a vector here. But let's learn more about what this does. 
 
-
-
-<!---
-Type `se` and hit TAB. A pop up shows you possible completions. Specify `seq()` by typing more to disambiguate or using the up/down arrows to select. Notice the floating tool-tip-type help that pops up, reminding you of a function's arguments. If you want even more help, press F1 as directed to get the full documentation in the help tab of the lower right pane. 
-
-Type the arguments `1, 10` and hit return. 
-```{r}
-seq(1, 10)
-```
-
-We could probably infer that the `seq()` function makes a sequence, but let's learn for sure. Type (and you can autocomplete) and let's explore the help page:
-
-```{r, eval=F}
-?seq 
-help(seq) # same as ?seq
-```
-
---->
-
-### Help pages NOPE
-
+<!---Likely delete: 
 When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know. 
 
 ```{r}
@@ -257,6 +285,8 @@ The above also demonstrates something about how R resolves function arguments. Y
 argument or maybe the first two. After that, I always use `name = value`.
 
 The examples from the help pages can be copy-pasted into the console for you to understand what's going on. 
+
+--->
 
 <!---
 Let's try  another. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
@@ -284,27 +314,88 @@ sum(cars$dist)
 There are many functions that are built into R, and we'll learn more of them shortly.  
 --->
 
-Not all functions have (or require) arguments:
-```{r}
-date()
+## R Packages
+
+TODO: update, with here()
+
+So far we've been using a couple functions from base R, such as `sum()` and `date()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
+
+The traditional place to download packages is from CRAN, the [Comprehensive R Archive Network](https://cran.r-project.org/), which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
+
+You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. Let's install a small, fun package `praise`. You need to use quotes around the package name.
+
+Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
+
+```{r, eval=FALSE}
+install.packages("here")
 ```
 
-## Functions and Packages
+Now we've installed the package, but we need to tell R that we are going to use the functions within the `praise` package. We do this by using the function `library()`.
 
-### R code in the Console -- where does this go
+In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is `install.packages`. But then you need to turn on the lights each time you need them (R Session).
 
-Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+```{r}
+library(here)
+```
 
-1. copy-paste this line into the console.
-1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
-    a. the bar above the file (green arrow)
-    b. the menu bar: Code > Run Selected Line(s)
-    c. keyboard shortcut: command-return
-1. click the green arrow at the right of the code chunk
+Now that we've loaded the `praise` package, we can use the single function in the package, `praise()`, which returns a randomized praise to make you feel better.
 
-And when we do this, we see the `mean_dist` object appear in he Environment pane. 
+```{r}
+here()
+```
 
-Cool tip: doesn't have to be only R, other languages supported. 
+### Assigning objects with `<-`
+
+TODO
+
+<br>
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/horst-naming-terms.png")  
+```
+
+<br>
+
+
+This might be a really important value that we want to have on hand. We can save this as its own object. 
+
+This is a big difference with Excel, where you usually identify data by its location on the grid, like `$A1:D$20`. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)
+
+Data can be a variety of formats, like numeric and text. 
+
+We do this by writing the name along with the assignment operator `<-`
+
+```{r assign}
+sum_dist <- sum(cars$dist)
+```
+
+And we can execute it. In my head I hear "sum_dist gets `r sum(cars$dist)`". 
+
+Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
+
+```{r}
+# i_use_snake_case
+# other.people.use.periods
+# evenOthersUseCamelCase
+```
+
+
+
+
+## R code in the Console
+
+There is another way to get to the help pages besides clicking on the Help tab — we can write this in R with `?`. 
+
+Let's try this with...c()?
+
+Every time we run R code, it is sent to the Console.
+
+## Recap
+
+R console executes
+
+running code
+knitting
+
 
 <!---
 #### Activity
@@ -385,57 +476,6 @@ This opens the fourth pane of the RStudio IDE; when you work in R you will have 
 In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data. 
 
 
-## Packages
-
-So far we've been using a couple functions from base R, such as `sum()` and `date()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
-
-The traditional place to download packages is from CRAN, the [Comprehensive R Archive Network](https://cran.r-project.org/), which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
-
-You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. Let's install a small, fun package `praise`. You need to use quotes around the package name.
-
-Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
-
-```{r, eval=FALSE}
-install.packages("praise")
-```
-
-Now we've installed the package, but we need to tell R that we are going to use the functions within the `praise` package. We do this by using the function `library()`.
-
-In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is `install.packages`. But then you need to turn on the lights each time you need them (R Session).
-
-```{r}
-library(praise)
-```
-
-Now that we've loaded the `praise` package, we can use the single function in the package, `praise()`, which returns a randomized praise to make you feel better.
-
-```{r}
-praise()
-```
-
-### Assigning objects with `<-`
-
-This might be a really important value that we want to have on hand. We can save this as its own object. 
-
-This is a big difference with Excel, where you usually identify data by its location on the grid, like `$A1:D$20`. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)
-
-Data can be a variety of formats, like numeric and text. 
-
-We do this by writing the name along with the assignment operator `<-`
-
-```{r assign}
-sum_dist <- sum(cars$dist)
-```
-
-And we can execute it. In my head I hear "sum_dist gets `r sum(cars$dist)`". 
-
-Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
-
-```{r}
-# i_use_snake_case
-# other.people.use.periods
-# evenOthersUseCamelCase
-```
 
 Notice that as I start typing `sum_dist` in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo: 
 

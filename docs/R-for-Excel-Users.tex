@@ -494,6 +494,19 @@ Execution halted
 
 In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: ``duplicate label `cars'\,''.
 
+\hypertarget{delete-everything-and-reknit}{%
+\subsubsection{Delete everything and reknit}\label{delete-everything-and-reknit}}
+
+R knows that a file with extension .Rmd is a special file to be knit. But it does not rely on any of this stuff that is in the template file.
+
+Do this: delete all the content from this file. You can do this by dragging your cursor to highlight all text, or use the keyboard shortcut Command-A. And then delete. You should now have a blank document.
+
+To demo that it will still knit, let's write \texttt{\#\ Julie\textquotesingle{}s\ workshop\ notes} (with your name) and reknit.
+
+This will be your notes.
+
+The reason we use RMarkdown or an R script is so that we can write down our code once in our script but then can execute it as many times as we want.
+
 \hypertarget{new-code-chunks}{%
 \subsubsection{New code chunks}\label{new-code-chunks}}
 
@@ -511,6 +524,10 @@ We can create a new chunk in your RMarkdown first in one of these ways:
   if you haven't deleted a chunk that came with the new file, edit that one
 \end{itemize}
 
+\begin{quote}
+Cool tip: doesn't have to be only R, other languages supported.
+\end{quote}
+
 Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
 
 \begin{Shaded}
@@ -527,20 +544,68 @@ We can knit this and see the plot of cars. This is the same data that we made th
 Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open \texttt{(} and close \texttt{)} parentheses? Are your code chunk fences correct?
 \end{quote}
 
+\hypertarget{running-r-code}{%
+\subsection{Running R code}\label{running-r-code}}
+
+Knitting the document is great, and you can see all your updates rendered nicely. But you can imagine that this would be tedious that if every time you made an update you needed to knit this document. We can run R code in the Console.
+
+TODO: build out more about Console
+
+To run, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  copy-paste this line into the console.
+\item
+  select the line (or simply put the cursor there), and click `Run'. This is available from
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    the bar above the file (green arrow)
+  \item
+    the menu bar: Code \textgreater{} Run Selected Line(s)
+  \item
+    keyboard shortcut: command-return
+  \end{enumerate}
+\item
+  click the green arrow at the right of the code chunk
+\end{enumerate}
+
+\begin{quote}
+Troubleshooting: The following error is because you also highlighted and asked to run ```\texttt{\{r\}}, and this is the code fencing, not R code itself.
+\end{quote}
+
+\begin{verbatim}
+Error: attempt to use zero-length variable name
+\end{verbatim}
+
 What is \texttt{plot} anyways? It is a function. Let's talk about that next.
 
-\hypertarget{help-pages}{%
-\section{Help pages}\label{help-pages}}
+\hypertarget{r-functions}{%
+\section{R Functions}\label{r-functions}}
 
-\emph{TODO - complete}
+TODO --- add c()?
 
 Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.
 
-TODO: Add Horst illustration
+TODO: swap out for simpler
+
+\includegraphics[width=0.6\linewidth]{img/horst-naming-terms}
 
 \texttt{function\_name(argument1\ =\ value1,\ argument2\ =\ value2,\ ...)}. When you see this syntax, we say we are ``calling the function''.
+
+So with \texttt{plot()}, the arguments it requires are \texttt{x} and \texttt{y}, and when we pass \texttt{cars} to plot(), R is able to understand that it should use the two columns in that dataset as x and y.
+
+\hypertarget{help-pages}{%
+\section{Help pages}\label{help-pages}}
+
+\emph{TODO - complete}
 
 A good way to learn about functions is to look at the help pages. Let's navigate over to the Help tab and type \texttt{plot}. All help pages will have the same format, here is how I look at it:
 
@@ -578,99 +643,114 @@ Then, I usually scroll down to the bottom to the examples. This is where I can a
 
 \includegraphics{R-for-Excel-Users_files/figure-latex/plot-help-example-1.pdf}
 
-\#TODO: transition
+TODO: Revisit this, c() might be too complicated here?
 
-Let's try using \texttt{c()} which combines values together and, while we're at it, demo more helpful features of RStudio.
+Let's try using \texttt{c()} which combines values together.
 
 So let's create a new R code chunk. And we'll write:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\OperatorTok{:}\DecValTok{9}\NormalTok{)}
+\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{7}\OperatorTok{:}\DecValTok{9}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 5 6 7 8 9
+## [1] 1 7 8 9
 \end{verbatim}
 
 So you can see that this combines these values all into the same place, which is called a vector here. But let's learn more about what this does.
 
-\hypertarget{help-pages-nope}{%
-\subsection{Help pages NOPE}\label{help-pages-nope}}
+\hypertarget{r-packages}{%
+\section{R Packages}\label{r-packages}}
 
-When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know.
+TODO: update, with here()
+
+So far we've been using a couple functions from base R, such as \texttt{sum()} and \texttt{date()}. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.
+
+The traditional place to download packages is from CRAN, the \href{https://cran.r-project.org/}{Comprehensive R Archive Network}, which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
+
+You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command \texttt{install.packages("package-name-in-quotes")}. Let's install a small, fun package \texttt{praise}. You need to use quotes around the package name.
+
+Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{) }\CommentTok{# same as seq(1, 10); R assumes by position}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"here"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we've installed the package, but we need to tell R that we are going to use the functions within the \texttt{praise} package. We do this by using the function \texttt{library()}.
+
+In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is \texttt{install.packages}. But then you need to turn on the lights each time you need them (R Session).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(here)}
+\end{Highlighting}
+\end{Shaded}
+
+Now that we've loaded the \texttt{praise} package, we can use the single function in the package, \texttt{praise()}, which returns a randomized praise to make you feel better.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{here}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  1  2  3  4  5  6  7  8  9 10
+## [1] "/Users/lowndes/github/rstudio-conf-2020/r-for-excel"
 \end{verbatim}
+
+\hypertarget{assigning-objects-with--}{%
+\subsection{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
+
+TODO
+
+\includegraphics[width=0.6\linewidth]{img/horst-naming-terms}
+
+This might be a really important value that we want to have on hand. We can save this as its own object.
+
+This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
+
+Data can be a variety of formats, like numeric and text.
+
+We do this by writing the name along with the assignment operator \texttt{\textless{}-}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \DecValTok{2}\NormalTok{)}
+\NormalTok{sum_dist <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] 1 3 5 7 9
-\end{verbatim}
+And we can execute it. In my head I hear ``sum\_dist gets 2149''.
 
-The above also demonstrates something about how R resolves function arguments. You can always specify in \texttt{name\ =\ value} form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence \texttt{from\ =\ 1} that goes \texttt{to\ =\ 10}. Since we didn't specify step size, the default value of \texttt{by} in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
-argument or maybe the first two. After that, I always use \texttt{name\ =\ value}.
-
-The examples from the help pages can be copy-pasted into the console for you to understand what's going on.
-
-Not all functions have (or require) arguments:
+Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a \href{http://en.wikipedia.org/wiki/Snake_case}{convention for demarcating words} in names.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{date}\NormalTok{()}
+\CommentTok{# i_use_snake_case}
+\CommentTok{# other.people.use.periods}
+\CommentTok{# evenOthersUseCamelCase}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## [1] "Thu Jan  9 06:00:35 2020"
-\end{verbatim}
+\hypertarget{r-code-in-the-console}{%
+\section{R code in the Console}\label{r-code-in-the-console}}
 
-\hypertarget{functions-and-packages}{%
-\section{Functions and Packages}\label{functions-and-packages}}
+There is another way to get to the help pages besides clicking on the Help tab --- we can write this in R with \texttt{?}.
 
-\hypertarget{r-code-in-the-console-where-does-this-go}{%
-\subsection{R code in the Console -- where does this go}\label{r-code-in-the-console-where-does-this-go}}
+Let's try this with\ldots{}c()?
 
-Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+Every time we run R code, it is sent to the Console.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  copy-paste this line into the console.
-\item
-  select the line (or simply put the cursor there), and click `Run'. This is available from
+\hypertarget{recap}{%
+\section{Recap}\label{recap}}
 
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii}.}
-  \tightlist
-  \item
-    the bar above the file (green arrow)
-  \item
-    the menu bar: Code \textgreater{} Run Selected Line(s)
-  \item
-    keyboard shortcut: command-return
-  \end{enumerate}
-\item
-  click the green arrow at the right of the code chunk
-\end{enumerate}
+R console executes
 
-And when we do this, we see the \texttt{mean\_dist} object appear in he Environment pane.
-
-Cool tip: doesn't have to be only R, other languages supported.
+running code
+knitting
 
 Learn more: \url{http://rmarkdown.rstudio.com/}
 
@@ -747,74 +827,6 @@ This opens the fourth pane of the RStudio IDE; when you work in R you will have 
 \end{quote}
 
 In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.
-
-\hypertarget{packages}{%
-\section{Packages}\label{packages}}
-
-So far we've been using a couple functions from base R, such as \texttt{sum()} and \texttt{date()}. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.
-
-The traditional place to download packages is from CRAN, the \href{https://cran.r-project.org/}{Comprehensive R Archive Network}, which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
-
-You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command \texttt{install.packages("package-name-in-quotes")}. Let's install a small, fun package \texttt{praise}. You need to use quotes around the package name.
-
-Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"praise"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-Now we've installed the package, but we need to tell R that we are going to use the functions within the \texttt{praise} package. We do this by using the function \texttt{library()}.
-
-In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is \texttt{install.packages}. But then you need to turn on the lights each time you need them (R Session).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(praise)}
-\end{Highlighting}
-\end{Shaded}
-
-Now that we've loaded the \texttt{praise} package, we can use the single function in the package, \texttt{praise()}, which returns a randomized praise to make you feel better.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{praise}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "You are bee's knees!"
-\end{verbatim}
-
-\hypertarget{assigning-objects-with--}{%
-\subsection{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
-
-This might be a really important value that we want to have on hand. We can save this as its own object.
-
-This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
-
-Data can be a variety of formats, like numeric and text.
-
-We do this by writing the name along with the assignment operator \texttt{\textless{}-}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sum_dist <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
-\end{Highlighting}
-\end{Shaded}
-
-And we can execute it. In my head I hear ``sum\_dist gets 2149''.
-
-Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a \href{http://en.wikipedia.org/wiki/Snake_case}{convention for demarcating words} in names.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# i_use_snake_case}
-\CommentTok{# other.people.use.periods}
-\CommentTok{# evenOthersUseCamelCase}
-\end{Highlighting}
-\end{Shaded}
 
 Notice that as I start typing \texttt{sum\_dist} in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo:
 
@@ -1543,7 +1555,7 @@ Let's do that to create a line graph of visitors to Channel Islands National Par
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 
@@ -1554,7 +1566,7 @@ Or, we could change that to a scatterplot just by updating the \texttt{geom\_*}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-30-1.pdf}
 
 We could even do that for a column graph:
 
@@ -1565,7 +1577,7 @@ We could even do that for a column graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-32-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-31-1.pdf}
 
 Or an area plot\ldots{}
 
@@ -1576,7 +1588,7 @@ Or an area plot\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 We can see that updating to different \texttt{geom\_*} types is quick, so long as the types of graphs we're switching between are compatible.
 
@@ -1621,7 +1633,7 @@ Building on our first line graph, let's update the line color to ``purple'' and 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-33-1.pdf}
 
 How do we know which color names ggplot will recognize? If you google ``R colors ggplot2'' you'll find a lot of good resources. Here's one: \href{http://sape.inf.usi.ch/quick-reference/ggplot2/colour}{SAPE ggplot2 colors quick reference guide}
 
@@ -1637,7 +1649,7 @@ Now let's update the point, style and size of points on our previous scatterplot
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-35-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 \hypertarget{activity-customize-your-own-ggplot-graph}{%
 \subsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
@@ -1670,7 +1682,7 @@ Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aest
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 In the example above, notice that the two arguments that \textbf{do} depend on variables are within \texttt{aes()}, but since \texttt{alpha\ =\ 0.5} doesn't depend on a variable then it is \emph{outside the \texttt{aes()} but still within the \texttt{geom\_point()} layer}.
 
@@ -1686,7 +1698,7 @@ Create a column plot of Channel Islands National Park visitation over time, wher
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-37-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -1721,7 +1733,7 @@ Here, let's update our previous graph with \texttt{theme\_minimal()}:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-38-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \hypertarget{updating-axis-labels-and-titles}{%
 \section{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
@@ -1742,7 +1754,7 @@ Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to yo
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \textbf{Note}: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the \texttt{scales} package options (see more from the \href{http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/}{R Cookbook}).
 
@@ -1762,7 +1774,7 @@ For example, adding points to a line graph:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-40-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 
@@ -1775,7 +1787,7 @@ Or, combine a column and line graph (not sure why you'd want to do this, but you
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-41-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 \hypertarget{multi-series-ggplot-graphs}{%
 \section{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
@@ -1791,7 +1803,7 @@ To do that, we need to add an aesthetic that lets \texttt{ggplot} know how thing
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 Well that's definitely a mess, and it's because ggplot has no idea that these \textbf{should be different series based on the different parks that appear in the `park\_name' column}.
 
@@ -1804,7 +1816,7 @@ We can make sure R does know by updating an aesthetic based on \emph{park\_name}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-43-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-42-1.pdf}
 
 \textbf{Note}: You could also add that aesthetic (\texttt{color\ =\ park\_name}) in the \texttt{geom\_line()} layer, instead of in the topmost \texttt{ggplot()} layer.
 
@@ -1825,7 +1837,7 @@ Also notice that any general theme changes made will be applied to \emph{all} of
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-44-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 \hypertarget{exporting-a-ggplot-graph-with-ggsave}{%
 \section{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
@@ -1874,7 +1886,7 @@ For the record: this is not a good option for showing the visitation data becaus
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-46-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
 
@@ -2403,7 +2415,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2424,7 +2436,7 @@ And now we can see that our plot updated as well:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-66-2.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-65-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4159,7 +4171,7 @@ Find the annual total US landings and dollar value (summing across all states) f
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-143-1.pdf}
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 \hypertarget{export-your-salmon-value-graph-with-ggsave}{%
 \section{\texorpdfstring{Export your salmon value graph with \texttt{ggsave}}{Export your salmon value graph with ggsave}}\label{export-your-salmon-value-graph-with-ggsave}}

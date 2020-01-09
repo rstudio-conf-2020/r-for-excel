@@ -133,7 +133,7 @@
 
 \title{R for Excel Users}
 \author{Julie Lowndes \& Allison Horst}
-\date{2019-12-19}
+\date{2020-01-09}
 
 \begin{document}
 \maketitle
@@ -316,7 +316,7 @@ In this lesson we will:
 \item
   get oriented to the RStudio interface
 \item
-  explore RMarkdown. This will be your notes.
+  explore RMarkdown.
 \item
   discuss RMarkdown files vs Console (running vs knitting)
 \item
@@ -324,7 +324,7 @@ In this lesson we will:
 \item
   error messages and help pages
 \item
-  discuss and install packages (\texttt{here()})
+  discuss and install packages (\texttt{here()}) usethis
 \item
   intro pipe operator (\texttt{\%\textgreater{}\%})
 \item
@@ -340,10 +340,342 @@ In this lesson we will:
   \href{https://blog.shotwell.ca/posts/r_for_excel_users/}{R for Excel Users} by Gordon Shotwell (blog)
 \end{itemize}
 
+\hypertarget{rstudio-orientation}{%
+\section{RStudio Orientation}\label{rstudio-orientation}}
+
+Open RStudio for the first time.
+
+Launch RStudio/R.
+
+\includegraphics[width=0.8\linewidth]{img/RStudio_IDE}
+
+Notice the default panes:
+
+\begin{itemize}
+\tightlist
+\item
+  Console (entire left)
+\item
+  Environment/History (tabbed in upper right)
+\item
+  Files/Plots/Packages/Help (tabbed in lower right)
+\end{itemize}
+
+We won't click through this all immediately but we will become familiar with more of the options and capabilities throughout the next few days.
+
+Something critical to know now is that you can make everything you see BIGGER by going to the navigation pane: View \textgreater{} Zoom In. Learn these keyboard shortcuts; being able to see what you're typing will help avoid typos \& help us help you.
+
+I think that \textbf{R is your airplane, and the RStudio IDE is your airport}. You are the pilot, and you use R to go places! With practice you'll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. And the RStudio IDE provides support! Runways, communication, community, and other services that makes your life as a pilot much easier. It provides not only the infrastructure but a hub for the community that you can interact with.
+
+An important first question: \textbf{where are we?}
+
+If you've have opened RStudio for the first time, you'll be in your Home directory. This is noted by the \texttt{\textasciitilde{}/} at the top of the console. You can see too that the Files pane in the lower right shows what is in the Home directory where you are. You can navigate around within that Files pane and explore, but note that you won't change where you are: even as you click through you'll still be Home: \texttt{\textasciitilde{}/}.
+
+\includegraphics[width=0.8\linewidth]{img/RStudio_IDE_homedir}
+
+We are going to have our first experience with R through RMarkdown, so let's do the following.
+
+\hypertarget{intro-to-rmarkdown}{%
+\section{Intro to RMarkdown}\label{intro-to-rmarkdown}}
+
+An RMarkdown file is a plain text file that allow us to write code and text together, and when it is ``knit'', the code will be evaluated and the text formatted so that it creates a reproducible report or document that is nice to read as a human.
+
+This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc.
+
+Let's experience this a bit ourselves and then we'll talk about it more.
+
+\hypertarget{create-an-rmarkdown-file}{%
+\subsection{Create an RMarkdown file}\label{create-an-rmarkdown-file}}
+
+Let's do this together:
+
+File -\textgreater{} New File -\textgreater{} RMarkdown\ldots{} (or alternatively you can click the green plus in the top left -\textgreater{} RMarkdown).
+
+Let's title it ``Testing'' and write our name as author, then click OK with the recommended Default Output Format, which is HTML.
+
+\includegraphics[width=0.8\linewidth]{img/rstudio_new-rmd-doc-html}
+
+OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
+
+Let's have a look at this file --- it's not blank; there is some initial text is already provided for you. Let's have a high-level look through of it:
+
+\begin{itemize}
+\tightlist
+\item
+  The top part has the Title and Author we provided, as well as today's date and the output type as an HTML document like we selected above.
+\item
+  There are white and grey sections. These are the 2 main languages that make up an RMarkdown file.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Grey sections are R code}
+  \item
+    \textbf{White sections are Markdown text}
+  \end{itemize}
+\item
+  There is black and blue text.
+\end{itemize}
+
+\includegraphics[width=0.8\linewidth]{img/rmarkdown}
+
+\hypertarget{knit-your-rmarkdown-file}{%
+\subsection{Knit your RMarkdown file}\label{knit-your-rmarkdown-file}}
+
+Let's go ahead and ``Knit'' by clicking the blue yarn at the top of the RMarkdown file.
+It's going to ask us to save first, I'll name mine ``testing.Rmd''. Note that this is by default going to save this file in your home directory \texttt{/\textasciitilde{}}. Since this is a testing document this is fine to save here; we will get more organized about where we save files very soon. Once you click Save, the knit process will be able to continue.
+
+OK so how cool is this, we've just made an html file! This is a single webpage that we are viewing locally on our own computers. Knitting this RMarkdown document has rendered --- we also say formatted --- both the Markdown text (white) and the R code (grey), and the it also executed --- we also say ran --- the R code.
+
+Let's have a look at them side-by-side:
+
+\includegraphics[width=0.8\linewidth]{img/rmarkdown_side_by_side}
+
+Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
+
+\hypertarget{markdown-text}{%
+\subsection{Markdown text}\label{markdown-text}}
+
+To warm us up for R, let's start by talking about another language, Markdown. This is a formatting language for plain text, and there are only about 15 rules to know.
+
+Notice the syntax for:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{headers} get rendered at multiple levels: \texttt{\#}, \texttt{\#\#}
+\item
+  \textbf{bold}: \texttt{**word**}
+\end{itemize}
+
+There are some good \href{https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet}{cheatsheets} to get you started, and here is one built into RStudio: Go to Help \textgreater{} Markdown Quick Reference
+
+\hypertarget{r-code}{%
+\subsection{R code}\label{r-code}}
+
+Let's look at the R code that we see executed in our knitted document.
+
+We see that \texttt{summary(cars)} produces a table
+
+And we see that \texttt{plot(pressure)} produces a plot.
+
+\texttt{cars} and \texttt{pressure} are small datasets that come with R out-of-the-box.
+
+\hypertarget{code-chunks}{%
+\subsection{Code chunks}\label{code-chunks}}
+
+Let's start of by looking at the 3 code chunks, which are grey.
+
+Each of them are start by 3 backticks and \texttt{\{r\ label\}}, which signify that there will be R code inside, and they are each given a unique name. Anything inside the brackets (\texttt{\{\ \}}) is instructions for RMarkdown about that code to run. For example:
+
+\begin{itemize}
+\tightlist
+\item
+  the first chunk says \texttt{include=FALSE}, and we don't see it included in the HTML document.
+\item
+  the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
+\item
+  the third chunk says \texttt{echo=FALSE}, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
+\end{itemize}
+
+There are many more options available and we will explore more as we go.
+
+\hypertarget{naming-code-chunks-deep-thought}{%
+\subsubsection{Naming code chunks (Deep thought?)}\label{naming-code-chunks-deep-thought}}
+
+All three chunks say \texttt{r} as the language, and have a label (\texttt{setup}, \texttt{cars}, \texttt{pressure}. This is to help us navigate between them and keep them organized. They are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. Otherwise you will see an error when you try to knit:
+
+\begin{verbatim}
+processing file: Untitled.Rmd
+Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
+Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
+Execution halted
+\end{verbatim}
+
+In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: ``duplicate label `cars'\,''.
+
+\hypertarget{new-code-chunks}{%
+\subsubsection{New code chunks}\label{new-code-chunks}}
+
+We can create a new chunk in your RMarkdown first in one of these ways:
+
+\begin{itemize}
+\tightlist
+\item
+  click ``Insert \textgreater{} R'' at the top of the editor pane
+\item
+  type by hand
+  ```\{r\}
+  ```
+\item
+  if you haven't deleted a chunk that came with the new file, edit that one
+\end{itemize}
+
+Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+We can knit this and see the plot of cars. This is the same data that we made the summary table with.
+
+\begin{quote}
+Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open \texttt{(} and close \texttt{)} parentheses? Are your code chunk fences correct?
+\end{quote}
+
+What is \texttt{plot} anyways? It is a function. Let's talk about that next.
+
+\hypertarget{help-pages}{%
+\section{Help pages}\label{help-pages}}
+
+\emph{TODO - complete}
+
+Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
+
+R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.
+
+TODO: Add Horst illustration
+
+\texttt{function\_name(argument1\ =\ value1,\ argument2\ =\ value2,\ ...)}. When you see this syntax, we say we are ``calling the function''.
+
+A good way to learn about functions is to look at the help pages. Let's navigate over to the Help tab and type \texttt{plot}. All help pages will have the same format, here is how I look at it:
+
+The help page tells the name of the package in the top left, and broken down into sections:
+
+\begin{itemize}
+\tightlist
+\item
+  Description: An extended description of what the function does.
+\item
+  Usage: The arguments of the function and their default values.
+\item
+  Arguments: An explanation of the data each argument is expecting.
+\item
+  Details: Any important details to be aware of.
+\item
+  Value: The data the function returns.
+\item
+  See Also: Any related functions you might find useful.
+\item
+  Examples: Some examples for how to use the function.
+\end{itemize}
+
+When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the \texttt{sum} page, it is pretty straight-forward and lets me know that yup, this is the function I want.
+
+I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the ``\ldots{}'' means. And the ``na.rm=FALSE'' means that by default, it will not remove NAs (I read this as: ``remove NAs? FALSE!'')
+
+Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(sin, }\OperatorTok{-}\NormalTok{pi, }\DecValTok{2}\OperatorTok{*}\NormalTok{pi)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{R-for-Excel-Users_files/figure-latex/plot-help-example-1.pdf}
+
+\#TODO: transition
+
+Let's try using \texttt{c()} which combines values together and, while we're at it, demo more helpful features of RStudio.
+
+So let's create a new R code chunk. And we'll write:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\OperatorTok{:}\DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 5 6 7 8 9
+\end{verbatim}
+
+So you can see that this combines these values all into the same place, which is called a vector here. But let's learn more about what this does.
+
+\hypertarget{help-pages-nope}{%
+\subsection{Help pages NOPE}\label{help-pages-nope}}
+
+When I press enter/return, it will open up a help page in the bottom right pane. Help pages vary in detail I find some easier to digest than others. But they all have the same structure, which is helpful to know.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{) }\CommentTok{# same as seq(1, 10); R assumes by position}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from =} \DecValTok{1}\NormalTok{, }\DataTypeTok{to =} \DecValTok{10}\NormalTok{, }\DataTypeTok{by =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+The above also demonstrates something about how R resolves function arguments. You can always specify in \texttt{name\ =\ value} form. But if you do not, R attempts to resolve by position. So above, it is assumed that we want a sequence \texttt{from\ =\ 1} that goes \texttt{to\ =\ 10}. Since we didn't specify step size, the default value of \texttt{by} in the function definition is used, which ends up being 1 in this case. For functions I call often, I might use this resolve by position for the first
+argument or maybe the first two. After that, I always use \texttt{name\ =\ value}.
+
+The examples from the help pages can be copy-pasted into the console for you to understand what's going on.
+
+Not all functions have (or require) arguments:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{date}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Thu Jan  9 06:00:35 2020"
+\end{verbatim}
+
+\hypertarget{functions-and-packages}{%
+\section{Functions and Packages}\label{functions-and-packages}}
+
+\hypertarget{r-code-in-the-console-where-does-this-go}{%
+\subsection{R code in the Console -- where does this go}\label{r-code-in-the-console-where-does-this-go}}
+
+Now, hitting return does not execute this command; remember, it's a text file in the text editor, it's not associated with the R engine. To execute it, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  copy-paste this line into the console.
+\item
+  select the line (or simply put the cursor there), and click `Run'. This is available from
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    the bar above the file (green arrow)
+  \item
+    the menu bar: Code \textgreater{} Run Selected Line(s)
+  \item
+    keyboard shortcut: command-return
+  \end{enumerate}
+\item
+  click the green arrow at the right of the code chunk
+\end{enumerate}
+
+And when we do this, we see the \texttt{mean\_dist} object appear in he Environment pane.
+
+Cool tip: doesn't have to be only R, other languages supported.
+
 Learn more: \url{http://rmarkdown.rstudio.com/}
 
 \hypertarget{activity}{%
-\subsection{Activity}\label{activity}}
+\subsubsection{Activity}\label{activity}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -356,7 +688,7 @@ Learn more: \url{http://rmarkdown.rstudio.com/}
 \end{enumerate}
 
 \hypertarget{restart-r}{%
-\subsection{Restart R}\label{restart-r}}
+\subsubsection{Restart R}\label{restart-r}}
 
 To end our work from this session, save, knit, and then restart R (Go to the top menus: Session \textgreater{} Restart R.)
 
@@ -368,6 +700,257 @@ Notice that now with a clean workspace, if I knit my document instead of sending
 Let's watch this to demonstrate all the amazing things you can now do:
 
 \href{https://vimeo.com/178485416}{What is RMarkdown?}
+
+\hypertarget{r-console}{%
+\section{R Console}\label{r-console}}
+
+OK let's go into the Console, where we interact with the live R process.
+
+We can do math:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{52}\OperatorTok{*}\DecValTok{40}
+\DecValTok{365}\OperatorTok{/}\DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular.
+
+\hypertarget{viewing-data-in-r}{%
+\subsection{Viewing data in R}\label{viewing-data-in-r}}
+
+Let's have a look at some data in R. Unlike Excel, R comes out-of-the-box with several built-in data sets that we can look at and work with.
+
+One of these datasets is called \texttt{cars}. If I write this in the Console, it will print the data in the console.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cars}
+\end{Highlighting}
+\end{Shaded}
+
+This returns data. To me this is not super interesting data, but I can appreciate that there are different variables listed as column headers and then numeric values for each type of row observation. (Unfortunately I don't know if these are different cars or trials or conditions but we won't focus on that for now).
+
+I can also use RStudio's Viewer to see this in a more familiar-looking format. Let's type this --- and make sure it's a capital V and open and closed parentheses:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(cars)}
+\end{Highlighting}
+\end{Shaded}
+
+This opens the fourth pane of the RStudio IDE; when you work in R you will have all four panes open so this will become a very comforting setup for you.
+
+\begin{quote}
+\textbf{\emph{Aside}} The basic R data structure is a vector. You can think of a vector like a column in an Excel spreadsheet with the limitation that all the data in that vector must be of the same type. If it is a character vector, every element must be a character; if it is a logical vector, every element must be TRUE or FALSE; if it's numeric you can trust that every element is a number. There's no such constraint in Excel: you might have a column which has a bunch of numbers, but then some explanatory test intermingled with the numbers. This isn't allowed in R. - \href{https://blog.shotwell.ca/posts/r_for_excel_users/}{Gordon Shotwell}
+\end{quote}
+
+In the Viewer I can do things like filter or sort. This does not do anything to the actual data, it just changes how you are viewing the data. So even as I explore it, I am not editing or manipulating the data.
+
+\hypertarget{packages}{%
+\section{Packages}\label{packages}}
+
+So far we've been using a couple functions from base R, such as \texttt{sum()} and \texttt{date()}. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities. In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation, and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.
+
+The traditional place to download packages is from CRAN, the \href{https://cran.r-project.org/}{Comprehensive R Archive Network}, which is where you downloaded R. You can also install packages from GitHub, which we'll do tomorrow.
+
+You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command \texttt{install.packages("package-name-in-quotes")}. Let's install a small, fun package \texttt{praise}. You need to use quotes around the package name.
+
+Do this in the Console instead of in your RMarkdown file because we don't want this to load every time:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"praise"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we've installed the package, but we need to tell R that we are going to use the functions within the \texttt{praise} package. We do this by using the function \texttt{library()}.
+
+In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is \texttt{install.packages}. But then you need to turn on the lights each time you need them (R Session).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(praise)}
+\end{Highlighting}
+\end{Shaded}
+
+Now that we've loaded the \texttt{praise} package, we can use the single function in the package, \texttt{praise()}, which returns a randomized praise to make you feel better.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{praise}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "You are bee's knees!"
+\end{verbatim}
+
+\hypertarget{assigning-objects-with--}{%
+\subsection{\texorpdfstring{Assigning objects with \texttt{\textless{}-}}{Assigning objects with \textless{}-}}\label{assigning-objects-with--}}
+
+This might be a really important value that we want to have on hand. We can save this as its own object.
+
+This is a big difference with Excel, where you usually identify data by its location on the grid, like \texttt{\$A1:D\$20}. (You can do this with Excel by naming ranges of cells, but many people don't do this.)
+
+Data can be a variety of formats, like numeric and text.
+
+We do this by writing the name along with the assignment operator \texttt{\textless{}-}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum_dist <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(cars}\OperatorTok{$}\NormalTok{dist)}
+\end{Highlighting}
+\end{Shaded}
+
+And we can execute it. In my head I hear ``sum\_dist gets 2149''.
+
+Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a \href{http://en.wikipedia.org/wiki/Snake_case}{convention for demarcating words} in names.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# i_use_snake_case}
+\CommentTok{# other.people.use.periods}
+\CommentTok{# evenOthersUseCamelCase}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that as I start typing \texttt{sum\_dist} in the Console, there will be options to auto-fill. This is RStudio helping you out, which is great because we all are prone to typos. I actually have to ignore the help to try to force a typo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sumdist}
+\CommentTok{# Error: object 'sumdist' not found}
+\end{Highlighting}
+\end{Shaded}
+
+OK this is an error, but I didn't break R --- error messages are your friends.
+
+The first thing to do with an error message is read it. Yes it's in angry red text and it's unexpected --- but most error messages are doing their best to help you solve the problem. And you'll get more familiar with they way they tell you. By saying ``object `sumdist' not found'' alerts me immediately to the fact that this thing I think exists R doesn't think exists --- so maybe it's a typo or not loaded?
+
+\hypertarget{error-messages-are-your-friends}{%
+\subsection{Error messages are your friends}\label{error-messages-are-your-friends}}
+
+As \href{https://stat545.com/r-basics.html}{Jenny Bryan says}:
+
+\begin{quote}
+Implicit contract with the computer / scripting language: Computer will do tedious computation for you. In return, you will be completely precise in your instructions. Typos matter. Case matters. Pay attention to how you type.
+\end{quote}
+
+Remember that this is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying `What?' or `Pardon'? Error messages can also be more useful, like when they say `I didn't understand what you said, I was expecting you to say blah'. That is a great type of error message. Error messages are your friend. Google them (copy-and-paste!) to figure out what they mean.
+
+And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused\ldots{} Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
+
+\begin{quote}
+Shortcuts
+You will make lots of assignments and the operator \texttt{\textless{}-} is a pain to type. Don't be lazy and use \texttt{=}, although it would work, because it will just sow confusion later. Instead, utilize \textbf{RStudio's keyboard shortcut: Alt + - (the minus sign)}.
+Notice that RStudio automagically surrounds \texttt{\textless{}-} with spaces, which demonstrates a useful code formatting practice. Code is miserable to read on a good day. Give your eyes a break and use spaces.
+RStudio offers many handy \href{https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts}{keyboard shortcuts}. Also, Alt+Shift+K brings up a keyboard shortcut reference card.
+\end{quote}
+
+\begin{quote}
+My most common shortcuts include command-Z (undo), and combinations of arrow keys in combination with shift/option/command (moving quickly up, down, sideways, with or without highlighting.
+\end{quote}
+
+\hypertarget{clearing-the-environment}{%
+\section{Clearing the environment}\label{clearing-the-environment}}
+
+Now look at the objects in your environment (workspace) -- in the upper right pane. The workspace is where user-defined objects accumulate.
+
+For reproducibility, it is critical that you delete your objects and restart your R session frequently. You don't want your whole analysis to only work in whatever way you've been working right now --- you need it to work next week, after you upgrade your operating system, etc. Restarting your R session will help you identify and account for anything you need for your analysis.
+
+We will keep coming back to this theme but let's restart our R session together: Go to the top menus: Session \textgreater{} Restart R.
+
+Don't save the workspace!
+
+So this is great, but if we were going to do any kind of real analysis, we need to be able to write it in a document rather than this command line prompt in the Console. Let's do something much more interesting and really start feeling its power.
+
+\hypertarget{setup-git-github}{%
+\section{Setup Git \& GitHub}\label{setup-git-github}}
+
+Before we break, we are going to set up Git and GitHub for our next lesson (and if you have trouble please stay a few extra minutes).
+
+We're going to switch gears from R for a moment and set up Git and GitHub, which we will be using along with R and RStudio for the rest of the workshop. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We will use the \texttt{usethis} package to configure \textbf{git} with global commands, which means it will apply `globally' to all files on your computer, rather than to a specific folder.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"usethis"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(usethis)}
+
+\KeywordTok{use_git_config}\NormalTok{(}\DataTypeTok{user.name =} \StringTok{"jules32"}\NormalTok{, }\DataTypeTok{user.email =} \StringTok{"jules32@example.org"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{BACKUP PLAN} If \texttt{usethis} fails, the following is the classic approach to configuring \textbf{git}. Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:
+
+\begin{verbatim}
+    # display your version of git
+    git --version
+    
+    # replace USER with your Github user account
+    git config --global user.name USER
+    
+    # replace NAME@EMAIL.EDU with the email you used to register with Github
+    git config --global user.email NAME@EMAIL.EDU
+    
+    # list your config to confirm user.* variables set
+    git config --list
+\end{verbatim}
+
+Not only have you just set up git as a one-time-only thing, you have just used the command line. We don't have time to learn much of the command line today, but you just successfully used it following explicit instructions, which is huge! There are great resources for learning the command line, check out \href{http://remi-daigle.github.io/2016-04-15-UCSB/shell/}{this tutorial from SWC at UCSB}.
+
+\hypertarget{troubleshooting}{%
+\subsection{Troubleshooting}\label{troubleshooting}}
+
+If you have problems setting up git, please see the \href{http://happygitwithr.com/troubleshooting.html}{Troubleshooting section} in Jenny Bryan's amazing \href{http://happygitwithr.com}{HappyGitWithR}.
+
+\hypertarget{newish-error-on-a-mac}{%
+\subsubsection{New(ish) Error on a Mac}\label{newish-error-on-a-mac}}
+
+We've also seen the following errors from RStudio:
+
+\begin{verbatim}
+error key does not contain a section --global terminal
+\end{verbatim}
+
+and
+
+\begin{verbatim}
+fatal: not in a git directory
+\end{verbatim}
+
+To solve this, go to the Terminal and type:
+\texttt{which\ git}
+
+Look at the filepath that is returned. Does it say anything to do with Apple?
+
+-\textgreater{} If yes, then the \href{https://git-scm.com/downloads}{Git you downloaded} isn't installed, please redownload if necessary, and follow instructions to install.
+
+-\textgreater{} If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
+
+In RStudio, navigate to: Tools \textgreater{} Global Options \textgreater{} Git/SVN.
+
+Does the \textbf{``Git executable''} filepath match what the url in Terminal says?
+
+If not, click the browse button and navigate there.
+
+\begin{quote}
+\emph{Note}: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
+\end{quote}
+
+Quit RStudio.
+
+Then relaunch RStudio.
+
+Try syncing or cloning, and if that works and then you don't need to worry about typing into the Terminal, you're all done!
 
 \hypertarget{deep-thoughts}{%
 \section{Deep thoughts}\label{deep-thoughts}}
@@ -494,90 +1077,6 @@ To get the full functionality of Github, you will eventually want to learn other
 \end{itemize}
 
 \includegraphics{img/push_pull_clone.png}
-
-\hypertarget{setup-git-github}{%
-\section{Setup Git \& GitHub}\label{setup-git-github}}
-
-We're going to switch gears from R for a moment and set up Git and GitHub, which we will be using along with R and RStudio for the rest of the workshop. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  We will use the \texttt{usethis} package to configure \textbf{git} with global commands, which means it will apply `globally' to all files on your computer, rather than to a specific folder.
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"usethis"}\NormalTok{)}
-\KeywordTok{library}\NormalTok{(usethis)}
-
-\KeywordTok{use_git_config}\NormalTok{(}\DataTypeTok{user.name =} \StringTok{"jules32"}\NormalTok{, }\DataTypeTok{user.email =} \StringTok{"jules32@example.org"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\emph{BACKUP PLAN} If \texttt{usethis} fails, the following is the classic approach to configuring \textbf{git}. Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:
-
-\begin{verbatim}
-    # display your version of git
-    git --version
-    
-    # replace USER with your Github user account
-    git config --global user.name USER
-    
-    # replace NAME@EMAIL.EDU with the email you used to register with Github
-    git config --global user.email NAME@EMAIL.EDU
-    
-    # list your config to confirm user.* variables set
-    git config --list
-\end{verbatim}
-
-Not only have you just set up git as a one-time-only thing, you have just used the command line. We don't have time to learn much of the command line today, but you just successfully used it following explicit instructions, which is huge! There are great resources for learning the command line, check out \href{http://remi-daigle.github.io/2016-04-15-UCSB/shell/}{this tutorial from SWC at UCSB}.
-
-\hypertarget{troubleshooting}{%
-\subsection{Troubleshooting}\label{troubleshooting}}
-
-If you have problems setting up git, please see the \href{http://happygitwithr.com/troubleshooting.html}{Troubleshooting section} in Jenny Bryan's amazing \href{http://happygitwithr.com}{HappyGitWithR}.
-
-\hypertarget{newish-error-on-a-mac}{%
-\subsubsection{New(ish) Error on a Mac}\label{newish-error-on-a-mac}}
-
-We've also seen the following errors from RStudio:
-
-\begin{verbatim}
-error key does not contain a section --global terminal
-\end{verbatim}
-
-and
-
-\begin{verbatim}
-fatal: not in a git directory
-\end{verbatim}
-
-To solve this, go to the Terminal and type:
-\texttt{which\ git}
-
-Look at the filepath that is returned. Does it say anything to do with Apple?
-
--\textgreater{} If yes, then the \href{https://git-scm.com/downloads}{Git you downloaded} isn't installed, please redownload if necessary, and follow instructions to install.
-
--\textgreater{} If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
-
-In RStudio, navigate to: Tools \textgreater{} Global Options \textgreater{} Git/SVN.
-
-Does the \textbf{``Git executable''} filepath match what the url in Terminal says?
-
-If not, click the browse button and navigate there.
-
-\begin{quote}
-\emph{Note}: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
-\end{quote}
-
-Quit RStudio.
-
-Then relaunch RStudio.
-
-Try syncing or cloning, and if that works and then you don't need to worry about typing into the Terminal, you're all done!
 
 \hypertarget{create-a-repository-on-github.com}{%
 \section{Create a repository on Github.com}\label{create-a-repository-on-github.com}}
@@ -825,6 +1324,8 @@ Go to File \textgreater{} New File \textgreater{} R Markdown \ldots{} (or click 
 
 Let's set up this file so we can use it for the rest of the day. I'm going to delete all the text that is already there and write some new text.
 
+This will be your notes for the next session.
+
 Here's what I'm going to write in my R Markdown file to begin:
 
 \begin{verbatim}
@@ -898,7 +1399,7 @@ If you have problems, we'll help you out using Jenny Bryan's \href{http://happyg
 \hypertarget{summary-2}{%
 \section{Summary}\label{summary-2}}
 
-Now that we know how to \emph{get} some data, the next thing we'll probably want to do is \emph{look} at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph \emph{or} use that code again to make the same style graph with different data.
+Now that we know how to \emph{get} some data, the next thing we'll probably want to do is look at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph \emph{or} use that code again to make the same style graph with different data.
 
 Using \texttt{ggplot2}, the graphics package within the \texttt{tidyverse}, we'll write reproducible code to manually and thoughtfully build our graphs.
 
@@ -906,7 +1407,7 @@ Using \texttt{ggplot2}, the graphics package within the \texttt{tidyverse}, we'l
 ``ggplot2 implements the grammar of graphics, a coherent system for describing and building graphs. With ggplot2, you can do more faster by learning one system and applying it in many places.'' - \href{http://r4ds.had.co.nz/data-visualisation.html}{R4DS}
 \end{quote}
 
-So yeah\ldots{}that \texttt{gg} is from ``grammar of graphics'' - original source
+So yeah\ldots{}that \texttt{gg} is from ``grammar of graphics.''
 
 We'll use the \texttt{ggplot2} package, but the function we use to initialize a graph will be \texttt{ggplot}, which works best for data in tidy format (i.e., a column for every variable, and a row for every observation). Graphics with \texttt{ggplot} are built step-by-step, adding new elements as layers with a plus sign (\texttt{+}) between layers (note: this is different from the pipe operator, \texttt{\%\textgreater{}\%}. Adding layers in this fashion allows for extensive flexibility and customization of plots.
 
@@ -948,11 +1449,8 @@ We'll use the \texttt{ggplot2} package, but the function we use to initialize a 
   \href{http://varianceexplained.org/r/why-I-use-ggplot2/}{``Why I use ggplot2'' - David Robinson Blog Post}
 \end{itemize}
 
-\hypertarget{lesson}{%
-\section{Lesson}\label{lesson}}
-
 \hypertarget{getting-started---create-a-new-.rmd-attach-packages-get-data}{%
-\subsection{Getting started - Create a new .Rmd, attach packages \& get data}\label{getting-started---create-a-new-.rmd-attach-packages-get-data}}
+\section{Getting started - Create a new .Rmd, attach packages \& get data}\label{getting-started---create-a-new-.rmd-attach-packages-get-data}}
 
 Within your existing version-controlled R project, create a new R Markdown document with title ``Data visualization with ggplot2.'' Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as ``my\_ggplot2''.
 
@@ -998,7 +1496,7 @@ Let's take a quick look at the data to see what it contains. For example:
 \end{itemize}
 
 \hypertarget{our-first-ggplot-graph-visitors-to-channel-islands-np}{%
-\subsection{Our first ggplot graph: Visitors to Channel Islands NP}\label{our-first-ggplot-graph-visitors-to-channel-islands-np}}
+\section{Our first ggplot graph: Visitors to Channel Islands NP}\label{our-first-ggplot-graph-visitors-to-channel-islands-np}}
 
 To create a bare-bones ggplot graph, we need to tell R three basic things:
 
@@ -1085,7 +1583,7 @@ We can see that updating to different \texttt{geom\_*} types is quick, so long a
 The data are there, now let's do some data viz customization.
 
 \hypertarget{intro-to-customizing-ggplot-graphs}{%
-\subsection{\texorpdfstring{Intro to customizing \texttt{ggplot} graphs}{Intro to customizing ggplot graphs}}\label{intro-to-customizing-ggplot-graphs}}
+\section{\texorpdfstring{Intro to customizing \texttt{ggplot} graphs}{Intro to customizing ggplot graphs}}\label{intro-to-customizing-ggplot-graphs}}
 
 First, we'll customize some aesthetics (e.g.~colors, styles, axis labels, etc.) of our graphs based on non-variable values.
 
@@ -1142,12 +1640,12 @@ Now let's update the point, style and size of points on our previous scatterplot
 \includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 \hypertarget{activity-customize-your-own-ggplot-graph}{%
-\subsubsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
+\subsection{Activity: customize your own ggplot graph}\label{activity-customize-your-own-ggplot-graph}}
 
 Update one of the example graphs you created above to customize \textbf{at least} an element color and size!
 
 \hypertarget{mapping-variables-onto-aesthetics}{%
-\subsection{Mapping variables onto aesthetics}\label{mapping-variables-onto-aesthetics}}
+\section{Mapping variables onto aesthetics}\label{mapping-variables-onto-aesthetics}}
 
 In the examples above, we have customized aesthetics based on constants that we input as arguments (e.g., the color / style / size isn't changing based on a variable characteristic or value). Sometimes, however, we \textbf{do} want the aesthetics of a graph to depend on a variable. To do that, we'll \textbf{map variables onto graph aesthetics}, meaning we'll change how an element on the graph looks based on a variable characteristic (usually, character or value).
 
@@ -1177,7 +1675,7 @@ Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aest
 In the example above, notice that the two arguments that \textbf{do} depend on variables are within \texttt{aes()}, but since \texttt{alpha\ =\ 0.5} doesn't depend on a variable then it is \emph{outside the \texttt{aes()} but still within the \texttt{geom\_point()} layer}.
 
 \hypertarget{activity-map-variables-onto-graph-aesthetics}{%
-\subsubsection{Activity: map variables onto graph aesthetics}\label{activity-map-variables-onto-graph-aesthetics}}
+\subsection{Activity: map variables onto graph aesthetics}\label{activity-map-variables-onto-graph-aesthetics}}
 
 Create a column plot of Channel Islands National Park visitation over time, where the \textbf{fill color} (argument: \texttt{fill\ =}) changes based on the number of \textbf{visitors}.
 
@@ -1193,7 +1691,7 @@ Create a column plot of Channel Islands National Park visitation over time, wher
 \textbf{Sync your project with your GitHub repo.}
 
 \hypertarget{ggplot2-complete-themes}{%
-\subsection{ggplot2 complete themes}\label{ggplot2-complete-themes}}
+\section{ggplot2 complete themes}\label{ggplot2-complete-themes}}
 
 While every element of a ggplot graph is manually customizable, there are also built-in themes (\texttt{theme\_*()}) that you can add to your ggplot code to make some major headway before making smaller tweaks manually.
 
@@ -1226,7 +1724,7 @@ Here, let's update our previous graph with \texttt{theme\_minimal()}:
 \includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 \hypertarget{updating-axis-labels-and-titles}{%
-\subsection{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
+\section{Updating axis labels and titles}\label{updating-axis-labels-and-titles}}
 
 Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to your ggplot graph.
 
@@ -1249,7 +1747,7 @@ Use \texttt{labs()} to update axis labels, and add a title and/or subtitle to yo
 \textbf{Note}: If you want to update the formatting of axis values (for example, to convert to comma format instead of scientific format above), you can use the \texttt{scales} package options (see more from the \href{http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/}{R Cookbook}).
 
 \hypertarget{combining-compatible-geoms}{%
-\subsection{Combining compatible geoms}\label{combining-compatible-geoms}}
+\section{Combining compatible geoms}\label{combining-compatible-geoms}}
 
 As long as the geoms are compatible, we can layer them on top of one another to further customize a graph.
 
@@ -1280,7 +1778,7 @@ Or, combine a column and line graph (not sure why you'd want to do this, but you
 \includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 \hypertarget{multi-series-ggplot-graphs}{%
-\subsection{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
+\section{Multi-series ggplot graphs}\label{multi-series-ggplot-graphs}}
 
 In the examples above, we only had a single series - visitation at Channel Islands National Park. Often we'll want to visualize multiple series. For example, from the \texttt{ca\_np} object we have stored, we might want to plot visitation for \emph{all} California National Parks.
 
@@ -1311,7 +1809,7 @@ We can make sure R does know by updating an aesthetic based on \emph{park\_name}
 \textbf{Note}: You could also add that aesthetic (\texttt{color\ =\ park\_name}) in the \texttt{geom\_line()} layer, instead of in the topmost \texttt{ggplot()} layer.
 
 \hypertarget{faceting-ggplot-graphs}{%
-\subsection{Faceting ggplot graphs}\label{faceting-ggplot-graphs}}
+\section{Faceting ggplot graphs}\label{faceting-ggplot-graphs}}
 
 When we facet graphs, we split them up into multiple plotting panels, where each panel contains a subset of the data. In our case, we'll split the graph above into different panels, each containing visitation data for a single park.
 
@@ -1330,7 +1828,7 @@ Also notice that any general theme changes made will be applied to \emph{all} of
 \includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-44-1.pdf}
 
 \hypertarget{exporting-a-ggplot-graph-with-ggsave}{%
-\subsection{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
+\section{\texorpdfstring{Exporting a ggplot graph with \texttt{ggsave()}}{Exporting a ggplot graph with ggsave()}}\label{exporting-a-ggplot-graph-with-ggsave}}
 
 If we want our graph to appear in a knitted html, then we don't need to do anything else. But often we'll need a saved image file, of specific size and resolution, to share or for publication.
 
@@ -1379,6 +1877,9 @@ For the record: this is not a good option for showing the visitation data becaus
 \includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-47-1.pdf}
 
 \textbf{Sync your project with your GitHub repo.}
+
+\hypertarget{end-ggplot-session}{%
+\section{\texorpdfstring{End \texttt{ggplot} session}{End ggplot session}}\label{end-ggplot-session}}
 
 \hypertarget{pivot}{%
 \chapter{\texorpdfstring{\texttt{dplyr} and Pivot Tables}{dplyr and Pivot Tables}}\label{pivot}}
@@ -1477,25 +1978,6 @@ In this data set, every row is a unique observation. This is called ``uncounted'
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##       year          month           date               site          
-##  Min.   :2012   Min.   :8.000   Length:6366        Length:6366       
-##  1st Qu.:2015   1st Qu.:8.000   Class :character   Class :character  
-##  Median :2017   Median :8.000   Mode  :character   Mode  :character  
-##  Mean   :2016   Mean   :8.017                                        
-##  3rd Qu.:2018   3rd Qu.:8.000                                        
-##  Max.   :2018   Max.   :9.000                                        
-##                                                                      
-##     transect      replicate            size_mm      
-##  Min.   :1.000   Length:6366        Min.   : 18.00  
-##  1st Qu.:2.000   Class :character   1st Qu.: 65.00  
-##  Median :4.000   Mode  :character   Median : 75.00  
-##  Mean   :3.806                      Mean   : 73.02  
-##  3rd Qu.:5.000                      3rd Qu.: 82.00  
-##  Max.   :9.000                      Max.   :183.00  
-##                                     NA's   :6
-\end{verbatim}
-
 \texttt{summary} gives us summary statistics for each variable (column). I like this for numeric columns, but it doesn't give a lot of useful information for non-numeric data. To have a look there I like using the skimr package:
 
 \begin{Shaded}
@@ -1504,216 +1986,6 @@ In this data set, every row is a unique observation. This is called ``uncounted'
 \NormalTok{skimr}\OperatorTok{::}\KeywordTok{skim}\NormalTok{(lobsters) }
 \end{Highlighting}
 \end{Shaded}
-
-\label{tab:skim-lobsters}Data summary
-
-Name
-
-lobsters
-
-Number of rows
-
-6366
-
-Number of columns
-
-7
-
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-Column type frequency:
-
-character
-
-3
-
-numeric
-
-4
-
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-Group variables
-
-None
-
-\textbf{Variable type: character}
-
-skim\_variable
-
-n\_missing
-
-complete\_rate
-
-min
-
-max
-
-empty
-
-n\_unique
-
-whitespace
-
-date
-
-0
-
-1
-
-6
-
-7
-
-0
-
-38
-
-0
-
-site
-
-0
-
-1
-
-4
-
-4
-
-0
-
-5
-
-0
-
-replicate
-
-0
-
-1
-
-1
-
-1
-
-0
-
-4
-
-0
-
-\textbf{Variable type: numeric}
-
-skim\_variable
-
-n\_missing
-
-complete\_rate
-
-mean
-
-sd
-
-p0
-
-p25
-
-p50
-
-p75
-
-p100
-
-hist
-
-year
-
-0
-
-1
-
-2016.24
-
-1.66
-
-2012
-
-2015
-
-2017
-
-2018
-
-2018
-
-▁▁▂▂▇
-
-month
-
-0
-
-1
-
-8.02
-
-0.13
-
-8
-
-8
-
-8
-
-8
-
-9
-
-▇▁▁▁▁
-
-transect
-
-0
-
-1
-
-3.81
-
-2.17
-
-1
-
-2
-
-4
-
-5
-
-9
-
-▇▆▅▃▂
-
-size\_mm
-
-6
-
-1
-
-73.02
-
-13.61
-
-18
-
-65
-
-75
-
-82
-
-183
-
-▁▇▂▁▁
 
 This \texttt{skimr::} notation is a reminder to me that \texttt{skim} is from the \texttt{skimr} package. It is a nice convention: it's a reminder to others (especially you!).
 
@@ -2300,12 +2572,12 @@ arrow keys with shift, option, command
 \hypertarget{tidying}{%
 \chapter{Tidying}\label{tidying}}
 
-TODO: janitor: adorn and kable
-
 \hypertarget{summary-4}{%
 \section{Summary}\label{summary-4}}
 
-In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. Here, we'll continue by \emph{reshaping} data frames (converting from long-to-wide, or wide-to-long format), \emph{separating} and \emph{uniting} variable (column) contents, converting between \emph{explicit} and \emph{implicit} missing (\texttt{NA}) values, and cleaning up our column names with the \texttt{janitor} package.
+In previous sessions, we learned to read in data, do some wrangling, and create a graph and table.
+
+Here, we'll continue by \emph{reshaping} data frames (converting from long-to-wide, or wide-to-long format), \emph{separating} and \emph{uniting} variable (column) contents, finding and replacing string patterns, and isolating numbers from number-character combinations.
 
 \hypertarget{objectives-4}{%
 \section{Objectives}\label{objectives-4}}
@@ -2319,13 +2591,13 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
 \item
   Combine or separate information from columns with \texttt{tidyr::unite()} and \texttt{tidyr::separate()}
 \item
-  Make implicit missings \emph{explicit} with \texttt{tidyr::complete()}
+  Detect a string with \texttt{stringr::str\_detect()}
 \item
-  Make explicit missings \emph{implicit} with \texttt{tidyr::drop\_na()}
+  Replace a string with \texttt{stringr::str\_replace()}
+\item
+  Isolate numbers with \texttt{readr::parse\_number()}
 \item
   Use our new skills as part of a bigger wrangling sequence
-\item
-  Make a customized table (TODO: or introduce Kable if not time in pivot tables chapter)
 \end{itemize}
 
 \hypertarget{resources-5}{%
@@ -2335,34 +2607,48 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
 - \href{https://tidyr.tidyverse.org/}{\texttt{tidyr} documentation from tidyverse.org}
 - \href{https://github.com/sfirke/janitor}{\texttt{janitor} repo / information} from Sam Firke
 
-\hypertarget{lesson-1}{%
-\section{Lesson}\label{lesson-1}}
-
-\hypertarget{lesson-prep}{%
-\subsection{Lesson Prep}\label{lesson-prep}}
+\hypertarget{set-up}{%
+\section{Set-up}\label{set-up}}
 
 \hypertarget{create-a-new-r-markdown-and-attach-packages}{%
-\subsubsection{Create a new R Markdown and attach packages}\label{create-a-new-r-markdown-and-attach-packages}}
+\subsection{Create a new R Markdown and attach packages}\label{create-a-new-r-markdown-and-attach-packages}}
 
-Within your day 2 R Project, create a new .Rmd. Attach the \texttt{tidyverse}, \texttt{janitor} and \texttt{readxl} packages with \texttt{library(package\_name)}. Knit and save your new .Rmd within the project folder.
+Within your day 2 R Project, create a new .Rmd. Attach the following packages (using \texttt{library(package\_name)}):
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{tidyverse}
+\item
+  \texttt{here}
+\item
+  \texttt{janitor}
+\item
+  \texttt{readxl}
+\end{itemize}
+
+Knit and save your new .Rmd within the project folder.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Attach packages}
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(janitor)}
+\KeywordTok{library}\NormalTok{(here)}
 \KeywordTok{library}\NormalTok{(readxl)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{read-in-data}{%
-\subsubsection{Read in data}\label{read-in-data}}
+\hypertarget{read-in-data-with-read_excel}{%
+\subsection{\texorpdfstring{Read in data with \texttt{read\_excel()}}{Read in data with read\_excel()}}\label{read-in-data-with-read_excel}}
 
-Use \texttt{readxl::read\_excel()} to import the ``invert\_counts\_curated.xlsx'' data:
+We've used both \texttt{read\_csv()} and \texttt{read\_excel()} to import data from spreadsheets into R.
+
+Use \texttt{read\_excel()} to read in the \textbf{inverts.xlsx} data as an objected called \textbf{inverts}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{inverts_df <-}\StringTok{ }\NormalTok{readxl}\OperatorTok{::}\KeywordTok{read_excel}\NormalTok{(}\StringTok{"invert_counts_curated.xlsx"}\NormalTok{)}
+\NormalTok{inverts <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"inverts.xlsx"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2378,11 +2664,8 @@ Be sure to explore the imported data a bit:
   \texttt{summary()}
 \end{itemize}
 
-\hypertarget{reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider}{%
-\subsection{\texorpdfstring{Reshaping with \texttt{tidyr::pivot\_longer()} and \texttt{tidyr::pivot\_wider()}}{Reshaping with tidyr::pivot\_longer() and tidyr::pivot\_wider()}}\label{reshaping-with-tidyrpivot_longer-and-tidyrpivot_wider}}
-
 \hypertarget{wide-to-longer-format-with-tidyrpivot_longer}{%
-\subsubsection{\texorpdfstring{Wide-to-longer format with \texttt{tidyr::pivot\_longer()}}{Wide-to-longer format with tidyr::pivot\_longer()}}\label{wide-to-longer-format-with-tidyrpivot_longer}}
+\section{\texorpdfstring{Wide-to-longer format with \texttt{tidyr::pivot\_longer()}}{Wide-to-longer format with tidyr::pivot\_longer()}}\label{wide-to-longer-format-with-tidyrpivot_longer}}
 
 In \emph{tidy format}, each variable is contained within a single column. If we look at \emph{inverts\_df}, we can see that the \emph{year} variable is actually split over 3 columns, so we'd say this is currently in \textbf{wide format}.
 
@@ -2392,15 +2675,21 @@ Schematically, converting from wide to long format looks like this:
 
 \includegraphics{img/tidyr_pivot_longer.png}
 
-Generally, the code to gather wide columns together using \texttt{tidyr::pivot\_longer()} looks like this:
+We'll use \texttt{tidyr::pivot\_longer()} to gather data from all years in \emph{inverts} (columns \texttt{2016}, \texttt{2017}, and \texttt{2018}) into two columns:
 
-TODO: Add pivot\_longer() schematic
+\begin{itemize}
+\tightlist
+\item
+  one called \emph{year}, which contains the year (as a number)
+\item
+  one called \emph{sp\_count} containing the number of each species observed.
+\end{itemize}
 
-We'll use \texttt{tidyr::pivot\_longer()} to gather data from all years in \emph{inverts\_df} into two columns: one called \emph{year}, which contains the year (as a number), and another called \emph{sp\_count} that contains the number of each species observed. The new data frame will be stored as \emph{inverts\_long}:
+The new data frame will be stored as \emph{inverts\_long}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{inverts_long <-}\StringTok{ }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ inverts_df, }
+\NormalTok{inverts_long <-}\StringTok{ }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ inverts, }
                                     \DataTypeTok{cols =} \StringTok{'2016'}\OperatorTok{:}\StringTok{'2018'}\NormalTok{,}
                                     \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{,}
                                     \DataTypeTok{values_to =} \StringTok{"sp_count"}\NormalTok{)}
@@ -2474,20 +2763,18 @@ Checking the class again, we see that \emph{year} has been updated to a numeric 
 \end{verbatim}
 
 \hypertarget{long-to-wider-format-with-tidyrpivot_wider}{%
-\subsubsection{\texorpdfstring{Long-to-wider format with \texttt{tidyr::pivot\_wider()}}{Long-to-wider format with tidyr::pivot\_wider()}}\label{long-to-wider-format-with-tidyrpivot_wider}}
+\section{\texorpdfstring{Long-to-wider format with \texttt{tidyr::pivot\_wider()}}{Long-to-wider format with tidyr::pivot\_wider()}}\label{long-to-wider-format-with-tidyrpivot_wider}}
 
 In the previous example, we had information spread over multiple columns that we wanted to \emph{gather}. Sometimes, we'll have data that we want to \emph{spread} over multiple columns.
 
-For example, imagine that starting from \emph{inverts\_long} we want each species in the \emph{common\_name} column to exist as its \textbf{own column}. In that case, we would be converting from a longer to a wider format, and will use \texttt{tidyr::pivot\_wider()} as follows:
+For example, imagine that starting from \emph{inverts\_long} we want each species in the \emph{common\_name} column to exist as its \textbf{own column}. In that case, we would be converting from a longer to a wider format, and will use \texttt{tidyr::pivot\_wider()}.
 
-TODO: Add pivot\_wider() schematic
-
-Specifically for our data, we write code to spread the \emph{common\_name} column as follows:
+Specifically for our data, we'll use \texttt{pivot\_wider()} to spread the \emph{common\_name} across multiple columns as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{inverts_wide <-}\StringTok{ }\NormalTok{inverts_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{names_from =}\NormalTok{ common_name, }
+\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{names_from =}\NormalTok{ common_name, }
                      \DataTypeTok{values_from =}\NormalTok{ sp_count)}
 \end{Highlighting}
 \end{Shaded}
@@ -2518,8 +2805,8 @@ Specifically for our data, we write code to spread the \emph{common\_name} colum
 
 We can see that now each \emph{species} has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format\ldots{}
 
-\hypertarget{meet-the-janitor-package}{%
-\subsubsection{\texorpdfstring{Meet the \texttt{janitor} package}{Meet the janitor package}}\label{meet-the-janitor-package}}
+\hypertarget{clean-up-column-names-with-janitorclean_names}{%
+\section{\texorpdfstring{Clean up column names with \texttt{janitor::clean\_names()}}{Clean up column names with janitor::clean\_names()}}\label{clean-up-column-names-with-janitorclean_names}}
 
 The \texttt{janitor} package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Like:
 
@@ -2532,9 +2819,7 @@ The \texttt{janitor} package by Sam Firke is a brilliant collection of functions
 \item
   \texttt{janitor::remove\_empty()}: remove empty rows and/or columns
 \item
-  \texttt{janitor::andorn\_*()}: jazz up frequency tables of counts (we'll return to this for a table example in TODO: Session 8)
-\item
-  \ldots{}and more!
+  \texttt{janitor::adorn\_*()}: jazz up frequency tables of counts (we'll return to this for a table example in TODO: Session 8)
 \end{itemize}
 
 Here, we'll use \texttt{janitor::clean\_names()} to convert all of our column headers to a more convenient case - the default is \textbf{lower\_snake\_case}, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments.
@@ -2558,7 +2843,7 @@ If we wanted to then use these columns (which we probably would, since we create
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{inverts_wide <-}\StringTok{ }\NormalTok{inverts_wide }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{janitor}\OperatorTok{::}\KeywordTok{clean_names}\NormalTok{()}
+\StringTok{  }\KeywordTok{clean_names}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2575,12 +2860,12 @@ If we wanted to then use these columns (which we probably would, since we create
 ## [7] "purple_urchin"            "rock_scallop"
 \end{verbatim}
 
-And there are other options for the case, like:
+And there are other case options in \texttt{clean\_names()}, like:
 
 \begin{itemize}
 \tightlist
 \item
-  ``snake'' produces snake\_case
+  ``snake'' produces snake\_case (the default)
 \item
   ``lower\_camel'' or ``small\_camel'' produces lowerCamel
 \item
@@ -2593,63 +2878,21 @@ And there are other options for the case, like:
   ``upper\_lower'' produces UPPERlower
 \end{itemize}
 
-\hypertarget{combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate}{%
-\subsection{\texorpdfstring{Combine or separate information in columns with \texttt{tidyr::unite()} and \texttt{tidyr::separate()}}{Combine or separate information in columns with tidyr::unite() and tidyr::separate()}}\label{combine-or-separate-information-in-columns-with-tidyrunite-and-tidyrseparate}}
+\hypertarget{combine-or-separate-columns-with-tidyrunite-and-tidyrseparate}{%
+\section{\texorpdfstring{Combine or separate columns with \texttt{tidyr::unite()} and \texttt{tidyr::separate()}}{Combine or separate columns with tidyr::unite() and tidyr::separate()}}\label{combine-or-separate-columns-with-tidyrunite-and-tidyrseparate}}
 
 Sometimes we'll want to \emph{separate} contents of a single column into multiple columns, or \emph{combine} entries from different columns into a single column.
 
 For example, the following data frame has \emph{genus} and \emph{species} in separate columns:
 
-id
-
-genus
-
-species
-
-common\_name
-
-1
-
-Scorpaena
-
-guttata
-
-sculpin
-
-2
-
-Sebastes
-
-miniatus
-
-vermillion
-
 We may want to combine the genus and species into a single column, \emph{scientific\_name}:
-
-id
-
-scientific\_name
-
-common\_name
-
-1
-
-Scorpaena guttata
-
-sculpin
-
-2
-
-Sebastes miniatus
-
-vermillion
 
 Or we may want to do the reverse (separate information from a single column into multiple columns). Here, we'll learn \texttt{tidyr::unite()} and \texttt{tidyr::separate()} to help us do both.
 
 \hypertarget{tidyrunite-to-merge-information-from-separate-columns}{%
-\subsubsection{\texorpdfstring{\texttt{tidyr::unite()} to merge information from separate columns}{tidyr::unite() to merge information from separate columns}}\label{tidyrunite-to-merge-information-from-separate-columns}}
+\subsection{\texorpdfstring{\texttt{tidyr::unite()} to merge information from separate columns}{tidyr::unite() to merge information from separate columns}}\label{tidyrunite-to-merge-information-from-separate-columns}}
 
-Use \texttt{tidyr::unite()} to combine (paste) information from multiple columns into a single column (as for the scientific name example above)
+Use \texttt{tidyr::unite()} to combine information from multiple columns into a single column (as for the scientific name example above)
 
 \includegraphics{img/rstudio-cheatsheet-unite.png}
 
@@ -2672,7 +2915,7 @@ We need to give \texttt{tidyr::unite()} several arguments:
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{inverts_unite <-}\StringTok{ }\NormalTok{inverts_wide }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{unite}\NormalTok{(}\DataTypeTok{col =} \StringTok{"site_year"}\NormalTok{, }\CommentTok{# What to name the new united column}
+\StringTok{  }\KeywordTok{unite}\NormalTok{(}\DataTypeTok{col =} \StringTok{"site_year"}\NormalTok{, }\CommentTok{# What to name the new united column}
                \KeywordTok{c}\NormalTok{(site, year), }\CommentTok{# The columns we'll unite (site, year)}
                \DataTypeTok{sep =} \StringTok{"_"}\NormalTok{) }\CommentTok{# How to separate the things we're uniting}
 \end{Highlighting}
@@ -2725,7 +2968,7 @@ Try updating the separator from "\_" to ``\emph{hello!}'' to see what the outcom
 \end{verbatim}
 
 \hypertarget{tidyrseparate-to-separate-information-into-multiple-columns}{%
-\subsubsection{\texorpdfstring{\texttt{tidyr::separate()} to separate information into multiple columns}{tidyr::separate() to separate information into multiple columns}}\label{tidyrseparate-to-separate-information-into-multiple-columns}}
+\subsection{\texorpdfstring{\texttt{tidyr::separate()} to separate information into multiple columns}{tidyr::separate() to separate information into multiple columns}}\label{tidyrseparate-to-separate-information-into-multiple-columns}}
 
 While \texttt{tidyr::unite()} allows us to combine information from multiple columns, it's more likely that you'll \emph{start} with a single column that you want to split up into pieces.
 
@@ -2848,150 +3091,165 @@ No warning there about things being discarded. Explore \emph{inverts\_sep\_all}:
 
 We see that the resulting data frame has split \emph{year\_site\_name} into three separate columns, \emph{sample\_year}, \emph{location}, and \emph{sp\_name}, but now everything after the second break (``-'') remains together in \emph{sp\_name} instead of dropping pieces following the third word.
 
-\hypertarget{convert-between-explicit-and-implicit-missings-nas}{%
-\subsection{\texorpdfstring{Convert between explicit and implicit missings (\texttt{NA}s)}{Convert between explicit and implicit missings (NAs)}}\label{convert-between-explicit-and-implicit-missings-nas}}
+\hypertarget{get-just-the-numbers-with-readrparse_number}{%
+\section{\texorpdfstring{Get just the numbers with \texttt{readr::parse\_number()}}{Get just the numbers with readr::parse\_number()}}\label{get-just-the-numbers-with-readrparse_number}}
 
-An \emph{explicit missing} is when every possible outcome actually appears in a data frame as a row, even if a variable of interest for that row is missing (\texttt{NA}).
-
-Conversely, an \emph{implicit missing} is when an observation (row) does \emph{not} appear in the data frame because a variable of interest contains an \texttt{NA} missing value.
-
-Consider the following data:
-
-day
-
-animal
-
-food\_choice
-
-Monday
-
-eagle
-
-fish
-
-Monday
-
-mountain lion
-
-squirrel
-
-Monday
-
-toad
-
-NA
-
-Tuesday
-
-eagle
-
-fish
-
-Tuesday
-
-mountain lion
-
-deer
-
-Tuesday
-
-toad
-
-flies
-
-Notice that the row for \textbf{toad} still appears in the dataset for \textbf{Tuesday}, despite having a missing food choice for that day. This is an \emph{explicit missing} because the row still appears in the data frame.
-
-If that row was removed, the resulting dataset would look like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df_missings }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{drop_na}\NormalTok{(food_choice) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{kable}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-day
-
-animal
-
-food\_choice
-
-Monday
-
-eagle
-
-fish
-
-Monday
-
-mountain lion
-
-squirrel
-
-Tuesday
-
-eagle
-
-fish
-
-Tuesday
-
-mountain lion
-
-deer
-
-Tuesday
-
-toad
-
-flies
-
-\ldots{}and if your reaction is ``But then how do I know there's a toad from \textbf{MONDAY}?'', then you can see how it can be a bit risky to have \emph{implicit missings} instead of \emph{explicit missings}.
-
-Whichever we choose, we can convert between the two forms using \texttt{tidyr::drop\_na()} or \texttt{tidyr::complete()}:
+Sometimes, data are entered in a way that combines numeric information with other character bits. Like:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{tidyr::drop\_na()}: removes observations (rows) that contain \texttt{NA} for variable(s) of interest
+  152.4 grams
 \item
-  \texttt{tidyr::complete()}: turns implicit missing values into explicit missing values by completing a data frame with missing combinations of data
+  \$ 800.23
+\item
+  54.6 \%
+\item
+  mass 458.9 lbs
 \end{itemize}
 
-We'll use both here, starting with the \emph{inverts\_long} data frame we created above.
+But usually, we want to work with the numeric piece on its own.
 
-Looking through \emph{inverts\_long}, we'll see that there are \texttt{NA} observations for every species at site \textbf{bull} in 2018 - but those \texttt{NA} counts do show up. First, we'll use \texttt{tidyr::drop\_na()} to make those missings implicit (invisible) instead:
+\textbf{Note: keep that in mind for data entry - it's good to include units, symbols, and descriptive characters, but include them in a separate column, and/or in metadata!}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{inverts_implicit_NA <-}\StringTok{ }\NormalTok{inverts_long }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{drop_na}\NormalTok{(sp_count)}
-\end{Highlighting}
-\end{Shaded}
+We can isolate \emph{just} the numeric part of an entry using \texttt{readr::parse\_number()}.
 
-See that now, the rows that contained an \texttt{NA} in the \emph{sp\_count} column from \emph{inverts\_long} have been removed.
+As an example, let's return to the \textbf{inverts\_unite} object we created previously. Let's say that we want to create a new column that contains only the numeric part from \textbf{site\_year}.
 
-WAIT, I want them back! We can ask R to create explicit missings (by identifying which combinations of groups currently don't appear in the data frame) using \texttt{tidyr::complete()}:
+We could use \texttt{parse\_number()} as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{inverts_explicit_NA <-}\StringTok{ }\NormalTok{inverts_implicit_NA }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{complete}\NormalTok{(month, site, common_name, year)}
+\NormalTok{parse_yr <-}\StringTok{ }\NormalTok{inverts_unite }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{year_num =} \KeywordTok{parse_number}\NormalTok{(site_year)}
+\NormalTok{  )}
 \end{Highlighting}
 \end{Shaded}
 
-Now you'll see \texttt{inverts\_explicit\_NA} has those 5 ``missing'' observations shown in the data frame.
+Notice that \textbf{parse\_yr} now has an additional column, year, which only contains the numeric piece from the \textbf{site\_year} column. Cool!
 
-\hypertarget{activities}{%
-\subsection{Activities}\label{activities}}
+\hypertarget{detecting-a-string-pattern-with-stringrstr_detect}{%
+\section{\texorpdfstring{Detecting a string pattern with \texttt{stringr::str\_detect()}}{Detecting a string pattern with stringr::str\_detect()}}\label{detecting-a-string-pattern-with-stringrstr_detect}}
 
-TODO
+Sometimes we'll want to find observations that contain a specific string pattern within a variable of interest.
 
-\hypertarget{fun-facts-insights}{%
-\subsection{Fun facts / insights}\label{fun-facts-insights}}
+For example, consider the fantasy data below:
 
-TODO
+There might be a time when we would want to use observations that:
+
+\begin{itemize}
+\tightlist
+\item
+  Contain the string ``fish'', in isolation or within a larger string (like ``rockfish'')
+\item
+  Contain the string ``blue''
+\end{itemize}
+
+In those cases, it would be useful to \textbf{detect} a string pattern. Here, we'll use \texttt{stringr::str\_detect()} to find and keep observations that contain our specified string pattern.
+
+Refamiliarize yourself with the \textbf{inverts} object:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(inverts)}
+\end{Highlighting}
+\end{Shaded}
+
+First, we want to detect observations where the \textbf{site} variable contains string pattern ``sc''. Note that there are two sites that contain the pattern: \textbf{scdi} and \textbf{sctw}.
+
+Using \texttt{str\_detect()} to find and keep observations where the \textbf{site} variable contains pattern ``sc'':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sc_detect <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+    \KeywordTok{str_detect}\NormalTok{(site, }\DataTypeTok{pattern =} \StringTok{"sc"}\NormalTok{)}
+\NormalTok{  )}
+
+\CommentTok{# Use `unique` to return the unique entries in the site column:}
+\KeywordTok{unique}\NormalTok{(sc_detect}\OperatorTok{$}\NormalTok{site)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "scdi" "sctw"
+\end{verbatim}
+
+We see that only sites \textbf{scdi} and \textbf{sctw} remain in \textbf{sc\_detect}.
+
+\hypertarget{activity-3}{%
+\subsection{Activity}\label{activity-3}}
+
+Create a new object called \textbf{in\_detect}, starting from \textbf{inverts}, that only contains observations if the \textbf{common\_name} variable contains the string pattern ``in''.
+
+What species remain?
+
+Solution:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{in_detect <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+    \KeywordTok{str_detect}\NormalTok{(common_name, }\DataTypeTok{pattern =} \StringTok{"in"}\NormalTok{)}
+\NormalTok{  )}
+
+\KeywordTok{unique}\NormalTok{(in_detect}\OperatorTok{$}\NormalTok{common_name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "california spiny lobster" "purple urchin"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Only 'california spiny lobster' and 'purple urchin' remain!}
+\end{Highlighting}
+\end{Shaded}
+
+We can similarly choose to \emph{exclude} observations that contain a set string pattern by adding the \texttt{negate\ =\ TRUE} argument within \texttt{str\_detect()}.
+
+For example, to exclude any observations where the common name contains ``california,'' we'd use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no_ca <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+    \KeywordTok{str_detect}\NormalTok{(common_name, }\DataTypeTok{pattern =} \StringTok{"california"}\NormalTok{, }\DataTypeTok{negate =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Look at \textbf{no\_ca} to confirm that ``california spiny lobster'' and ``california cone snail'' have been excluded.
+
+\hypertarget{replacing-a-string-with-stringrstr_replace}{%
+\section{\texorpdfstring{Replacing a string with \texttt{stringr::str\_replace()}}{Replacing a string with stringr::str\_replace()}}\label{replacing-a-string-with-stringrstr_replace}}
+
+Was data entered in a way that's difficult to code with, or is just plain annoying? Did someone wrongly enter ``fish'' as ``fsh'' throughout the spreadsheet, and you want to update it everywhere?
+
+Use \texttt{stringr::str\_replace()} to automatically replace a string pattern.
+
+\textbf{Warning}: The pattern will be replaced everywhere - so if you ask to replace ``fsh'' with ``fish'', then ``offshore'' would be updated to ``offishore''. Be careful to ensure that when you think you're making one replacement, you're not also replacing something else unexpectedly.
+
+Starting with inverts, let's any place we find ``california'' we want to replace it with the abbreviation ``CA'':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_abbr <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{common_name =} 
+      \KeywordTok{str_replace}\NormalTok{(common_name, }
+              \DataTypeTok{pattern =} \StringTok{"california"}\NormalTok{, }
+              \DataTypeTok{replacement =} \StringTok{"CA"}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+Now, check to confirm that ``california'' has been replaced with ``CA''.
+
+\hypertarget{end-tidying-session}{%
+\subsection{\texorpdfstring{END \textbf{tidying} session!}{END tidying session!}}\label{end-tidying-session}}
 
 \hypertarget{vlookup}{%
 \chapter{Dplyr and vlookups}\label{vlookup}}
@@ -3021,6 +3279,8 @@ In this session, we'll expand our data wrangling toolkit using:
   \texttt{filter()} to conditionally subset our data by \textbf{rows}, and
 \item
   \texttt{*\_join()} functions to merge data frames together
+\item
+  Make a nicely formatted table with \texttt{kable()} and \texttt{kableExtra}
 \end{itemize}
 
 The combination of \texttt{filter()} and \texttt{*\_join()} - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.
@@ -3049,17 +3309,16 @@ The combination of \texttt{filter()} and \texttt{*\_join()} - to return rows sat
   \href{https://dplyr.tidyverse.org/reference/join.html}{\texttt{join()} documentation from tidyverse.org}
 \item
   \href{https://r4ds.had.co.nz/}{Chapters 5 and 13 in \emph{R for Data Science} by Garrett Grolemund and Hadley Wickham}
+\item
+  \href{https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html}{``Create awesome HTML tables with knitr::kable() and kableExtra'' by Hao Zhu}
 \end{itemize}
 
-\hypertarget{lessons}{%
-\section{Lessons}\label{lessons}}
-
-\hypertarget{getting-started---create-a-new-.rmd-attach-packages-get-data-1}{%
-\subsection{Getting started - Create a new .Rmd, attach packages \& get data}\label{getting-started---create-a-new-.rmd-attach-packages-get-data-1}}
+\hypertarget{set-up-create-a-new-.rmd-attach-packages-get-data}{%
+\section{Set-up: Create a new .Rmd, attach packages \& get data}\label{set-up-create-a-new-.rmd-attach-packages-get-data}}
 
 Create a new R Markdown document in your r-workshop project and knit to save as \textbf{filter\_join.Rmd}. Remove all the example code (everything below the set-up code chunk).
 
-In this session, we'll use three packages:
+In this session, we'll use four packages:
 
 \begin{itemize}
 \tightlist
@@ -3069,6 +3328,8 @@ In this session, we'll use three packages:
   \texttt{readxl}
 \item
   \texttt{here}
+\item
+  \texttt{kableExtra}
 \end{itemize}
 
 Attach the packages in the setup code chunk in your .Rmd:
@@ -3079,6 +3340,7 @@ Attach the packages in the setup code chunk in your .Rmd:
 \KeywordTok{library}\NormalTok{(tidyverse)}
 \KeywordTok{library}\NormalTok{(readxl)}
 \KeywordTok{library}\NormalTok{(here)}
+\KeywordTok{library}\NormalTok{(kableExtra)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3087,28 +3349,28 @@ Then create a new code chunk to read in three files from your `data' subfolder:
 \begin{itemize}
 \tightlist
 \item
-  invert\_counts\_curated.xlsx
+  inverts.xlsx
 \item
-  fish\_counts\_curated.csv
+  fish.csv
 \item
-  kelp\_counts\_curated.xlsx
+  kelp.xlsx
 \end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Read in data: }
-\NormalTok{invert_counts <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"invert_counts_curated.xlsx"}\NormalTok{))}
-\NormalTok{fish_counts <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"fish_counts_curated.csv"}\NormalTok{))}
-\NormalTok{kelp_counts_abur <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp_counts_curated.xlsx"}\NormalTok{))}
+\NormalTok{inverts <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"inverts.xlsx"}\NormalTok{))}
+\NormalTok{fish <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"fish.csv"}\NormalTok{))}
+\NormalTok{kelp <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"kelp.xlsx"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-We should always explore the data we've read in using functions like \texttt{View()}, \texttt{names()}, \texttt{summary()}, \texttt{head()} and \texttt{tail()} to ensure that the data we \emph{think} we've read in is \emph{actually} the data we've read in.
+We should always explore the data we've read in using functions. Use \texttt{View()}, \texttt{names()}, \texttt{summary()}, \texttt{head()} and \texttt{tail()} to check it out.
 
 Now, let's use \texttt{filter()} to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
-\hypertarget{filter-to-conditionally-subset-by-rows}{%
-\subsection{\texorpdfstring{\texttt{filter()} to conditionally subset by rows}{filter() to conditionally subset by rows}}\label{filter-to-conditionally-subset-by-rows}}
+\hypertarget{dplyrfilter-to-conditionally-subset-by-rows}{%
+\section{\texorpdfstring{\texttt{dplyr::filter()} to conditionally subset by rows}{dplyr::filter() to conditionally subset by rows}}\label{dplyrfilter-to-conditionally-subset-by-rows}}
 
 Use \texttt{filter()} to let R know which \textbf{rows} you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables.
 
@@ -3141,12 +3403,12 @@ Here, we'll learn some common ways to use \texttt{filter()}.
 \hypertarget{filter-rows-by-matching-a-single-character-string}{%
 \subsubsection{Filter rows by matching a single character string}\label{filter-rows-by-matching-a-single-character-string}}
 
-Let's say we want to keep all observations from the fish\_counts data frame where the common name is ``garibaldi.'' Here, we need to tell R to only \emph{keep rows} from the \textbf{fish\_counts} data frame when the common name (\textbf{common\_name} variable) exactly matches \textbf{garibaldi}.
+Let's say we want to keep all observations from the \textbf{fish} data frame where the common name is ``garibaldi.'' Here, we need to tell R to only \emph{keep rows} from the \textbf{fish} data frame when the common name (\textbf{common\_name} variable) exactly matches \textbf{garibaldi}.
 Use \texttt{==} to ask R to look for matching strings:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_garibaldi <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(fish_counts, common_name }\OperatorTok{==}\StringTok{ "garibaldi"}\NormalTok{)}
+\NormalTok{fish_garibaldi <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(fish, common_name }\OperatorTok{==}\StringTok{ "garibaldi"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3156,21 +3418,21 @@ You could also do this using the pipe operator \texttt{\%\textgreater{}\%}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_garibaldi <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{fish_garibaldi <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "garibaldi"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{activity-3}{%
-\subsubsection{Activity}\label{activity-3}}
+\hypertarget{activity-4}{%
+\subsection{Activity}\label{activity-4}}
 
-\textbf{Task}: Create a subset from the \textbf{fish\_counts} data frame, stored as object \textbf{fish\_abur}, that only contains observations from Arroyo Burro (site `abur').
+\textbf{Task}: Create a subset from the \textbf{fish} data frame, stored as object \textbf{fish\_abur}, that only contains observations from Arroyo Burro (site `abur').
 
 \textbf{Solution}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_abur <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{fish_abur <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(site }\OperatorTok{==}\StringTok{ "abur"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -3178,13 +3440,13 @@ You could also do this using the pipe operator \texttt{\%\textgreater{}\%}:
 Explore the subset you just created to ensure that only Arroyo Burro observations are returned.
 
 \hypertarget{filter-rows-based-on-numeric-conditions}{%
-\subsubsection{Filter rows based on numeric conditions}\label{filter-rows-based-on-numeric-conditions}}
+\subsection{Filter rows based on numeric conditions}\label{filter-rows-based-on-numeric-conditions}}
 
 Use expected operators (\textgreater{}, \textless{}, \textgreater{}=, \textless{}=, ==) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the \textbf{total\_count} column value is \textgreater{}= 50:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_over50 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(fish_counts, total_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
+\NormalTok{fish_over50 <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(fish, total_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3192,23 +3454,23 @@ Or, using the pipe:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_over50 <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{fish_over50 <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(total_count }\OperatorTok{>=}\StringTok{ }\DecValTok{50}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{filter-to-return-rows-that-match-this-or-that-or-that}{%
-\subsubsection{\texorpdfstring{Filter to return rows that match \emph{this} OR \emph{that} OR \emph{that}}{Filter to return rows that match this OR that OR that}}\label{filter-to-return-rows-that-match-this-or-that-or-that}}
+\subsection{\texorpdfstring{Filter to return rows that match \emph{this} OR \emph{that} OR \emph{that}}{Filter to return rows that match this OR that OR that}}\label{filter-to-return-rows-that-match-this-or-that-or-that}}
 
-What if we want to return a subset of the fish\_counts df that contains \emph{garibaldi}, \emph{blacksmith} OR \emph{black surfperch}?
+What if we want to return a subset of the \textbf{fish} df that contains \emph{garibaldi}, \emph{blacksmith} OR \emph{black surfperch}?
 
-There are several ways to write an ``OR'' statement for filtering, which will keep any observations that match Condition A \emph{or} Condition B \emph{or} Condition C. In this example, we will create a subset from \textbf{fish\_counts} that only contains rows where the \textbf{common\_name} is \emph{garibaldi} or \emph{blacksmith} or \emph{black surfperch}.
+There are several ways to write an ``OR'' statement for filtering, which will keep any observations that match Condition A \emph{or} Condition B \emph{or} Condition C. In this example, we will create a subset from \textbf{fish} that only contains rows where the \textbf{common\_name} is \emph{garibaldi} or \emph{blacksmith} or \emph{black surfperch}.
 
 Use \texttt{\%in\%} to ask R to look for \emph{any matches} within a combined vector of strings:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_3sp <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{fish_3sp <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"garibaldi"}\NormalTok{, }\StringTok{"blacksmith"}\NormalTok{, }\StringTok{"black surfperch"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
@@ -3217,21 +3479,21 @@ Alternatively, you can indicate \textbf{OR} using the vertical line operator \te
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_3sp <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{fish_3sp <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "garibaldi"} \OperatorTok{|}\StringTok{ }\NormalTok{common_name }\OperatorTok{==}\StringTok{ "blacksmith"} \OperatorTok{|}\StringTok{ }\NormalTok{common_name }\OperatorTok{==}\StringTok{ "black surfperch"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{filter-to-return-rows-that-match-conditions-for-multiple-variables}{%
-\subsubsection{Filter to return rows that match conditions for multiple variables}\label{filter-to-return-rows-that-match-conditions-for-multiple-variables}}
+\subsection{Filter to return rows that match conditions for multiple variables}\label{filter-to-return-rows-that-match-conditions-for-multiple-variables}}
 
 In the previous examples, we set filter conditions based on a single variable (e.g.~common\_name). What if we want to return observations that satisfy conditions for multiple variables?
 
-For example: We want to create a subset that only returns rows from `invert\_counts' where the \textbf{site} is ``abur'' or ``mohk'' \emph{and} the \textbf{common\_name} is ``purple urchin.'' In \texttt{filter()}, add a comma (or ampersand, \&) between arguments for multiple \emph{AND} conditions:
+For example: We want to create a subset that only returns rows from \textbf{inverts} where the \textbf{site} is ``abur'' or ``mohk'' \emph{and} the \textbf{common\_name} is ``purple urchin.'' In \texttt{filter()}, add a comma (or ampersand `\&') between arguments for multiple ``and'' conditions:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(site }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"abur"}\NormalTok{,}\StringTok{"mohk"}\NormalTok{), common_name }\OperatorTok{==}\StringTok{ "purple urchin"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -3256,7 +3518,7 @@ Like most things in R, there are other ways to do the same thing. For example, y
 \begin{Highlighting}[]
 \CommentTok{# Use the ampersand (&) to add another condition "and this must be true":}
 
-\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(site }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"abur"}\NormalTok{,}\StringTok{"mohk"}\NormalTok{) }\OperatorTok{&}\StringTok{ }\NormalTok{common_name }\OperatorTok{==}\StringTok{ "purple urchin"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -3267,16 +3529,16 @@ Or you could just do two filter steps in sequence:
 \begin{Highlighting}[]
 \CommentTok{# Written as sequential filter steps:}
 
-\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{urchin_abur_mohk <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(site }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"abur"}\NormalTok{, }\StringTok{"mohk"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "purple urchin"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{activity-combined-filter-conditions}{%
-\paragraph{Activity: combined filter conditions}\label{activity-combined-filter-conditions}}
+\subsection{Activity: combined filter conditions}\label{activity-combined-filter-conditions}}
 
-\textbf{Task:} Create a subset from the \textbf{fish\_counts} data frame, called \textbf{low\_gb\_wr} that only contains:
+\textbf{Task:} Create a subset from the \textbf{fish} data frame, called \textbf{low\_gb\_wr} that only contains:
 
 \begin{itemize}
 \tightlist
@@ -3290,7 +3552,7 @@ Or you could just do two filter steps in sequence:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{low_gb_wr <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{low_gb_wr <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"garibaldi"}\NormalTok{, }\StringTok{"rock wrasse"}\NormalTok{), }
 \NormalTok{         total_count }\OperatorTok{<=}\StringTok{ }\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
@@ -3298,70 +3560,12 @@ Or you could just do two filter steps in sequence:
 
 \textbf{Sync your local project to your repo on GitHub.}
 
-\hypertarget{filter-to-return-rows-that-do-not-match-conditions}{%
-\subsubsection{\texorpdfstring{Filter to return rows that \emph{do not} match conditions}{Filter to return rows that do not match conditions}}\label{filter-to-return-rows-that-do-not-match-conditions}}
-
-Sometimes we might want to exclude observations. Here, let's say we want to make a subset that contains all rows from \textbf{fish\_counts} except those recorded at the Mohawk Reef site (``mohk'' in the \emph{site} variable).
-
-We use \texttt{!=} to return observations that \textbf{do not match} a condition.
-
-Like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_no_mohk <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(site }\OperatorTok{!=}\StringTok{ "mohk"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-This similarly works to exclude observations by a value.
-
-For example, if we want to return all observations \emph{except} those where the total fish count is 1, we use:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_more_one <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(total_count }\OperatorTok{!=}\StringTok{ }\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-What if we want to exclude observations for multiple conditions? For example, here we want to return all rows where the fish species \textbf{is not} garibaldi \textbf{or} rock wrasse.
-
-We can use \texttt{filter(!variable\ \%in\%\ c("apple",\ "orange"))} to return rows where the variable does \textbf{not} match ``apple'' or ``orange''. For our fish example, that looks like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{fish_subset <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{common_name }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"garibaldi"}\NormalTok{, }\StringTok{"rock wrasse"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-Which then only returns observations for the other fish species in the dataset.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(fish_subset)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 6 x 4
-##    year site  common_name     total_count
-##   <dbl> <chr> <chr>                 <dbl>
-## 1  2016 abur  black surfperch           2
-## 2  2016 abur  blacksmith                1
-## 3  2016 abur  senorita                 58
-## 4  2016 aque  black surfperch           1
-## 5  2016 aque  blacksmith                1
-## 6  2016 aque  senorita                 57
-\end{verbatim}
-
 \hypertarget{example-combining-filter-with-other-functions-using-the-pipe-operator}{%
-\subsubsection{\texorpdfstring{Example: combining \texttt{filter()} with other functions using the pipe operator (\texttt{\%\textgreater{}\%})}{Example: combining filter() with other functions using the pipe operator (\%\textgreater{}\%)}}\label{example-combining-filter-with-other-functions-using-the-pipe-operator}}
+\subsection{\texorpdfstring{Example: combining \texttt{filter()} with other functions using the pipe operator (\texttt{\%\textgreater{}\%})}{Example: combining filter() with other functions using the pipe operator (\%\textgreater{}\%)}}\label{example-combining-filter-with-other-functions-using-the-pipe-operator}}
 
 We can also use \texttt{filter()} in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the \emph{pipe operator} (\texttt{\%\textgreater{}\%}).
 
-Here, we'll start with the \texttt{invert\_counts} data frame and create a subset that:
+Here, we'll start with the \texttt{inverts} data frame and create a subset that:
 
 \begin{itemize}
 \tightlist
@@ -3376,7 +3580,7 @@ Here, we'll start with the \texttt{invert\_counts} data frame and create a subse
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Counts of scallops by site (all years included):}
-\NormalTok{scallop_count_by_site <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{scallop_count_by_site <-}\StringTok{ }\NormalTok{inverts }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \StringTok{'2016'}\OperatorTok{:}\StringTok{'2018'}\NormalTok{, }
                \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }
                \DataTypeTok{values_to =} \StringTok{"sp_count"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
@@ -3409,8 +3613,8 @@ Here, we'll start with the \texttt{invert\_counts} data frame and create a subse
 ## 11 sctw       1259
 \end{verbatim}
 
-\hypertarget{merging-data-frames-with-_join}{%
-\subsection{\texorpdfstring{Merging data frames with \texttt{*\_join()}}{Merging data frames with *\_join()}}\label{merging-data-frames-with-_join}}
+\hypertarget{join-data-frames-with-dplyr_join}{%
+\section{\texorpdfstring{Join data frames with \texttt{dplyr::*\_join()}}{Join data frames with dplyr::*\_join()}}\label{join-data-frames-with-dplyr_join}}
 
 Excel's \texttt{VLOOKUP} can also be used to merge data from separate tables or worksheets. Here, we'll use the \texttt{*\_join()} functions to merge separate data frames in R.
 
@@ -3430,19 +3634,19 @@ From R Documentation (\texttt{?join}):
 Schematic (from RStudio data wrangling cheat sheet):
 \includegraphics{img/rstudio-cheatsheet-combine-options1.png}
 
-To clarify what the different joins are doing, let's first make a subset of the \emph{fish\_counts} data frame that only contains observations from 2016 and 2017.
+To clarify what the different joins are doing, let's first make a subset of the \emph{fish} data frame that only contains observations from 2016 and 2017.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017}\NormalTok{ <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017}\NormalTok{ <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ }\DecValTok{2016} \OperatorTok{|}\StringTok{ }\NormalTok{year }\OperatorTok{==}\StringTok{ }\DecValTok{2017}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-Take a look to ensure that only those years are included with \texttt{View(fish\_2016\_2017)}. Now, let's merge it with our kelp fronds data in different ways.
+Take a look to ensure that only those years are included with \texttt{View(fish\_2016\_2017)}. Now, let's merge it with our Arroyo Burro kelp fronds data (kelp\_abur) in different ways.
 
 \hypertarget{full_join-to-merge-data-frames-keeping-everything}{%
-\subsubsection{\texorpdfstring{\texttt{full\_join()} to merge data frames, keeping everything}{full\_join() to merge data frames, keeping everything}}\label{full_join-to-merge-data-frames-keeping-everything}}
+\subsection{\texorpdfstring{\texttt{full\_join()} to merge data frames, keeping everything}{full\_join() to merge data frames, keeping everything}}\label{full_join-to-merge-data-frames-keeping-everything}}
 
 When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):
 
@@ -3458,9 +3662,9 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Join the fish_counts and kelp_counts_abur together: }
+\CommentTok{# Join the fish_2016_2017 and kelp_abur}
 \NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_counts_abur, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"site"}\NormalTok{)) }\CommentTok{# Uh oh. An error message.}
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_abur, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"site"}\NormalTok{)) }\CommentTok{# Uh oh. An error message.}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3469,11 +3673,11 @@ When we try to do that join, we get an error message:
 
 Let's google this. That means copying this from the console and pasting it into Google.
 
-What's going on here? First, there's something fishy (ha) going on with the class of the \emph{year} variable in \texttt{kelp\_counts\_abur}. Use the \texttt{class()} function to see how R understands that variable (remember, we use \texttt{\$} to return a specific column from a data frame).
+What's going on here? First, there's something fishy (ha) going on with the class of the \emph{year} variable in \texttt{kelp\_abur}. Use the \texttt{class()} function to see how R understands that variable (remember, we use \texttt{\$} to return a specific column from a data frame).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{class}\NormalTok{(kelp_counts_abur}\OperatorTok{$}\NormalTok{year)}
+\KeywordTok{class}\NormalTok{(kelp_abur}\OperatorTok{$}\NormalTok{year)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3483,7 +3687,7 @@ What's going on here? First, there's something fishy (ha) going on with the clas
 
 So the variable is currently stored as a character. Why?
 
-If we go back to the kelp\_counts\_curated.xlsx file, we'll see that the numbers in both the year and month column have been stored as \emph{text}. There are several hints Excel gives us:
+If we go back to the kelp.xlsx file, we'll see that the numbers in both the year and month column have been stored as \emph{text}. There are several hints Excel gives us:
 
 \begin{itemize}
 \tightlist
@@ -3500,7 +3704,7 @@ There are a number of ways to do this in R. We'll use \texttt{mutate()} to overw
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# Coerce the class of 'year' to numeric}
-\NormalTok{kelp_counts_abur <-}\StringTok{ }\NormalTok{kelp_counts_abur }\OperatorTok{%>%}\StringTok{ }
+\NormalTok{kelp_abur <-}\StringTok{ }\NormalTok{kelp_abur }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.numeric}\NormalTok{(year))}
 \end{Highlighting}
 \end{Shaded}
@@ -3509,7 +3713,7 @@ Now if we check the class of the \emph{year} variable in \texttt{kelp\_counts\_a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{class}\NormalTok{(kelp_counts_abur}\OperatorTok{$}\NormalTok{year)}
+\KeywordTok{class}\NormalTok{(kelp_abur}\OperatorTok{$}\NormalTok{year)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3524,7 +3728,7 @@ OK, so now the class of \emph{year} in the data frames we're joining is the same
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{abur_kelp_join <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_counts_abur, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"site"}\NormalTok{))}
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(kelp_abur, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"site"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3542,14 +3746,16 @@ Let's look at the merged data frame with \texttt{View(abur\_kelp\_join)}. A few 
 \end{enumerate}
 
 Because all data (observations \& columns) are retained, \texttt{full\_join()} is the safest option if you're unclear about how to merge data frames.
-\#\#\#\# \texttt{left\_join()} to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame
 
-Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them with \emph{kelp\_counts\_abur} while only keeping observations from \emph{kelp\_counts\_abur} that match an observation within \emph{fish\_2016\_2017}. So when we use \texttt{left\_join()}, any information on kelp counts from 2018 should be dropped.
+\hypertarget{left_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame}{%
+\subsection{\texorpdfstring{\texttt{left\_join()} to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame}{left\_join() to merge data frames, keeping everything in the `x' data frame and only matches from the `y' data frame}}\label{left_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame}}
+
+Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them with \emph{kelp\_abur} while only keeping observations from \emph{kelp\_abur} that match an observation within \emph{fish\_2016\_2017}. So when we use \texttt{left\_join()}, any information on kelp frond counts from 2018 should be dropped, because those wouldn't have a match in the left data frame.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{fish_kelp_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017}\NormalTok{ <-}\StringTok{ }\NormalTok{fish_}\DecValTok{2016}\NormalTok{_}\DecValTok{2017} \OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{left_join}\NormalTok{(kelp_counts_abur)}
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(kelp_abur)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3557,21 +3763,19 @@ Now, we want to keep all observations in \emph{fish\_2016\_2017}, and merge them
 ## Joining, by = c("year", "site")
 \end{verbatim}
 
-Notice when you look at \texttt{fish\_kelp\_2016\_2017}, the 2018 data that \textbf{does} exist in \texttt{kelp\_counts\_abur} does \textbf{not} get joined to the \texttt{fish\_2016\_2017} data frame, because \texttt{left\_join(df\_a,\ df\_b)} will only keep observations from \texttt{df\_b} if they have a match in \texttt{df\_a}!
+Notice when you look at \texttt{fish\_kelp\_2016\_2017}, the 2018 data that \textbf{does} exist in \texttt{kelp\_abur} does \textbf{not} get joined to the \texttt{fish\_2016\_2017} data frame, because \texttt{left\_join(df\_a,\ df\_b)} will only keep observations from \texttt{df\_b} if they have a match in \texttt{df\_a}!
 
 \hypertarget{inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}{%
-\subsubsection{\texorpdfstring{\texttt{inner\_join()} to merge data frames, only keeping observations with a match in \textbf{both}}{inner\_join() to merge data frames, only keeping observations with a match in both}}\label{inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}}
+\subsection{\texorpdfstring{\texttt{inner\_join()} to merge data frames, only keeping observations with a match in \textbf{both}}{inner\_join() to merge data frames, only keeping observations with a match in both}}\label{inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both}}
 
-When we used \texttt{left\_join(df\_a,\ df\_b)}, we kept all observations in \texttt{df\_a} but \emph{only observations from \texttt{df\_b} that matched an entry in \texttt{df\_a}} (in other words, some entries from \texttt{df\_b} were excluded).
+Use \texttt{inner\_join()} if you \textbf{only} want to retain observations that have matches across \textbf{both data} frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do!
 
-Use \texttt{inner\_join()} if you know that you \textbf{only} want to retain observations when they match across \textbf{both data} frames. Caution: this is built to exclude any observations that don't match across data frames by joined variables - double check to make sure this is actually what you want to do!
-
-For example, if we use \texttt{inner\_join()} to merge fish\_counts and kelp\_counts\_abur, then we are asking R to \textbf{only return observations where the joining variables (\emph{year} and \emph{site}) have matches in both data frames.} Let's see what the outcome is:
+For example, if we use \texttt{inner\_join()} to merge fish and kelp\_abur, then we are asking R to \textbf{only return observations where the joining variables (\emph{year} and \emph{site}) have matches in both data frames.} Let's see what the outcome is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{abur_kelp_inner_join <-}\StringTok{ }\NormalTok{fish_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{inner_join}\NormalTok{(kelp_counts_abur)}
+\NormalTok{kelp_fish_injoin <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{inner_join}\NormalTok{(kelp_abur)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3581,105 +3785,73 @@ For example, if we use \texttt{inner\_join()} to merge fish\_counts and kelp\_co
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{abur_kelp_inner_join}
+\CommentTok{# kelp_fish_injoin}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 15 x 6
-##     year site  common_name     total_count month total_fronds
-##    <dbl> <chr> <chr>                 <dbl> <chr>        <dbl>
-##  1  2016 abur  black surfperch           2 7              307
-##  2  2016 abur  blacksmith                1 7              307
-##  3  2016 abur  garibaldi                 1 7              307
-##  4  2016 abur  rock wrasse               2 7              307
-##  5  2016 abur  senorita                 58 7              307
-##  6  2017 abur  black surfperch           4 7              604
-##  7  2017 abur  blacksmith                1 7              604
-##  8  2017 abur  garibaldi                 1 7              604
-##  9  2017 abur  rock wrasse              57 7              604
-## 10  2017 abur  senorita                 64 7              604
-## 11  2018 abur  black surfperch           1 7             3532
-## 12  2018 abur  blacksmith                1 7             3532
-## 13  2018 abur  garibaldi                 1 7             3532
-## 14  2018 abur  rock wrasse               1 7             3532
-## 15  2018 abur  senorita                  1 7             3532
-\end{verbatim}
+Here, we see that only observations (rows) where there is a match for \emph{year} and \emph{site} in both data frames are returned.
 
-Here, we see that only observations where there is a match for \emph{year} and \emph{site} in both data frames are returned.
-
-\hypertarget{join-in-a-sequence}{%
-\subsubsection{\texorpdfstring{\texttt{*\_join()} in a sequence}{*\_join() in a sequence}}\label{join-in-a-sequence}}
-
-We can also merge data frames as part of a sequence of wrangling steps.
-
-As an example: Starting with the \texttt{invert\_counts} data frame, we want to:
-
-\begin{itemize}
-\tightlist
-\item
-  First, use \texttt{pivot\_longer()} to get year and counts each into a single column
-\item
-  Convert the class of \emph{year} to numeric (so it can join with another numeric year variable)
-\item
-  Then, only keep observations for ``california spiny lobster''
-\item
-  Next, join the \texttt{kelp\_counts\_abur} to the resulting subset above, \textbf{only keeping observations that have a match in both data frames}
-\end{itemize}
-
-That might look like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{abur_lobster_kelp <-}\StringTok{ }\NormalTok{invert_counts }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\StringTok{'2016'}\OperatorTok{:}\StringTok{'2018'}\NormalTok{, }\DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }\DataTypeTok{values_to =} \StringTok{"total_counts"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{as.numeric}\NormalTok{(year)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(common_name }\OperatorTok{==}\StringTok{ "california spiny lobster"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{inner_join}\NormalTok{(kelp_counts_abur)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Joining, by = c("month", "site", "year")
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{abur_lobster_kelp}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 3 x 6
-##   month site  common_name               year total_counts total_fronds
-##   <chr> <chr> <chr>                    <dbl>        <dbl>        <dbl>
-## 1 7     abur  california spiny lobster  2016           17          307
-## 2 7     abur  california spiny lobster  2017           17          604
-## 3 7     abur  california spiny lobster  2018           16         3532
-\end{verbatim}
-
-\hypertarget{activity-4}{%
-\paragraph{Activity}\label{activity-4}}
+\hypertarget{using-filter-and-join-in-a-sequence}{%
+\subsection{\texorpdfstring{Using \texttt{filter()} and \texttt{join()} in a sequence}{Using filter() and join() in a sequence}}\label{using-filter-and-join-in-a-sequence}}
 
 Now let's combine what we've learned about piping, filtering and joining!
 
-\textbf{Task:} Complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called \texttt{my\_fish\_join}:
+Let's complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called \texttt{my\_fish\_join}:
 
 \begin{itemize}
 \tightlist
 \item
-  Start with \texttt{fish\_counts} data frame
+  Start with \textbf{fish} data frame
 \item
-  Filter to only including observations for 2017 at Arroyo Burro
+  Filter \textbf{fish} to only including observations for 2017 at Arroyo Burro
 \item
-  Join the \texttt{kelp\_counts\_abur} data frame to the resulting subset using \texttt{left\_join()}
+  Join the \textbf{kelp\_abur} data frame to the resulting subset using \texttt{left\_join()}
 \item
   Add a new column that contains the `fish per kelp fronds' density (total\_count / total\_fronds)
 \end{itemize}
 
-\textbf{Solution:}
+That sequence might look like this:
 
-\textbf{Sync your project with your repo on GitHub.}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_fish_join <-}\StringTok{ }\NormalTok{fish }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{==}\StringTok{ }\DecValTok{2017}\NormalTok{, site }\OperatorTok{==}\StringTok{ "abur"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{left_join}\NormalTok{(kelp_abur, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{, }\StringTok{"site"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{fish_per_frond =}\NormalTok{ total_count }\OperatorTok{/}\StringTok{ }\NormalTok{total_fronds)}
+\end{Highlighting}
+\end{Shaded}
+
+Explore the resulting \textbf{my\_fish\_join} data frame.
+
+\hypertarget{a-nice-html-table-with-kable-and-kableextra}{%
+\section{\texorpdfstring{A nice HTML table with \texttt{kable()} and \texttt{kableExtra}}{A nice HTML table with kable() and kableExtra}}\label{a-nice-html-table-with-kable-and-kableextra}}
+
+With any data frame, you can a nicer looking table in your knitted HTML using \texttt{knitr::kable()} and functions in the \texttt{kableExtra} package.
+
+Start by using \texttt{kable()} with my\_fish\_join, and see what the default HTML table looks like in your knitted document:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(kelp_abur)}
+\end{Highlighting}
+\end{Shaded}
+
+Simple, but quick to get a clear \& useful table! Now let's spruce it up a bit with \texttt{kableExtra::kable\_styling()} to modify HTML table styles:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kelp_abur }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{kable}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{kable_styling}\NormalTok{(}\DataTypeTok{bootstrap_options =} \StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{}with many other options for customizing HTML tables! Make sure to check out \href{https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html}{``Create awesome HTML tables with knitr::kable() and kableExtra'' by Hao Zhu} for more examples and options.
+
+We'll make several more tables later on in the workshop.
+
+\hypertarget{sync-your-project-with-your-repo-on-github}{%
+\subsection{Sync your project with your repo on GitHub}\label{sync-your-project-with-your-repo-on-github}}
 
 \hypertarget{fun-kind-of-scary-facts}{%
 \section{Fun / kind of scary facts}\label{fun-kind-of-scary-facts}}
@@ -3698,16 +3870,6 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
   \texttt{VLOOKUP} will look for and return information from the \emph{first observation} that matches (or approximately matches) a condition. \texttt{filter()} will return all observations (rows) that exactly match a condition.
 \end{enumerate}
 
-\hypertarget{interludes-deep-thoughtsopenscapes}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes}}
-
-\begin{itemize}
-\item
-  Not overusing the pipe in really long sequences. What are other options? Why is that a concern? What are some ways to always know that what's happening in a sequence is what you EXPECT is happening in a sequence? tidylog, check intermediate data frames, sometimes write intermediate data frames, etc.
-\item
-  The risk of partial joins (\& a case for full\_join + drop\_na instead?)
-\end{itemize}
-
 \hypertarget{efficiency-tips-3}{%
 \section{Efficiency Tips}\label{efficiency-tips-3}}
 
@@ -3718,6 +3880,9 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
 \item
   Knit with Command + Shift + K
 \end{itemize}
+
+\hypertarget{end-filter-join-section}{%
+\section{\texorpdfstring{End \texttt{filter()} + \texttt{join()} section}{End filter() + join() section}}\label{end-filter-join-section}}
 
 \hypertarget{collaborating}{%
 \chapter{Collaborating}\label{collaborating}}
@@ -3754,8 +3919,23 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
 \hypertarget{resources-7}{%
 \subsection{Resources}\label{resources-7}}
 
-\hypertarget{lesson-2}{%
-\section{Lesson}\label{lesson-2}}
+\begin{itemize}
+\tightlist
+\item
+  \href{https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit\#slide=id.g63942ead2d_0_219}{Allison Horst ESM 206 Lecture 2}
+\end{itemize}
+
+\hypertarget{lesson}{%
+\section{Lesson}\label{lesson}}
+
+\hypertarget{troubleshooting-help-you-help-yourself}{%
+\section{Troubleshooting: help you help yourself}\label{troubleshooting-help-you-help-yourself}}
+
+Borrow/show Allison's slides
+- \href{https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit\#slide=id.g63942ead2d_0_219}{Allison Horst ESM 206 Lecture 2}
+
+\hypertarget{error-messages-are-your-friends-1}{%
+\subsection{Error messages are your friends}\label{error-messages-are-your-friends-1}}
 
 \hypertarget{efficiency-tips-4}{%
 \section{Efficiency Tips}\label{efficiency-tips-4}}
@@ -3763,18 +3943,20 @@ So, both \texttt{filter()} and \texttt{VLOOKUP} look through your data frame (or
 \hypertarget{additional-thoughts}{%
 \section{Additional thoughts}\label{additional-thoughts}}
 
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+always\_allow\_html: true\tabularnewline
+\bottomrule
+\end{longtable}
+
 \hypertarget{synthesis}{%
 \chapter{Synthesis}\label{synthesis}}
-
-TODO:
-- stringr
-- Argaux,
-- Closing (15 mins)
 
 \hypertarget{summary-7}{%
 \section{Summary}\label{summary-7}}
 
-In this session, we'll pull together the skills that we've learned so far. We'll create a new GitHub repo and R project, wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then share our outputs in a nicely formatted GitHub ReadMe. And we'll learn a few new things along the way!
+In this session, we'll pull together the skills that we've learned so far. We'll create a new GitHub repo and R project, wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then TODO: share our outputs in a nicely formatted GitHub page. And we'll learn a few new things along the way!
 
 \begin{figure}
 \centering
@@ -3790,21 +3972,23 @@ In this session, we'll pull together the skills that we've learned so far. We'll
 \item
   Create a new repo on GitHub
 \item
-  Start a new R project, connected to the repo
+  Clone the repo to create a new version-controlled R project
+\item
+  Add data to **data** folder in working directory
 \item
   Create a new R Markdown document
 \item
-  Attach necessary packages (\texttt{googlesheets4}, \texttt{tidyverse}, \texttt{here})
+  Attach necessary packages (\texttt{tidyverse}, \texttt{here}, \texttt{janitor}, \texttt{kableExtra})
 \item
   Use \texttt{here::here()} for simpler (and safer) file paths
 \item
-  Read in data from a Google sheet with the \texttt{googlesheets4} package in R
+  Data tidying and wrangling (\texttt{dplyr}, \texttt{tidyr}, etc.)
 \item
-  Basic data wrangling (\texttt{dplyr}, \texttt{tidyr}, etc.)
+  HTML tables with \texttt{kable()} and \texttt{kableExtra}
 \item
   Data visualization (\texttt{ggplot2})
 \item
-  Publish with a useful ReadMe to share
+  TODO: Publish with a useful ReadMe to share?
 \end{itemize}
 
 \hypertarget{resources-8}{%
@@ -3813,134 +3997,253 @@ In this session, we'll pull together the skills that we've learned so far. We'll
 \begin{itemize}
 \tightlist
 \item
-  The \href{https://github.com/r-lib/here}{\texttt{here} package}
-\item
-  \href{https://github.com/tidyverse/googlesheets4}{googlesheets4} information
-\item
   \href{https://www.tidyverse.org/blog/2017/12/workflow-vs-script/}{Project oriented workflows} by Jenny Bryan
 \end{itemize}
 
-\hypertarget{lesson-3}{%
-\section{Lesson}\label{lesson-3}}
-
-\hypertarget{set-up}{%
-\subsection{Set-up:}\label{set-up}}
+\hypertarget{set-up-1}{%
+\section{Set-up}\label{set-up-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  Log in to your GitHub account and create a new repository called \texttt{sea-creature-synthesis}
+  In GitHub, create a new repository called \texttt{us-fisheries-landings}
 \item
   Clone the repo to create a version controlled project (remember, copy \& paste the URL from the GitHub Clone / Download)
 \item
-  In the local project folder, create a subfolder called `data'
+  In the local project working directory, create a subfolder called `data'
 \item
-  Copy and paste the \texttt{fish\_counts\_curated.csv} and \texttt{lobster\_counts.csv} into the `data' subfolder
+  Copy and paste the \textbf{noaa\_fisheries.csv} file into the `data' folder
 \item
-  Create a new R Markdown document within your \texttt{sea-creature-synthesis} project
+  Create a new R Markdown document within your \texttt{us-fisheries-landings} project
 \item
-  Knit your .Rmd to html, saving as \texttt{sb\_sea\_creatures.Rmd}
+  Knit your .Rmd to html, saving as \texttt{us\_landings.Rmd}
 \end{itemize}
 
-\hypertarget{attach-packages-and-read-in-the-data}{%
-\subsection{Attach packages and read in the data}\label{attach-packages-and-read-in-the-data}}
+\textbf{Data:}
+File name: noaa\_fisheries.csv
+Description: NOAA Commercial Fisheries Landing data (1950 - 2017)
+Accessed from: \url{https://www.st.nmfs.noaa.gov/commercial-fisheries/commercial-landings/}
+Source: Fisheries Statistics Division of the NOAA Fisheries
+
+\emph{Note on the data:} ``aggregate'' here means ``These names represent aggregations of more than one species. They are not inclusive, but rather represent landings where we do not have species-specific data. Selecting''Sharks``, for example, will not return all sharks but only those where we do not have more specific information.''
+
+\hypertarget{attach-packages-read-in-and-explore-the-data}{%
+\section{Attach packages, read in and explore the data}\label{attach-packages-read-in-and-explore-the-data}}
 
 Attach (load) packages with \texttt{library()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\KeywordTok{library}\NormalTok{(googlesheets4)}
 \KeywordTok{library}\NormalTok{(here)  }
 \KeywordTok{library}\NormalTok{(janitor) }
+\KeywordTok{library}\NormalTok{(kableExtra)}
 \end{Highlighting}
 \end{Shaded}
 
-Now we'll read in our files with \texttt{readr::read\_csv()}, but our files aren't in our \textbf{project root}. They're in the \texttt{data} subfolder.
-
-Use \texttt{here::here()} to direct R where to look for files, if they're not in the project root. Not sure where that is? Type \texttt{here()} in the Console, and it will tell you!
+Read in the noaa\_fisheries.csv data as object \textbf{us\_landings}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{here}\OperatorTok{::}\KeywordTok{here}\NormalTok{()}
+\NormalTok{us_landings <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{,}\StringTok{"noaa_fisheries.csv"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{"/returns/your/project/root/"}
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   Year = col_double(),
+##   State = col_character(),
+##   `AFS Name` = col_character(),
+##   `Landings (pounds)` = col_double(),
+##   `Dollars (USD)` = col_character()
+## )
+\end{verbatim}
 
-Go ahead, find your project root!
-
-Then use \texttt{here::here()} \emph{again} to easily locate a file somewhere outside of the exact project root. In our case, the files we want to read in are in the \texttt{data} subfolder - so we have to tell R how to get there from the root:
+Go exploring a bit:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Read in CSV files}
-\NormalTok{fish_counts <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"fish_counts_curated.csv"}\NormalTok{))}
-\NormalTok{lobster_counts <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"lobster_counts.csv"}\NormalTok{))}
+\KeywordTok{summary}\NormalTok{(us_landings)}
+\KeywordTok{View}\NormalTok{(us_landings)}
+\KeywordTok{names}\NormalTok{(us_landings)}
+\KeywordTok{head}\NormalTok{(us_landings)}
+\KeywordTok{tail}\NormalTok{(us_landings)}
 \end{Highlighting}
 \end{Shaded}
 
-Check out the two data frames (\texttt{fish\_counts} and \texttt{lobster\_counts}).
-
-The \texttt{fish\_counts} data frame is in pretty good shape. But the \texttt{lobster\_counts} df could use some love, because there are ``-99999'' entries indicating \texttt{NA} values, and the column names would be difficult to write code with.
-
-When reading in the lobster data, let's:
+\hypertarget{some-data-cleaning-to-get-salmon-landings}{%
+\section{Some data cleaning to get salmon landings}\label{some-data-cleaning-to-get-salmon-landings}}
 
 \begin{itemize}
 \tightlist
 \item
-  convert every ``-99999'' to an \texttt{NA}
+  Clean up column names (\texttt{clean\_names()})
 \item
-  get the column names into lower snake case using \texttt{janitor::clean\_names()}
+  Convert everything to lower case with \texttt{mutate()} + (\texttt{str\_to\_lower()})
+\item
+  Remove dollar signs in value column (\texttt{mutate()} + \texttt{parse\_number()})
+\item
+  Remove the ``aggregate'' grouping indicator in species (\texttt{mutate()} + a new function! \texttt{str\_remove()}) \%\textgreater{}\%
+\item
+  Keep only observations that include ``salmon'' (\texttt{filter()})
+\item
+  Separate the grouped name (``salmon'') from any additional refined information on species (\texttt{separate()})
 \end{itemize}
+
+We'll break this up into two pieces:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A tidier version of the entire data frame
+\item
+  A subset that only contains salmon information
+\end{enumerate}
+
+First: tidying the entire data frame
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lobster_counts <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"curation"}\NormalTok{, }\StringTok{"lobster_counts.csv"}\NormalTok{),}
-                           \DataTypeTok{na =} \StringTok{"-99999"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{                  }\KeywordTok{clean_names}\NormalTok{() }
+\NormalTok{landings_tidy <-}\StringTok{ }\NormalTok{us_landings }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{clean_names}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\CommentTok{# Make column headers snake_case}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{state =} \KeywordTok{str_to_lower}\NormalTok{(state),}
+    \DataTypeTok{afs_name =} \KeywordTok{tolower}\NormalTok{(afs_name)}
+\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# Converts character columns to lowercase}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{dollars_num =} \KeywordTok{parse_number}\NormalTok{(dollars_usd))}
 \end{Highlighting}
 \end{Shaded}
 
-Look at it again to check (always look at your data) - now both data frames seem pretty coder-friendly to work with.
+Now, getting just the salmon:
 
-\hypertarget{data-wrangling}{%
-\subsection{Data wrangling}\label{data-wrangling}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salmon_landings <-}\StringTok{ }\NormalTok{landings_tidy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{afs_clean =} \KeywordTok{str_remove}\NormalTok{(afs_name, }\DataTypeTok{pattern =} \StringTok{"aggregate"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(afs_clean, }\DataTypeTok{pattern =} \StringTok{"salmon"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{# Detect matches for crab}
+\StringTok{  }\KeywordTok{separate}\NormalTok{(afs_clean, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"group"}\NormalTok{,}\StringTok{"species"}\NormalTok{), }\DataTypeTok{sep =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Explore \textbf{salmon\_landings}.
+
+\hypertarget{find-grouped-summary-data}{%
+\section{Find grouped summary data}\label{find-grouped-summary-data}}
+
+Find the annual total US landings and dollar value (summing across all states) for each type of salmon using \texttt{group\_by()} + \texttt{summarize()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salmon_summary <-}\StringTok{ }\NormalTok{salmon_landings }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, species) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{tot_landings =} \KeywordTok{sum}\NormalTok{(landings_pounds),}
+    \DataTypeTok{tot_value =} \KeywordTok{sum}\NormalTok{(dollars_num)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2}{%
+\section{\texorpdfstring{Make a graph of US commercial fisheries value by species over time with \texttt{ggplot2}}{Make a graph of US commercial fisheries value by species over time with ggplot2}}\label{make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salmon_landings_graph <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(salmon_summary, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ tot_landings, }\DataTypeTok{group =}\NormalTok{ species)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ species)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"year"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"US commercial salmon landings (pounds)"}\NormalTok{)}
+
+\NormalTok{salmon_landings_graph}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{R-for-Excel-Users_files/figure-latex/unnamed-chunk-143-1.pdf}
+
+\hypertarget{export-your-salmon-value-graph-with-ggsave}{%
+\section{\texorpdfstring{Export your salmon value graph with \texttt{ggsave}}{Export your salmon value graph with ggsave}}\label{export-your-salmon-value-graph-with-ggsave}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\DataTypeTok{plot =}\NormalTok{ salmon_landings_graph, }\KeywordTok{here}\NormalTok{(}\StringTok{"figures"}\NormalTok{, }\StringTok{"us_salmon_landings.png"}\NormalTok{),}
+       \DataTypeTok{height =} \DecValTok{5}\NormalTok{, }\DataTypeTok{width =} \DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{commercial-fisheries-value-by-state}{%
+\section{2015 commercial fisheries value by state}\label{commercial-fisheries-value-by-state}}
+
+Now, let's create a finalized table of the top 5 states (by total commercial fisheries value) for 2015 .
+
+Remember that we already created a tidied data frame, \textbf{landings\_tidy}.
+
+\emph{Critical thinking for data wrangling workflow: Why does it make sense (especially now) that we broke our previous wrangling into two steps before getting our salmon subset?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state_value <-}\StringTok{ }\NormalTok{landings_tidy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2015}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(state) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{state_value =} \KeywordTok{sum}\NormalTok{(dollars_num, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+    \DataTypeTok{state_landings =} \KeywordTok{sum}\NormalTok{(landings_pounds, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{state_value) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{head}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Look at our summary data frame, \textbf{state\_value} - which contains all the information we want, but doesn't look very finalized.
+
+What are some ways we'd want to finalize it for a report?
 
 \begin{itemize}
+\tightlist
 \item
-  join?
+  Change units (to millions of dollars and pounds)
 \item
-  filter?
+  Update column names
 \item
-  unite/separate
-\item
-  Read in lobster data
-\item
-  Join with another existing data frame (or 2?)
-\item
-  Pivoting
-\item
-  Transforming / subsetting
-\item
-  Grouping \& summarizing (for means, sd, count)
-\item
-  Make a table
-\item
-  Make a graph
+  Capitalize the state names
 \end{itemize}
 
-Possible new things:
-complete()
+Let's do it!
 
-\hypertarget{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}{%
-\section{Fun facts (quirky things) - making a note of these wherever possible for interest (little ``Did you know?'' sections)}\label{fun-facts-quirky-things---making-a-note-of-these-wherever-possible-for-interest-little-did-you-know-sections}}
+\hypertarget{making-a-nice-html-table}{%
+\section{Making a nice HTML table}\label{making-a-nice-html-table}}
 
-\hypertarget{interludes-deep-thoughtsopenscapes-1}{%
-\section{Interludes (deep thoughts/openscapes)}\label{interludes-deep-thoughtsopenscapes-1}}
+First, we'll create it as a finalized data frame:
 
-\hypertarget{efficiency-tips-5}{%
-\section{Efficiency Tips}\label{efficiency-tips-5}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{state_table <-}\StringTok{ }\NormalTok{state_value }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\StringTok{`}\DataTypeTok{Fisheries value ($ millions)}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{round}\NormalTok{(state_value }\OperatorTok{/}\StringTok{ }\FloatTok{1e6}\NormalTok{, }\DecValTok{2}\NormalTok{),}
+         \StringTok{`}\DataTypeTok{Landings (million pounds)}\StringTok{`}\NormalTok{ =}\StringTok{ }\KeywordTok{round}\NormalTok{(state_landings }\OperatorTok{/}\StringTok{ }\FloatTok{1e6}\NormalTok{, }\DecValTok{1}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{state_value, }\OperatorTok{-}\NormalTok{state_landings) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{State =}\NormalTok{ state) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{State =} \KeywordTok{str_to_title}\NormalTok{(State))}
+\end{Highlighting}
+\end{Shaded}
+
+Now, use \texttt{kable()} + \texttt{kableExtra} to nicely format it for HTML:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(state_table) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{kable_styling}\NormalTok{(}\DataTypeTok{bootstrap_options =} \StringTok{"striped"}\NormalTok{, }
+                \DataTypeTok{full_width =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{add_header_above}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{""}\NormalTok{, }\StringTok{"2015 US commercial fisheries - top 5 states by value"}\NormalTok{ =}\StringTok{ }\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sync-with-github-remote}{%
+\section{Sync with GitHub remote}\label{sync-with-github-remote}}
+
+Stage, commit, (pull), and push your updates to GitHub for safe storage \& sharing. Check to make sure that the changes have been stored.
+
+\hypertarget{end-synthesis-session}{%
+\subsection{End synthesis session!}\label{end-synthesis-session}}
 
 \bibliography{book.bib,packages.bib}
 

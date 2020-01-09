@@ -68,14 +68,14 @@ head(lobsters) # year and month as well as a column for date
 
 In this data set, every row is a unique observation. This is called "uncounted" data; you'll see there is no row for how many lobsters were seen because each row is an observation, or an "n of 1". 
 
-```{r summary-lobsters}
+```{r summary-lobsters, eval=FALSE}
 # explore data
 summary(lobsters) 
 ```
 
 `summary` gives us summary statistics for each variable (column). I like this for numeric columns, but it doesn't give a lot of useful information for non-numeric data. To have a look there I like using the skimr package: 
 
-```{r skim-lobsters}
+```{r skim-lobsters, eval=FALSE}
 # explore data
 skimr::skim(lobsters) 
 ```

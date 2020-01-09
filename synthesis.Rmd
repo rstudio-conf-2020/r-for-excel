@@ -1,3 +1,7 @@
+--
+always_allow_html: true
+--
+
 # Synthesis {#synthesis}
 
 ## Summary
@@ -180,7 +184,7 @@ state_table <- state_value %>%
 ```
 
 Now, use `kable()` + `kableExtra` to nicely format it for HTML:
-```{r}
+```{r, eval=FALSE}
 kable(state_table) %>% 
   kable_styling(bootstrap_options = "striped", 
                 full_width = FALSE) %>% 

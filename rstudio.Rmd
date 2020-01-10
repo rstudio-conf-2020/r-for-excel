@@ -108,6 +108,10 @@ knitr::include_graphics("img/rmarkdown_side_by_side.png")
 
 Let's take a deeper look at these two files. So much of learning to code is looking for patterns.
 
+#### Activity 
+
+Say hello to the person sitting next to you. Discuss what you see. 
+
 ### Markdown text
 
 To warm us up for R, let's start by talking about another language, Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 

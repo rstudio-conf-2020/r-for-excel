@@ -3,7 +3,7 @@ rstats community coding
 
 ## Summary
 
-*TODO: refine* 
+*TODO: refine* Main purpose: work better with colleagues, help you help yourself
 
 The collaborative power of GitHub and RStudio is really game changing. So far we've been collaborating with our most important collaborator: ourselves. But, we are lucky that in science we have so many other collaborators, so let's learn how to accelerate our collaborations with them through GitHub! 
 
@@ -28,12 +28,14 @@ Activity: reprex to GitHub "dplyr reprex"
 
 - [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
 
+## Create and clone a repo
+TODO text
 
-## Create repo (Partner 1)
+### Create repo (Partner 1)
 
 Team up with a partner sitting next to you. Partner 1 will create a new repository. We will do this in the same way that we did in Chapter \@ref(github): [Create a repository on Github.com]. 
 
-## Create a gh-pages branch (Partner 1)
+### Create a gh-pages branch (Partner 1)
 
 We aren't going to talk about branches very much, but they are a powerful feature of git/GitHub. I think of it as creating a copy of your work that becomes a parallel universe that you can modify safely because it's not affecting your original work. And then you can choose to merge the universes back together if and when you want. By default, when you create a new repo you begin with one branch, and it is named `master`. When you create new branches, you can name them whatever you want. However, if you name one `gh-pages` (all lowercase, with a `-` and no spaces), this will let you create a website. And that's our plan. So, Partner 1, do this to create a `gh-pages` branch: 
 
@@ -60,7 +62,7 @@ And then click to change the default branch to `gh-pages`. I like to then delete
 <img src="img/github-change-branch.png" width="450px"> 
 
 
-## Give your collaborator administration privileges (Partner 1 and 2)
+### Give your collaborator administration privileges (Partner 1 and 2)
 
 Now, Partner 1, go into Settings > Collaborators > enter Partner 2's (your collaborator's) username. 
 
@@ -68,7 +70,7 @@ Partner 2 then needs to check their email and accept as a collaborator. Notice t
 
 <img src="img/github_collab.png" width="450px"> 
 
-## Clone to a new Rproject  (Partner 1)
+### Clone to a new Rproject  (Partner 1)
 
 Now let's have Partner 1 clone the repository to their local computer. We'll do this through RStudio like we did before (see Chapter \@ref(github): [Clone your repository using RStudio]), but with a final additional step before hitting "Create Project": select "Open in a new Session".
 
@@ -98,11 +100,11 @@ Remember:
 
 Let's confirm that this was synced by looking at GitHub.com again. You may have to refresh the page, but you should see this commit where you added the `.Rproj` file.
 
-## Clone to a new Rproject  (Partner 2)
+### Clone to a new Rproject  (Partner 2)
 
 Now it's Partner 2's turn! Partner 2, clone this repository following the same steps that Partner 1 just did. When you clone it, RStudio should not create any new files — why? Partner 1 already created and pushed the `.Rproj` and `.gitignore` files so they already exist in the repo.  
 
-## Edit a file and sync (Partner 2)
+### Edit a file and sync (Partner 2)
 
 TODO make example better use of time 
 
@@ -125,7 +127,7 @@ When we inspect on GitHub.com, click to view all the commits, you'll see commits
 
 > Question: Would you still be able clone a repository that you are not a collaborator on? What do you think would happen? Try it! Can you sync back? 
 
-## State of the Repository
+### State of the Repository
 
 OK, so where do things stand right now? GitHub.com has the most recent versions of all the repository's files. Partner 2 also has these most recent versions locally. How about Partner 1? 
 
@@ -199,7 +201,7 @@ Create a merge conflict with your partner, like we did in the example above. And
 
 ![](img/github_mergeconflict.png)
 
-## How do you avoid merge conflicts?
+### How do you avoid merge conflicts?
 
 I'd say pull often, commit and sync often. 
 
@@ -207,7 +209,7 @@ Also, talk with your collaborators. Although our Ocean Health Index project is h
 
 But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. So protect yourself by pulling and syncing often! 
 
-## Create your collaborative website
+## TOCUT Create your collaborative website
 
 OK. Let's have Partner 2 create a new RMarkdown file. Here's what they will do: 
 
@@ -224,31 +226,21 @@ OK. Let's have Partner 2 create a new RMarkdown file. Here's what they will do:
     
 So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/collab-research/> is the same as <https://jules32.github.io/collab-research/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/collab-research/my_research.html>.
 
-## Your turn
-
-Here is some collaborative analysis you can do on your own. We'll be playing around with airline flights data, so let's get setup a bit. 
-
-1. Person 1: clean up the README to say something about you two, the authors.
-1. Person 2: edit the `index.Rmd` or create a new RMarkdown file: maybe add something about the authors, and knit it. 
-1. Both of you: sync to GitHub.com (pull, stage, commit, push). 
-1. Both of you: once you've both synced (talk to each other about it!), pull again. You should see each others' work on your computer.
-1. Person 1: in the RMarkdown file, add a bit of the plan. We'll be exploring the `nycflights13` dataset. This is data on flights departing New York City in 2013.
-1. Person 2: in the README, add a bit of the plan. 
-1. Both of you: sync
-
-## Explore on GitHub.com
+### Explore on GitHub.com
 
 Now, let's look at the repo again on GitHub.com. You'll see those new files appear, and the commit history has increased.
 
-### Commit History
+#### Commit History
 
 You'll see that the number of commits for the repo has increased, let's have a look. You can see the history of both of you. 
 
-### Blame
+#### Blame
 
 Now let's look at a single file, starting with the README file. We've explored the "Raw" and "History" options in the top-right of the file, but we haven't really explored the "Blame" option. Let's look now. Blame shows you line-by-line who authored the most recent version of the file you see. This is super useful if you're trying to understand logic; you know who to ask for questions or attribute credit.
 
-### Issues
+## GitHub Issues
+
+TODO: redo
 
 Now let's have a look at issues. This is a way you can communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
 

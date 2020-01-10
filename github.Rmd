@@ -1,6 +1,12 @@
 # GitHub {#github}
 
-TODO: no github folder, new screenshots, earlier emphasis on syncing steps
+TODO:
+
+- no github folder, 
+- new screenshots, 
+- earlier emphasis on syncing steps. 
+- no gh-pages branch! 
+- fewer high level headers
 
 ```{r gh ops, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

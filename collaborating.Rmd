@@ -3,7 +3,7 @@ rstats community coding
 
 ## Summary
 
-*TODO: refine* Main purpose: work better with colleagues, help you help yourself
+*TODO: refine* Main purpose: work better with colleagues, help you help yourself. A big theme of this workshop has been how to more seamlessly collaborate with each other.
 
 The collaborative power of GitHub and RStudio is really game changing. So far we've been collaborating with our most important collaborator: ourselves. But, we are lucky that in science we have so many other collaborators, so let's learn how to accelerate our collaborations with them through GitHub! 
 
@@ -106,7 +106,7 @@ Now it's Partner 2's turn! Partner 2, clone this repository following the same s
 
 ### Edit a file and sync (Partner 2)
 
-TODO make example better use of time 
+TODO make example better use of time. With iris. 
 
 Let's have Partner 2 add some information to the README.md. Let's have them write: 
 ```
@@ -211,6 +211,7 @@ Also, talk with your collaborators. Although our Ocean Health Index project is h
 
 But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. So protect yourself by pulling and syncing often! 
 
+<!---
 ## TOCUT Create your collaborative website
 
 OK. Let's have Partner 2 create a new RMarkdown file. Here's what they will do: 
@@ -228,19 +229,24 @@ OK. Let's have Partner 2 create a new RMarkdown file. Here's what they will do:
     
 So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/collab-research/> is the same as <https://jules32.github.io/collab-research/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/collab-research/my_research.html>.
 
-### Explore on GitHub.com
+--->
+
+
+
+## Commit History
 
 Now, let's look at the repo again on GitHub.com. You'll see those new files appear, and the commit history has increased.
 
-#### Commit History
-
 You'll see that the number of commits for the repo has increased, let's have a look. You can see the history of both of you. 
 
-#### Blame
+<!--- CUT
+### Blame
 
 Now let's look at a single file, starting with the README file. We've explored the "Raw" and "History" options in the top-right of the file, but we haven't really explored the "Blame" option. Let's look now. Blame shows you line-by-line who authored the most recent version of the file you see. This is super useful if you're trying to understand logic; you know who to ask for questions or attribute credit.
 
-## GitHub Issues
+--->
+
+## Issues
 
 TODO: redo
 
@@ -276,33 +282,76 @@ Another feature about issues is whether you want any notifications to this repos
 Let's have Person 2 respond to the issue affirming the plan.
 
 
-## How to ask for help
+## Getting help online
+How to ask for, interpret, and act upon help
+
+Folks online have written advice in blogs:
+
+- [Getting help in R: do as I say, not as I've done by Sam Tyner](https://sctyner.github.io/rhelp.html)
 
 ### Googling: help you help yourself
 
-Error messages are your friends
+#### Error messages are your friends
+
 
 Borrow/show Allison's slides
 - [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
 
+You'll also come across RStudio Community and Stack Overflow
   
-### R communities and getting help (rOpenSci, RLadies)
+#### RStudio community  
+  
+### reprex
+
+- [reprex.tidyverse.org](https://reprex.tidyverse.org/)
+- [](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan)
+
+`reprex` is a "workflow package". That means that it's something we don't put in Rmds, scripts, or anything else. We use is in the Console when we are preparing to ask for help — from ourselves or someone else. 
+
+Let me demo an example. This is what I'll do (screenshot from [Jenny Bryan's reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan)
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/reprex-bryan.png")  
+```
+
+"Conversations about code are more productive with: code that ***actually runs***, that ***I don’t have to run***, and that ***I can easily run***" - Jenny Bryan
+
+reprex includes the output — experienced programmers who you might be asking for help can often read your code and know where the problem lies, especially when they can see the output. 
+
+Jenny Bryan create
+
+`reprex` is part of the Tidyverse, so we all already have it installed, but we do need to attach it: 
+
+```{r reprex-attach}
+library(reprex)
+```
+
+
+`reprex_clean()`
+```{r reprex-clean}
+
+
+```
+
+Demo ideas:
+- ggplot (reprex pastes figure)
+
+### Activity: "do it with iris"
+
+Make a reprex and paste it in your Issues
+
+### TODO Sync with your partner
+
+## R communities (rOpenSci, RLadies)
 
 R4DS
 tidytuesday
 
 - Thomas Mock's slides for others
 
-### reprex & RStudio Community "do it with iris"
-
 ## How to use Twitter for #rstats
 
-
-### Error messages are your friends
-
-## Efficiency Tips
-
-
-## Additional thoughts
-
+### END **collaborating** session!
 

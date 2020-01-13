@@ -630,7 +630,7 @@ Comments! Organization (spacing, subsections, vertical structure, indentation, e
 Not so brittle/sensitive to minor changes.
 
 
-## Efficiency Tips
+### END **RStudio/RMarkdown** session!
 
 <!---
 ## R Scripts

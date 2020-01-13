@@ -466,4 +466,4 @@ Great opening line: "Spreadsheets, for all of their mundane rectangularness, hav
 arrow keys with shift, option, command
 
 
-<!---And that's the end of Day 1! --->
+### END **dplyr-pivot-tables** session!

@@ -539,5 +539,5 @@ You can click on the commits to see how the files changed from the previous comm
 If you have problems, we'll help you out using Jenny Bryan's [HappyGitWithR](http://happygitwithr.com), particularly the sections on [Detect Git from RStudio](http://happygitwithr.com/rstudio-see-git.html) and [RStudio, Git, GitHub Hell (troubleshooting)](http://happygitwithr.com/troubleshooting.html). So as we are coming around, have a look at it and see if you can help troubleshoot too!
 
 
-## Efficiency Tips
+### END **GitHub** session!
 

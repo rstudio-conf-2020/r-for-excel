@@ -7,9 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
 
-```{r}
 library(tidyverse)
 library(writexl) # install.packages("writexl")
 library(here)
@@ -40,6 +38,7 @@ kelp_subset <- data_clean %>%
          month == 7) %>%
   drop_na(fronds) %>% 
   mutate(fronds = as.numeric(fronds)) %>% 
+  mutate(year = as.numeric(year)) %>% # Adding to make year numeric (was character)
   group_by(year, month, site, common_name) %>% 
   summarize(
     total_fronds = sum(fronds)
@@ -73,5 +72,6 @@ names(kelp_split) <- tolower(unique(site_names$site))
 
 # Write to an Excel file: 
 write_xlsx(kelp_split, here("curation", "kelp_counts_curated.xlsx"))
+write_xlsx(kelp_split, here("data", "kelp.xlsx"))
 ```
 

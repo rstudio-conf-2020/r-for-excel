@@ -6,22 +6,26 @@ always_allow_html: true
 
 ## Summary
 
-In this session, we'll pull together the skills that we've learned so far. We'll create a new GitHub repo and R project, wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then TODO: share our outputs in a nicely formatted GitHub page. And we'll learn a few new things along the way! 
+In this session, we'll pull together the skills that we've learned so far. Working in our existing collaborative project/repos from the previous session, we'll wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then add something new to our collaborator's file. And we'll learn a few new things along the way! 
 
 ![Grolemund & Wickham R4DS Illustration](img/r4ds_data-science.png)
 
 ## Objectives
 
-- Create a new repo on GitHub
-- Clone the repo to create a new version-controlled R project 
-- Add data to **data\** folder in working directory
-- Create a new R Markdown document 
-- Attach necessary packages (`tidyverse`, `here`, `janitor`, `kableExtra`)
+- Attach R packages (`tidyverse`, `here`, `janitor`, `kableExtra`)
 - Use `here::here()` for simpler (and safer) file paths
 - Data tidying and wrangling (`dplyr`, `tidyr`, etc.)
 - HTML tables with `kable()` and `kableExtra`
 - Data visualization (`ggplot2`)
-- TODO: Publish with a useful ReadMe to share? 
+- Add something new to a collaborator's file
+- View your .Rmd as a website! TODO: Practice showing & explaining that this is a website BECAUSE of that process you went through of making/working in a gh-pages branch 
+
+## Set-up (TODO: probably don't need this section after julie's updates)
+
+**Note**: `data` folder has already been created & pushed containing `noaa_fisheries.csv` file in Julie's previous session.
+
+TODO: In the markdown document you've created previously (`my_name_fisheries.Rmd`)
+
 
 ## Resources
 
@@ -194,6 +198,23 @@ kable(state_table) %>%
 ## Sync with GitHub remote
 
 Stage, commit, (pull), and push your updates to GitHub for safe storage & sharing. Check to make sure that the changes have been stored. 
+
+## Beautify your partner's document
+
+Now, let's add an image to our **partner's** document!
+
+- Pull again to make sure you have everyone's most updated versions
+- Open your **partner's** .Rmd ()
+- Go to (octodex.github.com)[https://octodex.github.com/] and find a version of octocat that you love
+- On the image, right click and choose "Copy image location"
+- In your **partner's** .Rmd, add the image at the end using:
+
+`!()[paste_image_location_you_just_copied_here]`
+
+- Knit the .Rmd and check to ensure that your octocat shows up
+- Save, stage, commit, pull, then push
+- Pull again to make sure you have updates from your collaborator
+- Check out your website! 
 
 ### End synthesis session!
 

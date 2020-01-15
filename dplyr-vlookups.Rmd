@@ -51,7 +51,7 @@ library(kableExtra)
 # Read in the data
 inverts <- read_excel(here("data","inverts.xlsx"))
 fish <- read_csv(here("data", "fish.csv"))
-kelp_abur <- read_excel(here("data","kelp.xlsx")) # Reads in first worksheet, Arroyo Burro kelp counts
+kelp_abur <- read_excel(here("data","kelp.xlsx"), sheet = "abur") # Reads in first worksheet, Arroyo Burro kelp counts
 ```
 
 ```{r, eval = FALSE}
@@ -72,8 +72,7 @@ Then create a new code chunk to read in three files from your 'data' subfolder:
 # Read in data: 
 inverts <- read_excel(here("data", "inverts.xlsx"))
 fish <- read_csv(here("data", "fish.csv"))
-kelp <- read_excel(here("data", "kelp.xlsx"))
-
+kelp <- read_excel(here("data", "kelp.xlsx"), sheet = "abur")
 ```
 
 We should always explore the data we've read in using functions. Use `View()`, `names()`, `summary()`, `head()` and `tail()` to check it out. 
@@ -308,6 +307,7 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 
 **Note:** If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
 
+TODO: Make the year numeric in both
 ```{r, eval = FALSE}
 
 # Join the fish_2016_2017 and kelp_abur

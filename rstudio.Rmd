@@ -135,41 +135,16 @@ And we see that `plot(pressure)` produces a plot.
 
 ### Code chunks
 
-Let's start of by looking at the 3 code chunks, which are grey. 
+R code is written in code chunks, which are grey. 
 <!---There are two things to look at: R code chunks and code chunk options --->
 
-Each of them are start by 3 backticks and `{r label}`, which signify that there will be R code inside, and they are each given a unique name. Anything inside the brackets (`{ }`) is instructions for RMarkdown about that code to run. For example:
+Each of them start with 3 backticks and `{r label}`, which signify that there will be R code inside, and they are each given a unique name. Anything inside the brackets (`{ }`) is instructions for RMarkdown about that code to run. For example:
 
 - the first chunk says `include=FALSE`, and we don't see it included in the HTML document. 
 - the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
 - the third chunk says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
 
 There are many more options available and we will explore more as we go.
-
-#### Naming code chunks (Deep thought?)
-
-All three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`. This is to help us navigate between them and keep them organized. They are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. Otherwise you will see an error when you try to knit: 
-
-```
-processing file: Untitled.Rmd
-Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
-Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
-Execution halted
-```
-
-In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: "duplicate label 'cars'". 
-
-#### Delete everything and reknit
-
-R knows that a file with extension .Rmd is a special file to be knit. But it does not rely on any of this stuff that is in the template file. 
-
-Do this: delete all the content from this file. You can do this by dragging your cursor to highlight all text, or use the keyboard shortcut Command-A. And then delete. You should now have a blank document. 
-
-To demo that it will still knit, let's write `# Julie's workshop notes` (with your name) and reknit. 
-
-This will be your notes. 
-
-The reason we use RMarkdown or an R script is so that we can write down our code once in our script but then can execute it as many times as we want.
 
 #### New code chunks
 
@@ -187,7 +162,7 @@ Now, let's write some code in R. Let's say we want to plot the cars data. I'm go
 
 ```{r}
 
-plot(cars)
+summary(pressure)
 
 ```
 
@@ -195,28 +170,90 @@ We can knit this and see the plot of cars. This is the same data that we made th
 
 > Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences correct?
 
-### Running R code
+#### Code chunk labels
 
-Knitting the document is great, and you can see all your updates rendered nicely. But you can imagine that this would be tedious that if every time you made an update you needed to knit this document. We can run R code in the Console. 
+It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our  three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`). 
 
-TODO: build out more about Console
+Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. 
 
-To run, we need to get what we typed in the the R chunk (the grey R code) down into the console. How do we do it? There are several ways (let's do each of them):
+Troubleshooting: if you duplicate the same label name, you will see an error when you try to knit: 
 
-1. copy-paste this line into the console.
+```
+processing file: Untitled.Rmd
+Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
+Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
+Execution halted
+```
+
+In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: "duplicate label 'cars'". 
+
+## R code in the Console
+
+It is important to be able to run R code directly rather than only executing it when you knit the document. 
+
+The Console (bottom left pane of the RStudio IDE) is where you can interact with the R engine and run code directly. 
+
+Let's type this in the Console: `summary(pressure)`. We see the pressure summary table returned; it is the same information that we saw in our knitted html document. 
+
+``` r
+summary(pressure)
+#>   temperature     pressure       
+#>  Min.   :  0   Min.   :  0.0002  
+#>  1st Qu.: 90   1st Qu.:  0.1800  
+#>  Median :180   Median :  8.8000  
+#>  Mean   :180   Mean   :124.3367  
+#>  3rd Qu.:270   3rd Qu.:126.5000  
+#>  Max.   :360   Max.   :806.0000
+```
+
+### Error messages
+
+When you code in R or any language, you will encounter errors. We will discuss troubleshooting tips more deeply tomorrow in [Collaborating & getting help](#collaboration); here we will just get a little comfortable with them. 
+
+**Error messages are your friends**. 
+
+What do they look like? I'll demo typing in the Console `summary(pressur)`
+
+``` r
+summary(pressur)
+#> Error in summary(pressur): object 'pressur' not found
+```
+
+
+
+
+### Running code chunks in the Console
+From RStudio, there are several ways to get R code from a RMarkdown chunk (the grey R code) down into the console. How do we do it? There are several ways. Let's do each of these with `summary(cars)`.
+
+1. copy-paste the `summary(cars)` code into the console.
+   a. important!!: I am only highlighting `summary(cars)`, not any of the backticks! If you see the error ````{r}`Error: attempt to use zero-length variable name
 1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
     a. the bar above the file (green arrow)
     b. the menu bar: Code > Run Selected Line(s)
     c. keyboard shortcut: command-return
 1. click the green arrow at the right of the code chunk
 
-> Troubleshooting: The following error is because you also highlighted and asked to run ````{r}`, and this is the code fencing, not R code itself.
+### File vs. Console
+
+When should you write code in a file (.Rmd or .R script) and when should you write it in the Console? 
+
+There is another way to get to the help pages besides clicking on the Help tab — we can write this in R with `?`. 
+
+Let's try this with...c()?
+
+Every time we run R code, it is sent to the Console.
+
+
+To run, we need to 
+
+> Troubleshooting: The following error is because you also highlighted and asked to run , and this is the code fencing, not R code itself.
 
 ```
-Error: attempt to use zero-length variable name
+
 ```
 
-What is `plot` anyways? It is a function. Let's talk about that next. 
+What is `plot` anyways? It is a function. Let's talk about that next.
+
 
 ## R Functions
 
@@ -351,17 +388,6 @@ Object names can be whatever you want, although they cannot start with a digit a
 # other.people.use.periods
 # evenOthersUseCamelCase
 ```
-
-## Console vs. RMarkdown/R script
-
-
-## R code in the Console
-
-There is another way to get to the help pages besides clicking on the Help tab — we can write this in R with `?`. 
-
-Let's try this with...c()?
-
-Every time we run R code, it is sent to the Console.
 
 ## R Packages
 

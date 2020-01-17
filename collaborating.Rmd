@@ -180,7 +180,7 @@ We're going to talk about how to ask for help, how to interpret responses, and h
 
 ### Read the error message
 
-They may be red, they may be unfamiliar, but **error messages are your friends**. There are multiple types of messages that R will print. Read the message to figure out what it’s trying to tell you. 
+As we've talked about before, they may be red, they may be unfamiliar, but **error messages are your friends**. There are multiple types of messages that R will print. Read the message to figure out what it’s trying to tell you. 
 
 **Error:** There’s a fatal error in your code that prevented it from being run through successfully. You need to fix it for the code to run. 
 
@@ -245,15 +245,7 @@ You will see links from many places, particularly:
 
 We haven't talked about GitHub Issues yet: let's do an example. 
 
-### GitHub Issues
 
-TODO: how much time. 
-
-[openscapes gh for project mgmt](https://docs.google.com/presentation/d/1JGFnZqz01Ex8h2qO3OBUHc1OiTFkAqV2ED2XFiMdN4I/edit#slide=id.g508ea9b321_0_58)
-
-How to use Issues chapter: https://openscapes.github.io/series/github-issues
-
-TODO: google/issues example
 
 ### Create a reprex
 
@@ -328,7 +320,7 @@ reprex()
 ```
 
 
-## Collaborate with GitHub
+## Collaborating with GitHub
 
 Now we're going to collaborate with a partner and set up for our last session, which will tie together everything we've been learning.
 
@@ -525,6 +517,11 @@ So cool! On websites, if something is called `index.html`, that defaults to the 
 
 
 ## Issues for project management
+
+TODO: 
+[openscapes gh for project mgmt](https://docs.google.com/presentation/d/1JGFnZqz01Ex8h2qO3OBUHc1OiTFkAqV2ED2XFiMdN4I/edit#slide=id.g508ea9b321_0_58)
+
+How to use Issues chapter: https://openscapes.github.io/series/github-issues
 
 Now let's have another look at issues. In addition to asking for help, Issues are a great tool for project management: they are a way to communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
 

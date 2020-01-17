@@ -2,6 +2,7 @@
 
 TODO:
 
+TODO: .Rprojects describe
 - no github folder, 
 - new screenshots, 
 - earlier emphasis on syncing steps. 
@@ -338,13 +339,17 @@ Notice a few things in our repo here:
 When you first clone a repo through RStudio, RStudio will add an `.Rproj` file to your repo. And if you didn't add a `.gitignore` file when you originally created the repo on GitHub.com, RStudio will also add this for you. These will show up with little yellow `?` icons in your git tab. This is GitHub's way of saying: "I am responsible for tracking everything that happens in this repo, but I haven't seen these files yet. Do you want me to track them too?" (We'll see that when you click the box to stage them, they will turn into `A`s because they have been added to the repo. 
 
 
-## Add files to our local repo
+## Project oriented workflows
+
+- [](https://rstats.wtf/project-oriented-workflow.html)
 
 The repository will contain:
 
 * .gitignore file
 * README.md
 * Rproj
+
+## Add files to our local repo
 
 Let's create the following:
 

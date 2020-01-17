@@ -170,10 +170,11 @@ You can also follow us:
 
 These are just a few ways to learn and build community on Twitter. And as you feel comfortable, you can start sharing your ideas or your links too. Live-tweeting is a really great way to engage as well, and bridge in-person conferences with online communities. And of course, in addition to engaging on Twitter, check whether there are local RLadies chapters or other R meetups, and join! Or perhaps [start one](https://openscapes.org/blog/2018/11/16/how-to-start-a-coding-club/)?
 
+So Twitter is a place to engage with folks and learn, and while it is also a place to ask questions, there are other places to look first, depending on your question. 
 
 ## Getting help: help you help yourself
 
-So Twitter is a place to engage with folks and learn, and while it is also a place to ask questions, there are other places to look first, depending on your question. 
+Helping you help yourself means moving beyond "it's not working" and towards solution-oriented approaches. Part of this is the mindset where you **expect that someone has encountered this problem before** and that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. 
 
 We're going to talk about how to ask for help, how to interpret responses, and how to act upon the help you receive.
 
@@ -244,6 +245,14 @@ You will see links from many places, particularly:
 
 We haven't talked about GitHub Issues yet: let's do an example. 
 
+### GitHub Issues
+
+TODO: how much time. 
+
+[openscapes gh for project mgmt](https://docs.google.com/presentation/d/1JGFnZqz01Ex8h2qO3OBUHc1OiTFkAqV2ED2XFiMdN4I/edit#slide=id.g508ea9b321_0_58)
+
+How to use Issues chapter: https://openscapes.github.io/series/github-issues
+
 TODO: google/issues example
 
 ### Create a reprex
@@ -274,7 +283,7 @@ ggplot(cars, aes(speed, dist)) +
   geom_point(color = "maroon")
 ```
 
-And then when I also have this in my clipboard. Now I am going to paste it into an Issue for this repository. 
+And then when I also have this in my clipboard. Now I am going to paste it into an [Issue for our r-for-excel repository](https://github.com/rstudio-conf-2020/r-for-excel/issues) 
 
 When I paste it: 
 
@@ -282,9 +291,11 @@ When I paste it:
 knitr::include_graphics("img/reprex-ex-ggplot.png")  
 ```
 
-Notice that following the backticks, there is only `r`, not `r{}`. This is because what we have pasted is formatted for R, not to be executed by R through RMarkdown. 
+Notice that following the backticks, there is only `r`, not `r{}`. This is because what we have pasted is formatted for R, not to be executed by R through RMarkdown.
 
 I can click on the Preview button in the Issues to see how this will render: and it will show my code, nicely formatted for R. 
+
+So in this example I might write at the top of the comment "\@allison_horst how do I change the point color to cyan?" And when Allison is tagged
 
 **`reprex` is a "workflow package"**. That means that it's something we don't put in Rmds, scripts, or anything else. We use is in the Console when we are preparing to ask for help — from ourselves or someone else. 
 
@@ -292,14 +303,34 @@ reprex includes the output — experienced programmers who you might be asking f
 
 ### Activity: "do it with iris"
 
-Make a reprex and paste it in your Issues
+Make a reprex using the built-in `iris` dataset and paste it in the Issues for your repository. (Have a look at iris: `head(iris); summary(iris)`)
 
-### TODO Sync with your partner
+1. For your reprex, take the iris dataset and then filter it for observations where the Petal.Length is more than 6.5
+
+2. Navigate to github.com/your_username/r-workshop/issues
+
+Hint: remember to read the error message. "could not find function `%>%`" means you've forgotten to attach a package with `library()`
+
+#### Solution (no peeking)
+
+```{r activity-solution, eval=FALSE}
+## setup: run in Rmd or Console
+library(reprex)
+
+## reprex code: run in Rmd or Console
+library(tidyverse) # or library(dplyr) or library(magrittr)
+iris %>% filter(Petal.Length > 6.5)
+
+## copy the above
+
+## reprex call: run in Console
+reprex()
+```
+
 
 ## Collaborate with GitHub
 
-### Create and clone a repo
-TODO text
+Now we're going to collaborate with a partner and set up for our last session, which will tie together everything we've been learning.
 
 ### Create repo (Partner 1)
 
@@ -475,15 +506,14 @@ Also, talk with your collaborators. Although our Ocean Health Index project is h
 
 But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. So protect yourself by pulling and syncing often! 
 
-
 ## Create your collaborative website
 
 OK. Let's have both Partners create a new RMarkdown file and name it `my_name_fisheries.Rmd`. Here's what you will do: 
 
-1. Pull!
-1. Create a new RMarkdown file **and name it `my_name_fisheries.Rmd`**. Let's do it all lowercase. These will become pages for our website! 
-1. Maybe change the title inside the Rmd, call it "My Name's Fisheries Analysis"
-1. Knit!
+1. Pull
+1. Create a new RMarkdown file **and name it `my_name_fisheries.Rmd`**. Let's do it all lowercase. These will become pages for our website
+1. We'll start by testing: let's simply change the title inside the Rmd, call it "My Name's Fisheries Analysis"
+1. Knit
 1. Save and sync your .Rmd and your .html files 
     - (pull, stage, commit, pull, push)
 1. Go to GitHub.com and go to your rendered website! Where is it? Figure out your website's url from your github repo's url. For example: 
@@ -494,26 +524,24 @@ OK. Let's have both Partners create a new RMarkdown file and name it `my_name_fi
 So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/r-collab/my_research.html>.
 
 
-## Issues
+## Issues for project management
 
-TODO: redo
-
-Now let's have a look at issues. This is a way you can communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
+Now let's have another look at issues. In addition to asking for help, Issues are a great tool for project management: they are a way to communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
 
 ![](img/github-issues.png)
 
-Let's create a new issue with the title "NYC flights". 
+Let's create a new issue with the title "Fisheries analysis". 
 
 In the text box, let's write a note to our collaborator. You can use Markdown in this text box, which means all of your header and bullet formatting will come through. You can also select these options by clicking them just above the text box. 
 
 Let's have one of you write something here. I'm going to write: 
 
 ```
-Hi @jafflerbach! 
+Hi @allison_horst! 
 
 # first priority
 
-- explore NYC flights
+- import fisheries data
 - plot interesting things
 ```
 

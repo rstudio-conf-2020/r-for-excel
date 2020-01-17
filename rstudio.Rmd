@@ -20,6 +20,8 @@ In this lesson we will:
 ### Resources
 
 - [R for Excel Users](https://blog.shotwell.ca/posts/r_for_excel_users/) by Gordon Shotwell (blog)
+- [What is RMarkdown?](https://vimeo.com/178485416) awesome 1-minute video by RStudio
+
 
 ## RStudio Orientation
 
@@ -174,22 +176,11 @@ We can knit this and see the plot of cars. This is the same data that we made th
 
 It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our  three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`). 
 
-Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. 
-
-Troubleshooting: if you duplicate the same label name, you will see an error when you try to knit: 
-
-```
-processing file: Untitled.Rmd
-Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
-Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
-Execution halted
-```
-
-In this case, you read the error message. Not everything immediately looks like something I would know anything about, but pressing on still allows me to identify the problem: "duplicate label 'cars'". 
+Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. We will explore this in a moment.
 
 ## R code in the Console
 
-It is important to be able to run R code directly rather than only executing it when you knit the document. 
+It is important to be able to run R code directly rather than only executing it when you knit the document. This is the live R process.
 
 The Console (bottom left pane of the RStudio IDE) is where you can interact with the R engine and run code directly. 
 
@@ -210,6 +201,8 @@ summary(pressure)
 
 When you code in R or any language, you will encounter errors. We will discuss troubleshooting tips more deeply tomorrow in [Collaborating & getting help](#collaboration); here we will just get a little comfortable with them. 
 
+#### R error messages
+
 **Error messages are your friends**. 
 
 What do they look like? I'll demo typing in the Console `summary(pressur)`
@@ -219,10 +212,40 @@ summary(pressur)
 #> Error in summary(pressur): object 'pressur' not found
 ```
 
+Remember that R is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. 
 
+In this case, R is saying "What? I didn't understand `pressur`". 
 
+Errors will be less frustrating if you have the understanding and mindset that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. The first step of becoming a proficent R user is to move past the exasperation of "it's not working!" and **read the error message**. 
+
+You'll see that when you ask us for help, we will start off by reading the error message. 
+
+<!---
+And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
+
+--->
+
+#### RMarkdown error messages
+
+Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let's see what happens if not. If I (re)name our `summary(pressure)` chunk to "pressure", I will see an error when you try to knit: 
+
+```
+processing file: testing.Rmd
+Error in parse_block(g[-1], g[1], params.src) : duplicate label 'cars'
+Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_block
+Execution halted
+```
+
+There are 2 things I want to say about this. 
+
+First: This error message starts out in a pretty cryptic way: I don't know what `parse_block(g[-1]...` means. But, assuming that the error message is really trying to help me, I continue scanning the message which allows me to identify the problem: "duplicate label 'cars'". 
+
+Second: This error is in the "R Markdown" tab on the bottom left of the RStudio IDE; it is not in the Console. That is because when RMarkdown is knitted, it actually spins up an R workspace separately from what is passed to the Console; this is one of the ways that R Markdown enables reproducibility because it is a self-contained instance of R. 
+
+You can click back and forth between the Console and the R Markdown tab; this is something to look out for as we continue. Let's click back to Console now. 
 
 ### Running code chunks in the Console
+
 From RStudio, there are several ways to get R code from a RMarkdown chunk (the grey R code) down into the console. How do we do it? There are several ways. Let's do each of these with `summary(cars)`.
 
 1. copy-paste the `summary(cars)` code into the console.
@@ -237,49 +260,42 @@ From RStudio, there are several ways to get R code from a RMarkdown chunk (the g
 
 When should you write code in a file (.Rmd or .R script) and when should you write it in the Console? 
 
-There is another way to get to the help pages besides clicking on the Help tab — we can write this in R with `?`. 
+We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this.
 
-Let's try this with...c()?
-
-Every time we run R code, it is sent to the Console.
-
-
-To run, we need to 
-
-> Troubleshooting: The following error is because you also highlighted and asked to run , and this is the code fencing, not R code itself.
-
-```
-
-```
-
-What is `plot` anyways? It is a function. Let's talk about that next.
+The Console is good for doing quick calculations like `8*22.3`, testing functions, for calling help pages, for installing packages. We'll explore these things next. 
 
 
 ## R Functions
 
-TODO — add c()?
+Like Excel, the power of R comes not from doing small operations individually (like `8*22.3`). R's power comes from being able to operate on whole suites of numbers and datasets. 
 
 Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.
 
-<br>
-TODO: swap out for simpler
-```{r, echo=FALSE, out.width="60%"}
-knitr::include_graphics("img/horst-naming-terms.png")  
-```
+We've seen a few functions already: we've seen `plot()` and `summary()`. 
 
-<br>
+Functions always have the same structure: a name, parentheses, and arguments that you can specify. `function_name(arguments)`. 
 
+> Aside: some functions don't require arguments: try typing `date()` into the Console. Be sure to type the parentheses (`date()`); otherwise R will return the code behind the `date()` function rather than the output that you want/expect.
+
+<!---
 `function_name(argument1 = value1, argument2 = value2, ...)`. When you see this syntax, we say we are "calling the function".
+--->
 
-So with `plot()`, the arguments it requires are `x` and `y`, and when we pass `cars` to plot(), R is able to understand that it should use the two columns in that dataset as x and y.
+So with the `plot()` function, it requires data you'd like to plot. Let's have a deeper look at the arguments for `plot()`, using the help pages. 
 
 ## Help pages
  
-*TODO - complete*
+Every function available to you should have a help page, and you access it by typing a question mark preceding the function name in the Console. 
 
-A good way to learn about functions is to look at the help pages. Let's navigate over to the Help tab and type `plot`. All help pages will have the same format, here is how I look at it: 
+```
+?plot
+```
+
+This opens up the correct page in the Help Tab in the bottom-right of the RStudio IDE. You can also click on the tab and type in the function name in the search bar. 
+
+All help pages will have the same format, here is how I look at it: 
 
 The help page tells the name of the package in the top left, and broken down into sections:
 
@@ -291,9 +307,9 @@ The help page tells the name of the package in the top left, and broken down int
  - See Also: Any related functions you might find useful.
  - Examples: Some examples for how to use the function.
 
-When I look at a help page, I start with the description, which might be too in-the-weeds for the level of understanding I need at the offset. For the `sum` page, it is pretty straight-forward and lets me know that yup, this is the function I want.
+When I look at a help page, I start with the description to see if I am in the right place for what I need to do. Reading the description for `plot` lets me know that yup, this is the function I want.
 
-I next look at the usage and arguments, which give me a more concrete view into what the function does. This syntax looks a bit cryptic but what it means is that you use it by writing sum, and then passing whatever you want to it in terms of data: that is what the "..." means. And the "na.rm=FALSE" means that by default, it will not remove NAs (I read this as: "remove NAs? FALSE!")
+I next look at the usage and arguments, which give me a more concrete view into what the function does. `plot` requires arguments for `x` and `y` — and when we pass `cars` to `plot()`, R is able to understand that it should use the two columns in that dataset as x and y. The `...` means that there are many other things we can pass to `plot()`, which we can understand here to be about the style of the plots
 
 Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
 
@@ -302,6 +318,11 @@ plot(sin, -pi, 2*pi)
 ```
 
 Let's try another function. In Excel, there is a "SUM" function to calculate a total. Let's expect that there is the same in R. I will type this into the Console: 
+
+
+Let's try this with...c()?
+
+
 
 ```{r sum2, eval=FALSE}
 sum(1, 2, 3)
@@ -422,16 +443,6 @@ here()
 ```
 
 
-
-
-## Recap
-
-R console executes
-
-running code
-knitting
-
-
 <!---
 #### Activity
 
@@ -464,27 +475,6 @@ Learn more: http://rmarkdown.rstudio.com/
 To end our work from this session, save, knit, and then restart R (Go to the top menus: Session > Restart R.) 
 
 Notice that now with a clean workspace, if I knit my document instead of sending code to the Console, my objects (like `mean_dist`) don't show up in my Environment. This is because R isn't actually running this in this R session, it is actually spinning up a clean session to knit my document. This is important for reproducible analyses because I don't want the success of this analysis to be dependent on some weird setting I have on my computer that will make Future Me or Future Us not able to run or understand these important analyses. Having RMarkdown be self-contained in this way helps you develop good habits for reproducibility.
-
-### What is RMarkdown? (1-minute video)
-
-Let's watch this to demonstrate all the amazing things you can now do: 
-
-[What is RMarkdown?](https://vimeo.com/178485416)
-
-
-
-## R Console
-
-OK let's go into the Console, where we interact with the live R process.
-
-We can do math: 
-
-```{r math, eval=FALSE}
-52*40
-365/12
-```
- 
-But like Excel, the power comes not from doing small operations by hand (like 8*22.3), it's by being able to operate on whole suites of numbers and datasets. In Excel, data are stored in the spreadsheet. In R, they are stored in objects, which are often vectors or dataframes. They are rectangular. 
 
 ### Viewing data in R
 

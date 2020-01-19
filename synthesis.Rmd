@@ -6,41 +6,9 @@ always_allow_html: true
 
 ## Summary
 
-In this session, we'll pull together the skills that we've learned so far. Working in our existing collaborative project/repos from the previous session, we'll wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then add something new to our collaborator's file. And we'll learn a few new things along the way! 
+In this session, we'll pull together the skills that we've learned so far. Working in our existing collaborative project/repo from the previous session (`r-collab`), we'll wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then add something new to our collaborator's document. And we'll learn a few new things along the way! 
 
-![Grolemund & Wickham R4DS Illustration](img/r4ds_data-science.png)
-
-## Objectives
-
-- Attach R packages (`tidyverse`, `here`, `janitor`, `kableExtra`)
-- Use `here::here()` for simpler (and safer) file paths
-- Data tidying and wrangling (`dplyr`, `tidyr`, etc.)
-- HTML tables with `kable()` and `kableExtra`
-- Data visualization (`ggplot2`)
-- Add something new to a collaborator's file
-- View your .Rmd as a website! TODO: Practice showing & explaining that this is a website BECAUSE of that process you went through of making/working in a gh-pages branch 
-
-## Set-up (TODO: probably don't need this section after julie's updates)
-
-**Note**: `data` folder has already been created & pushed containing `noaa_fisheries.csv` file in Julie's previous session.
-
-TODO: In the markdown document you've created previously (`my_name_fisheries.Rmd`)
-
-
-## Resources
-
-- [Project oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) by Jenny Bryan
-
-## Set-up
-
-- In GitHub, create a new repository called `us-fisheries-landings`
-- Clone the repo to create a version controlled project (remember, copy & paste the URL from the GitHub Clone / Download)
-- In the local project working directory, create a subfolder called 'data'
-- Copy and paste the **noaa_fisheries.csv** file into the 'data' folder
-- Create a new R Markdown document within your `us-fisheries-landings` project
-- Knit your .Rmd to html, saving as `us_landings.Rmd`
-
-**Data:**
+**Data used in the synthesis section:**
 File name: noaa_fisheries.csv
 Description: NOAA Commercial Fisheries Landing data (1950 - 2017)
 Accessed from: https://www.st.nmfs.noaa.gov/commercial-fisheries/commercial-landings/
@@ -48,9 +16,20 @@ Source: Fisheries Statistics Division of the NOAA Fisheries
 
 *Note on the data:* "aggregate" here means "These names represent aggregations of more than one species. They are not inclusive, but rather represent landings where we do not have species-specific data. Selecting "Sharks", for example, will not return all sharks but only those where we do not have more specific information."
 
+## Objectives
+
+- Synthesize data wrangling and visualization skills learned so far
+- Add a few new tools for data cleaning from `stringr`
+- Add an image to your collaborator's .Rmd
+- Publish your collaborative work as a webpage
+
+## Resources
+
+- [Project oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) by Jenny Bryan
+
 ## Attach packages, read in and explore the data
 
-Attach (load) packages with `library()`:
+In **your** .Rmd that you created in the last session, attach (load) packages with `library()`:
 
 ```{r, message = FALSE, warning = FALSE}
 
@@ -63,7 +42,7 @@ library(kableExtra)
 
 Read in the noaa_fisheries.csv data as object **us_landings**:
 
-```{r}
+```{r, message = FALSE}
 us_landings <- read_csv(here("data","noaa_fisheries.csv"))
 ```
 
@@ -96,7 +75,7 @@ landings_tidy <- us_landings %>%
   clean_names() %>% # Make column headers snake_case
   mutate(
     state = str_to_lower(state),
-    afs_name = tolower(afs_name)
+    afs_name = str_to_lower(afs_name)
   ) %>% # Converts character columns to lowercase
   mutate(dollars_num = parse_number(dollars_usd))
 ```
@@ -105,8 +84,10 @@ Now, getting just the salmon:
 ```{r}
 salmon_landings <- landings_tidy %>% 
   mutate(afs_clean = str_remove(afs_name, pattern = "aggregate")) %>% 
-  filter(str_detect(afs_clean, pattern = "salmon")) %>% # Detect matches for crab
-  separate(afs_clean, into = c("group","species"), sep = ",")
+  filter(str_detect(afs_clean, pattern = "salmon")) %>% 
+  separate(afs_clean, into = c("group","species"), sep = ", ") 
+
+# Note that the separator is 'comma-SPACE', to remove the space here & avoid having names like " coho" later on (though you could do it later)
 
 ```
 
@@ -130,7 +111,9 @@ salmon_summary <- salmon_landings %>%
 ## Make a graph of US commercial fisheries value by species over time with `ggplot2`
 
 ```{r, warning = FALSE}
-salmon_landings_graph <- ggplot(salmon_summary, aes(x = year, y = tot_landings, group = species)) +
+salmon_landings_graph <- 
+  ggplot(salmon_summary, 
+         aes(x = year, y = tot_landings, group = species)) +
   geom_line(aes(color = species)) +
   theme_bw() +
   labs(x = "year", y = "US commercial salmon landings (pounds)")
@@ -140,81 +123,72 @@ salmon_landings_graph
 
 ## Export your salmon value graph with `ggsave`
 
-```{r, warning = FALSE}
-ggsave(plot = salmon_landings_graph, here("figures", "us_salmon_landings.png"),
-       height = 5, width = 8)
+```{r, eval = FALSE}
+ggsave(plot = salmon_landings_graph, 
+       here("figures", "us_salmon_landings.png"),
+       height = 5, 
+       width = 8)
 ```
 
-## 2015 commercial fisheries value by state
+## `pivot_wider` to make a table with years as columns
 
-Now, let's create a finalized table of the top 5 states (by total commercial fisheries value) for 2015 .
+Finally, we'll create a table with the most recent 5 years of data (2013 - 2017) as columns, and the species (only coho & sockeye) as rows. 
 
-Remember that we already created a tidied data frame, **landings_tidy**. 
+Starting from `salmon_summary`, let's: 
 
-*Critical thinking for data wrangling workflow: Why does it make sense (especially now) that we broke our previous wrangling into two steps before getting our salmon subset?* 
+- Filter to only include years 2013 - 2017, for coho & sockeye salmon
+- Add a new column that is landings in *millions* of pounds (instead of pounds)
+- Round pounds to 2 digits
+- Remove the original *tot_landings* and *tot_value* columns
+- `pivot_wider()` to get years as columns
+- Finalize a nice data frame of landings for the two species
+- Publish as an HTML table with `kable()` and `kableExtra`
+
+### Wrangle to create our subset from salmon_data
 
 ```{r}
-state_value <- landings_tidy %>% 
-  filter(year %in% c(2015)) %>% 
-  group_by(state) %>% 
-  summarize(
-    state_value = sum(dollars_num, na.rm = TRUE),
-    state_landings = sum(landings_pounds, na.rm = TRUE)
-  ) %>% 
-  arrange(-state_value) %>% 
-  head(5)
+salmon_table <- salmon_summary %>% 
+  filter(year >= 2013, species %in% c("coho", "sockeye")) %>% 
+  mutate(tot_landings_mil = round(tot_landings / 1e6,2)) %>% 
+  select(-tot_value, -tot_landings) %>% 
+  pivot_wider(names_from = year, values_from = tot_landings_mil) %>% 
+  mutate(species = str_to_sentence(species)) %>% 
+  rename(`Salmon species` = species)
 ```
 
-Look at our summary data frame, **state_value** - which contains all the information we want, but doesn't look very finalized. 
+### Make our HTML table
 
-What are some ways we'd want to finalize it for a report? 
-
-- Change units (to millions of dollars and pounds)
-- Update column names
-- Capitalize the state names
-
-Let's do it! 
-
-## Making a nice HTML table
-
-First, we'll create it as a finalized data frame:
 ```{r}
-state_table <- state_value %>% 
-  mutate(`Fisheries value ($ millions)` = round(state_value / 1e6, 2),
-         `Landings (million pounds)` = round(state_landings / 1e6, 1)) %>% 
-  select(-state_value, -state_landings) %>% 
-  rename(State = state) %>% 
-  mutate(State = str_to_title(State))
-```
-
-Now, use `kable()` + `kableExtra` to nicely format it for HTML:
-```{r, eval=FALSE}
-kable(state_table) %>% 
-  kable_styling(bootstrap_options = "striped", 
-                full_width = FALSE) %>% 
-  add_header_above(c("", "2015 US commercial fisheries - top 5 states by value" = 2))
+kable(salmon_table) %>% 
+  kable_styling(full_width = FALSE) %>% 
+  add_header_above(c(" " = 1, "US salmon landings (million pounds)" = 5))
 ```
 
 ## Sync with GitHub remote
 
 Stage, commit, (pull), and push your updates to GitHub for safe storage & sharing. Check to make sure that the changes have been stored. 
 
-## Beautify your partner's document
+## Add an image to your partner's document
 
-Now, let's add an image to our **partner's** document!
+Now, let's add an image to our **partner's** .Rmd.
 
-- Pull again to make sure you have everyone's most updated versions
-- Open your **partner's** .Rmd ()
-- Go to (octodex.github.com)[https://octodex.github.com/] and find a version of octocat that you love
+First: 
+
+- Pull again to make sure you have your partner's most updated versions
+- Open your **partner's** .Rmd
+
+Second: 
+
+- Go to (octodex.github.com)[https://octodex.github.com/] and find a version of octocat that you like 
 - On the image, right click and choose "Copy image location"
 - In your **partner's** .Rmd, add the image at the end using:
 
 `!()[paste_image_location_you_just_copied_here]`
 
-- Knit the .Rmd and check to ensure that your octocat shows up
-- Save, stage, commit, pull, then push
-- Pull again to make sure you have updates from your collaborator
-- Check out your website! 
+- Knit the .Rmd and check to ensure that your octocat shows up in their document
+- Save, stage, commit, pull, then push to send your contributions back
+- Pull again to make sure your .Rmd has updates from your collaborator
+- Check out out your document as a website published with gh-pages! 
 
 ### End synthesis session!
 

@@ -1,7 +1,9 @@
-# Collaborating NEEDS COOLER NAME {#collaborating}
+# Collaborating & Getting Help {#collaborating}
 rstats community coding 
 
 ## Summary
+
+By being here at RStudio::conf and in this workshop, you are already part of the R community. We will discuss additional R communtities, how to engage, and how to ask for help. 
 
 *TODO: refine* Main purpose: work better with colleagues, help you help yourself. A big theme of this workshop has been how to more seamlessly collaborate with each other.
 
@@ -13,27 +15,313 @@ We will do this all with a partner, and we'll walk through some things all toget
 
 ### Objectives
 
-- create a new repo and give permission to a collaborator [for synthesis chapter, continue using that repo]
-- open as a new RStudio project, collaborate with a partner 
-- explore github.com blame, history, issues
+- intro to R communities
 - How to effectively ask for help
   - Googling. Error messages are your friends
   - R communities and getting help (rOpenSci, RLadies)
   - reprex & RStudio Community "do it with iris"
   - how to use Twitter for #rstats
-Activity: reprex to GitHub "dplyr reprex"  
+  - Activity: reprex to GitHub "dplyr reprex"  
+- create a new repo and give permission to a collaborator 
+- open as a new RStudio project, collaborate with a partner 
+- publish webpages online
 
 
 ### Resources
 
 - [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
+-  [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) - Thomas Mock
+- [reprex.tidyverse.org](https://reprex.tidyverse.org/)
+- [Getting help in R: do as I say, not as I've done](https://sctyner.github.io/rhelp.html) by Sam Tyner
 
-## Create and clone a repo
-TODO text
+
+<!---openscapes slides: 
+https://docs.google.com/presentation/d/1ZYQERUuNJ69QRSUs_JKLdask_VnQRmvMTulv6m2VmUU/edit#slide=id.g58b639860e_0_17
+--->
+
+
+## R communities 
+
+We are going to switch gears for a moment and talk about communities that exist around R and how you can engage with them. 
+
+R connects us online and in person, and by being here at RStudio::conf, you are a part of it. 
+
+One thing about the R community is that we use Twitter as a platform to connect with each other. Yes, Twitter is a legit tool for data science. Most communities have some degree of in-person and online presence, with Twitter being a big part of that online presence. We are going to talk about how you can start using it as a tool next, but first I want to show you who some of these communities you might want to engage with are.
+
+This is a small sampling to give you a sense of a few communities. Please see Thomas Mock's presentation [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) for more details.
+
+### RStudio Community
+
+
+
+### R User Groups
+
+R User Groups ("RUGs") are in-person meetups supported by [The R Consortium](https://www.r-consortium.org/projects/r-user-group-support-program). See a [list of RUGs and conferences](https://jumpingrivers.github.io/meetingsR/r-user-groups.html).
+
+### RLadies
+
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("img/rladies-logo.png")  
+```
+
+RLadies is a world-wide organization to promote gender diversity in the R community. 
+
+Web: [rladies.org](https://rladies.org/)  
+<!--break-->
+GitHub: [\@rladies](https://github.com/rladies/)  
+<!--break-->
+Twitter: [\@rladiesglobal](https://twitter.com/rladiesglobal)  
+<!--break-->
+
+### rOpenSci
+
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("img/ropensci-logo.png")  
+```
+
+
+rOpenSci builds software with a community of users and developers, and educate scientists about transparent research practices.
+
+Web: [ropensci.org](https://ropensci.org/)  
+<!--break-->
+GitHub: [\@ropensci](https://github.com/ropensci/)  
+<!--break-->
+Twitter: [\@ropensci](https://twitter.com/ropensci)  
+<!--break-->
+
+
+### The Carpentries
+
+
+
+### R4DS Community
+
+
+
+### \#tidytuesday
+
+## How to use Twitter for \#rstats
+
+Twitter is a legit tool for R. It's how we connect with other R users, learn from each other, develop together, and become friends. 
+
+### Interpreting an \#rstats tweet
+
+Here are a few examples to show how I use Twitter to learn new things and keep tabs on (some of!) what's going on in R. I miss a lot because I'm not on Twitter all the time. And that is OK. There is too much goodness to know it all, and I am by no stretch of the imagination on top of it all or experienced with everything folks are developing. But, I learn more than I would if I were never on Twitter. Also, you can always look back at past users and hashtags and get "news updates" as you please. The search feature is pretty good!
+
+<br>
+
+<center>
+  <a><img src="/img/blog/keynote/tweet-Md_Harris-rnoaa.png" width="400px"></a>
+</center>
+
+<br>
+
+When I saw [this tweet](https://twitter.com/Md_Harris/status/1074469302974193665/photo/1) by [@Md_Harris](https://twitter.com/Md_Harris), this was my internal monologue: 
+
+1. Cool visualization!
+1. I want to represent my data this way
+1. He includes his [code](https://gist.github.com/mrecos) that I can look at to understand what he did, and I can run and remix
+1. The package is from [@sckottie](https://twitter.com/sckottie) — I know he is at [rOpenSci](https://ropensci.org), which is a really amazing software developer community for science
+1. [`rnoaa`](https://cran.r-project.org/web/packages/rnoaa/index.html) is a package making NOAA [US environmental] data more accessible! I didn't know about this, it will be so useful for my colleagues
+1. I will retweet so my network can benefit as well
+
+<br>
+
+Another example, [this tweet](https://twitter.com/JennyBryan/status/1074339217986138113) where [@JennyBryan](https://twitter.com/JennyBryan/) is asking for feedback on a super useful package for interfacing between R and excel: [`readxl`](https://readxl.tidyverse.org/).
+
+<br>
+
+<center>
+  <a><img src="/img/blog/keynote/tweet-jennybryan-readxl.png" width="400px"></a>
+</center>
+
+<br>
+
+
+My internal monologue: 
+
+1. Yay, readxl is awesome, and also getting better
+1. Do I have any spreadsheets to contribute? 
+1. In any case, I will retweet so others can contribute. And I'll like it too because I appreciate this work
+
+### How to Twitter
+
+My advice for Twitter is to start off small and deliberately. Curate who you follow and what you say: although I have many interests beyond R, I use Twitter deliberately for R and science communities.
+
+Use it to listen and learn, and then you can gradually build up the courage to like and retweet things. And remember that liking and retweeting is not only a way to engage with the community yourself, but it is also a way to welcome and amplify other people.   
+
+If you're joining twitter to learn R, I suggest following:
+
+- [@hadleywickham](https://twitter.com/hadleywickham) 
+- [@JennyBryan](https://twitter.com/JennyBryan), 
+- [@rOpenSci](https://twitter.com/ropensci), 
+- [@WeAreRLadies](https://twitter.com/https://twitter.com/WeAreRLadies). 
+
+Listen to what they say and who joins those conversations, and follow other people and organizations. You could also look at who they are following. Also, check out the [#rstats](https://twitter.com/search?q=%23rstats&src=typed_query) hashtag. This is not something that you can follow (although you can have it as a column in software like TweetDeck), but you can search it and you'll see that the people you follow use it to help tag conversations. You'll find other useful tags as well, within your domain, as well as other R-related interests, e.g. [#rspatial](https://twitter.com/search?q=%23rspatial&src=typed_query). When I read marine science papers, I see if the authors are on Twitter; I sometimes follow them, ask them questions, or just tell them I liked their work!
+
+You can also follow us: 
+
+- [@juliesquid](https://twitter.com/juliesquid)
+- [@allison_horst](https://twitter.com/allison_horst)
+- [@jafflerbach](https://twitter.com/jafflerbach)
+- [@ECOuture9](https://twitter.com/ECOuture9)
+
+<br>
+
+These are just a few ways to learn and build community on Twitter. And as you feel comfortable, you can start sharing your ideas or your links too. Live-tweeting is a really great way to engage as well, and bridge in-person conferences with online communities. And of course, in addition to engaging on Twitter, check whether there are local RLadies chapters or other R meetups, and join! Or perhaps [start one](https://openscapes.org/blog/2018/11/16/how-to-start-a-coding-club/)?
+
+So Twitter is a place to engage with folks and learn, and while it is also a place to ask questions, there are other places to look first, depending on your question. 
+
+## Getting help: help you help yourself
+
+Helping you help yourself means moving beyond "it's not working" and towards solution-oriented approaches. Part of this is the mindset where you **expect that someone has encountered this problem before** and that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. 
+
+We're going to talk about how to ask for help, how to interpret responses, and how to act upon the help you receive.
+
+### Read the error message
+
+As we've talked about before, they may be red, they may be unfamiliar, but **error messages are your friends**. There are multiple types of messages that R will print. Read the message to figure out what it’s trying to tell you. 
+
+**Error:** There’s a fatal error in your code that prevented it from being run through successfully. You need to fix it for the code to run. 
+
+**Warning:** Non-fatal errors (don’t stop the code from running, but this is a potential problem that you should know about).
+
+**Message:** Here’s some helpful information about the code you just ran (you can hide these if you want to)
+
+
+The first thing to do with any error message is read it. Yes it's in angry red text and it's unexpected — but most error messages are doing their best to help you solve the problem. And you'll get more familiar with they way they tell you. Here are a few examples: 
+
+#### If R...can’t find a function that you know exists:
+
+**Symptom**: `‘Error in _________: could not find function “_________”`
+
+**Likely diagnoses:**
+
+- The library containing the function you’re trying to use hasn’t been attached
+- You’ve misspelled or mistyped the function name
+
+**Possible solutions:**
+
+- Make sure you’ve attached the required package with library(package_name) - and remember this line should exist in your script before the code that uses a function from that package
+- Make sure you’ve run the line of code that attaches the necessary package
+- Check the function spelling/formatting very carefully
+ 
+ 
+#### If R...can’t find an object (e.g. an object or variable) that you know you’ve stored: 
+
+**Symptom:** `‘Error in ____ : object ‘_____’ not found’`
+
+**Likely diagnoses:**
+
+- The object hasn’t been created or stored
+- You’ve mistyped the object name
+
+**Possible solutions:**
+
+- Make sure you’ve run the line(s) of code where you read-in or create the object
+- Make sure you’ve spelled/typed the object name exactly as it exists in the Environment
+- Use ls() to check which objects exist in your current workspace (and if it’s not there, then it hasn’t been created/stored yet)
+
+ 
+### Googling
+
+Just as important as Googling your error message is being able to identify a useful result. 
+
+**Check the date, check the source, check the relevance.** Is this a modern solution, or one from 2013? Do I trust the person responding? Is this about my question or on a different topic?
+
+You will see links from many places, particularly: 
+
+- RStudio Community 
+- Stack Overflow
+- Books, blogs, and tutorials
+- GitHub Issues
+
+We haven't talked about GitHub Issues yet: let's do an example. 
+
+
+
+### Create a reprex
+
+- [reprex.tidyverse.org](https://reprex.tidyverse.org/)
+- [Jenny Bryan's reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan)
+
+Jenny Bryan made `reprex` because "conversations about code are more productive with: code that ***actually runs***, that ***I don’t have to run***, and that ***I can easily run***".
+
+Let me demo an example. This is Jenny's summary of what I'll do:
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/reprex-bryan.png")  
+```
+
+`reprex` is part of the Tidyverse, so we all already have it installed, but we do need to attach it: 
+
+```{r reprex-attach}
+library(reprex)
+```
+
+First I'll type into our RMarkdown script: 
+
+```{r, eval=FALSE}
+library(tidyverse)
+ggplot(cars, aes(speed, dist)) +
+  geom_point(color = "maroon")
+```
+
+And then when I also have this in my clipboard. Now I am going to paste it into an [Issue for our r-for-excel repository](https://github.com/rstudio-conf-2020/r-for-excel/issues) 
+
+When I paste it: 
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/reprex-ex-ggplot.png")  
+```
+
+Notice that following the backticks, there is only `r`, not `r{}`. This is because what we have pasted is formatted for R, not to be executed by R through RMarkdown.
+
+I can click on the Preview button in the Issues to see how this will render: and it will show my code, nicely formatted for R. 
+
+So in this example I might write at the top of the comment "\@allison_horst how do I change the point color to cyan?" And when Allison is tagged
+
+**`reprex` is a "workflow package"**. That means that it's something we don't put in Rmds, scripts, or anything else. We use is in the Console when we are preparing to ask for help — from ourselves or someone else. 
+
+reprex includes the output — experienced programmers who you might be asking for help can often read your code and know where the problem lies, especially when they can see the output. 
+
+### Activity: "do it with iris"
+
+Make a reprex using the built-in `iris` dataset and paste it in the Issues for your repository. (Have a look at iris: `head(iris); summary(iris)`)
+
+1. For your reprex, take the iris dataset and then filter it for observations where the Petal.Length is more than 6.5
+
+2. Navigate to github.com/your_username/r-workshop/issues
+
+Hint: remember to read the error message. "could not find function `%>%`" means you've forgotten to attach a package with `library()`
+
+#### Solution (no peeking)
+
+```{r activity-solution, eval=FALSE}
+## setup: run in Rmd or Console
+library(reprex)
+
+## reprex code: run in Rmd or Console
+library(tidyverse) # or library(dplyr) or library(magrittr)
+iris %>% filter(Petal.Length > 6.5)
+
+## copy the above
+
+## reprex call: run in Console
+reprex()
+```
+
+
+## Collaborating with GitHub
+
+Now we're going to collaborate with a partner and set up for our last session, which will tie together everything we've been learning.
 
 ### Create repo (Partner 1)
 
 Team up with a partner sitting next to you. Partner 1 will create a new repository. We will do this in the same way that we did in Chapter \@ref(github): [Create a repository on Github.com]. 
+
+Let's name it `r-collab`. 
 
 ### Create a gh-pages branch (Partner 1)
 
@@ -70,7 +358,7 @@ Partner 2 then needs to check their email and accept as a collaborator. Notice t
 
 <img src="img/github_collab.png" width="450px"> 
 
-### Clone to a new Rproject  (Partner 1)
+### Clone to a new R Project  (Partner 1)
 
 Now let's have Partner 1 clone the repository to their local computer. We'll do this through RStudio like we did before (see Chapter \@ref(github): [Clone your repository using RStudio]), but with a final additional step before hitting "Create Project": select "Open in a new Session".
 
@@ -100,23 +388,15 @@ Remember:
 
 Let's confirm that this was synced by looking at GitHub.com again. You may have to refresh the page, but you should see this commit where you added the `.Rproj` file.
 
-### Clone to a new Rproject  (Partner 2)
+### Clone to a new R Project  (Partner 2)
 
 Now it's Partner 2's turn! Partner 2, clone this repository following the same steps that Partner 1 just did. When you clone it, RStudio should not create any new files — why? Partner 1 already created and pushed the `.Rproj` and `.gitignore` files so they already exist in the repo.  
 
-### Edit a file and sync (Partner 2)
+### Create data folder (Partner 2)
 
-TODO make example better use of time. With iris. 
+Partner 2, let's create a folder for our data and store our `noaa_fisheries.csv` there. 
 
-Let's have Partner 2 add some information to the README.md. Let's have them write: 
-```
-Collaborators: 
-
-- Partner 2's name
-
-```
-
-When we save the README.md, And now let's sync back to GitHub. 
+And now let's sync back to GitHub. 
 
 ![](img/commit_overview.png)
 
@@ -211,61 +491,47 @@ Also, talk with your collaborators. Although our Ocean Health Index project is h
 
 But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. So protect yourself by pulling and syncing often! 
 
-<!---
-## TOCUT Create your collaborative website
+## Create your collaborative website
 
-OK. Let's have Partner 2 create a new RMarkdown file. Here's what they will do: 
+OK. Let's have both Partners create a new RMarkdown file and name it `my_name_fisheries.Rmd`. Here's what you will do: 
 
-1. Pull!
-1. Create a new RMarkdown file **and name it `index.Rmd`**. Make sure it's all lowercase, and named `index.Rmd`. This will be the homepage for our website! 
-1. Maybe change the title inside the Rmd, call it "Our website"
-1. Knit!
+1. Pull
+1. Create a new RMarkdown file **and name it `my_name_fisheries.Rmd`**. Let's do it all lowercase. These will become pages for our website
+1. We'll start by testing: let's simply change the title inside the Rmd, call it "My Name's Fisheries Analysis"
+1. Knit
 1. Save and sync your .Rmd and your .html files 
     - (pull, stage, commit, pull, push)
 1. Go to GitHub.com and go to your rendered website! Where is it? Figure out your website's url from your github repo's url. For example: 
-    - my github repo: <https://github.com/jules32/collab-research>
-    - my website url: <https://jules32.github.io/collab-research/>
+    - my github repo: <https://github.com/jules32/r-collab>
+    - my website url: <https://jules32.github.io/r-collab/>
     - note that the url starts with my **username.github.io**
     
-So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/collab-research/> is the same as <https://jules32.github.io/collab-research/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/collab-research/my_research.html>.
-
---->
+So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/r-collab/my_research.html>.
 
 
+## Issues for project management
 
-## Commit History
+TODO: 
+[openscapes gh for project mgmt](https://docs.google.com/presentation/d/1JGFnZqz01Ex8h2qO3OBUHc1OiTFkAqV2ED2XFiMdN4I/edit#slide=id.g508ea9b321_0_58)
 
-Now, let's look at the repo again on GitHub.com. You'll see those new files appear, and the commit history has increased.
+How to use Issues chapter: https://openscapes.github.io/series/github-issues
 
-You'll see that the number of commits for the repo has increased, let's have a look. You can see the history of both of you. 
-
-<!--- CUT
-### Blame
-
-Now let's look at a single file, starting with the README file. We've explored the "Raw" and "History" options in the top-right of the file, but we haven't really explored the "Blame" option. Let's look now. Blame shows you line-by-line who authored the most recent version of the file you see. This is super useful if you're trying to understand logic; you know who to ask for questions or attribute credit.
-
---->
-
-## Issues
-
-TODO: redo
-
-Now let's have a look at issues. This is a way you can communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
+Now let's have another look at issues. In addition to asking for help, Issues are a great tool for project management: they are a way to communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
 
 ![](img/github-issues.png)
 
-Let's create a new issue with the title "NYC flights". 
+Let's create a new issue with the title "Fisheries analysis". 
 
 In the text box, let's write a note to our collaborator. You can use Markdown in this text box, which means all of your header and bullet formatting will come through. You can also select these options by clicking them just above the text box. 
 
 Let's have one of you write something here. I'm going to write: 
 
 ```
-Hi @jafflerbach! 
+Hi @allison_horst! 
 
 # first priority
 
-- explore NYC flights
+- import fisheries data
 - plot interesting things
 ```
 
@@ -281,77 +547,6 @@ Another feature about issues is whether you want any notifications to this repos
 
 Let's have Person 2 respond to the issue affirming the plan.
 
-
-## Getting help online
-How to ask for, interpret, and act upon help
-
-Folks online have written advice in blogs:
-
-- [Getting help in R: do as I say, not as I've done by Sam Tyner](https://sctyner.github.io/rhelp.html)
-
-### Googling: help you help yourself
-
-#### Error messages are your friends
-
-
-Borrow/show Allison's slides
-- [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
-
-You'll also come across RStudio Community and Stack Overflow
-  
-#### RStudio community  
-  
-### reprex
-
-- [reprex.tidyverse.org](https://reprex.tidyverse.org/)
-- [](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan)
-
-`reprex` is a "workflow package". That means that it's something we don't put in Rmds, scripts, or anything else. We use is in the Console when we are preparing to ask for help — from ourselves or someone else. 
-
-Let me demo an example. This is what I'll do (screenshot from [Jenny Bryan's reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan)
-
-<br>
-
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/reprex-bryan.png")  
-```
-
-"Conversations about code are more productive with: code that ***actually runs***, that ***I don’t have to run***, and that ***I can easily run***" - Jenny Bryan
-
-reprex includes the output — experienced programmers who you might be asking for help can often read your code and know where the problem lies, especially when they can see the output. 
-
-Jenny Bryan create
-
-`reprex` is part of the Tidyverse, so we all already have it installed, but we do need to attach it: 
-
-```{r reprex-attach}
-library(reprex)
-```
-
-
-`reprex_clean()`
-```{r reprex-clean}
-
-
-```
-
-Demo ideas:
-- ggplot (reprex pastes figure)
-
-### Activity: "do it with iris"
-
-Make a reprex and paste it in your Issues
-
-### TODO Sync with your partner
-
-## R communities (rOpenSci, RLadies)
-
-R4DS
-tidytuesday
-
-- Thomas Mock's slides for others
-
-## How to use Twitter for #rstats
 
 ### END **collaborating** session!
 

@@ -1,12 +1,31 @@
 # GitHub {#github}
 
-TODO:
-
+TODO: 
 - no github folder, 
 - new screenshots, 
 - earlier emphasis on syncing steps. 
 - no gh-pages branch! 
 - fewer high level headers
+- .Rprojects describe
+
+<!---
+### RStudio Projects
+
+Create a new Project called 'r-for-excel-users'. File > New Project... > New Directory > New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
+
+What is a Project? It is a way to organize all of the relevant things you need for an analysis in the same place. This means data, code, figures, notes, etc. 
+
+Why does this matter? Keeping everything you need for your analysis together makes it less brittle and more portable — across people, time, and computers.  
+
+Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
+
+Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/RStudio_IDE_projdir.png")  
+```
+
+--->
 
 ```{r gh ops, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -338,13 +357,17 @@ Notice a few things in our repo here:
 When you first clone a repo through RStudio, RStudio will add an `.Rproj` file to your repo. And if you didn't add a `.gitignore` file when you originally created the repo on GitHub.com, RStudio will also add this for you. These will show up with little yellow `?` icons in your git tab. This is GitHub's way of saying: "I am responsible for tracking everything that happens in this repo, but I haven't seen these files yet. Do you want me to track them too?" (We'll see that when you click the box to stage them, they will turn into `A`s because they have been added to the repo. 
 
 
-## Add files to our local repo
+## Project oriented workflows
+
+- [](https://rstats.wtf/project-oriented-workflow.html)
 
 The repository will contain:
 
 * .gitignore file
 * README.md
 * Rproj
+
+## Add files to our local repo
 
 Let's create the following:
 

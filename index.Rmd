@@ -43,7 +43,7 @@ Before you begin, be sure you are all set up: see the prerequisites in Chapter \
 |break      |  | |
 |11-12:30   | [Intro to GitHub](#github) (JL) | [`dplyr` & VLOOKUPs](#dplyr-vlookups) (AH) |
 |lunch      |  ||
-|13:30-15:00 | [`ggplot2` & Charts](#ggplot2) (AH) | [Collaborating in #rstats](#collaboration) (JL) |
+|13:30-15:00 | [`ggplot2` & Charts](#ggplot2) (AH) | [Collaborating & getting help](#collaboration) (JL) |
 |break      |  | |
 |15:30-17:00 | [`dplyr` & Pivot Tables](#dplyr-pivot-tables) (JL) | [Synthesis](#synthesis) (AH) |
 

@@ -180,6 +180,9 @@ First:
 Second: 
 
 - Go to (octodex.github.com)[https://octodex.github.com/] and find a version of octocat that you like 
+- Pull again to make sure you have everyone's most updated versions
+- Open your **partner's** .Rmd ()
+- Go to [octodex.github.com](https://octodex.github.com/) and find a version of octocat that you love
 - On the image, right click and choose "Copy image location"
 - In your **partner's** .Rmd, add the image at the end using:
 

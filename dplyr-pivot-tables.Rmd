@@ -461,9 +461,19 @@ Highly recommended read: [Broman & Woo: Data organization in spreadsheets](https
 Great opening line: "Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades."
 
 
-## Efficiency Tips
+## Efficiency Tip
 
-arrow keys with shift, option, command
+Command - Z to undo  
+Command - Shift - Z to redo
+
+Arrow keys to move letter by letter  
+Arrow keys - Shift to highlight letter by letter 
+
+Arrow keys - Option to move word by word
+Arrow keys - Option to highlight word by word
+
+Arrow keys - Command to move end to end
+Arrow keys - Command to highlight end to end
 
 
 ### END **dplyr-pivot-tables** session!

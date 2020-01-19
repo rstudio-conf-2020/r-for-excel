@@ -117,21 +117,29 @@ To get the full functionality of Github, you will eventually want to learn other
 
 ## Create a repository on Github.com
 
-First, go to your account on github.com and click "New repository".
-<br />
-<br />
-![](img/create_repository.png)
-<br />
-<br />
+First, go to your account on github.com. Notice that the URL is github.com/your-username.
+
+Click "New repository".
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/gh_repo_create.png")  
+```
+
+<br>
 
 Choose a name. Call it whatever you want (the shorter the better), or follow me for convenience. I will call mine `r-workshop`. 
 
 Also, add a description, make it public, create a README file, and create your repo!
-<br />
-<br />
-![](img/create_repository_2.png)
-<br />
-<br />
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/gh_repo_create.png")  
+```
+
+<br>
 
 The *Add gitignore* option adds a document where you can identify files or file-types you want Github to ignore. These files will stay in on the local Github folder (the one on your computer), but will not be uploaded onto the web version of Github.
 
@@ -140,47 +148,22 @@ The *Add a license* option adds a license that describes how other people can us
 Check out our new repository!  
 
 Notice how the README.md file we created is automatically displayed at the bottom. The .md means that it is Markdown (remember how .Rmd was RMarkdown?) so the formatting we learned in the last lesson apply here.
-<br />
-<br />
-
-![](img/new_repository.png)
-<br />
-<br />
-
-## Create a gh-pages branch
-
-We aren't going to talk about branches very much, but they are a powerful feature of git/GitHub. I think of it as creating a copy of your work that becomes a parallel universe that you can modify safely because it's not affecting your original work. And then you can choose to merge the universes back together if and when you want. By default, when you create a new repo you begin with one branch, and it is named `master`. When you create new branches, you can name them whatever you want. However, if you name one `gh-pages` (all lowercase, with a `-` and no spaces), this will let you create a website. And that's our plan. So, let's do this to create a `gh-pages` branch: 
-
-On the homepage for your repo on GitHub.com, click the button that says "Branch:master". Here, you can switch to another branch (right now there aren't any others besides `master`), or create one by typing a new name. 
-
-<img src="img/github-branch.png" width="350px">
 
 <br>
 
-Let's type `gh-pages`. 
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/gh_repo_new.png")  
+```
 
 <br>
 
-<img src="img/github_create-branch_gh-pages.png" width="350px"> 
-
-Let's also change `gh-pages` to the default branch and delete the master branch: this will be a one-time-only thing that we do here: 
-
-First click to control branches:
-
-<img src="img/github-branch2.png" width="350px"> 
-
-And then click to change the default branch to `gh-pages`. I like to then delete the `master` branch when it has the little red trash can next to it. It will make you confirm that you really want to delete it, which I do!
-
-<img src="img/github-change-branch.png" width="450px"> 
-
-
-**From here, you will work locally (on your computer).**
-
+Great! So now we have our new repository that exists in the Cloud. Let's get it established locally on our computers: that is called "cloning". 
 
 ## Clone your repository using RStudio
 
-We'll start of by cloning to our local computer using RStudio. We are going to be cloning a copy of our Remote repository on Github.com to our local computers. Unlike downloading, cloning keeps all the version control and user information bundled with the files. 
+Let's clone this repo to our local computer using RStudio. Unlike downloading, cloning keeps all the version control and user information bundled with the files. 
 
+<!---
 **Step 0**: Create your `github` folder 
 
 This is really important! We need to be organized and deliberate about where we want to keep all of our GitHub repositories (since this is the first of many in your career). 
@@ -194,66 +177,99 @@ This will let us take advantage of something that is really key about GitHub.com
 
 So really. Make sure that you have an all-lowercase folder called `github` in your home directory!!
 
-**Step 1**: Copy the web address of the repository you want to clone.
-<br />
+--->
+
+### Copy the repo address 
+
+First, copy the web address of the repository you want to clone. (By default this is HTTPS, but you could alternatively set up with SSH. This is more advanced than we will get into here, but allows 2-factor authentication. See [Happy Git with R](https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication) for more information.)
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/gh_repo_clone1.png")  
+```
+
+<br>
+
+### RStudio: New Project
+
+Now go back to RStudio, and click on New Project. There are a few different ways; you could also go to File > New Project..., or click the little green + with the R box in the top left.
+also in the File menu).
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project1.png")  
+```
+
+<br>
 
 
-![](img/clone_step1.png)
+### Select Version Control
 
-<br />
-<br />
+<br>
 
-**Step 2**: from RStudio, go to New Project (also in the File menu).
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project2.png")  
+```
 
-![](img/new_project_1.png)
-<br />
-<br />
+<br>
 
-**Step 3**: Select Version Control
+### Select Git
 
-<br />
-<br />
+Since we are using git. 
 
-![](img/new_project_2.png)
-<br />
-<br />
+<br>
 
-**Step 4**: Select Git
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project3.png")  
+```
 
-<br />
-<br />
+<br>
 
-![](img/new_project_3.png)
-<br />
-<br />
 
-**Step 5**: Paste it in the Repository URL field, and type **tab** to autofill the Project Directory name. Make sure you keep the Project Directory Name **THE SAME** as the repository name from the URL.
+### Paste the repo address
+
+Paste the repo address (which is still in your clipboard) into in the "Repository URL" field. The "Project directory name" should autofill; if it does not press *tab*, or type it in. It is best practice to keep the "Project directory name" **THE SAME** as the repository name.
+
+When cloned, this repository is going to become a folder on your computer. 
+
+At this point you can save this repo anywhere. There are different schools of thought but we think it is useful to create a high-level folder where you will keep your github repos to keep them organized. We call ours `github` and keep it in our root folder (`~/github`), and so that is what we will demonstrate here — you are welcome to do the same. Press "Browse..." to navigate to a folder and you have the option of creating a new folder. 
 
 Save it in your github folder (click on Browse) to do this. 
 
-<br />
-<br />
+<br>
 
-![](img/new_project_4.png)
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project4.png")  
+```
 
-<br />
-<br />
+<br>
+
+
+### Admire your local repo
 
 If everything went well, the repository will be added to the list located here:
-![](img/select_project.png)
 
-<br />
-<br />
+<br>
 
-And the repository will be saved to the Github folder on your computer:
-<br />
-<br />
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project5.png")  
+```
 
-![](img/cloned_repository.png)
-<br />
-<br />
+<br>
 
-Ta da!!!!  The folder doesn't contain much of interest, but we are going to change that.
+The repository is also saved to the location you specified, and you can navigate to it as you normally would in Finder or Windows Explorer: 
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project6.png")  
+```
+
+<br>
+
+Hooray!
 
 ## Inspect your repository
 
@@ -264,9 +280,14 @@ Notice a few things in our repo here:
     - The project is named in the top right hand corner
 1. We have a git tab! This is how we will interface directly to Github.com
 
-![](img/RStudio_IDE_git.png)
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/new_project5_annotated.png")  
+```
 
 <br>
+
 
 When you first clone a repo through RStudio, RStudio will add an `.Rproj` file to your repo. And if you didn't add a `.gitignore` file when you originally created the repo on GitHub.com, RStudio will also add this for you. These will show up with little yellow `?` icons in your git tab. This is GitHub's way of saying: "I am responsible for tracking everything that happens in this repo, but I haven't seen these files yet. Do you want me to track them too?" (We'll see that when you click the box to stage them, they will turn into `A`s because they have been added to the repo. 
 

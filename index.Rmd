@@ -55,8 +55,8 @@ Before the training, please make sure you have done the following:
 1. Download and install **up-to-date versions** of:
     - R: https://cloud.r-project.org
     - RStudio: http://www.rstudio.com/download 
-1. Install the Tidyverse 
-1. Create a an account: 
+1. Install the Tidyverse TODO--no longer?
+1. Create a an account ([username advice](https://happygitwithr.com/github-acct.html)): 
     - https://github.com
     
 <!---

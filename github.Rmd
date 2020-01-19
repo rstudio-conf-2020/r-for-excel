@@ -38,9 +38,9 @@ We will learn about version control using git and GitHub, and we will interface 
 
 ## Objectives
 
-Today, we'll interface with GitHub from our local computers using RStudio. There are many other ways to interact with GitHub, including GitHub's Desktop App or the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)), but today we are going to work from RStudio. You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio and the GitHub Desktop App).
+Today, we'll interface with GitHub from our local computers using RStudio. There are many other ways to interact with GitHub, including GitHub's Desktop App or the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)), but today we are going to work from RStudio. You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio).
 
-Here's what we'll do after we set up git on your computers: 
+Here's what we'll do, since we've already set up git on your computers in the previous session ([Setup Git & GitHub](#rstudio/#setup-git-github): 
 
 1. create a repository on Github.com
 1. clone locally using RStudio 
@@ -49,17 +49,17 @@ Here's what we'll do after we set up git on your computers:
 1. practice the RStudio-GitHub workflow by editing and adding files 
 1. practice R Markdown
 
-git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
+git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. 
+
+It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
 
 
 ## Resources
 
 These materials borrow from: 
 
-- Jenny Bryan's lectures from STAT545 at UBC: [The Shell](http://stat545.com/git09_shell.html)
 - Jenny Bryan's [Happy git with R](http://happygitwithr.com) tutorial
-- Melanie Frazier's [GitHub Quickstart](https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html), [GitHub Lesson at University of Queensland](https://github.com/OHI-Science/data-science-training/blob/master/github_mel.Rmd)
-- Ben Best's [Software Carpentry at UCSB](http://remi-daigle.github.io/2016-04-15-UCSB/git/)
+- Melanie Frazier's [GitHub Quickstart](https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html)
 
 Today, we'll only introduce the features and terminology that new R users need to learn to begin managing their projects.
 
@@ -113,92 +113,6 @@ To get the full functionality of Github, you will eventually want to learn other
 ![](img/push_pull_clone.png)
 <br />
 <br />
-
-<!---
-## Setup Git & GitHub
-
-We're going to switch gears from R for a moment and set up Git and GitHub, which we will be using along with R and RStudio for the rest of the workshop. This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together. 
-
-1. We will use the `usethis` package to configure **git** with global commands, which means it will apply 'globally' to all files on your computer, rather than to a specific folder. 
-
-```{r use this, eval=FALSE}
-
-install.packages("usethis")
-library(usethis)
-
-use_git_config(user.name = "jules32", user.email = "jules32@example.org")
-
-```
-
-*BACKUP PLAN* If `usethis` fails, the following is the classic approach to configuring **git**.  Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:
-
-        # display your version of git
-        git --version
-        
-        # replace USER with your Github user account
-        git config --global user.name USER
-        
-        # replace NAME@EMAIL.EDU with the email you used to register with Github
-        git config --global user.email NAME@EMAIL.EDU
-        
-        # list your config to confirm user.* variables set
-        git config --list
-
-Not only have you just set up git as a one-time-only thing, you have just used the command line. We don't have time to learn much of the command line today, but you just successfully used it following explicit instructions, which is huge! There are great resources for learning the command line, check out [this tutorial from SWC at UCSB](http://remi-daigle.github.io/2016-04-15-UCSB/shell/). 
-
-### Troubleshooting
-
-If you have problems setting up git, please see the [Troubleshooting section](http://happygitwithr.com/troubleshooting.html) in Jenny Bryan's amazing [HappyGitWithR](http://happygitwithr.com). 
-
-#### New(ish) Error on a Mac
-We've also seen the following errors from RStudio: 
-
-```
-error key does not contain a section --global terminal
-```
-and
-```
-fatal: not in a git directory
-```
-
-To solve this, go to the Terminal and type:
-    ```
-which git
-```
-
-<img src="img/git_whichgit.png" width="250px">
-
-  
-Look at the filepath that is returned. Does it say anything to do with Apple?
-
--> If yes, then the [Git you downloaded](https://git-scm.com/downloads) isn't installed, please redownload if necessary, and follow instructions to install.  
-
--> If no, (in the example image, the filepath does not say anything with Apple) then proceed below:
-
-In RStudio, navigate to: Tools > Global Options > Git/SVN. 
-
-<img src="img/git_options.png" width="250px">
-
-
-<br>
-
-Does the **“Git executable”** filepath match what the url in Terminal says? 
-
-<br>
-
-<img src="img/git_options_filepath.png" width="500px">
-
-
-If not, click the browse button and navigate there.   
-
->*Note*: on my laptop, even though I navigated to /usr/local/bin/git, it then automatically redirect because /usr/local/bin/git was an alias on my computer. That is fine. Click OK.
-
-Quit RStudio.   
-
-Then relaunch RStudio.  
-
-Try syncing or cloning, and if that works and then you don’t need to worry about typing into the Terminal, you’re all done!
---->
 
 
 ## Create a repository on Github.com

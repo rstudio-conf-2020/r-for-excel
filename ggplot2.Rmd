@@ -37,7 +37,7 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 Within your existing version-controlled R project, create a new R Markdown document with title "Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "my_ggplot2". 
 
 The `ggplot2` package is part of the `tidyverse`, so we don't need to attach it separately. Attach the `tidyverse`, `readxl` and `here` packages in the top-most code chunk of your .Rmd. 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(readxl)
 library(here)
@@ -49,12 +49,7 @@ In this session, we'll use data for parks visitation from two files:
 - A single Excel worksheet containing only visitation for Channel Islands National Park (ci_np.xlsx)
 
 Add a new code chunk to read in the data from the **data** subfolder within your working directory. 
-```{r, include = FALSE}
-ca_np <- read_csv(here("data", "ca_np.csv"))
-ci_np <- read_xlsx(here("data", "ci_np.xlsx"))
-```
-
-```{r, eval = FALSE}
+```{r, message = FALSE}
 ca_np <- read_csv(here("data", "ca_np.csv"))
 ci_np <- read_xlsx(here("data", "ci_np.xlsx"))
 ```
@@ -92,25 +87,31 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
   geom_line()
 ```
 
+We're going to be doing a lot of plot variations with those same variables. Let's store the first line as object `ggbase` so that we don't need to retype it each time: 
+
+```{r}
+ggbase <- ggplot(data = ci_np, aes(x = year, y = visitors))
+```
+
 Or, we could change that to a scatterplot just by updating the `geom_*`:
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_point()
 ```
 
 We could even do that for a column graph:
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_col()
 ```
 
 Or an area plot...
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +  
   geom_area()
 ```
 
-We can see that updating to different `geom_*` types is quick, so long as the types of graphs we're switching between are compatible. 
+We can see that updating to different `geom_*` types is quick, so long as the types of graphs we're switching between are compatible.
 
 The data are there, now let's do some data viz customization. 
 
@@ -132,7 +133,7 @@ Some common arguments we'll use first are:
 Building on our first line graph, let's update the line color to "purple" and make the line type "dashed": 
 
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_line(
     color = "purple",
     linetype = "dashed"
@@ -144,7 +145,7 @@ How do we know which color names ggplot will recognize? If you google "R colors 
 Now let's update the point, style and size of points on our previous scatterplot graph using `color = `, `size = `, and `pch = ` (see `?pch` for the different point styles, which can be further customized). 
 
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase + 
   geom_point(color = "purple",
              pch = 17,
              size = 4,
@@ -168,7 +169,7 @@ In short, if updating aesthetics based on a variable, make sure to put that argu
 Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aesthetic mapping in data visualization.
 
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase + 
   geom_point(
     aes(size = visitors,
         color = visitors),
@@ -183,7 +184,7 @@ In the example above, notice that the two arguments that **do** depend on variab
 Create a column plot of Channel Islands National Park visitation over time, where the **fill color** (argument: `fill = `) changes based on the number of **visitors**. 
 
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase + 
   geom_col(aes(fill = visitors))
 ```
 
@@ -201,7 +202,7 @@ Here are a few to try today (but also notice all the options that appear as we s
 
 Here, let's update our previous graph with `theme_minimal()`:
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_point(
     aes(size = visitors,
         color = visitors),
@@ -215,7 +216,7 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
 Use `labs()` to update axis labels, and add a title and/or subtitle to your ggplot graph. 
 
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_line(linetype = "dotted") +
   theme_bw() +
   labs(
@@ -234,18 +235,19 @@ As long as the geoms are compatible, we can layer them on top of one another to 
 
 For example, adding points to a line graph: 
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_line(color = "purple") +
-  geom_point(color = "magenta",
-             aes(size = year))
+  geom_point(color = "orange",
+             aes(size = year),
+             alpha = 0.5)
 ```
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 ```{r}
-ggplot(data = ci_np, aes(x = year, y = visitors)) +
+ggbase +
   geom_col(fill = "orange",
            color = "purple") +
-  geom_line()
+  geom_line(color = "green")
 ```
 
 ## Multi-series ggplot graphs
@@ -261,13 +263,18 @@ ggplot(data = ca_np, aes(x = year, y = visitors)) +
 
 Well that's definitely a mess, and it's because ggplot has no idea that these **should be different series based on the different parks that appear in the 'park_name' column**.
 
-We can make sure R does know by updating an aesthetic based on *park_name*:
+We can make sure R does know by adding an explicit grouping argument (`group = `), or by updating an aesthetic based on *park_name*:
 ```{r}
-ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
+ggplot(data = ca_np, aes(x = year, y = visitors, group = park_name)) +
   geom_line()
 ```
 
-**Note**: You could also add that aesthetic (`color = park_name`) in the `geom_line()` layer, instead of in the topmost `ggplot()` layer.
+**Note**: You could also add an aesthetic (`color = park_name`) in the `geom_line()` layer to create groupings, instead of in the topmost `ggplot()` layer.
+
+Let's store that topmost line so that we can use it more quickly later on in the lesson:
+```{r}
+gg_np <- ggplot(data = ca_np, aes(x = year, y = visitors, group = park_name))
+```
 
 ## Faceting ggplot graphs
 
@@ -276,7 +283,7 @@ When we facet graphs, we split them up into multiple plotting panels, where each
 Also notice that any general theme changes made will be applied to *all* of the graphs. 
 
 ```{r}
-ggplot(data = ca_np, aes(x = year, y = visitors, color = park_name)) +
+gg_np +
   geom_line(show.legend = FALSE) +
   theme_light() + 
   labs(x = "year", y = "annual visitors") +
@@ -298,29 +305,18 @@ So to export the faceted graph above at 180 dpi, width a width of 8" and a heigh
 ggsave(here("img","np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
 
+TODO: do they have a figures folder created yet? 
 ```{r, eval = FALSE}
 ggsave(here("figures", "np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
 
-Notice that a .jpg image of that name and size is now stored in your project working directory. You can change the type of exported image, too (e.g. pdf, tiff, eps, png, mmp, svg). 
-
-### One final graph example: jitter and boxplots 
-
-For the record: this is not a good option for showing the visitation data because values are not independent observations of a random variable. But, for the purposes of showing a graph, we'll use visitation as our continuous measured variable in a jitter + boxplot anyway. 
-
-```{r}
-ggplot(data = ca_np, aes(x = park_name, y = visitors)) +
-  geom_jitter(alpha = 0.5,
-              color = "gray60",
-              width = 0.2,
-              size = 1) +
-  geom_boxplot(fill = NA,
-               color = "black",
-               outlier.color = NA) +
-  coord_flip() +
-  theme_minimal()
-```
+Notice that a .jpg image of that name and size is now stored in the `figures\` folder within your working directory. You can change the type of exported image, too (e.g. pdf, tiff, eps, png, mmp, svg). 
 
 **Sync your project with your GitHub repo.**
 
-## End `ggplot` session
+- Stage
+- Commit
+- Pull (to check for remote changes)
+- Push!
+
+### End `ggplot` session!

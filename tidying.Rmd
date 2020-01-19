@@ -32,6 +32,7 @@ Within your day 2 R Project, create a new .Rmd. Attach the following packages (u
 - `here`
 - `janitor` 
 - `readxl` 
+- `kableExtra`
 
 Knit and save your new .Rmd within the project folder. 
 
@@ -50,6 +51,7 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(readxl)
+library(kableExtra)
 ```
 
 ### Read in data with `read_excel()`
@@ -58,19 +60,17 @@ We've used both `read_csv()` and `read_excel()` to import data from spreadsheets
 
 Use `read_excel()` to read in the **inverts.xlsx** data as an objected called **inverts**.
 
-```{r, include = FALSE}
-inverts <- read_excel(here("data", "inverts.xlsx"))
-```
-
-```{r, eval = FALSE}
+```{r, message = FALSE}
 inverts <- read_excel(here("data", "inverts.xlsx"))
 ```
 
 Be sure to explore the imported data a bit: 
 
-- `View()`
-- `names()`
-- `summary()`
+```{r, eval = FALSE}
+View(inverts)
+names(inverts)
+summary(inverts)
+```
 
 ## Wide-to-longer format with `tidyr::pivot_longer()`
 
@@ -256,7 +256,7 @@ Try updating the separator from "_" to "_hello!_" to see what the outcome column
 inverts_triple_unite <- inverts_long %>% 
   tidyr::unite(col = "year_site_name",
                c(year, site, common_name),
-               sep = "-")
+               sep = "-") # Note: this is a dash
 
 ```
 

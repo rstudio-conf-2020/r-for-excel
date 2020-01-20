@@ -33,7 +33,6 @@ If you answer yes to these questions, this course is for you!
 
 Before you begin, be sure you are all set up: see the prerequisites in Chapter \@ref(overview). --->
 
-
 ## Agenda
 
 
@@ -59,6 +58,7 @@ Before the training, please make sure you have done the following:
 1. Create a an account ([username advice](https://happygitwithr.com/github-acct.html)): 
     - https://github.com
 1. Download and install **Git** TODO discuss    
+1. Download the [r-for-excel-data folder](https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing) (we will move it somewhere together)
     
 <!---
 Do this beforehand (20 minutes)
@@ -69,3 +69,36 @@ Do this beforehand (20 minutes)
 https://docs.google.com/document/d/1Imcx8ZropMF5tmLF6As02OJam-r1pNexu5pULczCwMA/edit?ts=5d8ce185 --->   
 
 1. Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also watching a virtual training or following this tutorial on your own.
+
+## Data citations
+
+We use the following data from the Santa Barbara Coastal Term Ecological Research and National  Oceanic and Atmospheric Administration in this workshop: 
+
+- **fish.csv**
+  - Description: Reef fish abundance, SB coast
+  - Link: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=17&revision=newest
+  - Citation: Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Fish abundance. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/dbd1d5f0b225d903371ce89b09ee7379).
+- **inverts.xlsx**
+  - Description: Invertebrate counts, SB coast
+  - Link: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=19&revision=newest
+  - Citation: Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Invertebrate and algal density. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/748ee568669ca2b740e9b8f5f8a085d8). 
+- **kelp.xlsx**
+  - Description: Giant kelp abundance and size, SB coast
+  - Link: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=18&revision=newest                        
+  - Citation: Reed D. 2018. SBC LTER: Reef: Kelp Forest Community Dynamics: Abundance and size of Giant Kelp (Macrocystis Pyrifera), ongoing since 2000. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/dea56e02127161194626f97c8b6118e8). 
+- **lobsters.xlsx and lobsters2.xlsx**
+  - Description: Lobster size, abundance and fishing pressure (SB coast)
+  - Link: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=77&revision=newest
+  - Citation: Reed D. 2019. SBC LTER: Reef: Abundance, size and fishing effort for California Spiny Lobster (Panulirus interruptus), ongoing since 2012. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/a593a675d644fdefb736750b291579a0). 
+- **noaa_fisheries.csv**
+  - Description: NOAA Commercial Fisheries Landing data (1950 - 2017)
+  - Link: https://www.st.nmfs.noaa.gov/commercial-fisheries/commercial-landings/
+  - Source: Fisheries Statistics Division of the NOAA Fisheries
+- **substrate.xlsx **
+  - Description: Algal cover, invertebrates and substrates near Santa Cruz Island
+  - Link: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=38&revision=newest
+  - Citation: Schmitt R. J., S. J. Holbrook. 2012. SBC LTER: Santa Cruz Island: Cover of Algae, Invertebrates and Benthic Substrate. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/9ce22c5b70d3e6ef8f0445e6cf782f87). 
+- **ca_np.csv and ci_np.xlsx**
+  - Description: US National Parks visitation data (1904 - 2016)
+  - Link: https://data.world/inform8n/us-national-parks-visitation-1904-2016-with-boundaries
+  - Source: Data originally accessed from the US Department of the Interior National Park Service’s Integrated Resource Management Applications data portal (https://irma.nps.gov/)

@@ -4,7 +4,8 @@ TODO:
 
 - shorten data exploration
 - shorten skimr install: “oh no, we don’t have ‘skimr’, looks like we need to install it cool.”
-
+- add data source
+- TODO: add blank lines to lobsters and then use read_xlsx(skip =)
 
 <!---
 Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
@@ -14,6 +15,16 @@ How easy is it to get these counts by different groupings
 ## Summary
 
 Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the `group_by` and `summarize` functions from the `dplyr` package (part of the Tidyverse). We will also learn how to format tables and practice creating a reproducible report using RMarkdown and sharing it with GitHub. 
+
+TODO::::
+**Data used in the synthesis section:**
+File name: noaa_fisheries.csv
+Description: NOAA Commercial Fisheries Landing data (1950 - 2017)
+Accessed from: https://www.st.nmfs.noaa.gov/commercial-fisheries/commercial-landings/
+Source: Fisheries Statistics Division of the NOAA Fisheries
+
+*Note on the data:* "aggregate" here means "These names represent aggregations of more than one species. They are not inclusive, but rather represent landings where we do not have species-specific data. Selecting "Sharks", for example, will not return all sharks but only those where we do not have more specific information."
+
 
 ## Objectives
 
@@ -43,6 +54,8 @@ Let's start a new RMarkdown file in our repo, at the top-level (where it will be
 
 In the setup chunk, let's attach our libraries and read in our lobster data. In addition to the `tidyverse` package we will also use the `skimr` package. You will have to install it, but don't want it to be installed every time you write your code. The following is a nice convention for having the install instructions available (on the same line) as the `library()` call. 
 
+We used the `read_excel()` before, which is the generic function that reads both .xls and .xlsx files. Since we know that this is a .xlsx file, we will demo using the `read_xlsx()` function. 
+
 ```{r setup, eval=FALSE}
 ## attach libraries
 library(tidyverse)
@@ -60,8 +73,10 @@ library(tidyverse)
 library(readxl)
 library(here)
 library(skimr)
+
 lobsters <- read_xlsx(here("curation/lobsters2_curated.xlsx"))
 ```
+
 
 Let's add a code chunk and explore the data in a few ways.
 

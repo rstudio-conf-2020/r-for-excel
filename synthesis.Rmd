@@ -40,10 +40,12 @@ library(kableExtra)
 
 ```
 
-Read in the noaa_fisheries.csv data as object **us_landings**:
+
+Read in the noaa_landings.csv data as object **us_landings**. Note that cells we want to be stored as `NA` actually have the words "no data" - but we can include an additional argument in `read_csv()` to specify what we want to replace with `NA`.
 
 ```{r, message = FALSE}
-us_landings <- read_csv(here("data","noaa_fisheries.csv"))
+us_landings <- read_csv(here("data","noaa_landings.csv"),
+                        na = "no data")
 ```
 
 Go exploring a bit:

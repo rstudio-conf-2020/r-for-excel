@@ -1,0 +1,27 @@
+---
+title: "noaa_fisheries_curation"
+author: "Allison Horst"
+date: "1/20/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+```
+
+Get noaa_fisheries.csv & replace NA values with "no data":
+
+```{r}
+noaa_fisheries <- read_csv(here("curation","noaa_fisheries.csv")) %>% 
+  mutate(`Landings (pounds)` = replace_na(`Landings (pounds)`, "no data")) %>% 
+  mutate(`Dollars (USD)` = replace_na(`Dollars (USD)`, "no data"))
+```
+
+Write to a new .csv "noaa_landings.csv"
+```{r}
+write_csv(noaa_fisheries, here("curation", "noaa_landings.csv"))
+write_csv(noaa_fisheries, here("data", "noaa_landings.csv"))
+```
+

@@ -2,7 +2,8 @@
 
 ## Summary
 
-Now that we know how to *get* some data, the next thing we'll probably want to do is look at it. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph *or* use that code again to make the same style graph with different data.
+In this session, we'll first learn how to read some external data (from .xls, .xlsx, and CSV files) into R with the `readr` and `readxl` packages (both part of the `tidyverse`). 
+Then, we'll write reproducible code to build graphs piece-by-piece. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph *or* use that code again to make the same style graph with different data.
 
 Using `ggplot2`, the graphics package within the `tidyverse`, we'll write reproducible code to manually and thoughtfully build our graphs. 
 
@@ -17,22 +18,27 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 
 ### Objectives
 
+- Read in external data (Excel files, CSVs) with `readr` and `readxl`
+- Initial data exploration
 - Build several common types of graphs (scatterplot, column, line) in ggplot2
 - Customize gg-graph aesthetics (color, style, themes, etc.)
 - Update axis labels and titles
 - Combine compatible graph types (geoms)
 - Build multiseries graphs
 - Split up data into faceted graphs
-- Exporting figures with `ggsave()`
+- Export figures with `ggsave()`
 
 ### Resources
 
+- [https://readr.tidyverse.org/](`readr` documentation) from tidyverse.org
+- [https://readxl.tidyverse.org/](`readxl` documentation) from tidyverse.org
+- [https://readxl.tidyverse.org/articles/articles/readxl-workflows.html](`readxl` workflows article) from tidyverse.org
 - [https://r4ds.had.co.nz/data-visualisation.html](Chapter 3 - Data Visualization in R for Data Science by Grolemund and Wickham)
 - [ggplot2-cheatsheet-2.1.pdf](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)  
 - [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)  
 - ["Why I use ggplot2" - David Robinson Blog Post](http://varianceexplained.org/r/why-I-use-ggplot2/)
 
-## Getting started - Create a new .Rmd, attach packages & get data
+## Getting started - Create a new .Rmd, attach packages
 
 Within your existing version-controlled R project, create a new R Markdown document with title "Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "my_ggplot2". 
 
@@ -43,28 +49,61 @@ library(readxl)
 library(here)
 ```
 
+## Read in .xlsx and .csv files 
+
 In this session, we'll use data for parks visitation from two files: 
 
 - A comma-separated-value (CSV) file containing visitation data for all National Parks in California (ca_np.csv)
 - A single Excel worksheet containing only visitation for Channel Islands National Park (ci_np.xlsx)
 
-Add a new code chunk to read in the data from the **data** subfolder within your working directory. 
+### `read_csv()` to read in comma-separated-value (.csv) files
+
+There are many types of files containing data that you might want to work with in R. A common one is a comma separated value (CSV) file, which contains values with each column entry separated by a comma delimiter. CSVs can be opened, viewed, and worked with in Excel just like an .xls or .xlsx file - but let's learn how to get data directly from a CSV into R where we can work with it more reproducibly. 
+
+To read in the ca_np.csv file, we need to: 
+
+- insert a new code chunk
+- use `read_csv()` to read in the file
+- use `here()` within `read_csv()` to tell it where to look
+- assign the stored data an object name (we'll store ours as ca_np)
+
 ```{r, message = FALSE}
 ca_np <- read_csv(here("data", "ca_np.csv"))
-ci_np <- read_xlsx(here("data", "ci_np.xlsx"))
 ```
 
-Let's take a quick look at the data to see what it contains. For example: 
+Look in your Environment to see that **ca_np** now shows up. Click on the object in the Environment, and R will automatically run the `View()` function for you to pull up your data in a separate viewing tab. Now we can look at it in the spreadsheet format we're used to. 
 
-- `View()`: to look at the object in spreadsheet format
+We can explore our data frame a bit more to see what it contains. For example: 
+
 - `names()`: to see the variable (column) names
+- `head()`: to see the first *x* rows (6 is the default)
 - `summary()`: see a quick summary of each variable
+
+Cool! Next, let's read in ci_np.xlsx an Excel file) using `read_excel()`.
+
+### `readxl` to read in Excel files 
+
+We also have an Excel file (ci_np.xlsx) that contains observations **only** for Channel Islands National Park visitation. Both `readr` and `readxl` are part of the `tidyverse`, which means we should expect their functions to have similar syntax and structure. 
+
+*Note: If `readxl` is part of the `tidyverse`, then why did I have to attach it separately?* Great question! Too keep the `tidyverse` manageable, there are "core" packages (`readr`, `dplyr`, `tidyr`, `ggplot2`, `forcats`, `purrr`, `tibble`, `stringr`) that you would expect to use frequently, and those are automatically attached when you use `library(tidyverse)`. But there are *also*  more specialized `tidyverse` packages (e.g. `readxl`, `reprex`, `lubridate`, `rvest`) that are built with similar design philosophy, but are not automatically attached with `library(tidyverse)`. Those specialized packages are **installed** along with the `tidyverse`, but need to be attached individually (e.g. with `library(readxl)`). 
+
+Use `read_excel()` to get the ci_np.xlsx data into R:
+
+```{r, message = FALSE}
+ci_np <- read_excel(here("data", "ci_np.xlsx"))
+```
+
+*Note: If you want to explicitly read in an .xlsx or .xls file, you can use `read_xlsx()` or `read_xls()` instead. `read_excel()` will make its best guess about which type of Excel file you're reading in, so is the generic form.*
+
+Explore the ci_np data frame as above using functions like `View()`, `names()`, `head()`, and `summary()`.
+
+Now that we have read in the National Parks visitation data, let's use `ggplot2` to visualize it.
 
 ## Our first ggplot graph: Visitors to Channel Islands NP
 
 To create a bare-bones ggplot graph, we need to tell R three basic things: 
 
-1. We're using `ggplot`
+1. We're using `ggplot2::ggplot()`
 2. Data we're using & variables we're plotting (i.e., what is x and/or y?)
 3. What type of graph we're making (the type of *geom*)
 

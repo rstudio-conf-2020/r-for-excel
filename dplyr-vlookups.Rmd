@@ -1,4 +1,4 @@
-# Dplyr and vlookups {#vlookup}
+# Filters and joins {#filters}
 
 ## Summary
 
@@ -86,16 +86,11 @@ Let's say we want to keep all observations from the **fish** data frame where th
 Use `==` to ask R to look for exact matching strings:
 
 ```{r}
-fish_garibaldi <- filter(fish, common_name == "garibaldi")
-```
-
-Check out the **fish_garibaldi** object to ensure that only *garibaldi* observations remain. 
-
-You could also do this using the pipe operator `%>%` (that's the format we'll use moving forward in this session): 
-```{r}
 fish_garibaldi <- fish %>% 
   filter(common_name == "garibaldi")
 ```
+
+Check out the **fish_garibaldi** object to ensure that only *garibaldi* observations remain. 
 
 ### Activity
 
@@ -190,6 +185,7 @@ low_gb_wr <- fish %>%
 
 **Sync your local project to your repo on GitHub.**
 
+<!----
 ### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
 
 We can also use `filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
@@ -217,6 +213,7 @@ scallop_count_by_site <- inverts %>%
 ```{r}
 scallop_count_by_site
 ```
+----->
 
 ## Join data frames with `dplyr::*_join()` 
 
@@ -339,6 +336,7 @@ kelp_abur %>%
 
 **Sync your project with your repo on GitHub**
 
+<!----
 ## Fun facts
 
 **How is this similar to `VLOOKUP` in Excel? How does it differ?**
@@ -355,5 +353,7 @@ So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, 
 
 - Comment out multiline code with Command + Shift + C
 - Knit with Command + Shift + K
+
+---->
 
 ### End `filter()` + `join()` section!

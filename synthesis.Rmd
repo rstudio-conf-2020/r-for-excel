@@ -158,7 +158,7 @@ salmon_table <- salmon_summary %>%
 
 ### Make our HTML table
 
-```{r}
+```{r, eval=FALSE}
 kable(salmon_table) %>% 
   kable_styling(full_width = FALSE) %>% 
   add_header_above(c(" " = 1, "US salmon landings (million pounds)" = 5))

@@ -1,6 +1,8 @@
 # Collaborating & Getting Help {#collaborating}
 rstats community coding 
 
+TODO: swap out gh-pages screenshots
+
 ## Summary
 
 By being here at RStudio::conf and in this workshop, you are already part of the R community. We will discuss additional R communtities, how to engage, and how to ask for help. 
@@ -68,9 +70,9 @@ RLadies is a world-wide organization to promote gender diversity in the R commun
 
 Web: [rladies.org](https://rladies.org/)  
 <!--break-->
-GitHub: [\@rladies](https://github.com/rladies/)  
+GitHub: [rladies](https://github.com/rladies/)  
 <!--break-->
-Twitter: [\@rladiesglobal](https://twitter.com/rladiesglobal)  
+Twitter: [rladiesglobal](https://twitter.com/rladiesglobal)  
 <!--break-->
 
 ### rOpenSci
@@ -84,9 +86,9 @@ rOpenSci builds software with a community of users and developers, and educate s
 
 Web: [ropensci.org](https://ropensci.org/)  
 <!--break-->
-GitHub: [\@ropensci](https://github.com/ropensci/)  
+GitHub: [ropensci](https://github.com/ropensci/)  
 <!--break-->
-Twitter: [\@ropensci](https://twitter.com/ropensci)  
+Twitter: [ropensci](https://twitter.com/ropensci)  
 <!--break-->
 
 
@@ -116,18 +118,18 @@ Here are a few examples to show how I use Twitter to learn new things and keep t
 
 <br>
 
-When I saw [this tweet](https://twitter.com/Md_Harris/status/1074469302974193665/photo/1) by [@Md_Harris](https://twitter.com/Md_Harris), this was my internal monologue: 
+When I saw [this tweet](https://twitter.com/Md_Harris/status/1074469302974193665/photo/1) by [Md_Harris](https://twitter.com/Md_Harris), this was my internal monologue: 
 
 1. Cool visualization!
 1. I want to represent my data this way
 1. He includes his [code](https://gist.github.com/mrecos) that I can look at to understand what he did, and I can run and remix
-1. The package is from [@sckottie](https://twitter.com/sckottie) — I know he is at [rOpenSci](https://ropensci.org), which is a really amazing software developer community for science
+1. The package is from [sckottie](https://twitter.com/sckottie) — I know he is at [rOpenSci](https://ropensci.org), which is a really amazing software developer community for science
 1. [`rnoaa`](https://cran.r-project.org/web/packages/rnoaa/index.html) is a package making NOAA [US environmental] data more accessible! I didn't know about this, it will be so useful for my colleagues
 1. I will retweet so my network can benefit as well
 
 <br>
 
-Another example, [this tweet](https://twitter.com/JennyBryan/status/1074339217986138113) where [@JennyBryan](https://twitter.com/JennyBryan/) is asking for feedback on a super useful package for interfacing between R and excel: [`readxl`](https://readxl.tidyverse.org/).
+Another example, [this tweet](https://twitter.com/JennyBryan/status/1074339217986138113) where [JennyBryan](https://twitter.com/JennyBryan/) is asking for feedback on a super useful package for interfacing between R and excel: [`readxl`](https://readxl.tidyverse.org/).
 
 <br>
 
@@ -152,19 +154,19 @@ Use it to listen and learn, and then you can gradually build up the courage to l
 
 If you're joining twitter to learn R, I suggest following:
 
-- [@hadleywickham](https://twitter.com/hadleywickham) 
-- [@JennyBryan](https://twitter.com/JennyBryan), 
-- [@rOpenSci](https://twitter.com/ropensci), 
-- [@WeAreRLadies](https://twitter.com/https://twitter.com/WeAreRLadies). 
+- [hadleywickham](https://twitter.com/hadleywickham) 
+- [JennyBryan](https://twitter.com/JennyBryan), 
+- [rOpenSci](https://twitter.com/ropensci), 
+- [WeAreRLadies](https://twitter.com/https://twitter.com/WeAreRLadies). 
 
 Listen to what they say and who joins those conversations, and follow other people and organizations. You could also look at who they are following. Also, check out the [#rstats](https://twitter.com/search?q=%23rstats&src=typed_query) hashtag. This is not something that you can follow (although you can have it as a column in software like TweetDeck), but you can search it and you'll see that the people you follow use it to help tag conversations. You'll find other useful tags as well, within your domain, as well as other R-related interests, e.g. [#rspatial](https://twitter.com/search?q=%23rspatial&src=typed_query). When I read marine science papers, I see if the authors are on Twitter; I sometimes follow them, ask them questions, or just tell them I liked their work!
 
 You can also follow us: 
 
-- [@juliesquid](https://twitter.com/juliesquid)
-- [@allison_horst](https://twitter.com/allison_horst)
-- [@jafflerbach](https://twitter.com/jafflerbach)
-- [@ECOuture9](https://twitter.com/ECOuture9)
+- [juliesquid](https://twitter.com/juliesquid)
+- [allison_horst](https://twitter.com/allison_horst)
+- [jafflerbach](https://twitter.com/jafflerbach)
+- [ECOuture9](https://twitter.com/ECOuture9)
 
 <br>
 
@@ -280,7 +282,7 @@ Notice that following the backticks, there is only `r`, not `r{}`. This is becau
 
 I can click on the Preview button in the Issues to see how this will render: and it will show my code, nicely formatted for R. 
 
-So in this example I might write at the top of the comment "\@allison_horst how do I change the point color to cyan?" And when Allison is tagged
+So in this example I might write at the top of the comment "allison_horst how do I change the point color to cyan?" And when Allison is tagged
 
 **`reprex` is a "workflow package"**. That means that it's something we don't put in Rmds, scripts, or anything else. We use is in the Console when we are preparing to ask for help — from ourselves or someone else. 
 
@@ -508,6 +510,13 @@ OK. Let's have both Partners create a new RMarkdown file and name it `my_name_fi
     
 So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/r-collab/my_research.html>.
 
+
+> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
+
+#### Troubleshooting:
+
+- 404 error? Remove trailing / from the url 
+- Wants you to download? Remove trailing .Rmd from the url
 
 ## Issues for project management
 

@@ -4,28 +4,10 @@ TODO:
 - no github folder, 
 - new screenshots, 
 - earlier emphasis on syncing steps. 
-- no gh-pages branch! 
 - fewer high level headers
 - .Rprojects describe
 
-<!---
-### RStudio Projects
 
-Create a new Project called 'r-for-excel-users'. File > New Project... > New Directory > New Project. Give your Project a name browse to a place to keep it. And then click to Create Project!
-
-What is a Project? It is a way to organize all of the relevant things you need for an analysis in the same place. This means data, code, figures, notes, etc. 
-
-Why does this matter? Keeping everything you need for your analysis together makes it less brittle and more portable — across people, time, and computers.  
-
-Working directory = no file path/broken path issues. Notice that a folder now appears wherever you saved this project with the same name, and it contains a .Rproj file.
-
-Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
-
-```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/RStudio_IDE_projdir.png")  
-```
-
---->
 
 ```{r gh ops, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -44,10 +26,10 @@ Here's what we'll do, since we've already set up git on your computers in the pr
 
 1. create a repository on Github.com
 1. clone locally using RStudio 
-1. learn the RStudio-GitHub workflow by syncing to Github.com: pull, stage, commit, push
-1. explore github.com: files, commit history, file history
-1. practice the RStudio-GitHub workflow by editing and adding files 
-1. practice R Markdown
+1. syncing to GitHub.com: pull, stage, commit, push
+1. explore github.com files, commit history, README
+1. project-oriented workflows
+1. project-oriented workflows in action
 
 git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. 
 
@@ -58,14 +40,16 @@ It also helped me to think of GitHub like Dropbox: you make folders that are 'tr
 
 These materials borrow from: 
 
-- Jenny Bryan's [Happy git with R](http://happygitwithr.com) tutorial
-- Melanie Frazier's [GitHub Quickstart](https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html)
+- [Happy git with R](http://happygitwithr.com) by Jenny Bryan
+- [What They Forgot to Teach You About R: project-oriented workflows](https://rstats.wtf/project-oriented-workflow.html) by Jenny Bryan
+- [GitHub Quickstart](https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html) by Melanie Frazier 
 
 Today, we'll only introduce the features and terminology that new R users need to learn to begin managing their projects.
 
 
 ## Why should R users use Github?
 
+TODO: refine
 
 1. Ends (or, nearly ends) the horror of keeping track of versions.
   Basically, we get away from this: 
@@ -147,7 +131,6 @@ The *Add a license* option adds a license that describes how other people can us
 
 Check out our new repository!  
 
-Notice how the README.md file we created is automatically displayed at the bottom. The .md means that it is Markdown (remember how .Rmd was RMarkdown?) so the formatting we learned in the last lesson apply here.
 
 <br>
 
@@ -271,14 +254,15 @@ knitr::include_graphics("img/new_project6.png")
 
 Hooray!
 
-## Inspect your repository
+### Inspect your local repo
 
-Notice a few things in our repo here: 
+TODO: rework. 
 
-1. Our working directory is set to `~/github/r-workshop`. This means that I can start working with the files I have in here without setting the filepath. This is that when we cloned this from RStudio, it created an RStudio project, which you can tell because: 
-    - `.RProj` file, which you can see in the Files pane. 
-    - The project is named in the top right hand corner
-1. We have a git tab! This is how we will interface directly to Github.com
+Let's notice a few things: 
+
+First, our working directory is set to `~/github/r-workshop`, and `r-workshop` is also named in the top right hand corner.
+
+Second, we have a Git tab in the top right pane! Let's click on it. 
 
 <br>
 
@@ -288,21 +272,190 @@ knitr::include_graphics("img/new_project5_annotated.png")
 
 <br>
 
+Our Git tab has 2 items:
 
-When you first clone a repo through RStudio, RStudio will add an `.Rproj` file to your repo. And if you didn't add a `.gitignore` file when you originally created the repo on GitHub.com, RStudio will also add this for you. These will show up with little yellow `?` icons in your git tab. This is GitHub's way of saying: "I am responsible for tracking everything that happens in this repo, but I haven't seen these files yet. Do you want me to track them too?" (We'll see that when you click the box to stage them, they will turn into `A`s because they have been added to the repo. 
+- .gitignore file
+- .Rproj file
+
+These have been added to our repo by RStudio — we can also see them in the File pane in the bottom right of RStudio. These are helper files that RStudio has added to streamline our workflow with GitHub and R. We will talk about the .Rproj file soon, and we won't talk about the .gitignore file today. <!---TODO but it's for --->. One thing to note about these files is that they begin with a period (`.`) which means they are hidden files: they show up in the Files pane of RStudio but won't show up in your Finder.
+
+Going back to the Git tab, both these files have little yellow icons with question marks `?`. This is GitHub's way of saying: "I am responsible for tracking everything that happens in this repo, but I'm not sure what is going on with these files yet. Do you want me to track them too?" 
+Let's click the boxes next to each file. This is called staging a file: you are indicating that you want GitHub to track this file. You'll see that the question marks turn into an A because these are new files that have been added to your repo (automatically by RStudio, not by you). 
+
+These are the codes RStudio uses to describe how the files are changed, (from the RStudio [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)):
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/commit_codes_added_modified.png")  
+```
+
+<br>
 
 
-## Project oriented workflows
+### Edit your README file
 
-- [](https://rstats.wtf/project-oriented-workflow.html)
+Let's also open up the README.md. We will edit the file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added. 
 
-The repository will contain:
+README files are common in programming; they are the first place that someone will look to see why code exists and how to run it. 
 
-* .gitignore file
-* README.md
-* Rproj
+In my README, I'll write: 
 
-## Add files to our local repo
+```
+This repo is for my analysis at RStudio::conf(2020). 
+```
+
+When I save this, notice how it shows up in my Git tab. It has a blue "M": GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different. 
+
+Great. Let's walk through all the steps of Syncing back to GitHub. 
+
+
+## Sync from RStudio (local) to GitHub (remote)
+
+Syncing to GitHub.com means 4 steps: 
+
+1. Pull
+1. Stage
+1. Commit
+1. Push
+
+<br>
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/commit_steps.png")  
+```
+
+<br>
+
+We start off this whole process by clicking on the Commit section. 
+
+TODO: image circling Commit 
+
+### Pull 
+
+We start off by "Pulling" from the remote repository (GitHub.com) to make sure that our local copy has the most up-to-date information that is available online. Right now, since we just created the repo and are the only ones that have permission to work on it, we can be pretty confident that there isn't new information availble. But we pull anyways because this is a very safe habit to get into for when you start collaborating with yourself across computers or others. Best practice is to pull often: it costs nothing (other than an internet connection). 
+
+Pull by clicking the teal Down Arrow. 
+
+TODO: redo figs
+<br />
+<br />
+
+![](img/pull.png)
+<br />
+<br />
+
+### Stage
+
+Stage the files you want to commit.  We've already done this with our .Rproj and .gitignore files, but let's stage the README.md as well. 
+
+Check the "Staged" boxes:
+
+<br />
+
+![](img/staged.png)
+<br />
+<br />
+
+### Commit
+
+TODO: text
+
+<br />
+
+![](img/commit.png)
+<br />
+<br />
+
+### Push
+
+TODO: text
+
+<br />
+
+![](img/push.png)
+<br />
+
+## Commit history
+
+TODO: more, swap out images
+
+The files you added should be on github.com:
+<br />
+
+![](img/Github_remote.png)
+<br />
+<br />
+
+Let's also explore commit history, file history.
+
+## README
+
+TODO: why it's important, GitHub
+
+Notice how the README.md file we created is automatically displayed at the bottom. The .md means that it is Markdown (remember how .Rmd was RMarkdown?) so the formatting we learned in the last lesson apply here.
+
+## Project-oriented workflows
+
+This GitHub repository is now also an RStudio Project. This just means that RStudio has saved this additional file with extension `.Rproj` (ours is `r-workshop.Rproj`) to store specific settings for this project. It's a bit of technology to help us get into the good habit of having a project-oriented workflow. 
+
+A [project-oriented workflow](https://rstats.wtf/project-oriented-workflow.html) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
+
+Why does this matter? It's convenient for us to have everything associated with our analyses close at-hand.  When we work with different files in R (like data or saved graphs) we always need to tell R where things "live" by identifying its file path. If files are scattered across your computer, we would have to keep track of many different filepaths. So using RStudio Projects and having a project-oriented workflow and mindset makes our analysis less brittle and more portable — across people, time, and computers.  
+
+### Project directory
+
+Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
+
+And this is important because if Allison clones this repository that you just made and saves it in `Allison/my/projects/way/over/here`, she will still be able to interact with your files as you are here.
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/RStudio_IDE_projdir.png")  
+```
+
+## Project-oriented workflows in action (aka setup)
+
+TODO: 
+
+Let's get a bit organized. First, let's create our a new R Markdown file where we will do our analyses. This will be nice because you can also write notes to yourself in this document. 
+
+### Create a new Rmd file
+
+So let's do this: 
+
+File > New File > R Markdown ... (or click the green plus in the top left corner).
+
+Let's set up this file so we can use it for the rest of the day. I'm going to update the header with a new title and add my name, and then I'm going to delete the rest of the document so that we have a clean start. 
+
+> **Efficiency Tip**: I use Shift - Command - Down Arrow to highlight text from my cursor to the end of the document
+
+```
+---
+title: "Creating charts in R with `ggplot2`"
+author: "Julie Lowndes"
+date: "01/27/2020"
+output: html_document
+---
+
+# Plots with ggplot2
+
+We are going to make plots in R and it's going to be amazing.
+
+```
+
+Now, let's save it. I'm going to call my file `plots-ggplot.Rmd`. 
+
+Notice that when we save this file, it pops up in our Git tab. Git knows that there is something new in our repo. 
+
+Let's also knit this file. And look: Git also sees the knitted .html. 
+
+
+
+
+And let's practice syncing our file to to GitHub: commit and pull
+
+What if a file doesn't show up in the Git tab and you expect that it should? Check to make sure you've saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!
+
 
 Let's create the following:
 
@@ -351,115 +504,17 @@ When files are changed in the local repository, these changes will be reflected 
 <br />
 <br />
 
-### Inspect what has changed
 
-These are the codes RStudio uses to describe how the files are changed, (from the RStudio [cheatsheet](http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)):
-![](img/modified.png)
+### Edit your README again
 
-## Sync from RStudio to GitHub
+Let's also open up the README and write a bit of information. READMEs
 
-When you are ready to commit your changes, you follow these steps:
-<br />
-<br />
-
-![](img/commit_overview.png)
-<br />
-<br />
-
-We walk through this process below:
-
-### Pull 
-From the Git tab, "Pull" the repository.  This makes sure your local repository is synced with the remote repository.  This is very important if other people are making changes to the repository or if you are working from multiple computers.
-<br />
-<br />
-
-![](img/pull.png)
-<br />
-<br />
-
-### Stage
-Stage the files you want to commit.  In RStudio, this involves checking the "Staged" boxes:
-<br />
-
-![](img/staged.png)
-<br />
-<br />
-
-### Commit
-<br />
-
-![](img/commit.png)
-<br />
-<br />
-
-### Push
-<br />
-
-![](img/push.png)
-<br />
-
-## Explore remote Github
-The files you added should be on github.com:
-<br />
-
-![](img/Github_remote.png)
-<br />
-<br />
-
-Let's also explore commit history, file history.
 
 ### Activity
 
 Go back to RStudio. 
 
 This time let's edit an existing file instead of adding something new. Open your README file by clicking on it in the Files pane (lower right corner). Write a few lines of text (like your dog's name), save, and see what happens in your Git Tab. Sync it to your remote repository at Github.com. 
-
-## Create a new R Markdown file
-
-Now get ourselves back into learning R. We are going to use R Markdown so that you can write notes to yourself in Markdown, and have a record of all your R code. Writing R commands in the console like we did this morning is great, but limited; it's hard to keep track of and hard to efficiently share with others. Plus, as your analyses get more complicated, you need to be able to see them all in one place.
-
-Go to File > New File > R Markdown ... (or click the green plus in the top left corner).
-
-Let's set up this file so we can use it for the rest of the day. I'm going to delete all the text that is already there and write some new text.
-
-This will be your notes for the next session.
-
-Here's what I'm going to write in my R Markdown file to begin: 
-
-
-```
----
-title: "Reading data into R with `readxl`"
-author: "Julie Lowndes"
-date: "12/7/2019"
-output: html_document
----
-
-# Learning `readxl`
-
-We are working with data and it's going to be amazing.
-
-```
-
-Now, let's save it. I'm going to call my file `readxl.Rmd`. You can knit it if you'd like. 
-
-Then, knit your file, and sync your file to GitHub: commit and pull
-
-What if a file doesn't show up in the Git tab and you expect that it should? Check to make sure you've saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!
-
-## Explore your webpage
-
-You've just created a webpage! 
-
-It will exist at this url: username.github.io/repo-name/filename. Mine is: jules32.github.io/r-workshop/readxl. 
-
-> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
-
-Troubleshooting:
-
-- 404 error? Remove trailing / from the url 
-- Wants you to download? Remove trailing .Rmd from the url
-
 
 ## Committing - how often? Tracking changes in your files
 

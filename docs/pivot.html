@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-01-19" />
+<meta name="date" content="2020-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-code-chunks-in-the-console"><i class="fa fa-check"></i><b>3.4.2</b> Running code chunks in the Console</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> File vs. Console</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
@@ -397,6 +397,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pivot" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> <code>dplyr</code> and Pivot Tables</h1>
+<p>TODO:</p>
+<ul>
+<li>shorten data exploration</li>
+<li>shorten skimr install: “oh no, we don’t have ‘skimr’, looks like we need to install it cool.”</li>
+</ul>
 <!---
 Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
 How easy is it to get these counts by different groupings
@@ -432,17 +437,17 @@ How easy is it to get these counts by different groupings
 <h2><span class="header-section-number">6.5</span> RMarkdown setup</h2>
 <p>Let’s start a new RMarkdown file in our repo, at the top-level (where it will be created by default in our Project). I’ll call mine <code>pivot_lobsters.Rmd</code>.</p>
 <p>In the setup chunk, let’s attach our libraries and read in our lobster data. In addition to the <code>tidyverse</code> package we will also use the <code>skimr</code> package. You will have to install it, but don’t want it to be installed every time you write your code. The following is a nice convention for having the install instructions available (on the same line) as the <code>library()</code> call.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co">## attach libraries</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="kw">library</span>(skimr) <span class="co"># install.packages(&#39;skimr&#39;)</span></a>
-<a class="sourceLine" id="cb48-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="co">## read in data</span></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8">lobsters &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="kw">here</span>(<span class="st">&quot;data/lobsters.xlsx&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co">## attach libraries</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="kw">library</span>(skimr) <span class="co"># install.packages(&#39;skimr&#39;)</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7"><span class="co">## read in data</span></a>
+<a class="sourceLine" id="cb55-8" data-line-number="8">lobsters &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="kw">here</span>(<span class="st">&quot;data/lobsters.xlsx&quot;</span>))</a></code></pre></div>
 <p>Let’s add a code chunk and explore the data in a few ways.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="co"># explore data</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">head</span>(lobsters) <span class="co"># year and month as well as a column for date</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># explore data</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">head</span>(lobsters) <span class="co"># year and month as well as a column for date</span></a></code></pre></div>
 <pre><code>## # A tibble: 6 x 7
 ##    year month date    site  transect replicate size_mm
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
@@ -454,17 +459,17 @@ How easy is it to get these counts by different groupings
 ## 6  2012     8 8/20/12 ivee         3 C              60</code></pre>
 <p><code>head()</code> gives us a look at the first rows of the data (6 by default). I like this because I can see the column names and get a sense of the shape of the data. I can also see the class of each column (double or character)</p>
 <p>In this data set, every row is a unique observation. This is called “uncounted” data; you’ll see there is no row for how many lobsters were seen because each row is an observation, or an “n of 1”.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co"># explore data</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="kw">summary</span>(lobsters) </a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># explore data</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">summary</span>(lobsters) </a></code></pre></div>
 <p><code>summary</code> gives us summary statistics for each variable (column). I like this for numeric columns, but it doesn’t give a lot of useful information for non-numeric data. To have a look there I like using the skimr package:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># explore data</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">skimr<span class="op">::</span><span class="kw">skim</span>(lobsters) </a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># explore data</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">skimr<span class="op">::</span><span class="kw">skim</span>(lobsters) </a></code></pre></div>
 <p>This <code>skimr::</code> notation is a reminder to me that <code>skim</code> is from the <code>skimr</code> package. It is a nice convention: it’s a reminder to others (especially you!).</p>
 <p><code>skim</code> lets us look more at each variable. I particularly like looking at missing data. There are 6 missing values in the <code>size_mm</code> variable.</p>
 <p>We can also make a quick plot to have a look at these data, and use our new ggplot2 skills. Let’s make a bar chart by year for each site</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(lobsters, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">ggplot</span>(lobsters, <span class="kw">aes</span>(<span class="dt">x =</span> year)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
 <p><img src="R-for-Excel-Users_files/figure-html/plot-lobsters-1.png" width="672" /></p>
 <p>(geom_bar() counts things and geom_col() is for values within the data (mean))</p>
 <div id="our-task" class="section level3">
@@ -553,9 +558,9 @@ data %>%          # start with data, and then
 <h3><span class="header-section-number">6.7.1</span> <code>group_by</code> one variable</h3>
 <p>Let’s try this on our <code>lobsters</code> data, just like we did in Excel. We will count the the total number of lobster by year. In R vocabulary, we will group_by year and then summarize by counting using <code>n()</code>, which is a function from <code>dplyr</code>. <code>n()</code> counts the number of times an observation shows up, and since this is uncounted data, this will count each row. We’ll also use the pipe operator <code>%&gt;%</code>, which you can read as “and then”.</p>
 <p>This to me reads: “take the lobsters data and then group_by year and then summarize by count in a new column called ‘count’”</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_year =</span> <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_year =</span> <span class="kw">n</span>())</a></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##    year count_by_year
 ##   &lt;dbl&gt;         &lt;int&gt;
@@ -568,16 +573,16 @@ data %>%          # start with data, and then
 ## 7  2018          1805</code></pre>
 <p>Notice how together, <code>group_by</code> and <code>summarize</code> minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren’t involved here.</p>
 <p>Question: What if you <em>don’t</em> group_by first? Let’s try it and discuss what’s going on.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span>  <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span>  <span class="kw">n</span>())</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   count
 ##   &lt;int&gt;
 ## 1  6366</code></pre>
 <p>So if we don’t <code>group_by</code> first, we will get a single summary statistic (sum in this case) for the whole dataset.</p>
 <p>Another question: what if we <em>only</em> group_by?</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year)</a></code></pre></div>
 <pre><code>## # A tibble: 6,366 x 7
 ## # Groups:   year [7]
 ##     year month date    site  transect replicate size_mm
@@ -605,9 +610,9 @@ data %>%          # start with data, and then
 <div id="group_by-multiple-variables" class="section level3">
 <h3><span class="header-section-number">6.7.3</span> <code>group_by</code> multiple variables</h3>
 <p>Great. Now let’s summarize by both year and site like we did in the pivot table. We are able to <code>group_by</code> more than one variable. Let’s do this together:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>())</a></code></pre></div>
 <pre><code>## # A tibble: 35 x 3
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear
@@ -628,10 +633,10 @@ data %>%          # start with data, and then
 <div id="summarize-multiple-variables" class="section level3">
 <h3><span class="header-section-number">6.7.4</span> <code>summarize</code> multiple variables</h3>
 <p>We can summarize multiple variables at a time. So far we’ve done the count of lobster observations. Let’s also do the mean and standard deviation. First let’s use the <code>mean()</code> function to calculate the mean. We do this within the same summarize() function, but we can add a new line to make it easier to read. Notice how when you put your curser within the parenthesis and hit return, the indentation will automatically align.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(),</a>
-<a class="sourceLine" id="cb62-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm))</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb69-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm))</a></code></pre></div>
 <pre><code>## # A tibble: 35 x 4
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm
@@ -651,11 +656,11 @@ data %>%          # start with data, and then
 <p><strong><em>Aside</em></strong> Command-I will properly indent selected lines.</p>
 </blockquote>
 <p>Great! But this will actually calculate some of the means as NA because one or more values in that year are NA. So we can pass an argument that says to remove NAs first before calculating the average. Let’s do that, and then also calculate the standard deviation with the <code>sd()</code> function:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
-<a class="sourceLine" id="cb64-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb64-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb71-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 35 x 5
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm sd_size_mm
@@ -672,13 +677,13 @@ data %>%          # start with data, and then
 ## 10 carp   2014                79         79.1       8.57
 ## # … with 25 more rows</code></pre>
 <p>So we can make the equivalent of Excel’s pivot table in R with <code>group_by</code> and then <code>summarize</code>. But a powerful thing about R is that maybe we want this information to be used in further analyses. We can make this easier for ourselves by saving this as a variable. So let’s add a variable assignment to that first line:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
-<a class="sourceLine" id="cb66-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb66-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb66-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb66-7" data-line-number="7">siteyear_summary</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb73-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb73-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb73-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb73-7" data-line-number="7">siteyear_summary</a></code></pre></div>
 <pre><code>## # A tibble: 35 x 5
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm sd_size_mm
@@ -703,26 +708,26 @@ data %>%          # start with data, and then
 </ol>
 <p>Then, save, commit, and push your .Rmd, .html, and .png.</p>
 <p>Solution (no peeking):</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
-<a class="sourceLine" id="cb68-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb68-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb68-6" data-line-number="6">            <span class="dt">median_size_mm =</span> <span class="kw">median</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb68-8" data-line-number="8">siteyear_summary</a>
-<a class="sourceLine" id="cb68-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb68-10" data-line-number="10"><span class="co">## a ggplot option:</span></a>
-<a class="sourceLine" id="cb68-11" data-line-number="11"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_line</span>() </a>
-<a class="sourceLine" id="cb68-13" data-line-number="13"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-line.png&quot;</span>))</a>
-<a class="sourceLine" id="cb68-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb68-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb68-16" data-line-number="16"><span class="co">## another option:</span></a>
-<a class="sourceLine" id="cb68-17" data-line-number="17"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-18" data-line-number="18"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb68-19" data-line-number="19"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a>
-<a class="sourceLine" id="cb68-20" data-line-number="20"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-col.png&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb75-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb75-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb75-6" data-line-number="6">            <span class="dt">median_size_mm =</span> <span class="kw">median</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb75-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb75-8" data-line-number="8">siteyear_summary</a>
+<a class="sourceLine" id="cb75-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb75-10" data-line-number="10"><span class="co">## a ggplot option:</span></a>
+<a class="sourceLine" id="cb75-11" data-line-number="11"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb75-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_line</span>() </a>
+<a class="sourceLine" id="cb75-13" data-line-number="13"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-line.png&quot;</span>))</a>
+<a class="sourceLine" id="cb75-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb75-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb75-16" data-line-number="16"><span class="co">## another option:</span></a>
+<a class="sourceLine" id="cb75-17" data-line-number="17"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb75-18" data-line-number="18"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb75-19" data-line-number="19"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a>
+<a class="sourceLine" id="cb75-20" data-line-number="20"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-col.png&quot;</span>))</a></code></pre></div>
 <p>Don’t forget to knit, commit, and push!</p>
 <p>Nice work everybody.</p>
 </div>
@@ -732,17 +737,17 @@ data %>%          # start with data, and then
 <p>Oh no! After all our analyses and everything we’ve done, our colleague just emailed us at 4:30pm on Friday that he sent the wrong data and we need to redo all our analyses with a new .xlsx file: <code>lobsters2.xlsx</code>, not <code>lobsters.xlsx</code>. Aaaaah!</p>
 <p>If we were doing this in Excel, this would be a bummer; we’d have to rebuild our pivot table and click through all of our logic again. And then export our figures and save them into our report.</p>
 <p>But, since we did it in R, we are much safer. We can go back to the top of our RMarkdown file, and read in the updated dataset, and then re-knit. We will still need to check that everything outputs correctly, (and that column headers haven’t been renamed), but our first pass will be to update the filename and re-knit:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co">## read in data</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">lobsters &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="kw">here</span>(<span class="st">&quot;data/lobsters2.xlsx&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co">## read in data</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2">lobsters &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="kw">here</span>(<span class="st">&quot;data/lobsters2.xlsx&quot;</span>))</a></code></pre></div>
 <p>And now we can see that our plot updated as well:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
-<a class="sourceLine" id="cb70-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb70-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb70-6" data-line-number="6">            <span class="dt">median_size_mm =</span> <span class="kw">median</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), )</a>
-<a class="sourceLine" id="cb70-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb70-8" data-line-number="8">siteyear_summary</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb77-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb77-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb77-6" data-line-number="6">            <span class="dt">median_size_mm =</span> <span class="kw">median</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), )</a>
+<a class="sourceLine" id="cb77-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb77-8" data-line-number="8">siteyear_summary</a></code></pre></div>
 <pre><code>## # A tibble: 35 x 6
 ## # Groups:   site [5]
 ##    site   year count_by_siteyear mean_size_mm sd_size_mm median_size_mm
@@ -758,18 +763,18 @@ data %>%          # start with data, and then
 ##  9 carp   2013                93         76.6       8.71           76  
 ## 10 carp   2014                79         79.1       8.57           79  
 ## # … with 25 more rows</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co">## a ggplot option:</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>() </a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-line.png&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="co">## a ggplot option:</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>() </a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-line.png&quot;</span>))</a></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="co">## another option:</span></a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
-<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-66-2.png" width="672" /></p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-col.png&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="co">## another option:</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-68-2.png" width="672" /></p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-col.png&quot;</span>))</a></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 <div id="knit-push-show-differences-on-github" class="section level3">
 <h3><span class="header-section-number">6.8.1</span> Knit, push, &amp; show differences on GitHub</h3>
@@ -778,14 +783,14 @@ data %>%          # start with data, and then
 <div id="dplyrcount" class="section level3">
 <h3><span class="header-section-number">6.8.2</span> <code>dplyr::count()</code></h3>
 <p>Now that we’ve spent time with group_by %&gt;% summarize, there is a shortcut if you only want to summarize by count. This is with a function called <code>count()</code>, and it will group_by your selected variable, count, and then also ungroup. It looks like this:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(site, year) </a>
-<a class="sourceLine" id="cb78-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb78-4" data-line-number="4"><span class="co">## This is the same as:</span></a>
-<a class="sourceLine" id="cb78-5" data-line-number="5">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb78-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb78-7" data-line-number="7"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb78-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(site, year) </a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="co">## This is the same as:</span></a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
 <p>Switching gears…</p>
 </div>
 </div>
@@ -794,8 +799,8 @@ data %>%          # start with data, and then
 <p><img src="img/rstudio-cheatsheet-mutate.png" width="80%" /></p>
 <p><br></p>
 <p>There are a lot of times where you don’t want to summarize your data, but you do want to operate beyond the original data. This is often done by adding a column. We do this with the <code>mutate()</code> function from <code>dplyr</code>. Let’s try this with our original lobsters data. The sizes are in millimeters but let’s say it was important for them to be in meters. We can add a column with this calculation:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="co"># quick reminder what this looks like</span></a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">head</span>(lobsters)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="co"># quick reminder what this looks like</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="kw">head</span>(lobsters)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 7
 ##    year month date    site  transect replicate size_mm
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
@@ -805,8 +810,8 @@ data %>%          # start with data, and then
 ## 4  2012     8 8/20/12 ivee         3 B              70
 ## 5  2012     8 8/20/12 ivee         3 B              85
 ## 6  2012     8 8/20/12 ivee         3 C              60</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_m =</span> size_mm <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_m =</span> size_mm <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 6,366 x 8
 ##     year month date    site  transect replicate size_mm size_m
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
@@ -822,10 +827,10 @@ data %>%          # start with data, and then
 ## 10  2012     8 8/20/12 ivee         4 B              85  0.085
 ## # … with 6,356 more rows</code></pre>
 <p>If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes). And let’s save this as a variable called <code>lobsters_detailed</code></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">lobsters_detailed &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_m =</span> size_mm <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>, </a>
-<a class="sourceLine" id="cb83-3" data-line-number="3">         <span class="dt">millenia =</span> <span class="dv">2000</span>,</a>
-<a class="sourceLine" id="cb83-4" data-line-number="4">         <span class="dt">observer =</span> <span class="st">&quot;Allison Horst&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">lobsters_detailed &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_m =</span> size_mm <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>, </a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">         <span class="dt">millenia =</span> <span class="dv">2000</span>,</a>
+<a class="sourceLine" id="cb90-4" data-line-number="4">         <span class="dt">observer =</span> <span class="st">&quot;Allison Horst&quot;</span>)</a></code></pre></div>
 </div>
 <div id="select" class="section level2">
 <h2><span class="header-section-number">6.10</span> <code>select()</code></h2>
@@ -833,8 +838,8 @@ data %>%          # start with data, and then
 <p><img src="img/rstudio-cheatsheet-select.png" width="80%" /></p>
 <p><br></p>
 <p>Let’s say that we want to present this data finally with only columns for date, site, and size in meters. We would do this:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">lobsters_detailed <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(date, site, size_m)</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">lobsters_detailed <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(date, site, size_m)</a></code></pre></div>
 <pre><code>## # A tibble: 6,366 x 3
 ##    date    site  size_m
 ##    &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;

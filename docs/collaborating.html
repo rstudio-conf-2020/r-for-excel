@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-01-19" />
+<meta name="date" content="2020-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-code-chunks-in-the-console"><i class="fa fa-check"></i><b>3.4.2</b> Running code chunks in the Console</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> File vs. Console</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
@@ -493,17 +493,17 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <a><img src="/img/blog/keynote/tweet-Md_Harris-rnoaa.png" width="400px"></a>
 </center>
 <p><br></p>
-<p>When I saw <a href="https://twitter.com/Md_Harris/status/1074469302974193665/photo/1">this tweet</a> by <span class="citation">(<span class="citeproc-not-found" data-reference-id="Md_Harris"><strong>???</strong></span>)</span>(<a href="https://twitter.com/Md_Harris" class="uri">https://twitter.com/Md_Harris</a>), this was my internal monologue:</p>
+<p>When I saw <a href="https://twitter.com/Md_Harris/status/1074469302974193665/photo/1">this tweet</a> by <a href="https://twitter.com/Md_Harris">Md_Harris</a>, this was my internal monologue:</p>
 <ol style="list-style-type: decimal">
 <li>Cool visualization!</li>
 <li>I want to represent my data this way</li>
 <li>He includes his <a href="https://gist.github.com/mrecos">code</a> that I can look at to understand what he did, and I can run and remix</li>
-<li>The package is from <span class="citation">(<span class="citeproc-not-found" data-reference-id="sckottie"><strong>???</strong></span>)</span>(<a href="https://twitter.com/sckottie" class="uri">https://twitter.com/sckottie</a>) — I know he is at <a href="https://ropensci.org">rOpenSci</a>, which is a really amazing software developer community for science</li>
+<li>The package is from <a href="https://twitter.com/sckottie">sckottie</a> — I know he is at <a href="https://ropensci.org">rOpenSci</a>, which is a really amazing software developer community for science</li>
 <li><a href="https://cran.r-project.org/web/packages/rnoaa/index.html"><code>rnoaa</code></a> is a package making NOAA [US environmental] data more accessible! I didn’t know about this, it will be so useful for my colleagues</li>
 <li>I will retweet so my network can benefit as well</li>
 </ol>
 <p><br></p>
-<p>Another example, <a href="https://twitter.com/JennyBryan/status/1074339217986138113">this tweet</a> where <span class="citation">(<span class="citeproc-not-found" data-reference-id="JennyBryan"><strong>???</strong></span>)</span>(<a href="https://twitter.com/JennyBryan/" class="uri">https://twitter.com/JennyBryan/</a>) is asking for feedback on a super useful package for interfacing between R and excel: <a href="https://readxl.tidyverse.org/"><code>readxl</code></a>.</p>
+<p>Another example, <a href="https://twitter.com/JennyBryan/status/1074339217986138113">this tweet</a> where <a href="https://twitter.com/JennyBryan/">JennyBryan</a> is asking for feedback on a super useful package for interfacing between R and excel: <a href="https://readxl.tidyverse.org/"><code>readxl</code></a>.</p>
 <p><br></p>
 <center>
 <a><img src="/img/blog/keynote/tweet-jennybryan-readxl.png" width="400px"></a>
@@ -606,11 +606,11 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <br></p>
 <p><img src="img/reprex-bryan.png" width="80%" /></p>
 <p><code>reprex</code> is part of the Tidyverse, so we all already have it installed, but we do need to attach it:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">library</span>(reprex)</a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">library</span>(reprex)</a></code></pre></div>
 <p>First I’ll type into our RMarkdown script:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb155-2" data-line-number="2"><span class="kw">ggplot</span>(cars, <span class="kw">aes</span>(speed, dist)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;maroon&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="kw">ggplot</span>(cars, <span class="kw">aes</span>(speed, dist)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;maroon&quot;</span>)</a></code></pre></div>
 <p>And then when I also have this in my clipboard. Now I am going to paste it into an <a href="https://github.com/rstudio-conf-2020/r-for-excel/issues">Issue for our r-for-excel repository</a></p>
 <p>When I paste it:</p>
 <p><img src="img/reprex-ex-ggplot.png" width="100%" /></p>
@@ -630,17 +630,17 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <p>Hint: remember to read the error message. “could not find function <code>%&gt;%</code>” means you’ve forgotten to attach a package with <code>library()</code></p>
 <div id="solution-no-peeking" class="section level4">
 <h4><span class="header-section-number">9.4.4.1</span> Solution (no peeking)</h4>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="co">## setup: run in Rmd or Console</span></a>
-<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="kw">library</span>(reprex)</a>
-<a class="sourceLine" id="cb156-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb156-4" data-line-number="4"><span class="co">## reprex code: run in Rmd or Console</span></a>
-<a class="sourceLine" id="cb156-5" data-line-number="5"><span class="kw">library</span>(tidyverse) <span class="co"># or library(dplyr) or library(magrittr)</span></a>
-<a class="sourceLine" id="cb156-6" data-line-number="6">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Petal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">6.5</span>)</a>
-<a class="sourceLine" id="cb156-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb156-8" data-line-number="8"><span class="co">## copy the above</span></a>
-<a class="sourceLine" id="cb156-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb156-10" data-line-number="10"><span class="co">## reprex call: run in Console</span></a>
-<a class="sourceLine" id="cb156-11" data-line-number="11"><span class="kw">reprex</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="co">## setup: run in Rmd or Console</span></a>
+<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="kw">library</span>(reprex)</a>
+<a class="sourceLine" id="cb163-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="co">## reprex code: run in Rmd or Console</span></a>
+<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="kw">library</span>(tidyverse) <span class="co"># or library(dplyr) or library(magrittr)</span></a>
+<a class="sourceLine" id="cb163-6" data-line-number="6">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Petal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">6.5</span>)</a>
+<a class="sourceLine" id="cb163-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb163-8" data-line-number="8"><span class="co">## copy the above</span></a>
+<a class="sourceLine" id="cb163-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb163-10" data-line-number="10"><span class="co">## reprex call: run in Console</span></a>
+<a class="sourceLine" id="cb163-11" data-line-number="11"><span class="kw">reprex</span>()</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -734,11 +734,11 @@ Opening this Project in a new Session opens up a new world of awesomeness from R
 <p>OK, actually, we’re just moving along this same problem that we know that we’ve created: Both Partner 1 and 2 have both added new information to the same line. You can see that the pop-up box is saying that there is a CONFLICT and the merge has not happened. OK. We can close that window and inspect.</p>
 <p>Notice that in the git tab, there are orange <code>U</code>s; this means that there is an unresolved conflict, and it is not staged with a check anymore because modifications have occurred to the file since it has been staged.</p>
 <p>Let’s look at the README file itself. We got a preview in the diff pane that there is some new text going on in our README file:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</a>
-<a class="sourceLine" id="cb157-2" data-line-number="2">Julie is collaborating on this README.</a>
-<a class="sourceLine" id="cb157-3" data-line-number="3"><span class="op">==</span><span class="er">=====</span></a>
-<a class="sourceLine" id="cb157-4" data-line-number="4"><span class="er">**</span>Jamie is adding lines here.<span class="op">**</span></a>
-<a class="sourceLine" id="cb157-5" data-line-number="5"><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>05a189b23372f0bdb5b42630f8cb318003cee19b</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">Julie is collaborating on this README.</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="op">==</span><span class="er">=====</span></a>
+<a class="sourceLine" id="cb164-4" data-line-number="4"><span class="er">**</span>Jamie is adding lines here.<span class="op">**</span></a>
+<a class="sourceLine" id="cb164-5" data-line-number="5"><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>05a189b23372f0bdb5b42630f8cb318003cee19b</a></code></pre></div>
 <p>In this example, Partner 1 is Jamie and Partner 2 is Julie. GitHub is displaying the line that Julie wrote and the line Jamie wrote separated by <code>=======</code>. So these are the two choices that Partner 2 has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;long commit identifier</code>.</p>
 <p>So, to resolve this merge conflict, Partner 2 has to chose, and delete everything except the line they want. So, they will delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code>, <code>=====</code>, <code>&gt;&gt;&gt;&gt;long commit identifier</code> and one of the lines that they don’t want to keep.</p>
 <p>Do that, and let’s try again. In this example, we’ve kept Jamie’s line:</p>

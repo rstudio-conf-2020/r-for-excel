@@ -87,7 +87,7 @@ Let's title it "Testing" and write our name as author, then click OK with the re
 knitr::include_graphics("img/rstudio_new-rmd-doc-html.png")  
 ```
 
-OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
+OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which here is a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.
 
 Let's have a look at this file — it's not blank; there is some initial text is already provided for you. Let's have a high-level look through of it: 
 
@@ -120,18 +120,20 @@ Let's take a deeper look at these two files. So much of learning to code is look
 
 #### Activity
 
-Say hello to the person sitting next to you. Discuss what you see. 
+Introduce yourself to the person sitting next to you. Discuss what you notice with these two files. Share-out with the group. (5 mins)
 
 ### Markdown text
 
-To warm us up for R, let's start by talking about another language, Markdown. This is a formatting language for plain text, and there are only about 15 rules to know. 
+Let's look more deeply at the Markdown text. Markdown is a formatting language for plain text, and there are only a handful of rules to know. 
 
 Notice the syntax for:
 
 - **headers** get rendered at multiple levels: `#`, `##`
 - **bold**: `**word**`
 
-There are some good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) to get you started, and here is one built into RStudio: Go to Help > Markdown Quick Reference
+To see more of the rules, let's look at RStudio's built-in reference. Let's do this: Help > Markdown Quick Reference
+
+There are also good [cheatsheets](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet) available online.
 
 <!---
 #### Activity
@@ -162,45 +164,48 @@ Each of them start with 3 backticks and `{r label}`, which signify that there wi
 - the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)
 - the third chunk says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
 
-There are many more options available and we will explore more as we go.
+Notice how the word `FALSE` is all capitals. Capitalization matters in R; `TRUE/FALSE` is something that R can interpret as a binary yes/no or 1/0. This is different from true/false or True/False. 
+
+There are many more options available that we will discuss as we get more familiar with RMarkdown.
 
 #### New code chunks
 
 We can create a new chunk in your RMarkdown first in one of these ways: 
 
-- click "Insert > R" at the top of the editor pane
-- type by hand 
+- click "Insert > R" at the top of the editor pane (with the green plus and green box)
+- type it by hand: 
    \```{r}
    \```
-- if you haven't deleted a chunk that came with the new file, edit that one
 
-> Cool tip: doesn't have to be only R, other languages supported. 
+> **Aside**: doesn't have to be only R, other languages supported. 
 
-Now, let's write some code in R. Let's say we want to plot the cars data. I'm going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.
+Let's create a new code chunk at the end of our document.
 
-```{r}
+Now, let's write some code in R. Let's say we want to see the summary of the `pressure` data. I'm going to press enter to to add some extra carriage returns because sometimes I find it more pleasant to look at my code, and it helps in troubleshooing, which is often about identifying typos. R lets you use as much whitespace as you would like.
+
+```{r, eval=FALSE}
 
 summary(pressure)
 
 ```
 
-We can knit this and see the plot of cars. This is the same data that we made the summary table with. 
+We can knit this and see the summary of `pressure`. This is the same data that we see with the plot just above. 
 
-> Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences correct?
+> Troubleshooting: Did trying to knit your document produce an error? Start by looking at your code again. Do you have both open `(` and close `)` parentheses? Are your code chunk fences (```) correct?
 
 #### Code chunk labels
 
 It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our  three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`). 
 
-Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. We will explore this in a moment.
+Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. So while a third option for creating a new code chunk is to copy-paste-edit an existing one, you'll have to remember to relabel it something unique. We will explore this more in a moment.
 
 ## R code in the Console
 
-It is important to be able to run R code directly rather than only executing it when you knit the document. This is the live R process.
+It is important to be able to run R code directly rather than only executing it when you knit the document. We can write code in the Console to interact with the live R process.
 
 The Console (bottom left pane of the RStudio IDE) is where you can interact with the R engine and run code directly. 
 
-Let's type this in the Console: `summary(pressure)`. We see the pressure summary table returned; it is the same information that we saw in our knitted html document. 
+Let's type this in the Console: `summary(pressure)` and hit enter. We see the pressure summary table returned; it is the same information that we saw in our knitted html document. By default, R will display (we also say "print") the executed result in the Console 
 
 ``` r
 summary(pressure)
@@ -211,6 +216,12 @@ summary(pressure)
 #>  Mean   :180   Mean   :124.3367  
 #>  3rd Qu.:270   3rd Qu.:126.5000  
 #>  Max.   :360   Max.   :806.0000
+```
+
+We can also do math as we can in Excel: 
+
+```{r, eval=FALSE}
+8*22.3
 ```
 
 ### Error messages
@@ -228,13 +239,14 @@ summary(pressur)
 #> Error in summary(pressur): object 'pressur' not found
 ```
 
-Remember that R is a language, not unsimilar to English! There are times you aren't understood -- it's going to happen. There are different ways this can happen. Sometimes you'll get an error. This is like someone saying 'What?' or 'Pardon'? Error messages can also be more useful, like when they say 'I didn't understand what you said, I was expecting you to say blah'. 
+Error messages are R's way of saying that it didn't understand what you said. This is like in English when we say "What?" or "Pardon?" And like in spoken language, some error messages are more helpful than others. Like if someone says "Sorry, I didn't understand that last word" rather than only "What?"
 
-In this case, R is saying "What? I didn't understand `pressur`". 
+In this case, R is saying "I didn't understand `pressur`". R tracks the datasets it has out-of-the box as objects, as well as any additional objects that you make and `pressur` is not among them, so it says that it is not found. 
 
-Errors will be less frustrating if you have the understanding and mindset that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. The first step of becoming a proficent R user is to move past the exasperation of "it's not working!" and **read the error message**. 
+Errors will be less frustrating if you have the understanding and mindset that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. 
 
-You'll see that when you ask us for help, we will start off by reading the error message. 
+The first step of becoming a proficent R user is to move past the exasperation of "it's not working!" and **read the error message**. 
+
 
 <!---
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
@@ -252,9 +264,9 @@ Calls: <Anonymous> ... process_file -> split_file -> lapply -> FUN -> parse_bloc
 Execution halted
 ```
 
-There are 2 things I want to say about this. 
+There are two things to focus on here. 
 
-First: This error message starts out in a pretty cryptic way: I don't know what `parse_block(g[-1]...` means. But, assuming that the error message is really trying to help me, I continue scanning the message which allows me to identify the problem: "duplicate label 'cars'". 
+First: This error message starts out in a pretty cryptic way: I don't expect you to know what `parse_block(g[-1]...` means. But, assuming that the error message is really trying to help me, I continue scanning the message which allows me to identify the problem: `duplicate label 'cars'`. 
 
 Second: This error is in the "R Markdown" tab on the bottom left of the RStudio IDE; it is not in the Console. That is because when RMarkdown is knitted, it actually spins up an R workspace separately from what is passed to the Console; this is one of the ways that R Markdown enables reproducibility because it is a self-contained instance of R. 
 
@@ -262,21 +274,25 @@ You can click back and forth between the Console and the R Markdown tab; this is
 
 ### Running code chunks in the Console
 
-From RStudio, there are several ways to get R code from a RMarkdown chunk (the grey R code) down into the console. How do we do it? There are several ways. Let's do each of these with `summary(cars)`.
+So far we have written code in our RMarkdown file and knitted the file, and we have also separately written code in the Console. But we can also send R code that we've written in an RMarkdown chunk (the grey R code) down into the Console in RStudio. 
 
-1. copy-paste the `summary(cars)` code into the console.
-   a. important!!: I am only highlighting `summary(cars)`, not any of the backticks! If you see the error ````{r}`Error: attempt to use zero-length variable name
-1. select the line (or simply put the cursor there), and click 'Run'. This is available from 
+How do we do it? There are several ways. Let's do each of these with `summary(pressure)`.
+
+1. copy-paste the `summary(pressure)` code into the console.
+   a. important!!: I am only highlighting `summary(pressure)`, not any of the backticks/fences! If you see the error ````{r}`Error: attempt to use zero-length variable name` it is because you have accidentally highlighted the backticks along with the R code. Try again (and don't forget that you can add spaces within the code chunk or make your RStudio session bigger (View > Zoom In)
+1. run selected lines by highlighting — or simply putting the cursor on the line — and clicking 'Run'. This is available from: 
     a. the bar above the file (green arrow)
     b. the menu bar: Code > Run Selected Line(s)
     c. keyboard shortcut: command-return
-1. click the green arrow at the right of the code chunk
+1. run the whole chunk by clicking the little black down arrow next to the Run green arrow and selecting Run Current Chunk. Notice there are also options to run all chunks, run all chunks above or below...
 
-### File vs. Console
+### Writing code in a file vs. Console
+
+<!---TODO more --->
 
 When should you write code in a file (.Rmd or .R script) and when should you write it in the Console? 
 
-We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this.
+We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this. A file is also a great way for you to take notes to yourself. 
 
 The Console is good for doing quick calculations like `8*22.3`, testing functions, for calling help pages, for installing packages. We'll explore these things next. 
 
@@ -285,7 +301,7 @@ The Console is good for doing quick calculations like `8*22.3`, testing function
 
 Like Excel, the power of R comes not from doing small operations individually (like `8*22.3`). R's power comes from being able to operate on whole suites of numbers and datasets. 
 
-Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
+And also like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we'll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).
 
 R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.
 
@@ -325,7 +341,7 @@ The help page tells the name of the package in the top left, and broken down int
 
 When I look at a help page, I start with the description to see if I am in the right place for what I need to do. Reading the description for `plot` lets me know that yup, this is the function I want.
 
-I next look at the usage and arguments, which give me a more concrete view into what the function does. `plot` requires arguments for `x` and `y` — and when we pass `cars` to `plot()`, R is able to understand that it should use the two columns in that dataset as x and y. The `...` means that there are many other things we can pass to `plot()`, which we can understand here to be about the style of the plots
+I next look at the usage and arguments, which give me a more concrete view into what the function does. `plot` requires arguments for `x` and `y`. But we passed only one argument to `plot()`: we passed the cars dataset (`plot(cars)`). R is able to understand that it should use the two columns in that dataset as x and y, and it does so based on order: the first column "speed" becomes x and the second column "dist" becomes y. The `...` means that there are many other arguments we can pass to `plot()`, which we should expect: I think we can all agree that it would be nice to have the option of making this figure a little more beautiful and compelling. Glancing at some of the arguments, we can understand here to be about the style of the plots.
 
 Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let's try it:
 
@@ -333,13 +349,22 @@ Then, I usually scroll down to the bottom to the examples. This is where I can a
 plot(sin, -pi, 2*pi)
 ```
 
-Let's try another function. In Excel, there is a "SUM" function to calculate a total. There is the same function in R, but it is spelled with all lowercase letters: `sum()`. 
+Let's look up another function in the Help Pages. In Excel, there is a "SUM" function to calculate a total. If we try `?SUM` in R, before we hit enter, RStudio will offer suggestions about what we might mean. Scroll down...we don't mean "Summary" but eventually we find the function we want spelled with all lowercase letters: `?sum()`. Hit enter. 
+
+From the Help pages you'll see that we can pass any arguments we want (...) and we also see that `na.rm = FALSE`. This is the same capital FALSE that we've seen before: it is a logical (yes/no 1/0) operator that says that by default, `sum()` will attempt to calculate the total without removing any missing values.
 
 Let's calculate the sum of all the distances traveled in the `cars` dataset. We specify a single column of a dataset using the `$` operator:
 
 ```{r sum-cars, eval=FALSE}
 sum(cars$dist)
 ```
+
+The cars data don't have any missing values, but to demonstrate how we could tell R to remove missing values before calculating: 
+
+```{r sum-cars-na, eval=FALSE}
+sum(cars$dist, na.rm = TRUE)
+```
+
 
 Let's do another: try using `c()` which combines values together. 
 
@@ -349,7 +374,22 @@ So let's create a new R code chunk. And we'll write:
 c(1, 7:9)
 ```
 
-So you can see that this combines these values all into the same place, which is called a vector here. But let's learn more about what this does. 
+So you can see that this combines these values all into the same place, which is called a vector here. We could also do this with a non-numeric examples, which are called "strings":
+
+```{r c-ex2}
+c("San Francisco", "Golden Gate Bridge", "Cal Academy") 
+```
+
+We need to put quotes around non-numeric values so that R does not interpret them as an object. It would definitely get grumpy and give us an error that it did not have an object by these names. And you see that R also prints in quotes. 
+
+If we add a number as an argument, you'll see that R will respond by returning the number in quotes. It is no longer a numeric, it is a string. 
+
+```{r c-ex3}
+c(7, "San Francisco", "Golden Gate Bridge", "Cal Academy") 
+```
+
+This is a big difference between R and Excel, since Excel allows you to have a mix of text and numerics in the same column or row. R's way can feel restrictive, but TODO finish this thought (Shotwell blog)
+
 
 ## Commenting
 
@@ -373,25 +413,31 @@ Note also that the hashtag `#` is used differently in Markdown and in R:
 
 ## Assigning objects with `<-`
 
-In Excel, data are stored in the spreadsheet. In R, they are stored in objects. Data can be a variety of formats, like numeric and text.  
+In Excel, data are stored in the spreadsheet. In R, they are stored in objects. Data can be a variety of formats, for example numeric and text like we just talked about.  
 
 We will be working with data objects that are rectangular in shape. If they only have one column or one row, they are also called a vector. And we assign these objects names. 
 
 This is a big difference with Excel, where you usually identify data by its location on the grid, like `$A1:D$20`. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)
 
-We assign an object a name by writing the name along with the assignment operator `<-`. Let's go back to our example about calculating the sum of the distance traveled by cars. 
+We assign an object a name by writing the name along with the assignment operator `<-`. Let's try it by creating a variable called "x" and assigning it to 10. 
 
-```{r assign}
-sum_dist <- sum(cars$dist)
+```{r}
+x <- 10
 ```
 
-In my head I hear "sum_dist gets `r sum(cars$dist)`". 
+When I see this written, in my head I hear "x gets 10". 
 
-And we can execute it by sending it to the Console. 
+When we send this to the Console (I do this with Command - Enter), notice how nothing is printed in return. This is because when we assign a variable, by default it is not returned. We can see what x is by typing it in the Console and hitting enter. 
 
-Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
+We can also assign objects with existing objects. Let's say we want to have the distance traveled by cars in its own variable, and multiply by 1000 (assuming these data are in km and we want m). TODO better example?
 
-TODO: add Horst Illustration
+```{r assign}
+dist <- cars$dist * 1000
+```
+
+Object names can be whatever you want, although it is wise to not name objects by functions that you know exist, for example "c" or "false". Additionally, they cannot start with a digit and cannot contain spaces. Different folks have different conventions; you will be wise to adopt a [convention for demarcating words](http://en.wikipedia.org/wiki/Snake_case) in names.
+
+TODO: add Horst Illustration / OR remove and let Allison do this?
 
 ```{r cases}
 ## i_use_snake_case
@@ -402,15 +448,15 @@ TODO: add Horst Illustration
 
 ## R Packages
 
-So far we've been using a couple functions from base R, such as `plot()` and `c()`. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities.  
+So far we've been using a couple functions that are included with R out-of-the-box such as `plot()` and `c()`. We say that these functions are from "Base R". But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R's capabilities.  
 
 In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation (including to create the help pages), and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones. 
 
-The traditional place to download packages is from CRAN, the [Comprehensive R Archive Network](https://cran.r-project.org/), which is where you downloaded R. CRAN is like a grocery store for vetted R packages.
+The traditional place to download packages is from CRAN, the [Comprehensive R Archive Network](https://cran.r-project.org/), which is where you downloaded R. CRAN is like a grocery store or iTunes for vetted R packages.
 
 <!---You can also install packages from GitHub, which we'll do tomorrow.--->
 
-You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. 
+You don't need to go to CRAN's website to install packages, this can be accomplished within R using the command `install.packages("package-name-in-quotes")`. How do you know what packages exist? Well, how do you know what movies exist on iTunes? You learn what's available based on your needs, interests the community around you. We'll introduce you to several really powerful packages that we work with and help you find others that might be of interest to you.
 
 Let's install several packages that we will be using shortly. Write this in your R Markdown document and run it: 
 
@@ -469,16 +515,16 @@ We will be using the pipe operator as we wrangle data in future sessions, but we
 
 Let's look at an example that we will have completed by the end of tomorrow: 
 
-TODO: MAYBE AS SLIDES?
+TODO: MAYBE AS SLIDES? // BUILD OUT FROM SYNTHESIS EXAMPLE
 
 Let's say our analytical task is to XYZ.
 
 Here is how we could tell this as a story: 
 
 - We took the data about how many fish were landed and then
-- We filtered
+- We filtered TODO
 
-
+```
 state_value <- landings_tidy %>% 
   filter(year %in% c(2015)) %>% 
   group_by(state) %>% 
@@ -488,6 +534,7 @@ state_value <- landings_tidy %>%
   ) %>% 
   arrange(-state_value) %>% 
   head(5)
+```
 
 ## Setup Git & GitHub
 
@@ -495,7 +542,7 @@ Before we break, we are going to set up Git and GitHub which we will be using al
 
 This set up is a one-time thing! You will only have to do this once per computer. We'll walk through this together. 
 
-1. We will use the `usethis` package to configure **git** with global commands, which means it will apply 'globally' to all files on your computer, rather than to a specific folder. 
+We will use the `usethis` package to configure **git** with global commands, which means it will apply 'globally' to all files on your computer, rather than to a specific folder. Our username and email will be the arguments we pass to the function `use_git_config`. <!---TODO smooth wording --->
 
 Since we already installed and attached it, type this into your Console: 
 
@@ -507,7 +554,12 @@ use_git_config(user.name = "jules32", user.email = "jules32@example.org")
 
 ### Ensure that Git/GitHub/RStudio are communicating
 
-TODO: should this be from [Allison's googledoc](https://docs.google.com/document/d/1zx2upJJqFZe94O3BQSMI56Z76s3haLXC0otKSpcZaJQ/edit)
+TODO: should we have them fork and clone the book? or a test toy repo?
+
+
+should this be from [Allison's googledoc](https://docs.google.com/document/d/1zx2upJJqFZe94O3BQSMI56Z76s3haLXC0otKSpcZaJQ/edit)
+
+<br>
 
 
 ### BACKUP PLAN for configuration

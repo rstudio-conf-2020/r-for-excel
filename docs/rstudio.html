@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-01-19" />
+<meta name="date" content="2020-01-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-code-chunks-in-the-console"><i class="fa fa-check"></i><b>3.4.2</b> Running code chunks in the Console</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> File vs. Console</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
@@ -464,7 +464,7 @@ FYI: you can change the default location of the panes, among many other things: 
 <p>File -&gt; New File -&gt; RMarkdown… (or alternatively you can click the green plus in the top left -&gt; RMarkdown).</p>
 <p>Let’s title it “Testing” and write our name as author, then click OK with the recommended Default Output Format, which is HTML.</p>
 <p><img src="img/rstudio_new-rmd-doc-html.png" width="80%" /></p>
-<p>OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which is essentially a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.</p>
+<p>OK, first off: by opening a file, we are seeing the 4th pane of the RStudio console, which here is a text editor. This lets us organize our files within RStudio instead of having a bunch of different windows open.</p>
 <p>Let’s have a look at this file — it’s not blank; there is some initial text is already provided for you. Let’s have a high-level look through of it:</p>
 <ul>
 <li>The top part has the Title and Author we provided, as well as today’s date and the output type as an HTML document like we selected above.</li>
@@ -488,18 +488,19 @@ It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note t
 <p>Let’s take a deeper look at these two files. So much of learning to code is looking for patterns.</p>
 <div id="activity" class="section level4">
 <h4><span class="header-section-number">3.3.2.1</span> Activity</h4>
-<p>Say hello to the person sitting next to you. Discuss what you see.</p>
+<p>Introduce yourself to the person sitting next to you. Discuss what you notice with these two files. Share-out with the group. (5 mins)</p>
 </div>
 </div>
 <div id="markdown-text" class="section level3">
 <h3><span class="header-section-number">3.3.3</span> Markdown text</h3>
-<p>To warm us up for R, let’s start by talking about another language, Markdown. This is a formatting language for plain text, and there are only about 15 rules to know.</p>
+<p>Let’s look more deeply at the Markdown text. Markdown is a formatting language for plain text, and there are only a handful of rules to know.</p>
 <p>Notice the syntax for:</p>
 <ul>
 <li><strong>headers</strong> get rendered at multiple levels: <code>#</code>, <code>##</code></li>
 <li><strong>bold</strong>: <code>**word**</code></li>
 </ul>
-<p>There are some good <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">cheatsheets</a> to get you started, and here is one built into RStudio: Go to Help &gt; Markdown Quick Reference</p>
+<p>To see more of the rules, let’s look at RStudio’s built-in reference. Let’s do this: Help &gt; Markdown Quick Reference</p>
+<p>There are also good <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">cheatsheets</a> available online.</p>
 <!---
 #### Activity
 
@@ -525,54 +526,50 @@ It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note t
 <li>the second chunk has no additional instructions, and in the HTML document we see the code and the evaluation of that code (a summary table)</li>
 <li>the third chunk says <code>echo=FALSE</code>, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.</li>
 </ul>
-<p>There are many more options available and we will explore more as we go.</p>
+<p>Notice how the word <code>FALSE</code> is all capitals. Capitalization matters in R; <code>TRUE/FALSE</code> is something that R can interpret as a binary yes/no or 1/0. This is different from true/false or True/False.</p>
+<p>There are many more options available that we will discuss as we get more familiar with RMarkdown.</p>
 <div id="new-code-chunks" class="section level4">
 <h4><span class="header-section-number">3.3.5.1</span> New code chunks</h4>
 <p>We can create a new chunk in your RMarkdown first in one of these ways:</p>
 <ul>
-<li>click “Insert &gt; R” at the top of the editor pane</li>
-<li>type by hand
+<li>click “Insert &gt; R” at the top of the editor pane (with the green plus and green box)</li>
+<li>type it by hand:
 ```{r}
 ```</li>
-<li>if you haven’t deleted a chunk that came with the new file, edit that one</li>
 </ul>
 <blockquote>
-<p>Cool tip: doesn’t have to be only R, other languages supported.</p>
+<p><strong>Aside</strong>: doesn’t have to be only R, other languages supported.</p>
 </blockquote>
-<p>Now, let’s write some code in R. Let’s say we want to plot the cars data. I’m going to press enter to to add some extra carriage returns because sometimes I find it easier to look at my code when there is a bit more space, and R lets you use as much whitespace as you would like.</p>
+<p>Let’s create a new code chunk at the end of our document.</p>
+<p>Now, let’s write some code in R. Let’s say we want to see the summary of the <code>pressure</code> data. I’m going to press enter to to add some extra carriage returns because sometimes I find it more pleasant to look at my code, and it helps in troubleshooing, which is often about identifying typos. R lets you use as much whitespace as you would like.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">summary</span>(pressure)</a></code></pre></div>
-<pre><code>##   temperature     pressure       
-##  Min.   :  0   Min.   :  0.0002  
-##  1st Qu.: 90   1st Qu.:  0.1800  
-##  Median :180   Median :  8.8000  
-##  Mean   :180   Mean   :124.3367  
-##  3rd Qu.:270   3rd Qu.:126.5000  
-##  Max.   :360   Max.   :806.0000</code></pre>
-<p>We can knit this and see the plot of cars. This is the same data that we made the summary table with.</p>
+<p>We can knit this and see the summary of <code>pressure</code>. This is the same data that we see with the plot just above.</p>
 <blockquote>
-<p>Troubleshooting: If you could not successfully knit your document without error, Look at your code again. Do you have both open <code>(</code> and close <code>)</code> parentheses? Are your code chunk fences correct?</p>
+<p>Troubleshooting: Did trying to knit your document produce an error? Start by looking at your code again. Do you have both open <code>(</code> and close <code>)</code> parentheses? Are your code chunk fences (```) correct?</p>
 </blockquote>
 </div>
 <div id="code-chunk-labels" class="section level4">
 <h4><span class="header-section-number">3.3.5.2</span> Code chunk labels</h4>
 <p>It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our three chunks say <code>r</code> as the language, and have a label (<code>setup</code>, <code>cars</code>, <code>pressure</code>).</p>
-<p>Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. We will explore this in a moment.</p>
+<p>Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. So while a third option for creating a new code chunk is to copy-paste-edit an existing one, you’ll have to remember to relabel it something unique. We will explore this more in a moment.</p>
 </div>
 </div>
 </div>
 <div id="r-code-in-the-console" class="section level2">
 <h2><span class="header-section-number">3.4</span> R code in the Console</h2>
-<p>It is important to be able to run R code directly rather than only executing it when you knit the document. This is the live R process.</p>
+<p>It is important to be able to run R code directly rather than only executing it when you knit the document. We can write code in the Console to interact with the live R process.</p>
 <p>The Console (bottom left pane of the RStudio IDE) is where you can interact with the R engine and run code directly.</p>
-<p>Let’s type this in the Console: <code>summary(pressure)</code>. We see the pressure summary table returned; it is the same information that we saw in our knitted html document.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">summary</span>(pressure)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;   temperature     pressure       </span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt;  Min.   :  0   Min.   :  0.0002  </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  1st Qu.: 90   1st Qu.:  0.1800  </span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  Median :180   Median :  8.8000  </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  Mean   :180   Mean   :124.3367  </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:270   3rd Qu.:126.5000  </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;  Max.   :360   Max.   :806.0000</span></a></code></pre></div>
+<p>Let’s type this in the Console: <code>summary(pressure)</code> and hit enter. We see the pressure summary table returned; it is the same information that we saw in our knitted html document. By default, R will display (we also say “print”) the executed result in the Console</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">summary</span>(pressure)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;   temperature     pressure       </span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt;  Min.   :  0   Min.   :  0.0002  </span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt;  1st Qu.: 90   1st Qu.:  0.1800  </span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  Median :180   Median :  8.8000  </span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;  Mean   :180   Mean   :124.3367  </span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:270   3rd Qu.:126.5000  </span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;  Max.   :360   Max.   :806.0000</span></a></code></pre></div>
+<p>We can also do math as we can in Excel:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dv">8</span><span class="op">*</span><span class="fl">22.3</span></a></code></pre></div>
 <div id="error-messages" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Error messages</h3>
 <p>When you code in R or any language, you will encounter errors. We will discuss troubleshooting tips more deeply tomorrow in <a href="#collaboration">Collaborating &amp; getting help</a>; here we will just get a little comfortable with them.</p>
@@ -582,10 +579,10 @@ It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note t
 <p>What do they look like? I’ll demo typing in the Console <code>summary(pressur)</code></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">summary</span>(pressur)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; Error in summary(pressur): object &#39;pressur&#39; not found</span></a></code></pre></div>
-<p>Remember that R is a language, not unsimilar to English! There are times you aren’t understood – it’s going to happen. There are different ways this can happen. Sometimes you’ll get an error. This is like someone saying ‘What?’ or ‘Pardon’? Error messages can also be more useful, like when they say ‘I didn’t understand what you said, I was expecting you to say blah’.</p>
-<p>In this case, R is saying “What? I didn’t understand <code>pressur</code>”.</p>
-<p>Errors will be less frustrating if you have the understanding and mindset that <strong>most likely the problem is your typo or misuse</strong>, and not that R is broken or hates you. The first step of becoming a proficent R user is to move past the exasperation of “it’s not working!” and <strong>read the error message</strong>.</p>
-<p>You’ll see that when you ask us for help, we will start off by reading the error message.</p>
+<p>Error messages are R’s way of saying that it didn’t understand what you said. This is like in English when we say “What?” or “Pardon?” And like in spoken language, some error messages are more helpful than others. Like if someone says “Sorry, I didn’t understand that last word” rather than only “What?”</p>
+<p>In this case, R is saying “I didn’t understand <code>pressur</code>”. R tracks the datasets it has out-of-the box as objects, as well as any additional objects that you make and <code>pressur</code> is not among them, so it says that it is not found.</p>
+<p>Errors will be less frustrating if you have the understanding and mindset that <strong>most likely the problem is your typo or misuse</strong>, and not that R is broken or hates you.</p>
+<p>The first step of becoming a proficent R user is to move past the exasperation of “it’s not working!” and <strong>read the error message</strong>.</p>
 <!---
 And also know that there are errors that can creep in more subtly, when you are giving information that is understood, but not in the way you meant. Like if I am telling a story about suspenders that my British friend hears but silently interprets in a very different way (true story). This can leave me thinking I've gotten something across that the listener (or R) might silently interpreted very differently. And as I continue telling my story you get more and more confused... Clear communication is critical when you code: write clean, well documented code and check your work as you go to minimize these circumstances!
 
@@ -598,40 +595,42 @@ And also know that there are errors that can creep in more subtly, when you are 
 Error in parse_block(g[-1], g[1], params.src) : duplicate label &#39;cars&#39;
 Calls: &lt;Anonymous&gt; ... process_file -&gt; split_file -&gt; lapply -&gt; FUN -&gt; parse_block
 Execution halted</code></pre>
-<p>There are 2 things I want to say about this.</p>
-<p>First: This error message starts out in a pretty cryptic way: I don’t know what <code>parse_block(g[-1]...</code> means. But, assuming that the error message is really trying to help me, I continue scanning the message which allows me to identify the problem: “duplicate label ‘cars’”.</p>
+<p>There are two things to focus on here.</p>
+<p>First: This error message starts out in a pretty cryptic way: I don’t expect you to know what <code>parse_block(g[-1]...</code> means. But, assuming that the error message is really trying to help me, I continue scanning the message which allows me to identify the problem: <code>duplicate label 'cars'</code>.</p>
 <p>Second: This error is in the “R Markdown” tab on the bottom left of the RStudio IDE; it is not in the Console. That is because when RMarkdown is knitted, it actually spins up an R workspace separately from what is passed to the Console; this is one of the ways that R Markdown enables reproducibility because it is a self-contained instance of R.</p>
 <p>You can click back and forth between the Console and the R Markdown tab; this is something to look out for as we continue. Let’s click back to Console now.</p>
 </div>
 </div>
 <div id="running-code-chunks-in-the-console" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Running code chunks in the Console</h3>
-<p>From RStudio, there are several ways to get R code from a RMarkdown chunk (the grey R code) down into the console. How do we do it? There are several ways. Let’s do each of these with <code>summary(cars)</code>.</p>
+<p>So far we have written code in our RMarkdown file and knitted the file, and we have also separately written code in the Console. But we can also send R code that we’ve written in an RMarkdown chunk (the grey R code) down into the Console in RStudio.</p>
+<p>How do we do it? There are several ways. Let’s do each of these with <code>summary(pressure)</code>.</p>
 <ol style="list-style-type: decimal">
-<li>copy-paste the <code>summary(cars)</code> code into the console.
+<li>copy-paste the <code>summary(pressure)</code> code into the console.
 <ol style="list-style-type: lower-alpha">
-<li>important!!: I am only highlighting <code>summary(cars)</code>, not any of the backticks! If you see the error ```<code>{r}</code>Error: attempt to use zero-length variable name</li>
+<li>important!!: I am only highlighting <code>summary(pressure)</code>, not any of the backticks/fences! If you see the error ```<code>{r}</code>Error: attempt to use zero-length variable name` it is because you have accidentally highlighted the backticks along with the R code. Try again (and don’t forget that you can add spaces within the code chunk or make your RStudio session bigger (View &gt; Zoom In)</li>
 </ol></li>
-<li>select the line (or simply put the cursor there), and click ‘Run’. This is available from
+<li>run selected lines by highlighting — or simply putting the cursor on the line — and clicking ‘Run’. This is available from:
 <ol style="list-style-type: lower-alpha">
 <li>the bar above the file (green arrow)</li>
 <li>the menu bar: Code &gt; Run Selected Line(s)</li>
 <li>keyboard shortcut: command-return</li>
 </ol></li>
-<li>click the green arrow at the right of the code chunk</li>
+<li>run the whole chunk by clicking the little black down arrow next to the Run green arrow and selecting Run Current Chunk. Notice there are also options to run all chunks, run all chunks above or below…</li>
 </ol>
 </div>
-<div id="file-vs.console" class="section level3">
-<h3><span class="header-section-number">3.4.3</span> File vs. Console</h3>
+<div id="writing-code-in-a-file-vs.console" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Writing code in a file vs. Console</h3>
+<!---TODO more --->
 <p>When should you write code in a file (.Rmd or .R script) and when should you write it in the Console?</p>
-<p>We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this.</p>
+<p>We write things in the file that are necessary for our analysis and that we want to preserve for reproducibility; we will be doing this throughout the workshop to give you a good sense of this. A file is also a great way for you to take notes to yourself.</p>
 <p>The Console is good for doing quick calculations like <code>8*22.3</code>, testing functions, for calling help pages, for installing packages. We’ll explore these things next.</p>
 </div>
 </div>
 <div id="r-functions" class="section level2">
 <h2><span class="header-section-number">3.5</span> R functions</h2>
 <p>Like Excel, the power of R comes not from doing small operations individually (like <code>8*22.3</code>). R’s power comes from being able to operate on whole suites of numbers and datasets.</p>
-<p>Like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we’ll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).</p>
+<p>And also like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we’ll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).</p>
 <p>R has a mind-blowing collection of built-in functions that are used with the same syntax: function name with parentheses around what the function needs to do what it is supposed to do.</p>
 <p>We’ve seen a few functions already: we’ve seen <code>plot()</code> and <code>summary()</code>.</p>
 <p>Functions always have the same structure: a name, parentheses, and arguments that you can specify. <code>function_name(arguments)</code>.</p>
@@ -660,25 +659,36 @@ Execution halted</code></pre>
 <li>Examples: Some examples for how to use the function.</li>
 </ul>
 <p>When I look at a help page, I start with the description to see if I am in the right place for what I need to do. Reading the description for <code>plot</code> lets me know that yup, this is the function I want.</p>
-<p>I next look at the usage and arguments, which give me a more concrete view into what the function does. <code>plot</code> requires arguments for <code>x</code> and <code>y</code> — and when we pass <code>cars</code> to <code>plot()</code>, R is able to understand that it should use the two columns in that dataset as x and y. The <code>...</code> means that there are many other things we can pass to <code>plot()</code>, which we can understand here to be about the style of the plots</p>
+<p>I next look at the usage and arguments, which give me a more concrete view into what the function does. <code>plot</code> requires arguments for <code>x</code> and <code>y</code>. But we passed only one argument to <code>plot()</code>: we passed the cars dataset (<code>plot(cars)</code>). R is able to understand that it should use the two columns in that dataset as x and y, and it does so based on order: the first column “speed” becomes x and the second column “dist” becomes y. The <code>...</code> means that there are many other arguments we can pass to <code>plot()</code>, which we should expect: I think we can all agree that it would be nice to have the option of making this figure a little more beautiful and compelling. Glancing at some of the arguments, we can understand here to be about the style of the plots.</p>
 <p>Then, I usually scroll down to the bottom to the examples. This is where I can actually see how the function is used, and I can also paste those examples into the Console to see their output. Let’s try it:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(sin, <span class="op">-</span>pi, <span class="dv">2</span><span class="op">*</span>pi)</a></code></pre></div>
 <p><img src="R-for-Excel-Users_files/figure-html/plot-help-example-1.png" width="672" /></p>
-<p>Let’s try another function. In Excel, there is a “SUM” function to calculate a total. There is the same function in R, but it is spelled with all lowercase letters: <code>sum()</code>.</p>
+<p>Let’s look up another function in the Help Pages. In Excel, there is a “SUM” function to calculate a total. If we try <code>?SUM</code> in R, before we hit enter, RStudio will offer suggestions about what we might mean. Scroll down…we don’t mean “Summary” but eventually we find the function we want spelled with all lowercase letters: <code>?sum()</code>. Hit enter.</p>
+<p>From the Help pages you’ll see that we can pass any arguments we want (…) and we also see that <code>na.rm = FALSE</code>. This is the same capital FALSE that we’ve seen before: it is a logical (yes/no 1/0) operator that says that by default, <code>sum()</code> will attempt to calculate the total without removing any missing values.</p>
 <p>Let’s calculate the sum of all the distances traveled in the <code>cars</code> dataset. We specify a single column of a dataset using the <code>$</code> operator:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">sum</span>(cars<span class="op">$</span>dist)</a></code></pre></div>
+<p>The cars data don’t have any missing values, but to demonstrate how we could tell R to remove missing values before calculating:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">sum</span>(cars<span class="op">$</span>dist, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Let’s do another: try using <code>c()</code> which combines values together.</p>
 <p>So let’s create a new R code chunk. And we’ll write:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">9</span>)</a></code></pre></div>
 <pre><code>## [1] 1 7 8 9</code></pre>
-<p>So you can see that this combines these values all into the same place, which is called a vector here. But let’s learn more about what this does.</p>
+<p>So you can see that this combines these values all into the same place, which is called a vector here. We could also do this with a non-numeric examples, which are called “strings”:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">c</span>(<span class="st">&quot;San Francisco&quot;</span>, <span class="st">&quot;Golden Gate Bridge&quot;</span>, <span class="st">&quot;Cal Academy&quot;</span>) </a></code></pre></div>
+<pre><code>## [1] &quot;San Francisco&quot;      &quot;Golden Gate Bridge&quot; &quot;Cal Academy&quot;</code></pre>
+<p>We need to put quotes around non-numeric values so that R does not interpret them as an object. It would definitely get grumpy and give us an error that it did not have an object by these names. And you see that R also prints in quotes.</p>
+<p>If we add a number as an argument, you’ll see that R will respond by returning the number in quotes. It is no longer a numeric, it is a string.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">7</span>, <span class="st">&quot;San Francisco&quot;</span>, <span class="st">&quot;Golden Gate Bridge&quot;</span>, <span class="st">&quot;Cal Academy&quot;</span>) </a></code></pre></div>
+<pre><code>## [1] &quot;7&quot;                  &quot;San Francisco&quot;      &quot;Golden Gate Bridge&quot;
+## [4] &quot;Cal Academy&quot;</code></pre>
+<p>This is a big difference between R and Excel, since Excel allows you to have a mix of text and numerics in the same column or row. R’s way can feel restrictive, but TODO finish this thought (Shotwell blog)</p>
 </div>
 <div id="commenting" class="section level2">
 <h2><span class="header-section-number">3.7</span> Commenting</h2>
 <p>I’ve been working in the Console to illustrate working interactively with the live R process. But it is likely that you may want to write some of these things as notes in your R Markdown file. That’s great!</p>
 <p>But you may not want everything you type to be run when you knit your document. So you can tell R not to run something by “commenting it out”. This is done with one or more pound/hash/number signs: <code>#</code>. So if I wanted to write a note to myself about using <code>?</code> to open the help pages, I would write this in my R Markdown code chunk:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">## open help pages with ?:</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co"># ?plot</span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">## open help pages with ?:</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="co"># ?plot</span></a></code></pre></div>
 <p>RStudio color-codes comments as green so they are easier to see.</p>
 <p>Notice that my convention is to use two <code>##</code>’s for my notes, and only one for the code that I don’t want to run now, but might want to run other times. I like this convention because in RStudio you can uncomment/recomment mulitiple lines of code at once if you use just one <code>#</code>: do this by going to the menu Code &gt; Comment/Uncomment Lines (keyboard shortcut on my Mac: Shift-Command-C).</p>
 <p>Note also that the hashtag <code>#</code> is used differently in Markdown and in R:</p>
@@ -689,49 +699,51 @@ Execution halted</code></pre>
 </div>
 <div id="assigning-objects-with--" class="section level2">
 <h2><span class="header-section-number">3.8</span> Assigning objects with <code>&lt;-</code></h2>
-<p>In Excel, data are stored in the spreadsheet. In R, they are stored in objects. Data can be a variety of formats, like numeric and text.</p>
+<p>In Excel, data are stored in the spreadsheet. In R, they are stored in objects. Data can be a variety of formats, for example numeric and text like we just talked about.</p>
 <p>We will be working with data objects that are rectangular in shape. If they only have one column or one row, they are also called a vector. And we assign these objects names.</p>
 <p>This is a big difference with Excel, where you usually identify data by its location on the grid, like <code>$A1:D$20</code>. (You can do this with Excel by naming ranges of cells, but many people don’t do this.)</p>
-<p>We assign an object a name by writing the name along with the assignment operator <code>&lt;-</code>. Let’s go back to our example about calculating the sum of the distance traveled by cars.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">sum_dist &lt;-<span class="st"> </span><span class="kw">sum</span>(cars<span class="op">$</span>dist)</a></code></pre></div>
-<p>In my head I hear “sum_dist gets 2149”.</p>
-<p>And we can execute it by sending it to the Console.</p>
-<p>Object names can be whatever you want, although they cannot start with a digit and cannot contain certain other characters such as a comma or a space. Different folks have different conventions; you will be wise to adopt a <a href="http://en.wikipedia.org/wiki/Snake_case">convention for demarcating words</a> in names.</p>
-<p>TODO: add Horst Illustration</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">## i_use_snake_case</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">## other.people.use.periods</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">## evenOthersUseCamelCase</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">## also-there-is-kebab-case</span></a></code></pre></div>
+<p>We assign an object a name by writing the name along with the assignment operator <code>&lt;-</code>. Let’s try it by creating a variable called “x” and assigning it to 10.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<p>When I see this written, in my head I hear “x gets 10”.</p>
+<p>When we send this to the Console (I do this with Command - Enter), notice how nothing is printed in return. This is because when we assign a variable, by default it is not returned. We can see what x is by typing it in the Console and hitting enter.</p>
+<p>We can also assign objects with existing objects. Let’s say we want to have the distance traveled by cars in its own variable, and multiply by 1000 (assuming these data are in km and we want m). TODO better example?</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">dist &lt;-<span class="st"> </span>cars<span class="op">$</span>dist <span class="op">*</span><span class="st"> </span><span class="dv">1000</span></a></code></pre></div>
+<p>Object names can be whatever you want, although it is wise to not name objects by functions that you know exist, for example “c” or “false”. Additionally, they cannot start with a digit and cannot contain spaces. Different folks have different conventions; you will be wise to adopt a <a href="http://en.wikipedia.org/wiki/Snake_case">convention for demarcating words</a> in names.</p>
+<p>TODO: add Horst Illustration / OR remove and let Allison do this?</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">## i_use_snake_case</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">## other.people.use.periods</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">## evenOthersUseCamelCase</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co">## also-there-is-kebab-case</span></a></code></pre></div>
 </div>
 <div id="r-packages" class="section level2">
 <h2><span class="header-section-number">3.9</span> R Packages</h2>
-<p>So far we’ve been using a couple functions from base R, such as <code>plot()</code> and <code>c()</code>. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R’s capabilities.</p>
+<p>So far we’ve been using a couple functions that are included with R out-of-the-box such as <code>plot()</code> and <code>c()</code>. We say that these functions are from “Base R”. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R’s capabilities.</p>
 <p>In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation (including to create the help pages), and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.</p>
-<p>The traditional place to download packages is from CRAN, the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a>, which is where you downloaded R. CRAN is like a grocery store for vetted R packages.</p>
+<p>The traditional place to download packages is from CRAN, the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a>, which is where you downloaded R. CRAN is like a grocery store or iTunes for vetted R packages.</p>
 <!---You can also install packages from GitHub, which we'll do tomorrow.--->
-<p>You don’t need to go to CRAN’s website to install packages, this can be accomplished within R using the command <code>install.packages(&quot;package-name-in-quotes&quot;)</code>.</p>
+<p>You don’t need to go to CRAN’s website to install packages, this can be accomplished within R using the command <code>install.packages(&quot;package-name-in-quotes&quot;)</code>. How do you know what packages exist? Well, how do you know what movies exist on iTunes? You learn what’s available based on your needs, interests the community around you. We’ll introduce you to several really powerful packages that we work with and help you find others that might be of interest to you.</p>
 <p>Let’s install several packages that we will be using shortly. Write this in your R Markdown document and run it:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">## setup packages</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;usethis&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co">## setup packages</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;usethis&quot;</span>)</a></code></pre></div>
 <p>And after you run it, comment it out:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co">## setup packages</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co"># install.packages(&quot;usethis&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co">## setup packages</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co"># install.packages(&quot;usethis&quot;)</span></a></code></pre></div>
 <p>Now we’ve installed the package, but we need to tell R that we are going to use the functions within the <code>usethis</code> package. We do this by using the function <code>library()</code>.</p>
 <p>In my mind, this is analogous to needing to wire your house for electricity: this is something you do once; this is <code>install.packages</code>. But then you need to turn on the lights each time you need them (R Session).</p>
 <p>It’s a nice convention to do this on the same line as your commented-out <code>install.packages()</code> line; this makes it easier for someone (including you in a future time or computer) to install the package easily.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">## setup packages</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">library</span>(usethis) <span class="co"># install.packages(&quot;usethis&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">## setup packages</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">library</span>(usethis) <span class="co"># install.packages(&quot;usethis&quot;)</span></a></code></pre></div>
 <p>When <code>usethis</code> is successfully attached, you won’t get any feedback in the Console. So unless you get an error, this worked for you.</p>
 <p>Now let’s do the same with the <code>here</code> package.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(here) <span class="co"># install.packages(&quot;here&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">library</span>(here) <span class="co"># install.packages(&quot;here&quot;)</span></a></code></pre></div>
 <pre><code>## here() starts at /Users/lowndes/github/rstudio-conf-2020/r-for-excel</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># here() starts at /Users/lowndes</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># here() starts at /Users/lowndes</span></a></code></pre></div>
 <p><code>here</code> also successfully attached but isn’t quiet about it. It is a “chatty” package; when we attached it did so, and responded with the filepath where we are working from. This is the same as <code>~/</code> which we saw earlier.</p>
 <!---
 We can now go to the Packages tab in the bottom-right of the RStudio IDE, and find that `here` is a package installed in our system. Click on `here` to open the Help tab, listing all of the functions within this package. 
 --->
 <p>Finally, let’s install the <code>tidyverse</code> package.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># install.packages(&quot;tidyverse&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># install.packages(&quot;tidyverse&quot;)</span></a></code></pre></div>
 <p>“The tidyverse is a coherent system of packages for data manipulation, exploration and visualization that share a common design philosophy.” - Joseph Rickert:<a href="https://rviews.rstudio.com/2017/06/08/what-is-the-tidyverse/">What is the tidyverse?</a>, RStudio Community Blog.</p>
 <p>This may take a little while to complete so while it is running let’s discuss the pipe operator <code>%&gt;%</code>, which will be installed along with the tidyverse.</p>
 </div>
@@ -739,35 +751,35 @@ We can now go to the Packages tab in the bottom-right of the RStudio IDE, and fi
 <h2><span class="header-section-number">3.10</span> The pipe operator <code>%&gt;%</code></h2>
 <p>We will be using the pipe operator as we wrangle data in future sessions, but we wanted to discuss it a bit here. It helps you turn your data analysis into a readable story.</p>
 <p>Let’s look at an example that we will have completed by the end of tomorrow:</p>
-<p>TODO: MAYBE AS SLIDES?</p>
+<p>TODO: MAYBE AS SLIDES? // BUILD OUT FROM SYNTHESIS EXAMPLE</p>
 <p>Let’s say our analytical task is to XYZ.</p>
 <p>Here is how we could tell this as a story:</p>
 <ul>
 <li>We took the data about how many fish were landed and then</li>
-<li>We filtered</li>
+<li>We filtered TODO</li>
 </ul>
-<p>state_value &lt;- landings_tidy %&gt;%
-filter(year %in% c(2015)) %&gt;%
-group_by(state) %&gt;%
-summarize(
-state_value = sum(dollars_num, na.rm = TRUE),
-state_landings = sum(landings_pounds, na.rm = TRUE)
-) %&gt;%
-arrange(-state_value) %&gt;%
-head(5)</p>
+<pre><code>state_value &lt;- landings_tidy %&gt;% 
+  filter(year %in% c(2015)) %&gt;% 
+  group_by(state) %&gt;% 
+  summarize(
+    state_value = sum(dollars_num, na.rm = TRUE),
+    state_landings = sum(landings_pounds, na.rm = TRUE)
+  ) %&gt;% 
+  arrange(-state_value) %&gt;% 
+  head(5)</code></pre>
 </div>
 <div id="setup-git-github" class="section level2">
 <h2><span class="header-section-number">3.11</span> Setup Git &amp; GitHub</h2>
 <p>Before we break, we are going to set up Git and GitHub which we will be using along with R and RStudio for the rest of the workshop. You are welcome to leave as soon as you have this set up We are doing this now so that if you have trouble please stay a few extra minutes.</p>
 <p>This set up is a one-time thing! You will only have to do this once per computer. We’ll walk through this together.</p>
-<ol style="list-style-type: decimal">
-<li>We will use the <code>usethis</code> package to configure <strong>git</strong> with global commands, which means it will apply ‘globally’ to all files on your computer, rather than to a specific folder.</li>
-</ol>
+<p>We will use the <code>usethis</code> package to configure <strong>git</strong> with global commands, which means it will apply ‘globally’ to all files on your computer, rather than to a specific folder. Our username and email will be the arguments we pass to the function <code>use_git_config</code>. <!---TODO smooth wording ---></p>
 <p>Since we already installed and attached it, type this into your Console:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;jules32&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;jules32@example.org&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;jules32&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;jules32@example.org&quot;</span>)</a></code></pre></div>
 <div id="ensure-that-gitgithubrstudio-are-communicating" class="section level3">
 <h3><span class="header-section-number">3.11.1</span> Ensure that Git/GitHub/RStudio are communicating</h3>
-<p>TODO: should this be from <a href="https://docs.google.com/document/d/1zx2upJJqFZe94O3BQSMI56Z76s3haLXC0otKSpcZaJQ/edit">Allison’s googledoc</a></p>
+<p>TODO: should we have them fork and clone the book? or a test toy repo?</p>
+<p>should this be from <a href="https://docs.google.com/document/d/1zx2upJJqFZe94O3BQSMI56Z76s3haLXC0otKSpcZaJQ/edit">Allison’s googledoc</a></p>
+<p><br></p>
 </div>
 <div id="backup-plan-for-configuration" class="section level3">
 <h3><span class="header-section-number">3.11.2</span> BACKUP PLAN for configuration</h3>

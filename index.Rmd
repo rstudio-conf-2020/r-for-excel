@@ -58,6 +58,7 @@ Before the training, please make sure you have done the following:
 1. Install the Tidyverse TODO--no longer?
 1. Create a an account ([username advice](https://happygitwithr.com/github-acct.html)): 
     - https://github.com
+1. Download and install **Git** TODO discuss    
     
 <!---
 Do this beforehand (20 minutes)

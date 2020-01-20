@@ -1,12 +1,7 @@
 # GitHub {#github}
 
 TODO: 
-- no github folder, 
 - new screenshots, 
-- earlier emphasis on syncing steps. 
-- fewer high level headers
-- .Rprojects describe
-
 
 
 ```{r gh ops, include=FALSE}

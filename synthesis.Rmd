@@ -29,7 +29,7 @@ Source: Fisheries Statistics Division of the NOAA Fisheries
 
 ## Attach packages, read in and explore the data
 
-In **your** .Rmd that you created in the last session, attach (load) packages with `library()`:
+In **your** .Rmd that you created in the last session (TODO: name of that .Rmd here? If already created?), attach (load) packages with `library()`:
 
 ```{r, message = FALSE, warning = FALSE}
 
@@ -179,7 +179,6 @@ First:
 
 Second: 
 
-- Go to (octodex.github.com)[https://octodex.github.com/] and find a version of octocat that you like 
 - Pull again to make sure you have everyone's most updated versions
 - Open your **partner's** .Rmd ()
 - Go to [octodex.github.com](https://octodex.github.com/) and find a version of octocat that you love
@@ -188,9 +187,9 @@ Second:
 
 `!()[paste_image_location_you_just_copied_here]`
 
-- Knit the .Rmd and check to ensure that your octocat shows up in their document
+- Knit the .Rmd and check to ensure that **your** octocat shows up in **their** document
 - Save, stage, commit, pull, then push to send your contributions back
-- Pull again to make sure your .Rmd has updates from your collaborator
+- Pull again to make sure **your** .Rmd has updates from **your collaborator**
 - Check out out your document as a website published with gh-pages! 
 
 ### End synthesis session!

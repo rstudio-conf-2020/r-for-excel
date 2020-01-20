@@ -1,7 +1,7 @@
 # GitHub {#github}
 
 TODO: 
-- new screenshots, 
+- swap remaining screenshots, 
 
 
 ```{r gh ops, include=FALSE}
@@ -35,7 +35,9 @@ It also helped me to think of GitHub like Dropbox: you make folders that are 'tr
 
 These materials borrow from: 
 
-- [Happy git with R](http://happygitwithr.com) by Jenny Bryan
+- [Happy Git with R](http://happygitwithr.com) by Jenny Bryan
+  - [Detect Git from RStudio](http://happygitwithr.com/rstudio-see-git.html)
+  - [RStudio, Git, GitHub Hell (troubleshooting)](http://happygitwithr.com/troubleshooting.html)
 - [What They Forgot to Teach You About R: project-oriented workflows](https://rstats.wtf/project-oriented-workflow.html) by Jenny Bryan
 - [GitHub Quickstart](https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html) by Melanie Frazier 
 
@@ -115,7 +117,7 @@ Also, add a description, make it public, create a README file, and create your r
 <br>
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/gh_repo_create.png")  
+knitr::include_graphics("img/gh_repo_create2.png")  
 ```
 
 <br>
@@ -227,7 +229,7 @@ knitr::include_graphics("img/new_project4.png")
 
 ### Admire your local repo
 
-If everything went well, the repository will be added to the list located here:
+If everything went well, the repository will show up in RStudio!
 
 <br>
 
@@ -281,7 +283,7 @@ These are the codes RStudio uses to describe how the files are changed, (from th
 
 <br>
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="40%"}
 knitr::include_graphics("img/commit_codes_added_modified.png")  
 ```
 
@@ -316,7 +318,7 @@ Syncing to GitHub.com means 4 steps:
 
 <br>
 
-```{r, echo=FALSE, out.width="80%"}
+```{r, echo=FALSE, out.width="100%"}
 knitr::include_graphics("img/commit_steps.png")  
 ```
 
@@ -384,11 +386,9 @@ The files you added should be on github.com:
 
 Let's also explore commit history, file history.
 
-## README
+### READMEs on GitHub
 
-TODO: why it's important, GitHub
-
-Notice how the README.md file we created is automatically displayed at the bottom. The .md means that it is Markdown (remember how .Rmd was RMarkdown?) so the formatting we learned in the last lesson apply here.
+Notice how the README.md file we created is automatically displayed at the bottom. Since it is good practice to have a README file that identifies what code does (i.e. why it exists), GitHub will display a Markdown file called README nicely formatted.
 
 ## Project-oriented workflows
 
@@ -396,9 +396,14 @@ This GitHub repository is now also an RStudio Project. This just means that RStu
 
 A [project-oriented workflow](https://rstats.wtf/project-oriented-workflow.html) means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc. 
 
+R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
+
+<!---
 Why does this matter? It's convenient for us to have everything associated with our analyses close at-hand.  When we work with different files in R (like data or saved graphs) we always need to tell R where things "live" by identifying its file path. If files are scattered across your computer, we would have to keep track of many different filepaths. So using RStudio Projects and having a project-oriented workflow and mindset makes our analysis less brittle and more portable — across people, time, and computers.  
 
-### Project directory
+--->
+
+### Working directory
 
 Now that we have our Project, here is an important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized. 
 
@@ -408,9 +413,7 @@ And this is important because if Allison clones this repository that you just ma
 knitr::include_graphics("img/RStudio_IDE_projdir.png")  
 ```
 
-## Project-oriented workflows in action (aka setup)
-
-TODO: 
+## Project-oriented workflows in action (aka our analytical setup)
 
 Let's get a bit organized. First, let's create our a new R Markdown file where we will do our analyses. This will be nice because you can also write notes to yourself in this document. 
 
@@ -445,71 +448,53 @@ Notice that when we save this file, it pops up in our Git tab. Git knows that th
 Let's also knit this file. And look: Git also sees the knitted .html. 
 
 
+And let's practice syncing our file to to GitHub: pull, stage, commit, push
 
+> **Troubleshooting:** What if a file doesn't show up in the Git tab and you expect that it should? Check to make sure you've saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!
 
-And let's practice syncing our file to to GitHub: commit and pull
+### Create data and figures folders
 
-What if a file doesn't show up in the Git tab and you expect that it should? Check to make sure you've saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!
-
-
-Let's create the following:
+Let's create a few folders to be organized. Let's have one for our the raw data, and one for the figures we will output. We can do this in RStudio, in the bottom right pane Files pane by clicking the New Folder button: 
 
 * folder called "data"
 * folder called "figures"  
 
-They both show up in your Finder! ...
+We can press the refresh button in the top-right of this pane (next to the "More" button) to have these show up in alphabetical order. 
 
-### Get data files into your working directory
+Now let's go to our Finder or Windows Explorer: our new folders are there as well!
 
-In Session 1, we introduced how and why R Projects are great for reproducibility, because our self-contained working directory will be the **first** place R looks for files. 
+### Move data files to data folder
 
-You downloaded several files for this workshop, some comma separate value (CSV) files and some as Excel spreadsheets (.xlsx): 
+You downloaded several files for this workshop from the [r-for-excel-data folder](https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing), and we'll move these data into our repo now. These data files are a mix of comma separate value (CSV) files and some as Excel spreadsheets (.xlsx): 
 
-- fish_counts_curated.csv
-- invert_counts_curated.xlsx
-- kelp_counts_curated.xlsx
-- substrate_cover_curated.xlsx
-- lobsters.xlsx
-- lobsters2.xlsx
 - ca_np.csv 
 - ci_np.xlsx
+- fish.csv
+- inverts.xlsx
+- kelp.xlsx
+- lobsters.xlsx
+- lobsters2.xlsx
+- noaa_fisheries.csv
+- substrate.xlsx TODO delete?
 
-Copy and paste those files into the 'data' subfolder of your R project. Notice that now these files are in your working directory when you go back to that Project in RStudio (check the 'Files' tab and navigate to the data subfolder). That means they're going to be in the first place R will look when you ask it to find a file to read in. 
+Copy-paste or drag all of these files into the 'data' subfolder of your R project. Make sure you do not also copy the original folder; we don't need any subfolders in our data folder. 
 
-<!---
-To be organized, let's also create the following: 
+Now let's go back to RStudio. We can click on the data folder in the Files tab and see them. 
 
-* folders for "data" and "figures"  
+The data folder also shows up in your Git tab. But the figures folder does not. That is because GitHub cannot track an empty folder, it can only track files within a folder. 
 
-We can do this in a few ways: 
-
-- click the green plus "New Folder" icon at the top of the files pane and create a folder called "data"
-- go to your Finder/Windows explorer 
---->
-
-I'm going to go to the Finder (Windows Explorer on a PC) and copy a file into my repository from there. And then I'm going to go back to RStudio -- it shows up in the git tab! So the repository is being tracked, no matter how you make changes to it (changes do not have to be done only through RStudio). 
-
-To make changes to the repository, you will work from your computer ("local Github").
-
-When files are changed in the local repository, these changes will be reflected in the Git tab of RStudio:
-<br />
-<br />
-
-![](img/modify_files.png)
-<br />
-<br />
-
-
-### Edit your README again
-
-Let's also open up the README and write a bit of information. READMEs
+Let's Sync these files. We can stage multiple files at once by typing Command - A and clicking "Stage" (or using the space bar). To Sync: pull - stage - commit - push!
 
 
 ### Activity
 
-Go back to RStudio. 
+Edit your README and practice syncing (pull, stage, commit, push). For example, 
 
-This time let's edit an existing file instead of adding something new. Open your README file by clicking on it in the Files pane (lower right corner). Write a few lines of text (like your dog's name), save, and see what happens in your Git Tab. Sync it to your remote repository at Github.com. 
+```
+"We use the following data from the Santa Barbara Coastal Term Ecological Research and National  Oceanic and Atmospheric Administration in our analyses"
+```
+
+Explore your Commit History, and discuss with your neighbor. 
 
 ## Committing - how often? Tracking changes in your files
 
@@ -517,6 +502,8 @@ Whenever you make changes to the files in Github, you will walk through the Pull
 
 I tend to do this every time I finish a task (basically when I start getting nervous that I will lose my work).  Once something is committed, it is very difficult to lose it.
 
+
+<!---
 One thing that I love about about Github is that it is easy to see how files have changed over time.  Usually I compare commits through github.com:
 <br />
 <br />
@@ -540,11 +527,7 @@ You can click on the commits to see how the files changed from the previous comm
 <br />
 <br />
 
-
-
-## Happy Git with R
-
-If you have problems, we'll help you out using Jenny Bryan's [HappyGitWithR](http://happygitwithr.com), particularly the sections on [Detect Git from RStudio](http://happygitwithr.com/rstudio-see-git.html) and [RStudio, Git, GitHub Hell (troubleshooting)](http://happygitwithr.com/troubleshooting.html). So as we are coming around, have a look at it and see if you can help troubleshoot too!
+--->
 
 
 ### END **GitHub** session!

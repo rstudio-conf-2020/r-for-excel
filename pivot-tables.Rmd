@@ -1,4 +1,4 @@
-# `dplyr` and Pivot Tables {#pivot}
+# Pivot Tables {#pivot}
 
 TODO: 
 
@@ -39,6 +39,7 @@ In R, we can use dplyr for pivot tables by using 2 main verbs in combination: `g
 - [dplyr.tidyverse.org](https://dplyr.tidyverse.org/)
 - [R for Data Science: Transform Chapter](https://r4ds.had.co.nz/transform.html)
 - [Intro to Pivot Tables I-III](https://youtu.be/g530cnFfk8Y) by Excel Campus (YouTube)
+- [Broman & Woo: Data organization in spreadsheets](https://peerj.com/preprints/3183/)
 
 ## Pivot table overview
 
@@ -475,6 +476,9 @@ lobsters_detailed %>%
 
 One last time, let's knit, save, commit, and push to GitHub.
 
+
+<!---
+
 ## Deep thoughts
 
 Highly recommended read: [Broman & Woo: Data organization in spreadsheets](https://peerj.com/preprints/3183/). Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share
@@ -496,5 +500,6 @@ Arrow keys - Option to highlight word by word
 Arrow keys - Command to move end to end
 Arrow keys - Command to highlight end to end
 
+--->
 
 ### END **dplyr-pivot-tables** session!

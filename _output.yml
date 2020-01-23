@@ -4,6 +4,7 @@ bookdown::gitbook:
     toc:
       before: |
         <li><a href="./">R for Excel Users</a></li>
+        <li><a href="https://github.com/rstudio-conf-2020/r-for-excel/">← Go to GitHub repo</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     download: ["epub"]

@@ -96,6 +96,8 @@ Twitter: [ropensci](https://twitter.com/ropensci)
 <!--break-->
 
 
+http://sfirke.github.io/janitor/reference/excel_numeric_to_date.html
+
 ### The Carpentries
 
 

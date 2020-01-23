@@ -12,14 +12,27 @@ description: "This is a workshop for RStudio::conf(2020) in San Francisco, Calif
 
 # Welcome {#welcome}
 
-Hello! This is a workshop taught by Julie Stewart Lowndes and Allison Horst at the RStudio Conference: January 27-28 in San Francisco, California. 
+Hello! This is a workshop taught by Dr. Julie Stewart Lowndes and Dr. Allison Horst at the RStudio Conference: January 27-28 in San Francisco, California. 
 
-We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara: Julie is based at the National Center for Ecological Analysis and Synthesis as part of the Ocean Health Index team and leads Openscapes, and Allison is based at the Bren School of Environmental Science and Management as a lecturer of data science & statistics — and is also an Artist in Residence at RStudio.
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/r-for-excel-monsters.jpg")  
+```
 
-<!---
-We are on Twitter:
+We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara. 
 
-Excel is a widely used and powerful tool for working with data. As automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses. This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. Participants will get hands-on experience working with data across R, Excel, and Google Sheets, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while “keeping the raw data raw”. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you! 
+Julie is a Senior Fellow and Director of Openscapes at the National Center for Ecological Analysis and Synthesis. 
+
+Allison is a lecturer of data science & statistics at the Bren School of Environmental Science and Management. She is Artist in Residence at RStudio!
+
+---
+
+This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. It is a friendly intro to becoming a modern R user, full of tidyverse, RMarkdown, GitHub, collaboration & reproducibility. 
+
+**Short URL for this book**:   <https://rstd.io/conf20-r-excel>  
+**GitHub repo for this book**: <https://github.com/rstudio-conf-2020/r-for-excel>
+
+<!----
+Participants will get hands-on experience working with data across R and Excel, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while “keeping the raw data raw”. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you! 
 
 If you answer yes to these questions, this course is for you!
 
@@ -38,38 +51,37 @@ Before you begin, be sure you are all set up: see the prerequisites in Chapter \
 
 |Time       |      Day 1|      Day 2|
 |:----------|----------:|----------:|
-|9-10:30    |  [Motivation](#overview), [R & RStudio, RMarkdown](#rstudio) (JL) |  [Tidying data ](#tidying) (AH) |
+|9-10:30    |  [Overview](#overview), [R & RStudio, RMarkdown](#rstudio) (JL) |  [Tidying](#tidying) (AH) |
 |break      |  | |
-|11-12:30   | [Intro to GitHub](#github) (JL) | [`dplyr` & VLOOKUPs](#dplyr-vlookups) (AH) |
+|11-12:30   | [Intro to GitHub](#github) (JL) | [Filters & joins](#filters) (AH) |
 |lunch      |  ||
-|13:30-15:00 | [`ggplot2` & Charts](#ggplot2) (AH) | [Collaborating & getting help](#collaboration) (JL) |
+|13:30-15:00 | [Graphs with `ggplot2`](#ggplot2) (AH) | [Collaborating & getting help](#collaboration) (JL) |
 |break      |  | |
-|15:30-17:00 | [`dplyr` & Pivot Tables](#dplyr-pivot-tables) (JL) | [Synthesis](#synthesis) (AH) |
+|15:30-17:00 | [Pivot Tables & `dplyr`](#dplyr-pivot-tables) (JL) | [Synthesis](#synthesis) (AH) |
 
 
 ## Prerequisites
 
-Before the training, please make sure you have done the following: 
+Before the training, please do the following (20 minutes). All software is free. 
 
-1. Download and install **up-to-date versions** of:
-    - R: https://cloud.r-project.org
-    - RStudio: http://www.rstudio.com/download 
-1. Install the Tidyverse TODO--no longer?
-1. Create a GitHub account ([username advice](https://happygitwithr.com/github-acct.html)): 
-    - https://github.com
-    - remember your username, email and password (we will need them for the workshop!)
-1. Download and install **Git** TODO discuss    
-1. Download the [r-for-excel-data folder](https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing) (we will move it somewhere together)
+1. **Download and install R and RStudio**
+    - R: <https://cloud.r-project.org/>
+    - RStudio: <http://www.rstudio.com/download> 
+    - Follow your operating system's normal installation process
+1. **Create a GitHub account**
+    - GitHub: <https://github.com>
+    - Follow optional [advice on choosing your username](https://happygitwithr.com/github-acct.html)
+    - Remember your username, email and password; we will need them for the workshop!
+1. **Download and install Git**
+    - Git: <https://git-scm.com/downloads>
+    - Follow your operating system's normal installation process. Note: you will not see an application called Git listed but if the installation process completed it was likely successful, and we will confirm together
+1. **Download workshop data** 
+    - Google Drive folder: [r-for-excel-data ](https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing)
+    - Save it temporarily somewhere you will remember; we will move it together
     
 <!---
-Do this beforehand (20 minutes)
-
-    Download & install free software: R, RStudio, tidyverse. Do this following Allison’s step-by-step instructions (from her ESM 206 course)
-
-    Create a GitHub username at github.com. We recommend shorter names that identify you, and using your work email address (where you primarily do analyses)
-https://docs.google.com/document/d/1Imcx8ZropMF5tmLF6As02OJam-r1pNexu5pULczCwMA/edit?ts=5d8ce185 --->   
-
 1. Get comfortable: if you're not in a physical workshop, be set up with two screens if possible. You will be following along in RStudio on your own computer while also watching a virtual training or following this tutorial on your own.
+--->
 
 ## Data citations
 

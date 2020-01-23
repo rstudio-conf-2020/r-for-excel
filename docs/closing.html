@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Closing | R for Excel Users</title>
+  <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Closing | R for Excel Users" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Closing | R for Excel Users" />
+  
+  <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
+  
+
+<meta name="author" content="Julie Lowndes &amp; Allison Horst" />
+
+
+<meta name="date" content="2020-01-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="synthesis.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Excel Users</a></li>
+<li><a href="https://github.com/rstudio-conf-2020/r-for-excel/">← Go to GitHub repo</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.1</b> Agenda</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-citations"><i class="fa fa-check"></i><b>1.3</b> Data citations</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="overview.html"><a href="overview.html#welcome-1"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a></li>
+<li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#why-learn-r-if-i-know-excel"><i class="fa fa-check"></i><b>2.2</b> Why learn R if I know Excel?</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="overview.html"><a href="overview.html#what-to-expect"><i class="fa fa-check"></i><b>2.2.1</b> What to expect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.3</b> Guiding principles / recurring themes</a></li>
+<li class="chapter" data-level="2.4" data-path="overview.html"><a href="overview.html#resources"><i class="fa fa-check"></i><b>2.4</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources-1"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.2</b> RStudio Orientation</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.1</b> Create an RMarkdown file</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.2</b> Knit your RMarkdown file</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#markdown-text"><i class="fa fa-check"></i><b>3.3.3</b> Markdown text</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#r-code"><i class="fa fa-check"></i><b>3.3.4</b> R code</a></li>
+<li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#code-chunks"><i class="fa fa-check"></i><b>3.3.5</b> Code chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
+<li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
+<li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#commenting"><i class="fa fa-check"></i><b>3.7</b> Commenting</a></li>
+<li class="chapter" data-level="3.8" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.8</b> Assigning objects with <code>&lt;-</code></a></li>
+<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="rstudio.html"><a href="rstudio.html#installing-r-packages"><i class="fa fa-check"></i><b>3.9.1</b> Installing R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#github-brief-intro-config"><i class="fa fa-check"></i><b>3.10</b> GitHub brief intro &amp; config</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="rstudio.html"><a href="rstudio.html#configure-github"><i class="fa fa-check"></i><b>3.10.1</b> Configure GitHub</a></li>
+<li class="chapter" data-level="3.10.2" data-path="rstudio.html"><a href="rstudio.html#ensure-that-gitgithubrstudio-are-communicating"><i class="fa fa-check"></i><b>3.10.2</b> Ensure that Git/GitHub/RStudio are communicating</a></li>
+<li class="chapter" data-level="3.10.3" data-path="rstudio.html"><a href="rstudio.html#troubleshooting"><i class="fa fa-check"></i><b>3.10.3</b> Troubleshooting</a></li>
+<li class="chapter" data-level="3.10.4" data-path="rstudio.html"><a href="rstudio.html#end-rstudiormarkdown-session"><i class="fa fa-check"></i><b>3.10.4</b> END <strong>RStudio/RMarkdown</strong> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
+<li class="chapter" data-level="4.1" data-path="github.html"><a href="github.html#summary-1"><i class="fa fa-check"></i><b>4.1</b> Summary</a></li>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#objectives-1"><i class="fa fa-check"></i><b>4.2</b> Objectives</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#resources-2"><i class="fa fa-check"></i><b>4.3</b> Resources</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.4</b> Why should R users use Github?</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="github.html"><a href="github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>4.4.1</b> What are Git and Github?</a></li>
+<li class="chapter" data-level="4.4.2" data-path="github.html"><a href="github.html#some-github-terminology"><i class="fa fa-check"></i><b>4.4.2</b> Some Github terminology</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.5</b> Create a repository on Github.com</a></li>
+<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.6</b> Clone your repository using RStudio</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="github.html"><a href="github.html#copy-the-repo-address"><i class="fa fa-check"></i><b>4.6.1</b> Copy the repo address</a></li>
+<li class="chapter" data-level="4.6.2" data-path="github.html"><a href="github.html#rstudio-new-project"><i class="fa fa-check"></i><b>4.6.2</b> RStudio: New Project</a></li>
+<li class="chapter" data-level="4.6.3" data-path="github.html"><a href="github.html#select-version-control"><i class="fa fa-check"></i><b>4.6.3</b> Select Version Control</a></li>
+<li class="chapter" data-level="4.6.4" data-path="github.html"><a href="github.html#select-git"><i class="fa fa-check"></i><b>4.6.4</b> Select Git</a></li>
+<li class="chapter" data-level="4.6.5" data-path="github.html"><a href="github.html#paste-the-repo-address"><i class="fa fa-check"></i><b>4.6.5</b> Paste the repo address</a></li>
+<li class="chapter" data-level="4.6.6" data-path="github.html"><a href="github.html#admire-your-local-repo"><i class="fa fa-check"></i><b>4.6.6</b> Admire your local repo</a></li>
+<li class="chapter" data-level="4.6.7" data-path="github.html"><a href="github.html#inspect-your-local-repo"><i class="fa fa-check"></i><b>4.6.7</b> Inspect your local repo</a></li>
+<li class="chapter" data-level="4.6.8" data-path="github.html"><a href="github.html#edit-your-readme-file"><i class="fa fa-check"></i><b>4.6.8</b> Edit your README file</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#sync-from-rstudio-local-to-github-remote"><i class="fa fa-check"></i><b>4.7</b> Sync from RStudio (local) to GitHub (remote)</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.7.1</b> Pull</a></li>
+<li class="chapter" data-level="4.7.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.7.2</b> Stage</a></li>
+<li class="chapter" data-level="4.7.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.7.3</b> Commit</a></li>
+<li class="chapter" data-level="4.7.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.7.4</b> Push</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#commit-history"><i class="fa fa-check"></i><b>4.8</b> Commit history</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="github.html"><a href="github.html#readmes-on-github"><i class="fa fa-check"></i><b>4.8.1</b> READMEs on GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#project-oriented-workflows"><i class="fa fa-check"></i><b>4.9</b> Project-oriented workflows</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="github.html"><a href="github.html#working-directory"><i class="fa fa-check"></i><b>4.9.1</b> Working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#project-oriented-workflows-in-action-aka-our-analytical-setup"><i class="fa fa-check"></i><b>4.10</b> Project-oriented workflows in action (aka our analytical setup)</a><ul>
+<li class="chapter" data-level="4.10.1" data-path="github.html"><a href="github.html#create-a-new-rmd-file"><i class="fa fa-check"></i><b>4.10.1</b> Create a new Rmd file</a></li>
+<li class="chapter" data-level="4.10.2" data-path="github.html"><a href="github.html#create-data-and-figures-folders"><i class="fa fa-check"></i><b>4.10.2</b> Create data and figures folders</a></li>
+<li class="chapter" data-level="4.10.3" data-path="github.html"><a href="github.html#move-data-files-to-data-folder"><i class="fa fa-check"></i><b>4.10.3</b> Move data files to data folder</a></li>
+<li class="chapter" data-level="4.10.4" data-path="github.html"><a href="github.html#activity-1"><i class="fa fa-check"></i><b>4.10.4</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.11</b> Committing - how often? Tracking changes in your files</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="github.html"><a href="github.html#end-github-session"><i class="fa fa-check"></i><b>4.11.1</b> END <strong>GitHub</strong> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a><ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2.html"><a href="ggplot2.html#summary-2"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="ggplot2.html"><a href="ggplot2.html#objectives-2"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ggplot2.html"><a href="ggplot2.html#resources-3"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---create-a-new-.rmd-attach-packages"><i class="fa fa-check"></i><b>5.2</b> Getting started - Create a new .Rmd, attach packages</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#read-in-.xlsx-and-.csv-files"><i class="fa fa-check"></i><b>5.3</b> Read in .xlsx and .csv files</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="ggplot2.html"><a href="ggplot2.html#read_csv-to-read-in-comma-separated-value-.csv-files"><i class="fa fa-check"></i><b>5.3.1</b> <code>read_csv()</code> to read in comma-separated-value (.csv) files</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ggplot2.html"><a href="ggplot2.html#readxl-to-read-in-excel-files"><i class="fa fa-check"></i><b>5.3.2</b> <code>readxl</code> to read in Excel files</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>5.4</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
+<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.5</b> Intro to customizing <code>ggplot</code> graphs</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-customize-your-own-ggplot-graph"><i class="fa fa-check"></i><b>5.5.1</b> Activity: customize your own ggplot graph</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.6</b> Mapping variables onto aesthetics</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-map-variables-onto-graph-aesthetics"><i class="fa fa-check"></i><b>5.6.1</b> Activity: map variables onto graph aesthetics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>5.7</b> ggplot2 complete themes</a></li>
+<li class="chapter" data-level="5.8" data-path="ggplot2.html"><a href="ggplot2.html#updating-axis-labels-and-titles"><i class="fa fa-check"></i><b>5.8</b> Updating axis labels and titles</a></li>
+<li class="chapter" data-level="5.9" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>5.9</b> Combining compatible geoms</a></li>
+<li class="chapter" data-level="5.10" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>5.10</b> Multi-series ggplot graphs</a></li>
+<li class="chapter" data-level="5.11" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>5.11</b> Faceting ggplot graphs</a></li>
+<li class="chapter" data-level="5.12" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.12</b> Exporting a ggplot graph with <code>ggsave()</code></a><ul>
+<li class="chapter" data-level="5.12.1" data-path="ggplot2.html"><a href="ggplot2.html#end-ggplot-session"><i class="fa fa-check"></i><b>5.12.1</b> End <code>ggplot</code> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>6</b> Pivot Tables with <code>dplyr</code></a><ul>
+<li class="chapter" data-level="6.1" data-path="pivot.html"><a href="pivot.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
+<li class="chapter" data-level="6.2" data-path="pivot.html"><a href="pivot.html#objectives-3"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
+<li class="chapter" data-level="6.3" data-path="pivot.html"><a href="pivot.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
+<li class="chapter" data-level="6.4" data-path="pivot.html"><a href="pivot.html#overview-setup"><i class="fa fa-check"></i><b>6.4</b> Overview &amp; setup</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="pivot.html"><a href="pivot.html#view-data-in-excel"><i class="fa fa-check"></i><b>6.4.1</b> View data in Excel</a></li>
+<li class="chapter" data-level="6.4.2" data-path="pivot.html"><a href="pivot.html#rmarkdown-setup"><i class="fa fa-check"></i><b>6.4.2</b> RMarkdown setup</a></li>
+<li class="chapter" data-level="6.4.3" data-path="pivot.html"><a href="pivot.html#our-task"><i class="fa fa-check"></i><b>6.4.3</b> Our task</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="pivot.html"><a href="pivot.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.5</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="pivot.html"><a href="pivot.html#pivot-one-variable"><i class="fa fa-check"></i><b>6.5.1</b> pivot one variable</a></li>
+<li class="chapter" data-level="6.5.2" data-path="pivot.html"><a href="pivot.html#pivot-two-variables"><i class="fa fa-check"></i><b>6.5.2</b> pivot two variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="pivot.html"><a href="pivot.html#group_by-summarize"><i class="fa fa-check"></i><b>6.6</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="6.6.1" data-path="pivot.html"><a href="pivot.html#group_by-one-variable"><i class="fa fa-check"></i><b>6.6.1</b> <code>group_by</code> one variable</a></li>
+<li class="chapter" data-level="6.6.2" data-path="pivot.html"><a href="pivot.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>6.6.2</b> <code>group_by</code> multiple variables</a></li>
+<li class="chapter" data-level="6.6.3" data-path="pivot.html"><a href="pivot.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>6.6.3</b> <code>summarize</code> multiple variables</a></li>
+<li class="chapter" data-level="6.6.4" data-path="pivot.html"><a href="pivot.html#r-code-in-line-rmarkdown"><i class="fa fa-check"></i><b>6.6.4</b> R code in-line RMarkdown</a></li>
+<li class="chapter" data-level="6.6.5" data-path="pivot.html"><a href="pivot.html#activity-2"><i class="fa fa-check"></i><b>6.6.5</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="pivot.html"><a href="pivot.html#oh-no-they-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.7</b> Oh no, they sent the wrong data!</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="pivot.html"><a href="pivot.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>6.7.1</b> Knit, push, &amp; show differences on GitHub</a></li>
+<li class="chapter" data-level="6.7.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>6.7.2</b> <code>dplyr::count()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>6.8</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.9" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>6.9</b> <code>select()</code></a><ul>
+<li class="chapter" data-level="6.9.1" data-path="pivot.html"><a href="pivot.html#end-dplyr-pivot-tables-session"><i class="fa fa-check"></i><b>6.9.1</b> END <strong>dplyr-pivot-tables</strong> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
+<li class="chapter" data-level="7.1" data-path="tidying.html"><a href="tidying.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#objectives-4"><i class="fa fa-check"></i><b>7.2</b> Objectives</a></li>
+<li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#resources-5"><i class="fa fa-check"></i><b>7.3</b> Resources</a></li>
+<li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#set-up"><i class="fa fa-check"></i><b>7.4</b> Set-up</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tidying.html"><a href="tidying.html#create-a-new-r-markdown-and-attach-packages"><i class="fa fa-check"></i><b>7.4.1</b> Create a new R Markdown and attach packages</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidying.html"><a href="tidying.html#read-in-data-with-read_excel"><i class="fa fa-check"></i><b>7.4.2</b> Read in data with <code>read_excel()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#wide-to-longer-format-with-tidyrpivot_longer"><i class="fa fa-check"></i><b>7.5</b> Wide-to-longer format with <code>tidyr::pivot_longer()</code></a></li>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#long-to-wider-format-with-tidyrpivot_wider"><i class="fa fa-check"></i><b>7.6</b> Long-to-wider format with <code>tidyr::pivot_wider()</code></a></li>
+<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#clean-up-column-names-with-janitorclean_names"><i class="fa fa-check"></i><b>7.7</b> Clean up column names with <code>janitor::clean_names()</code></a></li>
+<li class="chapter" data-level="7.8" data-path="tidying.html"><a href="tidying.html#combine-or-separate-columns-with-tidyrunite-and-tidyrseparate"><i class="fa fa-check"></i><b>7.8</b> Combine or separate columns with <code>tidyr::unite()</code> and <code>tidyr::separate()</code></a><ul>
+<li class="chapter" data-level="7.8.1" data-path="tidying.html"><a href="tidying.html#tidyrunite-to-merge-information-from-separate-columns"><i class="fa fa-check"></i><b>7.8.1</b> <code>tidyr::unite()</code> to merge information from separate columns</a></li>
+<li class="chapter" data-level="7.8.2" data-path="tidying.html"><a href="tidying.html#tidyrseparate-to-separate-information-into-multiple-columns"><i class="fa fa-check"></i><b>7.8.2</b> <code>tidyr::separate()</code> to separate information into multiple columns</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="tidying.html"><a href="tidying.html#get-just-the-numbers-with-readrparse_number"><i class="fa fa-check"></i><b>7.9</b> Get just the numbers with <code>readr::parse_number()</code></a></li>
+<li class="chapter" data-level="7.10" data-path="tidying.html"><a href="tidying.html#detecting-a-string-pattern-with-stringrstr_detect"><i class="fa fa-check"></i><b>7.10</b> Detecting a string pattern with <code>stringr::str_detect()</code></a><ul>
+<li class="chapter" data-level="7.10.1" data-path="tidying.html"><a href="tidying.html#activity-3"><i class="fa fa-check"></i><b>7.10.1</b> Activity</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="tidying.html"><a href="tidying.html#replacing-a-string-with-stringrstr_replace"><i class="fa fa-check"></i><b>7.11</b> Replacing a string with <code>stringr::str_replace()</code></a><ul>
+<li class="chapter" data-level="7.11.1" data-path="tidying.html"><a href="tidying.html#end-tidying-session"><i class="fa fa-check"></i><b>7.11.1</b> END <strong>tidying</strong> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="filters.html"><a href="filters.html"><i class="fa fa-check"></i><b>8</b> Filters and joins</a><ul>
+<li class="chapter" data-level="8.1" data-path="filters.html"><a href="filters.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="filters.html"><a href="filters.html#objectives-5"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="filters.html"><a href="filters.html#resources-6"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="filters.html"><a href="filters.html#set-up-create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>8.2</b> Set-up: Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="8.3" data-path="filters.html"><a href="filters.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="filters.html"><a href="filters.html#activity-4"><i class="fa fa-check"></i><b>8.3.1</b> Activity</a></li>
+<li class="chapter" data-level="8.3.2" data-path="filters.html"><a href="filters.html#filter-rows-based-on-numeric-conditions"><i class="fa fa-check"></i><b>8.3.2</b> Filter rows based on numeric conditions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="filters.html"><a href="filters.html#filter-to-return-rows-that-match-this-or-that-or-that"><i class="fa fa-check"></i><b>8.3.3</b> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></a></li>
+<li class="chapter" data-level="8.3.4" data-path="filters.html"><a href="filters.html#filter-to-return-rows-that-match-conditions-for-multiple-variables"><i class="fa fa-check"></i><b>8.3.4</b> Filter to return rows that match conditions for multiple variables</a></li>
+<li class="chapter" data-level="8.3.5" data-path="filters.html"><a href="filters.html#activity-combined-filter-conditions"><i class="fa fa-check"></i><b>8.3.5</b> Activity: combined filter conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="filters.html"><a href="filters.html#join-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>8.4</b> Join data frames with <code>dplyr::*_join()</code></a><ul>
+<li class="chapter" data-level="8.4.1" data-path="filters.html"><a href="filters.html#full_join-to-merge-data-frames-keeping-everything"><i class="fa fa-check"></i><b>8.4.1</b> <code>full_join()</code> to merge data frames, keeping everything</a></li>
+<li class="chapter" data-level="8.4.2" data-path="filters.html"><a href="filters.html#left_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame"><i class="fa fa-check"></i><b>8.4.2</b> <code>left_join()</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</a></li>
+<li class="chapter" data-level="8.4.3" data-path="filters.html"><a href="filters.html#inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both"><i class="fa fa-check"></i><b>8.4.3</b> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></a></li>
+<li class="chapter" data-level="8.4.4" data-path="filters.html"><a href="filters.html#using-filter-and-join-in-a-sequence"><i class="fa fa-check"></i><b>8.4.4</b> Using <code>filter()</code> and <code>join()</code> in a sequence</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="filters.html"><a href="filters.html#a-nice-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> A nice HTML table with <code>kable()</code> and <code>kableExtra</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="filters.html"><a href="filters.html#end-filter-join-section"><i class="fa fa-check"></i><b>8.5.1</b> End <code>filter()</code> + <code>join()</code> section!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating &amp; Getting Help</a><ul>
+<li class="chapter" data-level="9.1" data-path="collaborating.html"><a href="collaborating.html#summary-6"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="collaborating.html"><a href="collaborating.html#objectives-6"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="9.1.2" data-path="collaborating.html"><a href="collaborating.html#resources-7"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="collaborating.html"><a href="collaborating.html#r-communities"><i class="fa fa-check"></i><b>9.2</b> R communities</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="collaborating.html"><a href="collaborating.html#rstudio-community"><i class="fa fa-check"></i><b>9.2.1</b> RStudio Community</a></li>
+<li class="chapter" data-level="9.2.2" data-path="collaborating.html"><a href="collaborating.html#r-user-groups"><i class="fa fa-check"></i><b>9.2.2</b> R User Groups</a></li>
+<li class="chapter" data-level="9.2.3" data-path="collaborating.html"><a href="collaborating.html#rladies"><i class="fa fa-check"></i><b>9.2.3</b> RLadies</a></li>
+<li class="chapter" data-level="9.2.4" data-path="collaborating.html"><a href="collaborating.html#ropensci"><i class="fa fa-check"></i><b>9.2.4</b> rOpenSci</a></li>
+<li class="chapter" data-level="9.2.5" data-path="collaborating.html"><a href="collaborating.html#the-carpentries"><i class="fa fa-check"></i><b>9.2.5</b> The Carpentries</a></li>
+<li class="chapter" data-level="9.2.6" data-path="collaborating.html"><a href="collaborating.html#r4ds-community"><i class="fa fa-check"></i><b>9.2.6</b> R4DS Community</a></li>
+<li class="chapter" data-level="9.2.7" data-path="collaborating.html"><a href="collaborating.html#tidytuesday"><i class="fa fa-check"></i><b>9.2.7</b> #tidytuesday</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="collaborating.html"><a href="collaborating.html#how-to-use-twitter-for-rstats"><i class="fa fa-check"></i><b>9.3</b> How to use Twitter for #rstats</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="collaborating.html"><a href="collaborating.html#interpreting-an-rstats-tweet"><i class="fa fa-check"></i><b>9.3.1</b> Interpreting an #rstats tweet</a></li>
+<li class="chapter" data-level="9.3.2" data-path="collaborating.html"><a href="collaborating.html#how-to-twitter"><i class="fa fa-check"></i><b>9.3.2</b> How to Twitter</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="collaborating.html"><a href="collaborating.html#getting-help-help-you-help-yourself"><i class="fa fa-check"></i><b>9.4</b> Getting help: help you help yourself</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="collaborating.html"><a href="collaborating.html#read-the-error-message"><i class="fa fa-check"></i><b>9.4.1</b> Read the error message</a></li>
+<li class="chapter" data-level="9.4.2" data-path="collaborating.html"><a href="collaborating.html#googling"><i class="fa fa-check"></i><b>9.4.2</b> Googling</a></li>
+<li class="chapter" data-level="9.4.3" data-path="collaborating.html"><a href="collaborating.html#create-a-reprex"><i class="fa fa-check"></i><b>9.4.3</b> Create a reprex</a></li>
+<li class="chapter" data-level="9.4.4" data-path="collaborating.html"><a href="collaborating.html#activity-do-it-with-iris"><i class="fa fa-check"></i><b>9.4.4</b> Activity: “do it with iris”</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="collaborating.html"><a href="collaborating.html#collaborating-with-github"><i class="fa fa-check"></i><b>9.5</b> Collaborating with GitHub</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="collaborating.html"><a href="collaborating.html#create-repo-partner-1"><i class="fa fa-check"></i><b>9.5.1</b> Create repo (Partner 1)</a></li>
+<li class="chapter" data-level="9.5.2" data-path="collaborating.html"><a href="collaborating.html#create-a-gh-pages-branch-partner-1"><i class="fa fa-check"></i><b>9.5.2</b> Create a gh-pages branch (Partner 1)</a></li>
+<li class="chapter" data-level="9.5.3" data-path="collaborating.html"><a href="collaborating.html#give-your-collaborator-administration-privileges-partner-1-and-2"><i class="fa fa-check"></i><b>9.5.3</b> Give your collaborator administration privileges (Partner 1 and 2)</a></li>
+<li class="chapter" data-level="9.5.4" data-path="collaborating.html"><a href="collaborating.html#clone-to-a-new-r-project-partner-1"><i class="fa fa-check"></i><b>9.5.4</b> Clone to a new R Project (Partner 1)</a></li>
+<li class="chapter" data-level="9.5.5" data-path="collaborating.html"><a href="collaborating.html#clone-to-a-new-r-project-partner-2"><i class="fa fa-check"></i><b>9.5.5</b> Clone to a new R Project (Partner 2)</a></li>
+<li class="chapter" data-level="9.5.6" data-path="collaborating.html"><a href="collaborating.html#create-data-folder-partner-2"><i class="fa fa-check"></i><b>9.5.6</b> Create data folder (Partner 2)</a></li>
+<li class="chapter" data-level="9.5.7" data-path="collaborating.html"><a href="collaborating.html#state-of-the-repository"><i class="fa fa-check"></i><b>9.5.7</b> State of the Repository</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="collaborating.html"><a href="collaborating.html#merge-conflicts"><i class="fa fa-check"></i><b>9.6</b> Merge conflicts</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="collaborating.html"><a href="collaborating.html#pull-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.1</b> Pull (Partners 1 and 2)</a></li>
+<li class="chapter" data-level="9.6.2" data-path="collaborating.html"><a href="collaborating.html#create-a-conflict-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.2</b> Create a conflict (Partners 1 and 2)</a></li>
+<li class="chapter" data-level="9.6.3" data-path="collaborating.html"><a href="collaborating.html#sync-partner-2"><i class="fa fa-check"></i><b>9.6.3</b> Sync (Partner 2)</a></li>
+<li class="chapter" data-level="9.6.4" data-path="collaborating.html"><a href="collaborating.html#sync-attempts-fixes-partner-1"><i class="fa fa-check"></i><b>9.6.4</b> Sync attempts &amp; fixes (Partner 1)</a></li>
+<li class="chapter" data-level="9.6.5" data-path="collaborating.html"><a href="collaborating.html#activity-5"><i class="fa fa-check"></i><b>9.6.5</b> Activity</a></li>
+<li class="chapter" data-level="9.6.6" data-path="collaborating.html"><a href="collaborating.html#how-do-you-avoid-merge-conflicts"><i class="fa fa-check"></i><b>9.6.6</b> How do you avoid merge conflicts?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="collaborating.html"><a href="collaborating.html#end-collaborating-session"><i class="fa fa-check"></i><b>9.7.1</b> END <strong>collaborating</strong> session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
+<li class="chapter" data-level="10.1" data-path="synthesis.html"><a href="synthesis.html#summary-7"><i class="fa fa-check"></i><b>10.1</b> Summary</a></li>
+<li class="chapter" data-level="10.2" data-path="synthesis.html"><a href="synthesis.html#objectives-7"><i class="fa fa-check"></i><b>10.2</b> Objectives</a></li>
+<li class="chapter" data-level="10.3" data-path="synthesis.html"><a href="synthesis.html#resources-8"><i class="fa fa-check"></i><b>10.3</b> Resources</a></li>
+<li class="chapter" data-level="10.4" data-path="synthesis.html"><a href="synthesis.html#attach-packages-read-in-and-explore-the-data"><i class="fa fa-check"></i><b>10.4</b> Attach packages, read in and explore the data</a></li>
+<li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#some-data-cleaning-to-get-salmon-landings"><i class="fa fa-check"></i><b>10.5</b> Some data cleaning to get salmon landings</a></li>
+<li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#find-grouped-summary-data"><i class="fa fa-check"></i><b>10.6</b> Find grouped summary data</a></li>
+<li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2"><i class="fa fa-check"></i><b>10.7</b> Make a graph of US commercial fisheries value by species over time with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#export-your-salmon-value-graph-with-ggsave"><i class="fa fa-check"></i><b>10.8</b> Export your salmon value graph with <code>ggsave</code></a></li>
+<li class="chapter" data-level="10.9" data-path="synthesis.html"><a href="synthesis.html#pivot_wider-to-make-a-table-with-years-as-columns"><i class="fa fa-check"></i><b>10.9</b> <code>pivot_wider</code> to make a table with years as columns</a><ul>
+<li class="chapter" data-level="10.9.1" data-path="synthesis.html"><a href="synthesis.html#wrangle-to-create-our-subset-from-salmon_data"><i class="fa fa-check"></i><b>10.9.1</b> Wrangle to create our subset from salmon_data</a></li>
+<li class="chapter" data-level="10.9.2" data-path="synthesis.html"><a href="synthesis.html#make-our-html-table"><i class="fa fa-check"></i><b>10.9.2</b> Make our HTML table</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="synthesis.html"><a href="synthesis.html#sync-with-github-remote"><i class="fa fa-check"></i><b>10.10</b> Sync with GitHub remote</a></li>
+<li class="chapter" data-level="10.11" data-path="synthesis.html"><a href="synthesis.html#add-an-image-to-your-partners-document"><i class="fa fa-check"></i><b>10.11</b> Add an image to your partner’s document</a><ul>
+<li class="chapter" data-level="10.11.1" data-path="synthesis.html"><a href="synthesis.html#end-synthesis-session"><i class="fa fa-check"></i><b>10.11.1</b> End synthesis session!</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="closing.html"><a href="closing.html"><i class="fa fa-check"></i><b>11</b> Closing</a><ul>
+<li class="chapter" data-level="11.1" data-path="closing.html"><a href="closing.html#continued-learning"><i class="fa fa-check"></i><b>11.1</b> Continued learning</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Excel Users</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="closing" class="section level1">
+<h1><span class="header-section-number">Chapter 11</span> Closing</h1>
+<div id="continued-learning" class="section level2">
+<h2><span class="header-section-number">11.1</span> Continued learning</h2>
+<ul>
+<li><a href="">R for Data Science</a> with the R4DS community</li>
+<li>#tidytuesday with a friend or colleague</li>
+</ul>
+<p>Consider: <a href="http://ohi-science.org/data-science-training/champion.html" class="uri">http://ohi-science.org/data-science-training/champion.html</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="synthesis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R for Excel Users.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

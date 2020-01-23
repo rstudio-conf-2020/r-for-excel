@@ -9,8 +9,6 @@ by Julia Lowndes and Allison Horst
 
 **Welcome!** 
 
-We will be updating this page as we prepare for the workshop. 
-
 -----
 
 :spiral_calendar: January 27 and 28, 2020  
@@ -18,13 +16,12 @@ We will be updating this page as we prepare for the workshop.
 :hotel:           \[ADD ROOM\]  
 :writing_hand:    [rstd.io/conf](http://rstd.io/conf)
 
+[RStudio Community Page](https://community.rstudio.com/t/r-for-excel-users-workshop-rstudio-conf-2020/49107)
 -----
 
 ## Overview
 
-Microsoft Excel is a widely used and powerful tool for working with data. As automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses. This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. Participants will get hands-on experience working with data across R, Excel, and Google Sheets, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while “keeping the raw data raw”. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you!
-
-
+Microsoft Excel is a widely used and powerful tool for working with data. As automation, reproducibility, collaboration, and frequent reporting become increasingly expected in data analysis, a good option for Excel users is to extend their workflows with R. Integrating R into data analysis with Excel can bridge the technical gap between collaborators using either software. R enables use of existing tools built for specific tasks and overcomes some limitations that arise when working with large datasets or repeated analyses. This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. Participants will get hands-on experience working with data across R and Excel, focusing on: data import and export, basic wrangling, visualization, and reporting with RMarkdown. Throughout, we will emphasize conventions and best practices for working reproducibly and collaboratively with data, including naming conventions, documentation, organization, all while “keeping the raw data raw”. Whether you are working in Excel and want to get started in R, already working in R and want tools for working more seamlessly with collaborators who use Excel, or whether you are new to data analysis entirely, this is the course for you!
 
 ## Learning objectives
 
@@ -40,28 +37,36 @@ Are you new to data analysis, and looking for a good place to get started?
 
 ## Prework
 
-*Coming soon*
-<!---
-R, RStudio, tidyverse using Allison's install instructions
-https://docs.google.com/document/d/1Imcx8ZropMF5tmLF6As02OJam-r1pNexu5pULczCwMA/edit?ts=5d8ce185 
-\[ADD INFORMATION YOU WANT LEARNERS TO HAVE / STEPS THEY WANT THEM TO
-COMPLETE PRIOR TO THE WORKSHOP. THIS COULD BE A LINK TO A THREAD ON
-RSTUDIO COMMUNITY, PACKAGE INSTALL INSTRUCTIONS, HOW TO GET AN
-RSTUDIO.CLOUD ACCOUNT, ETC.\]
---->
+Before the training, please do the following (20 minutes). All software is free. 
+
+1. **Download and install R and RStudio**:
+    - R: <https://cloud.r-project.org/>
+    - RStudio: <http://www.rstudio.com/download> 
+    - Follow your operating system's normal installation process
+1. **Create a GitHub account**:
+    - GitHub: <https://github.com>
+    - Follow optional [advice on choosing your username](https://happygitwithr.com/github-acct.html)
+    - Remember your username, email and password; we will need them for the workshop!
+1. **Download and install Git**
+    - Git: <https://git-scm.com/downloads>
+    - Follow your operating system's normal installation process. Note: you will not see an application called Git listed but if the installation process completed it was likely successful, and we will confirm together
+1. **Download workshop data** 
+    - Google Drive folder: [r-for-excel-data ](https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing)
+    - Save it temporarily somewhere you will remember; we will move it together
 
 ## Schedule
 
-| Time          | Activity         |
-| :------------ | :--------------- |
-| 08:30 - 08:45 | Install help     |
-| 09:00 - 10:30 | Session 1        |
-| 10:30 - 11:00 | *Coffee break*   |
-| 11:00 - 12:30 | Session 2        |
-| 12:00 - 13:30 | *Lunch break*    |
-| 13:30 - 15:00 | Session 3        |
-| 15:00 - 15:30 | *Coffee break*   |
-| 15:30 - 17:00 | Session 4        |
+|Time       |      Day 1|      Day 2|
+|:----------|----------:|----------:|
+|8:30-9:00    |  Install help |  |
+|9-10:30    |  Overview, R & RStudio, RMarkdown |  Tidying |
+|break      |  | |
+|11-12:30   | Intro to GitHub| Filters & joins |
+|lunch      |  ||
+|13:30-15:00 | Graphs with `ggplot2` | Collaborating & getting help |
+|break      |  | |
+|15:30-17:00 | Pivot Tables & `dplyr` | Synthesis |
+
 
 ## Instructors
 

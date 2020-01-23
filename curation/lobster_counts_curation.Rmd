@@ -30,7 +30,7 @@ lobster_counts_raw <- read_csv("curation/lobster_counts.csv", na = "-99999")
 
 ```
 
-2. Some basic cleaning (already in great shape): 
+2. Some basic cleaning (already in great shape), and create subsets to save: 
 ```{r}
 
 lobster_counts <- lobster_counts_raw %>% 
@@ -42,17 +42,39 @@ lobster_uncount_full <- lobster_counts %>%
   uncount(count) %>%
   select(-area, -num_ao)
 
+
 ## will become lobsters to read in first
 lobster_uncount_subset <- lobster_uncount_full %>%
   filter(year <= 2016) 
+
 ```
 
-3. Some further curation testing (trying out different lobster subsets, etc.)
+3. rbind rows to demo skipping them during workshop
+```{r}
+lines_to_add <- tribble(
+  ~year, ~month, ~date, ~site, ~transect, ~replicate, ~size_mm, 
+  "Description: Lobster size, abundance and fishing pressure (SB coast)", 
+    "", "", "", "", "", "", 
+  "Link: https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&identifier=77&revision=newest", 
+  "", "", "", "", "", "",   
+  "Citation: Reed D. 2019. SBC LTER: Reef: Abundance, size and fishing effort for California Spiny Lobster (Panulirus interruptus), ongoing since 2012. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/a593a675d644fdefb736750b291579a0).", 
+  "", "", "", "", "", "", 
+  "", "", "", "", "", "", "",
+)
+
+## rbind to objects
+lobster_uncount_full <- rbind(lines_to_add, lobster_uncount_full)
+lobster_uncount_subset <- rbind(lines_to_add, lobster_uncount_subset)
+
+```
+
+
+5. Save 2 files for pivot_tables chapter
 ```{r}
 
 # These are the final curated version (lobster_counts_curated.csv)
-write_xlsx(lobster_uncount_subset, "curation/lobsters_curated.xlsx")
-write_xlsx(lobster_uncount_full, "curation/lobsters2_curated.xlsx")
+write_xlsx(lobster_uncount_subset, "data/lobsters.xlsx")
+write_xlsx(lobster_uncount_full, "data/lobsters2.xlsx")
 
 # Make a graph of the numbers by location, year & species?
 # Probably want to work on this a bit more ()

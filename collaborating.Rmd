@@ -38,6 +38,7 @@ We will do this all with a partner, and we'll walk through some things all toget
 -  [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) - Thomas Mock
 - [reprex.tidyverse.org](https://reprex.tidyverse.org/)
 - [Getting help in R: do as I say, not as I've done](https://sctyner.github.io/rhelp.html) by Sam Tyner
+- [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/)
 
 
 <!---openscapes slides: 
@@ -366,7 +367,7 @@ Now it's Partner 2's turn! Partner 2, clone this repository following the same s
 
 ### Create data folder (Partner 2)
 
-Partner 2, let's create a folder for our data and store our `noaa_fisheries.csv` there. 
+Partner 2, let's create a folder for our data and copy our `noaa_landings.csv` there. 
 
 And now let's sync back to GitHub. 
 
@@ -411,7 +412,7 @@ Both partners go to RStudio and pull so you have the most recent versions of all
 
 ### Create a conflict (Partners 1 and 2)
 
-Now, Partners 1 and 2, both go to the README.md, and on Line 7, write something, anything. Save the README. 
+Now, Partners 1 and 2, both go to the README.md, and on Line 4, write something, anything. Save the README. 
 
 I'm not going to give any examples because when you do this I want to be sure that both Partners to write something different. Save the README. 
 
@@ -524,16 +525,21 @@ OK. Let's have both Partners create a new RMarkdown file and name it `my_name_fi
 1. Knit
 1. Save and sync your .Rmd and your .html files 
     - (pull, stage, commit, push)
-1. Go to GitHub.com and go to your rendered website! Where is it? Figure out your website's url from your github repo's url — pay attention to urls. For example: 
+1. Go to Partner 1's repo, mine is <https://github.com/jules32/r-collab/>
+1. GitHub also supports this as a website (because we set up our gh-pages branch)
+Where is it? Figure out your website's url from your github repo's url — pay attention to urls.    - note that the url starts with my **username.github.io**   
+   - my github repo: <https://github.com/jules32/r-collab/>
+   - my website url: <https://jules32.github.io/r-collab/>
+   - right now this displays the README as the "home page" for our website. 
+1. Now navigate to your web page! For example: 
     - my github repo: <https://github.com/jules32/r-collab/julie_fisheries>
     - my website url: <https://jules32.github.io/r-collab/julie_fisheries>
-    - note that the url starts with my **username.github.io**
     
 So cool!     
 
-> **Aside**: you and your partner have created individual webpages here, but they do not talk to each other (i.e. you can't navigate between them or even know that one exists from the other). We will not organize these pages into a website today, but you can practice this on your own with this hour-long tutorial: [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/). 
+You and your partner have created individual webpages here, but they do not talk to each other (i.e. you can't navigate between them or even know that one exists from the other). We will not organize these pages into a website today, but you can practice this on your own with this hour-long tutorial: [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/). 
 
-> **Aside:** On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>.
+> **Aside:** On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>. So as you think about building websites you can develop your index.Rmd file rather than your README.md as your homepage.
 
 #### Troubleshooting
 

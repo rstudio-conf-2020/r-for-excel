@@ -1,0 +1,8 @@
+# Closing {#closing}
+
+## Continued learning
+
+- [R for Data Science]() with the R4DS community
+- #tidytuesday with a friend or colleague
+
+Consider: http://ohi-science.org/data-science-training/champion.html

@@ -12,8 +12,8 @@ rmd_files: [
   "tidying.Rmd", # session 5
   "filter-join.Rmd", # session 6
   "collaborating.Rmd", # session 7
-  "synthesis.Rmd" # session 8 
-#  "closing.Rmd" 
+  "synthesis.Rmd", # session 8 
+  "closing.Rmd" 
  ]
 delete_merged_file: true
 output_dir: "docs"

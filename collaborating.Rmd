@@ -15,6 +15,9 @@ We are going to teach you the simplest way to collaborate with someone, which is
 
 We will do this all with a partner, and we'll walk through some things all together, and then give you a chance to work with your collaborator on your own. 
 
+> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
+
+
 ### Objectives
 
 - intro to R communities
@@ -191,43 +194,10 @@ As we've talked about before, they may be red, they may be unfamiliar, but **err
 **Message:** Here’s some helpful information about the code you just ran (you can hide these if you want to)
 
 
-The first thing to do with any error message is read it. Yes it's in angry red text and it's unexpected — but most error messages are doing their best to help you solve the problem. And you'll get more familiar with they way they tell you. Here are a few examples: 
-
-#### If R...can’t find a function that you know exists:
-
-**Symptom**: `‘Error in _________: could not find function “_________”`
-
-**Likely diagnoses:**
-
-- The library containing the function you’re trying to use hasn’t been attached
-- You’ve misspelled or mistyped the function name
-
-**Possible solutions:**
-
-- Make sure you’ve attached the required package with library(package_name) - and remember this line should exist in your script before the code that uses a function from that package
-- Make sure you’ve run the line of code that attaches the necessary package
-- Check the function spelling/formatting very carefully
- 
- 
-#### If R...can’t find an object (e.g. an object or variable) that you know you’ve stored: 
-
-**Symptom:** `‘Error in ____ : object ‘_____’ not found’`
-
-**Likely diagnoses:**
-
-- The object hasn’t been created or stored
-- You’ve mistyped the object name
-
-**Possible solutions:**
-
-- Make sure you’ve run the line(s) of code where you read-in or create the object
-- Make sure you’ve spelled/typed the object name exactly as it exists in the Environment
-- Use ls() to check which objects exist in your current workspace (and if it’s not there, then it hasn’t been created/stored yet)
-
- 
 ### Googling
 
 Just as important as Googling your error message is being able to identify a useful result. 
+Something I can't emphasize enough: **pay attention to filepaths**. They tell you the source, they help you find pages again. Often remembering a few things about it will let you either google it again or navigate back there yourself.
 
 **Check the date, check the source, check the relevance.** Is this a modern solution, or one from 2013? Do I trust the person responding? Is this about my question or on a different topic?
 
@@ -240,7 +210,7 @@ You will see links from many places, particularly:
 
 We haven't talked about GitHub Issues yet: let's do an example. 
 
-
+TODO: Google example
 
 ### Create a reprex
 
@@ -390,7 +360,7 @@ Remember:
 
 Let's confirm that this was synced by looking at GitHub.com again. You may have to refresh the page, but you should see this commit where you added the `.Rproj` file.
 
-### Clone to a new R Project  (Partner 2)
+### Clone to a new R Project (Partner 2)
 
 Now it's Partner 2's turn! Partner 2, clone this repository following the same steps that Partner 1 just did. When you clone it, RStudio should not create any new files — why? Partner 1 already created and pushed the `.Rproj` and `.gitignore` files so they already exist in the repo.  
 
@@ -427,71 +397,122 @@ I recommend pulling every time you come back to a collaborative repository. Whet
 
 TODO: clarify that first when you pull it's because unstaged.
 
-What kind of heartache are we talking about? Let's explore. **Stop and watch me create and solve a merge conflict with my Partner 2, and then you will have time to recreate this with your partner.** Here's what I am going to do:
+What kind of heartache are we talking about? Merge conflicts. 
 
-Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other -- that's it's job! It's when you have collaborators working on *the same lines within the same file* that you can have **merge conflicts**. Merge conflicts can be frustrating, but they are actually trying to help you (kind of like R's error messages). They occur when GitHub can't make a decision about what should be on a particular line and needs a human (you) to decide. And this is good -- you don't want GitHub to decide for you, it's important that you make that decision. 
+Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other -- that's it's job! 
 
-So let's test this. Let's have both Partners 1 and 2 go to RStudio and pull so you have the most recent versions of all your files. Now, Partners 1 and 2, both go to the README, and on Line 7, write something, anything. I'm not going to give any examples because I want both Partners to write something different. And be sure to save the README. 
+It's when you have collaborators working on *the same lines within the same file* that you can have **merge conflicts**. This is when there is a conflict within the same line so that GitHub can't merge automatically. They need a human to help decide what information to keep (which is good because you don't want GitHub to decide for you). Merge conflicts can be frustrating, but like R's error messages, they are actually trying to help you. 
 
-OK. Now, let's have Partner 2 sync: pull, stage, commit, push. Great. 
+So let's experience this together: we will create and solve a merge conflict. **Stop and watch me demo how to create and solve a merge conflict with my Partner 2, and then you will do the same with your partner.** Here's what I am going to do:
 
-Now, when Partner 2 is done, let's have Partner 1 (me) try. 
+### Pull (Partners 1 and 2)
 
-Partner 1: pull ---- Error! Merge conflict!
+Both partners go to RStudio and pull so you have the most recent versions of all your files. 
 
-![](img/github_mergeconflict.png)
+### Create a conflict (Partners 1 and 2)
 
-So Partner 1 is not allowed to pull, it failed. GitHub is protecting Partner 1 because if they did successfully pull, their work would be overwritten by whatever Partner 2 had written. So GitHub is going to make a human (Partner 1 in this case) decide. GitHub says, either commit this work first, or "stash it" (I interpret that as saving a copy of the README in another folder somewhere outside of this GitHub repository). 
+Now, Partners 1 and 2, both go to the README.md, and on Line 7, write something, anything. Save the README. 
 
-Let's follow their advice and have Partner 1 commit. Great. Now let's pull again. 
+I'm not going to give any examples because when you do this I want to be sure that both Partners to write something different. Save the README. 
 
-Still not happy!
+### Sync (Partner 2)
 
-![](img/github_mergeconflict2.png)
+OK. Now, let's have Partner 2 sync: pull, stage, commit, push. Just like normal. 
+
+Great. 
+
+### Sync attempts & fixes (Partner 1)
+
+Now, let's have Partner 1 (me) try. 
+
+When I try to Pull, I get the first error we will see today: "Your local changes to README.md would be overwritten by merge". GitHub is telling me that it knows I've modified my README, but since I haven't staged and committed them, it can't do its job and merge my conflicts with whatever is different about the version from GitHub.com. 
+
+This is good: the alternative would be GitHub deciding which one to keep and it's better that we have that kind of control and decision making.
 
 <br>
 
-OK, actually, we're just moving along this same problem that we know that we've created: Both Partner 1 and 2 have both added new information to the same line. You can see that the pop-up box is saying that there is a CONFLICT and the merge has not happened. OK. We can close that window and inspect. 
 
-Notice that in the git tab, there are orange `U`s; this means that there is an unresolved conflict, and it is not staged with a check anymore because modifications have occurred to the file since it has been staged. 
+```{r merge-conflict-img, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github_mergeconflict.png")  
+```
 
-Let's look at the README file itself. We got a preview in the diff pane that there is some new text going on in our README file: 
+<br>
+
+GitHub provides some guidance: either commit this work first, or "stash it", which you can  interpret that as moving the README temporarily to another folder somewhere outside of this GitHub repository so that you can successfully pull and then decide your next steps. 
+
+Let's follow their advice and have Partner 1 commit. Great. Now let's try pulling again. 
+
+New error: "Merge conflict in README...fix conflicts and then commit the result". 
+
+So this error is different from the previous: GitHub knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it's asking me to now compare these changes, choose a preference, and commit. 
+
+**Note:** if Partner 2 and I were not intentionally in this demo editing exactly the same lines, GitHub likely could have done its job and merged this file successfully after our first error fix above.
+
+<br>
+
+```{r merge-conflict-img2, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github_mergeconflict2.png")  
+```
+
+<br>
+
+We will again follow GitHub's advice to fix the conflicts. Let's close this window and inspect. 
+Did you notice two other things that happened along with this message? 
+
+First< in the Git tab, next to the README listing there are orange `U`s; this means that there is an unresolved conflict. It means my file is not staged with a check anymore because modifications have occurred to the file since it has been staged. 
+
+Second, the README file itself changed; there is new text and symbols. (We got a preview in the diff pane also). 
 
 ```r
 <<<<<<< HEAD
 Julie is collaborating on this README.
 =======
-**Jamie is adding lines here.**
+**Allison is adding text here.**
 >>>>>>> 05a189b23372f0bdb5b42630f8cb318003cee19b
 ```
 
-In this example, Partner 1 is Jamie and Partner 2 is Julie. GitHub is displaying the line that Julie wrote and the line Jamie wrote separated by `=======`. So these are the two choices that Partner 2 has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by `<<<<<<<HEAD` and `>>>>>>>long commit identifier`. 
+In this example, Partner 1 is Julie and Partner 2 is Allison. GitHub is displaying the line that Julie wrote and the line Allison. wrote separated by `=======`. These are the two choices that I (Partner 1) has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by `<<<<<<<HEAD` and `>>>>>>>long commit identifier`. 
 
-So, to resolve this merge conflict, Partner 2 has to chose, and delete everything except the line they want. So, they will delete the `<<<<<<HEAD`, `=====`, `>>>>long commit identifier` and one of the lines that they don't want to keep. 
+So, to resolve this merge conflict, Partner 1 has to chose which one to keep. And I tell GitHub my choice by deleting everything in this bundle of tex except the line they want. So, Partner 1 will delete the `<<<<<<HEAD`, `=====`, `>>>>long commit identifier` and either Julie or Allison's line that I don't want to keep. 
 
-Do that, and let's try again. In this example, we've kept Jamie's line: 
+I'll do this, and then commit again. In this example, we've kept Allison's line: 
 
-![](img/github_mergeconflict3.png)
 
 <br>
 
-Then be sure to stage, and write a commit message. I often write "resolving merge conflict" or something so I know what I was up to. When I stage the file, notice how now my edits look like a simple line replacement (compare with the image above before it was re-staged): 
+```{r merge-conflict-img3, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github_mergeconflict3.png")  
+```
 
-![](img/github_mergeconflict4.png)
+<br>
 
-### Your turn
+Then I'll stage, and write a commit message. I often write "resolving merge conflict" or something similar. When I stage the file, notice how now my edits look like a simple line replacement (compare with the image above before it was re-staged): 
 
-Create a merge conflict with your partner, like we did in the example above. And try other ways to get and solve merge conflicts. For example, when you get the following error message, try both ways (commit or stash. Stash means copy/move it somewhere else, for example, on your Desktop temporarily).
+<br>
 
-![](img/github_mergeconflict.png)
+```{r merge-conflict-img4, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/github_mergeconflict4.png")  
+```
+
+<br>
+
+And we're done! We can inspect on GitHub.com that I am the most recent contributor to this repository. And if we look in the commit history we will see both Allison and my original commits, along with our merge conflict fix. 
+
+### Activity
+
+Create a merge conflict with your partner, following the steps that we just did in the demo above. Practice different approaches to solving errors: for example, try stashing instead of committing. 
 
 ### How do you avoid merge conflicts?
 
-I'd say pull often, commit and sync often. 
+Merge conflicts can occur when you collaborate with others — I find most often it is collaborating with ME from a different computer. They will happen, but you can minimize them by getting into good habits. 
 
-Also, talk with your collaborators. Although our Ocean Health Index project is highly collaborative, we are actually rarely working on the exact same file at any given time. And if we are, we are also on Slack, Gchat, or sitting next to the person. 
+To minimize merge conflicts, pull often so that you are aware of anything that is different, and deal with it early. Similarly, commit and push often so that your contributions do not become too unweildly for yourself or others later on.
 
-But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. So protect yourself by pulling and syncing often! 
+Also, talk with your collaborators. Are they working on the exact same file right now that you need to be? If so, coordinate with them (in person, GChat, Slack, email). For example: "I'm working on X part and will push my changes before my meeting — then you can work on it and I'll pull when I'm back". Also, if you find yourself always working on the exact same file, you could consider breaking it into different files to minimize problems.
+
+But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. We demoed small conflicts with just one file, but they can occur across many files, particularly when your code is generating figures, scripts, or HTML files. Sometimes the best approach is the [burn it all down method](https://happygitwithr.com/burn.html), where you delete your local copy of the repo and re-clone. 
+
+Protect yourself by pulling and syncing often! 
 
 ## Create your collaborative website
 
@@ -502,22 +523,24 @@ OK. Let's have both Partners create a new RMarkdown file and name it `my_name_fi
 1. We'll start by testing: let's simply change the title inside the Rmd, call it "My Name's Fisheries Analysis"
 1. Knit
 1. Save and sync your .Rmd and your .html files 
-    - (pull, stage, commit, pull, push)
-1. Go to GitHub.com and go to your rendered website! Where is it? Figure out your website's url from your github repo's url. For example: 
-    - my github repo: <https://github.com/jules32/r-collab>
-    - my website url: <https://jules32.github.io/r-collab/>
+    - (pull, stage, commit, push)
+1. Go to GitHub.com and go to your rendered website! Where is it? Figure out your website's url from your github repo's url — pay attention to urls. For example: 
+    - my github repo: <https://github.com/jules32/r-collab/julie_fisheries>
+    - my website url: <https://jules32.github.io/r-collab/julie_fisheries>
     - note that the url starts with my **username.github.io**
     
-So cool! On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>. If you name your RMarkdown file `my_research.Rmd`, the url will become <https://jules32.github.io/r-collab/my_research.html>.
+So cool!     
 
+> **Aside**: you and your partner have created individual webpages here, but they do not talk to each other (i.e. you can't navigate between them or even know that one exists from the other). We will not organize these pages into a website today, but you can practice this on your own with this hour-long tutorial: [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/). 
 
-> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
+> **Aside:** On websites, if something is called `index.html`, that defaults to the home page. So <https://jules32.github.io/r-collab/> is the same as <https://jules32.github.io/r-collab/index.html>.
 
-#### Troubleshooting:
+#### Troubleshooting
 
 - 404 error? Remove trailing / from the url 
 - Wants you to download? Remove trailing .Rmd from the url
 
+<!---
 ## Issues for project management
 
 TODO: 
@@ -527,7 +550,6 @@ How to use Issues chapter: https://openscapes.github.io/series/github-issues
 
 Now let's have another look at issues. In addition to asking for help, Issues are a great tool for project management: they are a way to communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
 
-![](img/github-issues.png)
 
 Let's create a new issue with the title "Fisheries analysis". 
 
@@ -552,10 +574,9 @@ On the right side, there are a bunch of options for categorizing and organizing 
 
 Another feature about issues is whether you want any notifications to this repository. Click where it says "Unwatch" up at the top. You'll see three options: "Not watching", "Watching", and "Ignoring". By default, you are watching these issues because you are a collaborator to the repository. But if you stop being a big contributor to this project, you may want to switch to "Not watching". Or, you may want to ask an outside person to watch the issues. Or you may want to watch another repo yourself!
 
-![](img/github-collab.png)
-
 Let's have Person 2 respond to the issue affirming the plan.
 
+--->
 
 ### END **collaborating** session!
 

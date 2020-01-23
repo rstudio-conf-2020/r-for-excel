@@ -8,11 +8,11 @@ rmd_files: [
   "rstudio.Rmd", # session 1
   "github.Rmd", # session 2
   "ggplot2.Rmd", # session 3
-  "dplyr-pivot-tables.Rmd", # session 4
+  "pivot-tables.Rmd", # session 4
   "tidying.Rmd", # session 5
-  "dplyr-vlookups.Rmd", # session 6
+  "filter-join.Rmd", # session 6
   "collaborating.Rmd", # session 7
-  "synthesis.Rmd"#, # session 8 
+  "synthesis.Rmd" # session 8 
 #  "closing.Rmd" 
  ]
 delete_merged_file: true

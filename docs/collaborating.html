@@ -24,14 +24,14 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-01-20" />
+<meta name="date" content="2020-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="vlookup.html"/>
+<link rel="prev" href="filters.html"/>
 <link rel="next" href="synthesis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -159,19 +159,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
-<li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-code-chunks-in-the-console"><i class="fa fa-check"></i><b>3.4.2</b> Running code chunks in the Console</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
 <li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#commenting"><i class="fa fa-check"></i><b>3.7</b> Commenting</a></li>
 <li class="chapter" data-level="3.8" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.8</b> Assigning objects with <code>&lt;-</code></a></li>
-<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a></li>
-<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#the-pipe-operator"><i class="fa fa-check"></i><b>3.10</b> The pipe operator <code>%&gt;%</code></a></li>
-<li class="chapter" data-level="3.11" data-path="rstudio.html"><a href="rstudio.html#setup-git-github"><i class="fa fa-check"></i><b>3.11</b> Setup Git &amp; GitHub</a><ul>
-<li class="chapter" data-level="3.11.1" data-path="rstudio.html"><a href="rstudio.html#ensure-that-gitgithubrstudio-are-communicating"><i class="fa fa-check"></i><b>3.11.1</b> Ensure that Git/GitHub/RStudio are communicating</a></li>
-<li class="chapter" data-level="3.11.2" data-path="rstudio.html"><a href="rstudio.html#backup-plan-for-configuration"><i class="fa fa-check"></i><b>3.11.2</b> BACKUP PLAN for configuration</a></li>
-<li class="chapter" data-level="3.11.3" data-path="rstudio.html"><a href="rstudio.html#end-rstudiormarkdown-session"><i class="fa fa-check"></i><b>3.11.3</b> END <strong>RStudio/RMarkdown</strong> session!</a></li>
+<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="rstudio.html"><a href="rstudio.html#installing-r-packages"><i class="fa fa-check"></i><b>3.9.1</b> Installing R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#github-brief-intro-config"><i class="fa fa-check"></i><b>3.10</b> GitHub brief intro &amp; config</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="rstudio.html"><a href="rstudio.html#configure-github"><i class="fa fa-check"></i><b>3.10.1</b> Configure GitHub</a></li>
+<li class="chapter" data-level="3.10.2" data-path="rstudio.html"><a href="rstudio.html#ensure-that-gitgithubrstudio-are-communicating"><i class="fa fa-check"></i><b>3.10.2</b> Ensure that Git/GitHub/RStudio are communicating</a></li>
+<li class="chapter" data-level="3.10.3" data-path="rstudio.html"><a href="rstudio.html#troubleshooting"><i class="fa fa-check"></i><b>3.10.3</b> Troubleshooting</a></li>
+<li class="chapter" data-level="3.10.4" data-path="rstudio.html"><a href="rstudio.html#end-rstudiormarkdown-session"><i class="fa fa-check"></i><b>3.10.4</b> END <strong>RStudio/RMarkdown</strong> session!</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
@@ -241,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.12.1" data-path="ggplot2.html"><a href="ggplot2.html#end-ggplot-session"><i class="fa fa-check"></i><b>5.12.1</b> End <code>ggplot</code> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>6</b> <code>dplyr</code> and Pivot Tables</a><ul>
+<li class="chapter" data-level="6" data-path="pivot.html"><a href="pivot.html"><i class="fa fa-check"></i><b>6</b> Pivot Tables</a><ul>
 <li class="chapter" data-level="6.1" data-path="pivot.html"><a href="pivot.html#summary-3"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
 <li class="chapter" data-level="6.2" data-path="pivot.html"><a href="pivot.html#objectives-3"><i class="fa fa-check"></i><b>6.2</b> Objectives</a></li>
 <li class="chapter" data-level="6.3" data-path="pivot.html"><a href="pivot.html#resources-4"><i class="fa fa-check"></i><b>6.3</b> Resources</a></li>
@@ -265,10 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8.2" data-path="pivot.html"><a href="pivot.html#dplyrcount"><i class="fa fa-check"></i><b>6.8.2</b> <code>dplyr::count()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="pivot.html"><a href="pivot.html#mutate"><i class="fa fa-check"></i><b>6.9</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="6.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>6.10</b> <code>select()</code></a></li>
-<li class="chapter" data-level="6.11" data-path="pivot.html"><a href="pivot.html#deep-thoughts"><i class="fa fa-check"></i><b>6.11</b> Deep thoughts</a></li>
-<li class="chapter" data-level="6.12" data-path="pivot.html"><a href="pivot.html#efficiency-tip"><i class="fa fa-check"></i><b>6.12</b> Efficiency Tip</a><ul>
-<li class="chapter" data-level="6.12.1" data-path="pivot.html"><a href="pivot.html#end-dplyr-pivot-tables-session"><i class="fa fa-check"></i><b>6.12.1</b> END <strong>dplyr-pivot-tables</strong> session!</a></li>
+<li class="chapter" data-level="6.10" data-path="pivot.html"><a href="pivot.html#select"><i class="fa fa-check"></i><b>6.10</b> <code>select()</code></a><ul>
+<li class="chapter" data-level="6.10.1" data-path="pivot.html"><a href="pivot.html#end-dplyr-pivot-tables-session"><i class="fa fa-check"></i><b>6.10.1</b> END <strong>dplyr-pivot-tables</strong> session!</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
@@ -294,30 +294,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11.1" data-path="tidying.html"><a href="tidying.html#end-tidying-session"><i class="fa fa-check"></i><b>7.11.1</b> END <strong>tidying</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="vlookup.html"><a href="vlookup.html"><i class="fa fa-check"></i><b>8</b> Dplyr and vlookups</a><ul>
-<li class="chapter" data-level="8.1" data-path="vlookup.html"><a href="vlookup.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="vlookup.html"><a href="vlookup.html#objectives-5"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
-<li class="chapter" data-level="8.1.2" data-path="vlookup.html"><a href="vlookup.html#resources-6"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
+<li class="chapter" data-level="8" data-path="filters.html"><a href="filters.html"><i class="fa fa-check"></i><b>8</b> Filters and joins</a><ul>
+<li class="chapter" data-level="8.1" data-path="filters.html"><a href="filters.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="filters.html"><a href="filters.html#objectives-5"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="8.1.2" data-path="filters.html"><a href="filters.html#resources-6"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="vlookup.html"><a href="vlookup.html#set-up-create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>8.2</b> Set-up: Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="8.3" data-path="vlookup.html"><a href="vlookup.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="vlookup.html"><a href="vlookup.html#activity-4"><i class="fa fa-check"></i><b>8.3.1</b> Activity</a></li>
-<li class="chapter" data-level="8.3.2" data-path="vlookup.html"><a href="vlookup.html#filter-rows-based-on-numeric-conditions"><i class="fa fa-check"></i><b>8.3.2</b> Filter rows based on numeric conditions</a></li>
-<li class="chapter" data-level="8.3.3" data-path="vlookup.html"><a href="vlookup.html#filter-to-return-rows-that-match-this-or-that-or-that"><i class="fa fa-check"></i><b>8.3.3</b> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></a></li>
-<li class="chapter" data-level="8.3.4" data-path="vlookup.html"><a href="vlookup.html#filter-to-return-rows-that-match-conditions-for-multiple-variables"><i class="fa fa-check"></i><b>8.3.4</b> Filter to return rows that match conditions for multiple variables</a></li>
-<li class="chapter" data-level="8.3.5" data-path="vlookup.html"><a href="vlookup.html#activity-combined-filter-conditions"><i class="fa fa-check"></i><b>8.3.5</b> Activity: combined filter conditions</a></li>
-<li class="chapter" data-level="8.3.6" data-path="vlookup.html"><a href="vlookup.html#example-combining-filter-with-other-functions-using-the-pipe-operator"><i class="fa fa-check"></i><b>8.3.6</b> Example: combining <code>filter()</code> with other functions using the pipe operator (<code>%&gt;%</code>)</a></li>
+<li class="chapter" data-level="8.2" data-path="filters.html"><a href="filters.html#set-up-create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>8.2</b> Set-up: Create a new .Rmd, attach packages &amp; get data</a></li>
+<li class="chapter" data-level="8.3" data-path="filters.html"><a href="filters.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="filters.html"><a href="filters.html#activity-4"><i class="fa fa-check"></i><b>8.3.1</b> Activity</a></li>
+<li class="chapter" data-level="8.3.2" data-path="filters.html"><a href="filters.html#filter-rows-based-on-numeric-conditions"><i class="fa fa-check"></i><b>8.3.2</b> Filter rows based on numeric conditions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="filters.html"><a href="filters.html#filter-to-return-rows-that-match-this-or-that-or-that"><i class="fa fa-check"></i><b>8.3.3</b> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></a></li>
+<li class="chapter" data-level="8.3.4" data-path="filters.html"><a href="filters.html#filter-to-return-rows-that-match-conditions-for-multiple-variables"><i class="fa fa-check"></i><b>8.3.4</b> Filter to return rows that match conditions for multiple variables</a></li>
+<li class="chapter" data-level="8.3.5" data-path="filters.html"><a href="filters.html#activity-combined-filter-conditions"><i class="fa fa-check"></i><b>8.3.5</b> Activity: combined filter conditions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="vlookup.html"><a href="vlookup.html#join-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>8.4</b> Join data frames with <code>dplyr::*_join()</code></a><ul>
-<li class="chapter" data-level="8.4.1" data-path="vlookup.html"><a href="vlookup.html#full_join-to-merge-data-frames-keeping-everything"><i class="fa fa-check"></i><b>8.4.1</b> <code>full_join()</code> to merge data frames, keeping everything</a></li>
-<li class="chapter" data-level="8.4.2" data-path="vlookup.html"><a href="vlookup.html#left_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame"><i class="fa fa-check"></i><b>8.4.2</b> <code>left_join()</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</a></li>
-<li class="chapter" data-level="8.4.3" data-path="vlookup.html"><a href="vlookup.html#inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both"><i class="fa fa-check"></i><b>8.4.3</b> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></a></li>
-<li class="chapter" data-level="8.4.4" data-path="vlookup.html"><a href="vlookup.html#using-filter-and-join-in-a-sequence"><i class="fa fa-check"></i><b>8.4.4</b> Using <code>filter()</code> and <code>join()</code> in a sequence</a></li>
+<li class="chapter" data-level="8.4" data-path="filters.html"><a href="filters.html#join-data-frames-with-dplyr_join"><i class="fa fa-check"></i><b>8.4</b> Join data frames with <code>dplyr::*_join()</code></a><ul>
+<li class="chapter" data-level="8.4.1" data-path="filters.html"><a href="filters.html#full_join-to-merge-data-frames-keeping-everything"><i class="fa fa-check"></i><b>8.4.1</b> <code>full_join()</code> to merge data frames, keeping everything</a></li>
+<li class="chapter" data-level="8.4.2" data-path="filters.html"><a href="filters.html#left_join-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame"><i class="fa fa-check"></i><b>8.4.2</b> <code>left_join()</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</a></li>
+<li class="chapter" data-level="8.4.3" data-path="filters.html"><a href="filters.html#inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both"><i class="fa fa-check"></i><b>8.4.3</b> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></a></li>
+<li class="chapter" data-level="8.4.4" data-path="filters.html"><a href="filters.html#using-filter-and-join-in-a-sequence"><i class="fa fa-check"></i><b>8.4.4</b> Using <code>filter()</code> and <code>join()</code> in a sequence</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="vlookup.html"><a href="vlookup.html#a-nice-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> A nice HTML table with <code>kable()</code> and <code>kableExtra</code></a></li>
-<li class="chapter" data-level="8.6" data-path="vlookup.html"><a href="vlookup.html#fun-facts"><i class="fa fa-check"></i><b>8.6</b> Fun facts</a></li>
-<li class="chapter" data-level="8.7" data-path="vlookup.html"><a href="vlookup.html#efficiency-tips"><i class="fa fa-check"></i><b>8.7</b> Efficiency Tips</a><ul>
-<li class="chapter" data-level="8.7.1" data-path="vlookup.html"><a href="vlookup.html#end-filter-join-section"><i class="fa fa-check"></i><b>8.7.1</b> End <code>filter()</code> + <code>join()</code> section!</a></li>
+<li class="chapter" data-level="8.5" data-path="filters.html"><a href="filters.html#a-nice-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> A nice HTML table with <code>kable()</code> and <code>kableExtra</code></a><ul>
+<li class="chapter" data-level="8.5.1" data-path="filters.html"><a href="filters.html#end-filter-join-section"><i class="fa fa-check"></i><b>8.5.1</b> End <code>filter()</code> + <code>join()</code> section!</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating &amp; Getting Help</a><ul>
@@ -354,12 +351,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5.7" data-path="collaborating.html"><a href="collaborating.html#state-of-the-repository"><i class="fa fa-check"></i><b>9.5.7</b> State of the Repository</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="collaborating.html"><a href="collaborating.html#merge-conflicts"><i class="fa fa-check"></i><b>9.6</b> Merge conflicts</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="collaborating.html"><a href="collaborating.html#your-turn"><i class="fa fa-check"></i><b>9.6.1</b> Your turn</a></li>
-<li class="chapter" data-level="9.6.2" data-path="collaborating.html"><a href="collaborating.html#how-do-you-avoid-merge-conflicts"><i class="fa fa-check"></i><b>9.6.2</b> How do you avoid merge conflicts?</a></li>
+<li class="chapter" data-level="9.6.1" data-path="collaborating.html"><a href="collaborating.html#pull-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.1</b> Pull (Partners 1 and 2)</a></li>
+<li class="chapter" data-level="9.6.2" data-path="collaborating.html"><a href="collaborating.html#create-a-conflict-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.2</b> Create a conflict (Partners 1 and 2)</a></li>
+<li class="chapter" data-level="9.6.3" data-path="collaborating.html"><a href="collaborating.html#sync-partner-2"><i class="fa fa-check"></i><b>9.6.3</b> Sync (Partner 2)</a></li>
+<li class="chapter" data-level="9.6.4" data-path="collaborating.html"><a href="collaborating.html#sync-attempts-fixes-partner-1"><i class="fa fa-check"></i><b>9.6.4</b> Sync attempts &amp; fixes (Partner 1)</a></li>
+<li class="chapter" data-level="9.6.5" data-path="collaborating.html"><a href="collaborating.html#activity-5"><i class="fa fa-check"></i><b>9.6.5</b> Activity</a></li>
+<li class="chapter" data-level="9.6.6" data-path="collaborating.html"><a href="collaborating.html#how-do-you-avoid-merge-conflicts"><i class="fa fa-check"></i><b>9.6.6</b> How do you avoid merge conflicts?</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a></li>
-<li class="chapter" data-level="9.8" data-path="collaborating.html"><a href="collaborating.html#issues-for-project-management"><i class="fa fa-check"></i><b>9.8</b> Issues for project management</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="collaborating.html"><a href="collaborating.html#end-collaborating-session"><i class="fa fa-check"></i><b>9.8.1</b> END <strong>collaborating</strong> session!</a></li>
+<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="collaborating.html"><a href="collaborating.html#end-collaborating-session"><i class="fa fa-check"></i><b>9.7.1</b> END <strong>collaborating</strong> session!</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
@@ -411,6 +411,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The collaborative power of GitHub and RStudio is really game changing. So far we’ve been collaborating with our most important collaborator: ourselves. But, we are lucky that in science we have so many other collaborators, so let’s learn how to accelerate our collaborations with them through GitHub!</p>
 <p>We are going to teach you the simplest way to collaborate with someone, which is for both of you to have privileges to edit and add files to a repository. GitHub is built for software developer teams, and there is a lot of features that limit who can directly edit files, but we don’t need to start there.</p>
 <p>We will do this all with a partner, and we’ll walk through some things all together, and then give you a chance to work with your collaborator on your own.</p>
+<blockquote>
+<p><strong><em>ProTip</em></strong> Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.</p>
+</blockquote>
 <div id="objectives-6" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Objectives</h3>
 <ul>
@@ -555,41 +558,11 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <p><strong>Error:</strong> There’s a fatal error in your code that prevented it from being run through successfully. You need to fix it for the code to run.</p>
 <p><strong>Warning:</strong> Non-fatal errors (don’t stop the code from running, but this is a potential problem that you should know about).</p>
 <p><strong>Message:</strong> Here’s some helpful information about the code you just ran (you can hide these if you want to)</p>
-<p>The first thing to do with any error message is read it. Yes it’s in angry red text and it’s unexpected — but most error messages are doing their best to help you solve the problem. And you’ll get more familiar with they way they tell you. Here are a few examples:</p>
-<div id="if-rcant-find-a-function-that-you-know-exists" class="section level4">
-<h4><span class="header-section-number">9.4.1.1</span> If R…can’t find a function that you know exists:</h4>
-<p><strong>Symptom</strong>: <code>‘Error in _________: could not find function “_________”</code></p>
-<p><strong>Likely diagnoses:</strong></p>
-<ul>
-<li>The library containing the function you’re trying to use hasn’t been attached</li>
-<li>You’ve misspelled or mistyped the function name</li>
-</ul>
-<p><strong>Possible solutions:</strong></p>
-<ul>
-<li>Make sure you’ve attached the required package with library(package_name) - and remember this line should exist in your script before the code that uses a function from that package</li>
-<li>Make sure you’ve run the line of code that attaches the necessary package</li>
-<li>Check the function spelling/formatting very carefully</li>
-</ul>
-</div>
-<div id="if-rcant-find-an-object-e.g.an-object-or-variable-that-you-know-youve-stored" class="section level4">
-<h4><span class="header-section-number">9.4.1.2</span> If R…can’t find an object (e.g. an object or variable) that you know you’ve stored:</h4>
-<p><strong>Symptom:</strong> <code>‘Error in ____ : object ‘_____’ not found’</code></p>
-<p><strong>Likely diagnoses:</strong></p>
-<ul>
-<li>The object hasn’t been created or stored</li>
-<li>You’ve mistyped the object name</li>
-</ul>
-<p><strong>Possible solutions:</strong></p>
-<ul>
-<li>Make sure you’ve run the line(s) of code where you read-in or create the object</li>
-<li>Make sure you’ve spelled/typed the object name exactly as it exists in the Environment</li>
-<li>Use ls() to check which objects exist in your current workspace (and if it’s not there, then it hasn’t been created/stored yet)</li>
-</ul>
-</div>
 </div>
 <div id="googling" class="section level3">
 <h3><span class="header-section-number">9.4.2</span> Googling</h3>
-<p>Just as important as Googling your error message is being able to identify a useful result.</p>
+<p>Just as important as Googling your error message is being able to identify a useful result.
+Something I can’t emphasize enough: <strong>pay attention to filepaths</strong>. They tell you the source, they help you find pages again. Often remembering a few things about it will let you either google it again or navigate back there yourself.</p>
 <p><strong>Check the date, check the source, check the relevance.</strong> Is this a modern solution, or one from 2013? Do I trust the person responding? Is this about my question or on a different topic?</p>
 <p>You will see links from many places, particularly:</p>
 <ul>
@@ -599,6 +572,7 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <li>GitHub Issues</li>
 </ul>
 <p>We haven’t talked about GitHub Issues yet: let’s do an example.</p>
+<p>TODO: Google example</p>
 </div>
 <div id="create-a-reprex" class="section level3">
 <h3><span class="header-section-number">9.4.3</span> Create a reprex</h3>
@@ -611,11 +585,11 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <br></p>
 <p><img src="img/reprex-bryan.png" width="80%" /></p>
 <p><code>reprex</code> is part of the Tidyverse, so we all already have it installed, but we do need to attach it:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">library</span>(reprex)</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">library</span>(reprex)</a></code></pre></div>
 <p>First I’ll type into our RMarkdown script:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="kw">ggplot</span>(cars, <span class="kw">aes</span>(speed, dist)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;maroon&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="kw">ggplot</span>(cars, <span class="kw">aes</span>(speed, dist)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;maroon&quot;</span>)</a></code></pre></div>
 <p>And then when I also have this in my clipboard. Now I am going to paste it into an <a href="https://github.com/rstudio-conf-2020/r-for-excel/issues">Issue for our r-for-excel repository</a></p>
 <p>When I paste it:</p>
 <p><img src="img/reprex-ex-ggplot.png" width="100%" /></p>
@@ -635,17 +609,17 @@ Twitter: <a href="https://twitter.com/ropensci">ropensci</a><br />
 <p>Hint: remember to read the error message. “could not find function <code>%&gt;%</code>” means you’ve forgotten to attach a package with <code>library()</code></p>
 <div id="solution-no-peeking" class="section level4">
 <h4><span class="header-section-number">9.4.4.1</span> Solution (no peeking)</h4>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="co">## setup: run in Rmd or Console</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="kw">library</span>(reprex)</a>
-<a class="sourceLine" id="cb165-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="co">## reprex code: run in Rmd or Console</span></a>
-<a class="sourceLine" id="cb165-5" data-line-number="5"><span class="kw">library</span>(tidyverse) <span class="co"># or library(dplyr) or library(magrittr)</span></a>
-<a class="sourceLine" id="cb165-6" data-line-number="6">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Petal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">6.5</span>)</a>
-<a class="sourceLine" id="cb165-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb165-8" data-line-number="8"><span class="co">## copy the above</span></a>
-<a class="sourceLine" id="cb165-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb165-10" data-line-number="10"><span class="co">## reprex call: run in Console</span></a>
-<a class="sourceLine" id="cb165-11" data-line-number="11"><span class="kw">reprex</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="co">## setup: run in Rmd or Console</span></a>
+<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="kw">library</span>(reprex)</a>
+<a class="sourceLine" id="cb160-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb160-4" data-line-number="4"><span class="co">## reprex code: run in Rmd or Console</span></a>
+<a class="sourceLine" id="cb160-5" data-line-number="5"><span class="kw">library</span>(tidyverse) <span class="co"># or library(dplyr) or library(magrittr)</span></a>
+<a class="sourceLine" id="cb160-6" data-line-number="6">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Petal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">6.5</span>)</a>
+<a class="sourceLine" id="cb160-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb160-8" data-line-number="8"><span class="co">## copy the above</span></a>
+<a class="sourceLine" id="cb160-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb160-10" data-line-number="10"><span class="co">## reprex call: run in Console</span></a>
+<a class="sourceLine" id="cb160-11" data-line-number="11"><span class="kw">reprex</span>()</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -724,43 +698,72 @@ Opening this Project in a new Session opens up a new world of awesomeness from R
 <div id="merge-conflicts" class="section level2">
 <h2><span class="header-section-number">9.6</span> Merge conflicts</h2>
 <p>TODO: clarify that first when you pull it’s because unstaged.</p>
-<p>What kind of heartache are we talking about? Let’s explore. <strong>Stop and watch me create and solve a merge conflict with my Partner 2, and then you will have time to recreate this with your partner.</strong> Here’s what I am going to do:</p>
-<p>Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other – that’s it’s job! It’s when you have collaborators working on <em>the same lines within the same file</em> that you can have <strong>merge conflicts</strong>. Merge conflicts can be frustrating, but they are actually trying to help you (kind of like R’s error messages). They occur when GitHub can’t make a decision about what should be on a particular line and needs a human (you) to decide. And this is good – you don’t want GitHub to decide for you, it’s important that you make that decision.</p>
-<p>So let’s test this. Let’s have both Partners 1 and 2 go to RStudio and pull so you have the most recent versions of all your files. Now, Partners 1 and 2, both go to the README, and on Line 7, write something, anything. I’m not going to give any examples because I want both Partners to write something different. And be sure to save the README.</p>
-<p>OK. Now, let’s have Partner 2 sync: pull, stage, commit, push. Great.</p>
-<p>Now, when Partner 2 is done, let’s have Partner 1 (me) try.</p>
-<p>Partner 1: pull —- Error! Merge conflict!</p>
-<p><img src="img/github_mergeconflict.png" /></p>
-<p>So Partner 1 is not allowed to pull, it failed. GitHub is protecting Partner 1 because if they did successfully pull, their work would be overwritten by whatever Partner 2 had written. So GitHub is going to make a human (Partner 1 in this case) decide. GitHub says, either commit this work first, or “stash it” (I interpret that as saving a copy of the README in another folder somewhere outside of this GitHub repository).</p>
-<p>Let’s follow their advice and have Partner 1 commit. Great. Now let’s pull again.</p>
-<p>Still not happy!</p>
-<p><img src="img/github_mergeconflict2.png" /></p>
+<p>What kind of heartache are we talking about? Merge conflicts.</p>
+<p>Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other – that’s it’s job!</p>
+<p>It’s when you have collaborators working on <em>the same lines within the same file</em> that you can have <strong>merge conflicts</strong>. This is when there is a conflict within the same line so that GitHub can’t merge automatically. They need a human to help decide what information to keep (which is good because you don’t want GitHub to decide for you). Merge conflicts can be frustrating, but like R’s error messages, they are actually trying to help you.</p>
+<p>So let’s experience this together: we will create and solve a merge conflict. <strong>Stop and watch me demo how to create and solve a merge conflict with my Partner 2, and then you will do the same with your partner.</strong> Here’s what I am going to do:</p>
+<div id="pull-partners-1-and-2" class="section level3">
+<h3><span class="header-section-number">9.6.1</span> Pull (Partners 1 and 2)</h3>
+<p>Both partners go to RStudio and pull so you have the most recent versions of all your files.</p>
+</div>
+<div id="create-a-conflict-partners-1-and-2" class="section level3">
+<h3><span class="header-section-number">9.6.2</span> Create a conflict (Partners 1 and 2)</h3>
+<p>Now, Partners 1 and 2, both go to the README.md, and on Line 7, write something, anything. Save the README.</p>
+<p>I’m not going to give any examples because when you do this I want to be sure that both Partners to write something different. Save the README.</p>
+</div>
+<div id="sync-partner-2" class="section level3">
+<h3><span class="header-section-number">9.6.3</span> Sync (Partner 2)</h3>
+<p>OK. Now, let’s have Partner 2 sync: pull, stage, commit, push. Just like normal.</p>
+<p>Great.</p>
+</div>
+<div id="sync-attempts-fixes-partner-1" class="section level3">
+<h3><span class="header-section-number">9.6.4</span> Sync attempts &amp; fixes (Partner 1)</h3>
+<p>Now, let’s have Partner 1 (me) try.</p>
+<p>When I try to Pull, I get the first error we will see today: “Your local changes to README.md would be overwritten by merge”. GitHub is telling me that it knows I’ve modified my README, but since I haven’t staged and committed them, it can’t do its job and merge my conflicts with whatever is different about the version from GitHub.com.</p>
+<p>This is good: the alternative would be GitHub deciding which one to keep and it’s better that we have that kind of control and decision making.</p>
 <p><br></p>
-<p>OK, actually, we’re just moving along this same problem that we know that we’ve created: Both Partner 1 and 2 have both added new information to the same line. You can see that the pop-up box is saying that there is a CONFLICT and the merge has not happened. OK. We can close that window and inspect.</p>
-<p>Notice that in the git tab, there are orange <code>U</code>s; this means that there is an unresolved conflict, and it is not staged with a check anymore because modifications have occurred to the file since it has been staged.</p>
-<p>Let’s look at the README file itself. We got a preview in the diff pane that there is some new text going on in our README file:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</a>
-<a class="sourceLine" id="cb166-2" data-line-number="2">Julie is collaborating on this README.</a>
-<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="op">==</span><span class="er">=====</span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4"><span class="er">**</span>Jamie is adding lines here.<span class="op">**</span></a>
-<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>05a189b23372f0bdb5b42630f8cb318003cee19b</a></code></pre></div>
-<p>In this example, Partner 1 is Jamie and Partner 2 is Julie. GitHub is displaying the line that Julie wrote and the line Jamie wrote separated by <code>=======</code>. So these are the two choices that Partner 2 has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;long commit identifier</code>.</p>
-<p>So, to resolve this merge conflict, Partner 2 has to chose, and delete everything except the line they want. So, they will delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code>, <code>=====</code>, <code>&gt;&gt;&gt;&gt;long commit identifier</code> and one of the lines that they don’t want to keep.</p>
-<p>Do that, and let’s try again. In this example, we’ve kept Jamie’s line:</p>
-<p><img src="img/github_mergeconflict3.png" /></p>
+<p><img src="img/github_mergeconflict.png" width="80%" /></p>
 <p><br></p>
-<p>Then be sure to stage, and write a commit message. I often write “resolving merge conflict” or something so I know what I was up to. When I stage the file, notice how now my edits look like a simple line replacement (compare with the image above before it was re-staged):</p>
-<p><img src="img/github_mergeconflict4.png" /></p>
-<div id="your-turn" class="section level3">
-<h3><span class="header-section-number">9.6.1</span> Your turn</h3>
-<p>Create a merge conflict with your partner, like we did in the example above. And try other ways to get and solve merge conflicts. For example, when you get the following error message, try both ways (commit or stash. Stash means copy/move it somewhere else, for example, on your Desktop temporarily).</p>
-<p><img src="img/github_mergeconflict.png" /></p>
+<p>GitHub provides some guidance: either commit this work first, or “stash it”, which you can interpret that as moving the README temporarily to another folder somewhere outside of this GitHub repository so that you can successfully pull and then decide your next steps.</p>
+<p>Let’s follow their advice and have Partner 1 commit. Great. Now let’s try pulling again.</p>
+<p>New error: “Merge conflict in README…fix conflicts and then commit the result”.</p>
+<p>So this error is different from the previous: GitHub knows what has changed line-by-line in my file here, and it knows what has changed line-by-line in the version on GitHub.com. And it knows there is a conflict between them. So it’s asking me to now compare these changes, choose a preference, and commit.</p>
+<p><strong>Note:</strong> if Partner 2 and I were not intentionally in this demo editing exactly the same lines, GitHub likely could have done its job and merged this file successfully after our first error fix above.</p>
+<p><br></p>
+<p><img src="img/github_mergeconflict2.png" width="80%" /></p>
+<p><br></p>
+<p>We will again follow GitHub’s advice to fix the conflicts. Let’s close this window and inspect.
+Did you notice two other things that happened along with this message?</p>
+<p>First&lt; in the Git tab, next to the README listing there are orange <code>U</code>s; this means that there is an unresolved conflict. It means my file is not staged with a check anymore because modifications have occurred to the file since it has been staged.</p>
+<p>Second, the README file itself changed; there is new text and symbols. (We got a preview in the diff pane also).</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="op">&lt;</span><span class="er">&lt;&lt;&lt;&lt;&lt;&lt;</span><span class="st"> </span>HEAD</a>
+<a class="sourceLine" id="cb161-2" data-line-number="2">Julie is collaborating on this README.</a>
+<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="op">==</span><span class="er">=====</span></a>
+<a class="sourceLine" id="cb161-4" data-line-number="4"><span class="er">**</span>Allison is adding text here.<span class="op">**</span></a>
+<a class="sourceLine" id="cb161-5" data-line-number="5"><span class="er">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span><span class="st"> </span>05a189b23372f0bdb5b42630f8cb318003cee19b</a></code></pre></div>
+<p>In this example, Partner 1 is Julie and Partner 2 is Allison. GitHub is displaying the line that Julie wrote and the line Allison. wrote separated by <code>=======</code>. These are the two choices that I (Partner 1) has to decide between, which one do you want to keep? Where where does this decision start and end? The lines are bounded by <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;long commit identifier</code>.</p>
+<p>So, to resolve this merge conflict, Partner 1 has to chose which one to keep. And I tell GitHub my choice by deleting everything in this bundle of tex except the line they want. So, Partner 1 will delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;HEAD</code>, <code>=====</code>, <code>&gt;&gt;&gt;&gt;long commit identifier</code> and either Julie or Allison’s line that I don’t want to keep.</p>
+<p>I’ll do this, and then commit again. In this example, we’ve kept Allison’s line:</p>
+<p><br></p>
+<p><img src="img/github_mergeconflict3.png" width="80%" /></p>
+<p><br></p>
+<p>Then I’ll stage, and write a commit message. I often write “resolving merge conflict” or something similar. When I stage the file, notice how now my edits look like a simple line replacement (compare with the image above before it was re-staged):</p>
+<p><br></p>
+<p><img src="img/github_mergeconflict4.png" width="80%" /></p>
+<p><br></p>
+<p>And we’re done! We can inspect on GitHub.com that I am the most recent contributor to this repository. And if we look in the commit history we will see both Allison and my original commits, along with our merge conflict fix.</p>
+</div>
+<div id="activity-5" class="section level3">
+<h3><span class="header-section-number">9.6.5</span> Activity</h3>
+<p>Create a merge conflict with your partner, following the steps that we just did in the demo above. Practice different approaches to solving errors: for example, try stashing instead of committing.</p>
 </div>
 <div id="how-do-you-avoid-merge-conflicts" class="section level3">
-<h3><span class="header-section-number">9.6.2</span> How do you avoid merge conflicts?</h3>
-<p>I’d say pull often, commit and sync often.</p>
-<p>Also, talk with your collaborators. Although our Ocean Health Index project is highly collaborative, we are actually rarely working on the exact same file at any given time. And if we are, we are also on Slack, Gchat, or sitting next to the person.</p>
-<p>But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. So protect yourself by pulling and syncing often!</p>
+<h3><span class="header-section-number">9.6.6</span> How do you avoid merge conflicts?</h3>
+<p>Merge conflicts can occur when you collaborate with others — I find most often it is collaborating with ME from a different computer. They will happen, but you can minimize them by getting into good habits.</p>
+<p>To minimize merge conflicts, pull often so that you are aware of anything that is different, and deal with it early. Similarly, commit and push often so that your contributions do not become too unweildly for yourself or others later on.</p>
+<p>Also, talk with your collaborators. Are they working on the exact same file right now that you need to be? If so, coordinate with them (in person, GChat, Slack, email). For example: “I’m working on X part and will push my changes before my meeting — then you can work on it and I’ll pull when I’m back”. Also, if you find yourself always working on the exact same file, you could consider breaking it into different files to minimize problems.</p>
+<p>But merge conflicts will occur and some of them will be heartbreaking and demoralizing. They happen to me when I collaborate with myself between my work computer and laptop. We demoed small conflicts with just one file, but they can occur across many files, particularly when your code is generating figures, scripts, or HTML files. Sometimes the best approach is the <a href="https://happygitwithr.com/burn.html">burn it all down method</a>, where you delete your local copy of the repo and re-clone.</p>
+<p>Protect yourself by pulling and syncing often!</p>
 </div>
 </div>
 <div id="create-your-collaborative-website" class="section level2">
@@ -773,51 +776,68 @@ Opening this Project in a new Session opens up a new world of awesomeness from R
 <li>Knit</li>
 <li>Save and sync your .Rmd and your .html files
 <ul>
-<li>(pull, stage, commit, pull, push)</li>
+<li>(pull, stage, commit, push)</li>
 </ul></li>
-<li>Go to GitHub.com and go to your rendered website! Where is it? Figure out your website’s url from your github repo’s url. For example:
+<li>Go to GitHub.com and go to your rendered website! Where is it? Figure out your website’s url from your github repo’s url — pay attention to urls. For example:
 <ul>
-<li>my github repo: <a href="https://github.com/jules32/r-collab" class="uri">https://github.com/jules32/r-collab</a></li>
-<li>my website url: <a href="https://jules32.github.io/r-collab/" class="uri">https://jules32.github.io/r-collab/</a></li>
+<li>my github repo: <a href="https://github.com/jules32/r-collab/julie_fisheries" class="uri">https://github.com/jules32/r-collab/julie_fisheries</a></li>
+<li>my website url: <a href="https://jules32.github.io/r-collab/julie_fisheries" class="uri">https://jules32.github.io/r-collab/julie_fisheries</a></li>
 <li>note that the url starts with my <strong>username.github.io</strong></li>
 </ul></li>
 </ol>
-<p>So cool! On websites, if something is called <code>index.html</code>, that defaults to the home page. So <a href="https://jules32.github.io/r-collab/" class="uri">https://jules32.github.io/r-collab/</a> is the same as <a href="https://jules32.github.io/r-collab/index.html" class="uri">https://jules32.github.io/r-collab/index.html</a>. If you name your RMarkdown file <code>my_research.Rmd</code>, the url will become <a href="https://jules32.github.io/r-collab/my_research.html" class="uri">https://jules32.github.io/r-collab/my_research.html</a>.</p>
+<p>So cool!</p>
 <blockquote>
-<p><strong><em>ProTip</em></strong> Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.</p>
+<p><strong>Aside</strong>: you and your partner have created individual webpages here, but they do not talk to each other (i.e. you can’t navigate between them or even know that one exists from the other). We will not organize these pages into a website today, but you can practice this on your own with this hour-long tutorial: <a href="https://jules32.github.io/rmarkdown-website-tutorial/">Making free websites with RStudio’s R Markdown</a>.</p>
 </blockquote>
-<div id="troubleshooting-1" class="section level4">
-<h4><span class="header-section-number">9.7.0.1</span> Troubleshooting:</h4>
+<blockquote>
+<p><strong>Aside:</strong> On websites, if something is called <code>index.html</code>, that defaults to the home page. So <a href="https://jules32.github.io/r-collab/" class="uri">https://jules32.github.io/r-collab/</a> is the same as <a href="https://jules32.github.io/r-collab/index.html" class="uri">https://jules32.github.io/r-collab/index.html</a>.</p>
+</blockquote>
+<div id="troubleshooting-2" class="section level4">
+<h4><span class="header-section-number">9.7.0.1</span> Troubleshooting</h4>
 <ul>
 <li>404 error? Remove trailing / from the url</li>
 <li>Wants you to download? Remove trailing .Rmd from the url</li>
 </ul>
-</div>
-</div>
-<div id="issues-for-project-management" class="section level2">
-<h2><span class="header-section-number">9.8</span> Issues for project management</h2>
-<p>TODO:
-<a href="https://docs.google.com/presentation/d/1JGFnZqz01Ex8h2qO3OBUHc1OiTFkAqV2ED2XFiMdN4I/edit#slide=id.g508ea9b321_0_58">openscapes gh for project mgmt</a></p>
-<p>How to use Issues chapter: <a href="https://openscapes.github.io/series/github-issues" class="uri">https://openscapes.github.io/series/github-issues</a></p>
-<p>Now let’s have another look at issues. In addition to asking for help, Issues are a great tool for project management: they are a way to communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.</p>
-<p><img src="img/github-issues.png" /></p>
-<p>Let’s create a new issue with the title “Fisheries analysis”.</p>
-<p>In the text box, let’s write a note to our collaborator. You can use Markdown in this text box, which means all of your header and bullet formatting will come through. You can also select these options by clicking them just above the text box.</p>
-<p>Let’s have one of you write something here. I’m going to write:</p>
-<pre><code>Hi @allison_horst! 
+<!---
+## Issues for project management
+
+TODO: 
+[openscapes gh for project mgmt](https://docs.google.com/presentation/d/1JGFnZqz01Ex8h2qO3OBUHc1OiTFkAqV2ED2XFiMdN4I/edit#slide=id.g508ea9b321_0_58)
+
+How to use Issues chapter: https://openscapes.github.io/series/github-issues
+
+Now let's have another look at issues. In addition to asking for help, Issues are a great tool for project management: they are a way to communicate to others about plans for the repo, questions, etc. Note that issues are public if the repository is public.
+
+
+Let's create a new issue with the title "Fisheries analysis". 
+
+In the text box, let's write a note to our collaborator. You can use Markdown in this text box, which means all of your header and bullet formatting will come through. You can also select these options by clicking them just above the text box. 
+
+Let's have one of you write something here. I'm going to write: 
+
+```
+Hi @allison_horst! 
 
 # first priority
 
 - import fisheries data
-- plot interesting things</code></pre>
-<p>Note that I have my collaborator’s GitHub name with a <code>@</code> symbol. This is going to email her directly so that she sees this issue. I can click the “Preview” button at the top left of the text box to see how this will look rendered in Markdown. It looks good!</p>
-<p>Now let’s click submit new issue.</p>
-<p>On the right side, there are a bunch of options for categorizing and organizing your issues. You and your collaborator may want to make some labels and timelines, depending on the project.</p>
-<p>Another feature about issues is whether you want any notifications to this repository. Click where it says “Unwatch” up at the top. You’ll see three options: “Not watching”, “Watching”, and “Ignoring”. By default, you are watching these issues because you are a collaborator to the repository. But if you stop being a big contributor to this project, you may want to switch to “Not watching”. Or, you may want to ask an outside person to watch the issues. Or you may want to watch another repo yourself!</p>
-<p><img src="img/github-collab.png" /></p>
-<p>Let’s have Person 2 respond to the issue affirming the plan.</p>
+- plot interesting things
+```
+
+Note that I have my collaborator's GitHub name with a `@` symbol. This is going to email her directly so that she sees this issue. I can click the "Preview" button at the top left of the text box to see how this will look rendered in Markdown. It looks good! 
+
+Now let's click submit new issue. 
+
+On the right side, there are a bunch of options for categorizing and organizing your issues. You and your collaborator may want to make some labels and timelines, depending on the project. 
+
+Another feature about issues is whether you want any notifications to this repository. Click where it says "Unwatch" up at the top. You'll see three options: "Not watching", "Watching", and "Ignoring". By default, you are watching these issues because you are a collaborator to the repository. But if you stop being a big contributor to this project, you may want to switch to "Not watching". Or, you may want to ask an outside person to watch the issues. Or you may want to watch another repo yourself!
+
+Let's have Person 2 respond to the issue affirming the plan.
+
+--->
+</div>
 <div id="end-collaborating-session" class="section level3">
-<h3><span class="header-section-number">9.8.1</span> END <strong>collaborating</strong> session!</h3>
+<h3><span class="header-section-number">9.7.1</span> END <strong>collaborating</strong> session!</h3>
 
 <table>
 <tbody>
@@ -834,7 +854,7 @@ Opening this Project in a new Session opens up a new world of awesomeness from R
           </div>
         </div>
       </div>
-<a href="vlookup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="filters.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="synthesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

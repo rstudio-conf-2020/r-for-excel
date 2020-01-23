@@ -26,11 +26,6 @@ Here's what we'll do, since we've already set up git on your computers in the pr
 1. project-oriented workflows
 1. project-oriented workflows in action
 
-git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together. 
-
-It also helped me to think of GitHub like Dropbox: you make folders that are 'tracked' and can be synced to the cloud. GitHub does this too, but you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others' work.
-
-
 ## Resources
 
 These materials borrow from: 

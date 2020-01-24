@@ -46,7 +46,7 @@ Then create a new code chunk to read in three files from your 'data' subfolder:
 
 - inverts.xlsx
 - fish.csv
-- kelp.xlsx (just read in the "abur" worksheet by adding argument `sheet = "abur"` to `read_excel()`)
+- kelp_fronds.xlsx (just read in the "abur" worksheet by adding argument `sheet = "abur"` to `read_excel()`)
 
 ```{r, message = FALSE}
 # Read in data: 
@@ -56,7 +56,7 @@ kelp_abur <- read_excel(here("data", "kelp_fronds.xlsx"), sheet = "abur")
 ```
 
 We should always explore the data we've read in using functions. Use `View()`, `names()`, `summary()`, `head()` and `tail()` to check them out. 
-Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
+Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function or filter tool.
 
 ## `dplyr::filter()` to conditionally subset by rows
 
@@ -267,7 +267,7 @@ fish_kelp_16_17 <- fish_16_17 %>%
   left_join(kelp_abur, by = c("year","site"))
 ```
 
-Notice when you look at `fish_kelp_16_17`, the 2018 data that **does** exist in `kelp_abur` does **not** get joined to the `fish_16_17` data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
+Notice when you look at **fish_kelp_16_17**, the 2018 data that **does** exist in kelp_abur does **not** get joined to the **fish_16_17** data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
 
 ### `inner_join()` to merge data frames, only keeping observations with a match in **both**
 
@@ -287,7 +287,7 @@ Here, we see that only observations (rows) where there is a match for *year* and
 
 Now let's combine what we've learned about piping, filtering and joining!
 
-Let's complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called `my_fish_join`:
+Let's complete the following as part of a single sequence (remember, check to see what you've produced after each step) to create a new data frame called **my_fish_join**:
 
 - Start with **fish** data frame
 - Filter **fish** to only including observations for 2017 at Arroyo Burro

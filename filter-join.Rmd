@@ -52,7 +52,7 @@ Then create a new code chunk to read in three files from your 'data' subfolder:
 # Read in data: 
 inverts <- read_excel(here("data", "inverts.xlsx"))
 fish <- read_csv(here("data", "fish.csv"))
-kelp_abur <- read_excel(here("data", "kelp.xlsx"), sheet = "abur")
+kelp_abur <- read_excel(here("data", "kelp_fronds.xlsx"), sheet = "abur")
 ```
 
 We should always explore the data we've read in using functions. Use `View()`, `names()`, `summary()`, `head()` and `tail()` to check them out. 
@@ -250,17 +250,9 @@ abur_kelp_fish <- fish_16_17 %>%
   full_join(kelp_abur, by = c("year", "site")) 
 ```
 
-Explore the data frame. Is that what we want? Probably not...we might want to update our year format in kelp_abur to a 4-digit year instead. Let's do that by adding 20 to the existing values, then trying again! 
-
-```{r}
-kelp_abur_new <- kelp_abur %>% 
-  mutate(year = year + 2000)
-```
-
-
 Let's look at the merged data frame with `View(abur_kelp_fish)`. A few things to notice about how `full_join()` has worked: 
 
-1. All columns that existed in **both data frames** still exist.
+1. All columns that existed in **both data frames** still exist
 2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have 'year == 2018' in it.
 3. The kelp frond data is joined to *all observations* where the joining variables (*year*, *site*) are a match, which is why it is repeated 5 times for each year (once for each fish species).
 
@@ -272,7 +264,7 @@ Now, we want to keep all observations in *fish_16_17*, and merge them with *kelp
 
 ```{r}
 fish_kelp_16_17 <- fish_16_17 %>% 
-  left_join(kelp_abur)
+  left_join(kelp_abur, by = c("year","site"))
 ```
 
 Notice when you look at `fish_kelp_16_17`, the 2018 data that **does** exist in `kelp_abur` does **not** get joined to the `fish_16_17` data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
@@ -284,14 +276,14 @@ Use `inner_join()` if you **only** want to retain observations that have matches
 For example, if we use `inner_join()` to merge fish and kelp_abur, then we are asking R to **only return observations where the joining variables (*year* and *site*) have matches in both data frames.** Let's see what the outcome is: 
 ```{r}
 kelp_fish_injoin <- fish %>% 
-  inner_join(kelp_abur)
+  inner_join(kelp_abur, by = c("year", "site"))
 
 # kelp_fish_injoin
 ```
 
 Here, we see that only observations (rows) where there is a match for *year* and *site* in both data frames are returned.
 
-### Using `filter()` and `join()` in a sequence  
+### `filter()` and `join()` in a sequence  
 
 Now let's combine what we've learned about piping, filtering and joining!
 
@@ -328,7 +320,8 @@ Simple, but quick to get a clear & useful table! Now let's spruce it up a bit wi
 ```{r, eval=FALSE}
 kelp_abur %>% 
   kable() %>% 
-  kable_styling(bootstrap_options = "striped", full_width = FALSE)
+  kable_styling(bootstrap_options = "striped", 
+                full_width = FALSE)
 ```
 
 ...with many other options for customizing HTML tables! Make sure to check out ["Create awesome HTML tables with knitr::kable() and kableExtra" by Hao Zhu](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) for more examples and options.

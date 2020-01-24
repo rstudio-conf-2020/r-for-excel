@@ -67,6 +67,7 @@ library(tidyverse)
 library(readxl)
 library(here)
 library(skimr) # install.packages('skimr')
+library(kableExtra) # install.packages('kableExtra')
 ```
 
 We used the `read_excel()` before, which is the generic function that reads both .xls and .xlsx files. Since we know that this is a .xlsx file, we will demo using the `read_xlsx()` function. 
@@ -319,7 +320,19 @@ siteyear_summary <- lobsters %>%
 siteyear_summary 
 ```
 
-### R code in-line RMarkdown
+### Table formatting with `kable()`
+
+There are several options for formatting tables in RMarkdown; we'll show one here from the `kableExtra` package and learn more about it tomorrow. 
+
+It works nicely with the pipe operator, so we can build do this from our new object:
+
+```{r, eval=FALSE}
+## make a table with our new variable
+siteyear_summary %>%
+  kable()
+```
+
+### R code in-line in RMarkdown
 
 Before we let you try this on your own, let's go outside of our code chunk and write in Markdown. 
 

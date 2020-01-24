@@ -23,6 +23,8 @@ This course is for Excel users who want to add or integrate R and RStudio into t
 **Short URL for this book**:   <https://rstd.io/conf20-r-excel>  
 **GitHub repo for this book**: <https://github.com/rstudio-conf-2020/r-for-excel>
 
+---
+
 **About us**
 
 We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara, USA. 

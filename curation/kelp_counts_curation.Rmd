@@ -28,8 +28,7 @@ data_raw <- read_csv("annual_kelp_all_years.csv")
 ## clean!
 data_clean <- data_raw %>% 
   janitor::clean_names() %>% 
-  purrr::map(tolower) %>% 
-  as.data.frame()
+  mutate(site = str_to_lower(site), sp_code = str_to_lower(sp_code))
 
 
 # filter as we do
@@ -72,6 +71,6 @@ names(kelp_split) <- tolower(unique(site_names$site))
 
 # Write to an Excel file: 
 write_xlsx(kelp_split, here("curation", "kelp_counts_curated.xlsx"))
-write_xlsx(kelp_split, here("data", "kelp.xlsx"))
+write_xlsx(kelp_split, here("data", "kelp_fronds.xlsx"))
 ```
 

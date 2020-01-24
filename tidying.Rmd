@@ -6,15 +6,17 @@ In previous sessions, we learned to read in data, do some wrangling, and create 
 
 Here, we'll continue by *reshaping* data frames (converting from long-to-wide, or wide-to-long format), *separating* and *uniting* variable (column) contents, finding and replacing string patterns, and isolating numbers from number-character combinations.
 
+### Tidy data
+
+"Tidy" might sound like a generic way to describe non-messy looking data, but it is actually a specific data structure 
+
 ## Objectives
 
 - Reshape data frames with `tidyr::pivot_wider()` and `tidyr::pivot_longer()`
 - Convert column names with `janitor::clean_names()`
 - Combine or separate information from columns with `tidyr::unite()` and `tidyr::separate()`
-- Detect a string with `stringr::str_detect()`
 - Replace a string with `stringr::str_replace()`
-- Isolate numbers with `readr::parse_number()`
-- Use our new skills as part of a bigger wrangling sequence
+- Make an HTML table
 
 ## Resources
 
@@ -36,16 +38,7 @@ Within your day 2 R Project, create a new .Rmd. Attach the following packages (u
 
 Knit and save your new .Rmd within the project folder. 
 
-```{r, include = FALSE}
-# Attach packages
-library(tidyverse)
-library(janitor)
-library(here)
-library(readxl)
-library(kableExtra)
-```
-
-```{r, eval = FALSE}
+```{r, message = FALSE, warning = FALSE}
 # Attach packages
 library(tidyverse)
 library(janitor)
@@ -84,12 +77,13 @@ Schematically, converting from wide to long format looks like this:
 
 We'll use `tidyr::pivot_longer()` to gather data from all years in *inverts* (columns `2016`, `2017`, and `2018`) into two columns: 
 
-- one called *year*, which contains the year (as a number)
+- one called *year*, which contains the year
 - one called *sp_count* containing the number of each species observed. 
 
 The new data frame will be stored as *inverts_long*:
 
 ```{r}
+# Note: Either single-quotes, double-quotes, OR backticks around years work!
 
 inverts_long <- pivot_longer(data = inverts, 
                                     cols = '2016':'2018',
@@ -154,12 +148,12 @@ We can see that now each *species* has its own column (wider format). But also n
 
 ## Clean up column names with `janitor::clean_names()`
 
-The `janitor` package by Sam Firke is a brilliant collection of functions for some quick data cleaning. We recommend that you explore the different functions it contains. Like:
+The `janitor` package by Sam Firke is a great collection of functions for some quick data cleaning, like:
 
 - `janitor::clean_names()`: update column headers to a case of your choosing
 - `janitor::get_dupes()`: see all rows that are duplicates within variables you choose
 - `janitor::remove_empty()`: remove empty rows and/or columns
-- `janitor::adorn_*()`: jazz up frequency tables of counts (we'll return to this for a table example in TODO: Session 8)
+- `janitor::adorn_*()`: jazz up tables 
 
 Here, we'll use `janitor::clean_names()` to convert all of our column headers to a more convenient case - the default is **lower_snake_case**, which means all spaces and symbols are replaced with an underscore (or a word describing the symbol), all characters are lowercase, and a few other nice adjustments. 
 
@@ -245,7 +239,11 @@ inverts_unite <- inverts_wide %>%
 head(inverts_unite)
 ```
 
+#### Activity: 
+
 Try updating the separator from "_" to "_hello!_" to see what the outcome column contains.
+
+*Additional examples*: 
 
 `tidyr::unite()` can also combine information from *more* than two columns. For example, to combine the *site*, *common_name* and *year* columns from *inverts_long*, we could use:
 
@@ -278,8 +276,8 @@ Let's start again with *inverts_unite*, where we have combined the *site* and *y
 
 ```{r}
 
-inverts_sep <- inverts_triple_unite %>% 
-  tidyr::separate(year_site_name, into = c("my_year", "my_site_name"))
+inverts_sep <- inverts_unite %>% 
+  tidyr::separate(site_year, into = c("my_site", "my_year"))
 
 ```
 
@@ -289,44 +287,7 @@ What is that warning `Expected 2 pieces...` telling us? If we take a look at the
 head(inverts_sep)
 ```
 
-That's problematic. How can we make sure we're keeping as many different elements as exist in the united column? 
-
-We have a couple of options: 
-
-1. Create the *number* of columns that are needed to retain as many elements as exist (in this case, 3, but we only created two new columns in the example above)
-
-```{r}
-inverts_sep3 <- inverts_triple_unite %>% 
-  tidyr::separate(year_site_name, into = c("the_year", "the_site", "the_name"))
-```
-
-Another warning. What is that about? Let's take a look at the resulting data frame and think about what's missing (what are the "pieces discarded"?):
-
-```{r}
-head(inverts_sep3)
-```
-
-
-Aha! Only the *first word* of the common name was retained, and anything else was trashed. We want to keep everything after the second dash in the new *the_name* column. 
-
-That's because the **default is `extra = "warn"`**, which means that if you have more pieces than columns you're separating into, it will populate the columns that have been allotted (in our case, just 3) then drop any additional information, giving you a warning that pieces have been dropped.
-
-To keep the extra pieces that have been dropped, add the `extra = "merge"` argument within `tidyr::separate()` to override:
-
-```{r}
-inverts_sep_all <- inverts_triple_unite %>% 
-  separate(year_site_name, 
-           into = c("sample_year", "location", "sp_name"), 
-           extra = "merge")
-```
-
-No warning there about things being discarded. Explore *inverts_sep_all*:
-
-```{r, echo = FALSE}
-inverts_sep_all
-```
-
-We see that the resulting data frame has split *year_site_name* into three separate columns, *sample_year*, *location*, and *sp_name*, but now everything after the second break ("-") remains together in *sp_name* instead of dropping pieces following the third word. 
+We see that the resulting data frame has split *site_year* into two separate columns, *sample_year*, *location*, and *sp_name*, but now everything after the second break ("-") remains together in *sp_name* instead of dropping pieces following the third word. 
 
 ## Get just the numbers with `readr::parse_number()`
 

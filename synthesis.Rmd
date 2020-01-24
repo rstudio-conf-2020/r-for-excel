@@ -6,7 +6,7 @@ always_allow_html: true
 
 ## Summary
 
-In this session, we'll pull together the skills that we've learned so far. Working in our existing collaborative project/repo from the previous session (`r-collab`), we'll wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then add something new to our collaborator's document. And we'll learn a few new things along the way! 
+In this session, we'll pull together many of the skills that we've learned so far. Working in our existing `yourname_fisheries.Rmd` file within your collaborative project/repo from the previous session (`r-collab`), we'll wrangle and visualize data from spreadsheets in R Markdown, communicate between RStudio (locally) and GitHub (remotely) to keep our updates safe, then add something new to our collaborator's document. And we'll learn a few new things along the way! 
 
 **Data used in the synthesis section:**
 File name: noaa_fisheries.csv
@@ -20,7 +20,7 @@ Source: Fisheries Statistics Division of the NOAA Fisheries
 
 - Synthesize data wrangling and visualization skills learned so far
 - Add a few new tools for data cleaning from `stringr`
-- Add an image to your collaborator's .Rmd
+- Work collaboratively in an R Markdown file
 - Publish your collaborative work as a webpage
 
 ## Resources
@@ -40,8 +40,9 @@ library(kableExtra)
 
 ```
 
+Open the noaa_landings.csv file in Excel. Note that cells we want to be stored as `NA` actually have the words "no data" - but we can include an additional argument in `read_csv()` to specify what we want to replace with `NA`.
 
-Read in the noaa_landings.csv data as object **us_landings**. Note that cells we want to be stored as `NA` actually have the words "no data" - but we can include an additional argument in `read_csv()` to specify what we want to replace with `NA`.
+Read in the noaa_landings.csv data as object **us_landings**, adding argument `na = "no data"` to automatically reassign any "no data" entries to `NA` during import: 
 
 ```{r, message = FALSE}
 us_landings <- read_csv(here("data","noaa_landings.csv"),
@@ -57,55 +58,59 @@ head(us_landings)
 tail(us_landings)
 ```
 
-## Some data cleaning to get salmon landings
+## Some data cleaning to get salmon landings by species
 
-- Clean up column names (`clean_names()`)
+Now that we have our data in R, let's think about some ways that we might want to make it more coder- and analysis-friendly. 
+
+Brainstorm with your partner about ways you might clean the data up a bit. Things to consider:
+
+- Do you like typing in all caps?
+- Are the column names manageable?
+- Do we want symbols alongside values?
+
+If your answer to all three is "no," then we're on the same plane. Here we'll do some wrangling led by your recommendations for step-by-step cleaning. 
+
+Which of these would it make sense to do *first*, to make any subsequent steps easier for coding? We'll start with `janitor::clean_names()` to get all column names into lowercase_snake_case:
+```{r, eval = FALSE}
+salmon_clean <- us_landings %>% 
+  clean_names()
+```
+
+Continue building on that sequence to:
+
 - Convert everything to lower case with `mutate()` + (`str_to_lower()`)
 - Remove dollar signs in value column (`mutate()` + `parse_number()`)
-- Remove the "aggregate" grouping indicator in species (`mutate()` + a new function! `str_remove()`) %>% 
-- Keep only observations that include "salmon" (`filter()`)
-- Separate the grouped name ("salmon") from any additional refined information on species (`separate()`)
+- Keep only observations that include "salmon" (`filter()` + `str_detect()`)
+- Separate "salmon" from any additional refined information on species (`separate()`)
 
-We'll break this up into two pieces:
-
-1. A tidier version of the entire data frame
-2. A subset that only contains salmon information
-
-First: tidying the entire data frame
+The entire thing might look like this: 
 ```{r}
-landings_tidy <- us_landings %>% 
+salmon_clean <- us_landings %>% 
   clean_names() %>% # Make column headers snake_case
   mutate(
     state = str_to_lower(state),
     afs_name = str_to_lower(afs_name)
   ) %>% # Converts character columns to lowercase
-  mutate(dollars_num = parse_number(dollars_usd))
+  mutate(dollars_num = parse_number(dollars_usd)) %>% # Just keep numbers from $ column
+  filter(str_detect(afs_name, pattern = "salmon")) %>% # Only keep entries w/"salmon"
+  separate(afs_name, into = c("group", "subgroup"), sep = ", ") # Note comma-space
 ```
 
-Now, getting just the salmon:
-```{r}
-salmon_landings <- landings_tidy %>% 
-  mutate(afs_clean = str_remove(afs_name, pattern = "aggregate")) %>% 
-  filter(str_detect(afs_clean, pattern = "salmon")) %>% 
-  separate(afs_clean, into = c("group","species"), sep = ", ") 
+Explore **salmon_clean**.
 
-# Note that the separator is 'comma-SPACE', to remove the space here & avoid having names like " coho" later on (though you could do it later)
+## Find total US annual landings & dollar value for each salmon subgroup
 
-```
+Find the annual total US landings and dollar value (summing across all states) for each type of salmon using `group_by()` + `summarize()`. 
 
-Explore **salmon_landings**. 
-
-## Find grouped summary data
-
-Find the annual total US landings and dollar value (summing across all states) for each type of salmon using `group_by()` + `summarize()`:
+Ask: If we want to find **annual values** by **subgroup**, then what variables are we going to group by? 
 
 ```{r}
 
-salmon_summary <- salmon_landings %>% 
-  group_by(year, species) %>% 
+salmon_us_annual <- salmon_clean %>% 
+  group_by(year, subgroup) %>% 
   summarize(
-    tot_landings = sum(landings_pounds),
-    tot_value = sum(dollars_num)
+    tot_landings = sum(landings_pounds, na.rm = TRUE),
+    tot_value = sum(dollars_num, na.rm = TRUE)
   )
 
 ```
@@ -113,62 +118,27 @@ salmon_summary <- salmon_landings %>%
 ## Make a graph of US commercial fisheries value by species over time with `ggplot2`
 
 ```{r, warning = FALSE}
-salmon_landings_graph <- 
-  ggplot(salmon_summary, 
-         aes(x = year, y = tot_landings, group = species)) +
-  geom_line(aes(color = species)) +
+salmon_gg <- 
+  ggplot(salmon_us_annual, 
+         aes(x = year, y = tot_landings, group = subgroup)) +
+  geom_line(aes(color = subgroup)) +
   theme_bw() +
   labs(x = "year", y = "US commercial salmon landings (pounds)")
 
-salmon_landings_graph
+salmon_gg
 ```
 
-## Export your salmon value graph with `ggsave`
+## Optional: a nice HTML table!
 
-```{r, eval = FALSE}
-ggsave(plot = salmon_landings_graph, 
-       here("figures", "us_salmon_landings.png"),
-       height = 5, 
-       width = 8)
-```
+TODO: Let's make a subset of salmon_us_annual that only contains observations for the most recent year ()
 
-## `pivot_wider` to make a table with years as columns
+## Optional: use a different color palette
 
-Finally, we'll create a table with the most recent 5 years of data (2013 - 2017) as columns, and the species (only coho & sockeye) as rows. 
-
-Starting from `salmon_summary`, let's: 
-
-- Filter to only include years 2013 - 2017, for coho & sockeye salmon
-- Add a new column that is landings in *millions* of pounds (instead of pounds)
-- Round pounds to 2 digits
-- Remove the original *tot_landings* and *tot_value* columns
-- `pivot_wider()` to get years as columns
-- Finalize a nice data frame of landings for the two species
-- Publish as an HTML table with `kable()` and `kableExtra`
-
-### Wrangle to create our subset from salmon_data
-
-```{r}
-salmon_table <- salmon_summary %>% 
-  filter(year >= 2013, species %in% c("coho", "sockeye")) %>% 
-  mutate(tot_landings_mil = round(tot_landings / 1e6,2)) %>% 
-  select(-tot_value, -tot_landings) %>% 
-  pivot_wider(names_from = year, values_from = tot_landings_mil) %>% 
-  mutate(species = str_to_sentence(species)) %>% 
-  rename(`Salmon species` = species)
-```
-
-### Make our HTML table
-
-```{r, eval=FALSE}
-kable(salmon_table) %>% 
-  kable_styling(full_width = FALSE) %>% 
-  add_header_above(c(" " = 1, "US salmon landings (million pounds)" = 5))
-```
+TODO: `paletteer?`
 
 ## Sync with GitHub remote
 
-Stage, commit, (pull), and push your updates to GitHub for safe storage & sharing. Check to make sure that the changes have been stored. 
+Stage, commit, (pull), and push your updates to GitHub for safe storage & sharing. Check to make sure that the changes have been stored in your shared `r-collab` repo. 
 
 ## Add an image to your partner's document
 
@@ -177,13 +147,13 @@ Now, let's add an image to our **partner's** .Rmd.
 First: 
 
 - Pull again to make sure you have your partner's most updated versions
-- Open your **partner's** .Rmd
+- Open your **partner's** .Rmd on your own computer
 
 Second: 
 
 - Pull again to make sure you have everyone's most updated versions
 - Open your **partner's** .Rmd ()
-- Go to [octodex.github.com](https://octodex.github.com/) and find a version of octocat that you love
+- Go to [octodex.github.com](https://octodex.github.com/) and find a version of octocat that you like
 - On the image, right click and choose "Copy image location"
 - In your **partner's** .Rmd, add the image at the end using:
 
@@ -192,7 +162,14 @@ Second:
 - Knit the .Rmd and check to ensure that **your** octocat shows up in **their** document
 - Save, stage, commit, pull, then push to send your contributions back
 - Pull again to make sure **your** .Rmd has updates from **your collaborator**
-- Check out out your document as a website published with gh-pages! 
+- Check out out your document as a webpage published with gh-pages!
 
-### End synthesis session!
+#### Reminder for gh-pages link: `username.github.io/repo-name/file-name`
+
+#### Troubleshooting gh-pages viewing revisited:
+
+- 404 error? Remove trailing / from the url 
+- Wants you to download? Remove trailing .Rmd from the url
+
+### End Synthesis session!
 

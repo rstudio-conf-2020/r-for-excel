@@ -3,6 +3,7 @@
 ## Summary
 
 In this session, we'll first learn how to read some external data (from .xls, .xlsx, and CSV files) into R with the `readr` and `readxl` packages (both part of the `tidyverse`). 
+
 Then, we'll write reproducible code to build graphs piece-by-piece. In Excel, graphs are made by manually selecting options - which, as we've discussed previously, may not be the best option for reproducibility. Also, if we haven't built a graph with reproducible code, then we might not be able to easily recreate a graph *or* use that code again to make the same style graph with different data.
 
 Using `ggplot2`, the graphics package within the `tidyverse`, we'll write reproducible code to manually and thoughtfully build our graphs. 
@@ -38,9 +39,9 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 - [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)  
 - ["Why I use ggplot2" - David Robinson Blog Post](http://varianceexplained.org/r/why-I-use-ggplot2/)
 
-## Getting started - Create a new .Rmd, attach packages
+## Getting started - In existing .Rmd, attach packages
 
-Within your existing version-controlled R project, create a new R Markdown document with title "Data visualization with ggplot2." Remove everything below the first code chunk. Knit and save the .Rmd file within your project working directory as "my_ggplot2". 
+In your existing `plots-ggplot.Rmd` from Session 2, remove everything below the first code chunk. 
 
 The `ggplot2` package is part of the `tidyverse`, so we don't need to attach it separately. Attach the `tidyverse`, `readxl` and `here` packages in the top-most code chunk of your .Rmd. 
 ```{r, message = FALSE, warning = FALSE}
@@ -67,7 +68,7 @@ To read in the ca_np.csv file, we need to:
 - use `here()` within `read_csv()` to tell it where to look
 - assign the stored data an object name (we'll store ours as ca_np)
 
-```{r, message = FALSE}
+```{r message=FALSE}
 ca_np <- read_csv(here("data", "ca_np.csv"))
 ```
 
@@ -126,27 +127,27 @@ ggplot(data = ci_np, aes(x = year, y = visitors)) +
   geom_line()
 ```
 
-We're going to be doing a lot of plot variations with those same variables. Let's store the first line as object `ggbase` so that we don't need to retype it each time: 
+We're going to be doing a lot of plot variations with those same variables. Let's store the first line as object `gg_base` so that we don't need to retype it each time: 
 
 ```{r}
-ggbase <- ggplot(data = ci_np, aes(x = year, y = visitors))
+gg_base <- ggplot(data = ci_np, aes(x = year, y = visitors))
 ```
 
 Or, we could change that to a scatterplot just by updating the `geom_*`:
 ```{r}
-ggbase +
+gg_base +
   geom_point()
 ```
 
 We could even do that for a column graph:
 ```{r}
-ggbase +
+gg_base +
   geom_col()
 ```
 
 Or an area plot...
 ```{r}
-ggbase +  
+gg_base +  
   geom_area()
 ```
 
@@ -172,7 +173,7 @@ Some common arguments we'll use first are:
 Building on our first line graph, let's update the line color to "purple" and make the line type "dashed": 
 
 ```{r}
-ggbase +
+gg_base +
   geom_line(
     color = "purple",
     linetype = "dashed"
@@ -184,7 +185,7 @@ How do we know which color names ggplot will recognize? If you google "R colors 
 Now let's update the point, style and size of points on our previous scatterplot graph using `color = `, `size = `, and `pch = ` (see `?pch` for the different point styles, which can be further customized). 
 
 ```{r}
-ggbase + 
+gg_base + 
   geom_point(color = "purple",
              pch = 17,
              size = 4,
@@ -208,7 +209,7 @@ In short, if updating aesthetics based on a variable, make sure to put that argu
 Also: this is overmapped and unnecessary. Avoid excessive / overcomplicated aesthetic mapping in data visualization.
 
 ```{r}
-ggbase + 
+gg_base + 
   geom_point(
     aes(size = visitors,
         color = visitors),
@@ -223,7 +224,7 @@ In the example above, notice that the two arguments that **do** depend on variab
 Create a column plot of Channel Islands National Park visitation over time, where the **fill color** (argument: `fill = `) changes based on the number of **visitors**. 
 
 ```{r}
-ggbase + 
+gg_base + 
   geom_col(aes(fill = visitors))
 ```
 
@@ -241,7 +242,7 @@ Here are a few to try today (but also notice all the options that appear as we s
 
 Here, let's update our previous graph with `theme_minimal()`:
 ```{r}
-ggbase +
+gg_base +
   geom_point(
     aes(size = visitors,
         color = visitors),
@@ -255,7 +256,7 @@ ggbase +
 Use `labs()` to update axis labels, and add a title and/or subtitle to your ggplot graph. 
 
 ```{r}
-ggbase +
+gg_base +
   geom_line(linetype = "dotted") +
   theme_bw() +
   labs(
@@ -274,7 +275,7 @@ As long as the geoms are compatible, we can layer them on top of one another to 
 
 For example, adding points to a line graph: 
 ```{r}
-ggbase +
+gg_base +
   geom_line(color = "purple") +
   geom_point(color = "orange",
              aes(size = year),
@@ -283,7 +284,7 @@ ggbase +
 
 Or, combine a column and line graph (not sure why you'd want to do this, but you can):
 ```{r}
-ggbase +
+gg_base +
   geom_col(fill = "orange",
            color = "purple") +
   geom_line(color = "green")
@@ -357,5 +358,10 @@ Notice that a .jpg image of that name and size is now stored in the `figures\` f
 - Commit
 - Pull (to check for remote changes)
 - Push!
+
+### TODO: other cool stuff
+
+- Palettes (Beyonce, LaCroix, Palletteer)
+- Cohesive themes, styles, & palettes for reports
 
 ### End `ggplot` session!

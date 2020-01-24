@@ -15,7 +15,6 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 - Use `filter()` to subset data frames, returning **rows** that satisfy variable conditions
 - Use `full_join()`, `left_join()`, and `inner_join()` to merge data frames, with different endpoints in mind
 - Use `filter()` and `*_join()` as part of a wrangling sequence
-- Make an HTML table with `kable()` and `kableExtra`
 
 ### Resources
 
@@ -47,7 +46,7 @@ Then create a new code chunk to read in three files from your 'data' subfolder:
 
 - inverts.xlsx
 - fish.csv
-- kelp.xlsx (just read in the "abur" worksheet using argument `sheet = "abur"`)
+- kelp.xlsx (just read in the "abur" worksheet by adding argument `sheet = "abur"` to `read_excel()`)
 
 ```{r, message = FALSE}
 # Read in data: 
@@ -57,7 +56,6 @@ kelp_abur <- read_excel(here("data", "kelp.xlsx"), sheet = "abur")
 ```
 
 We should always explore the data we've read in using functions. Use `View()`, `names()`, `summary()`, `head()` and `tail()` to check them out. 
-
 Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function.
 
 ## `dplyr::filter()` to conditionally subset by rows
@@ -79,11 +77,13 @@ When we use `filter()`, we need to let R know a couple of things:
 
 Here, we'll learn some common ways to use `filter()`.
 
-#### Filter rows by matching a single character string
+### Filter rows by matching a single character string
 
-Let's say we want to keep all observations from the **fish** data frame where the common name is "garibaldi." Here, we need to tell R to only *keep rows* from the **fish** data frame when the common name (**common_name** variable) exactly matches **garibaldi**. 
+Let's say we want to keep all observations from the **fish** data frame where the common name is "garibaldi" (fun fact: that's California's official marine state fish, protected in California coastal waters!). 
 
-Use `==` to ask R to look for exact matching strings:
+Here, we need to tell R to only *keep rows* from the **fish** data frame when the common name (**common_name** variable) exactly matches **garibaldi**. 
+
+Use `==` to ask R to look for exact matches:
 
 ```{r}
 fish_garibaldi <- fish %>% 
@@ -92,9 +92,9 @@ fish_garibaldi <- fish %>%
 
 Check out the **fish_garibaldi** object to ensure that only *garibaldi* observations remain. 
 
-### Activity
+#### Activity
 
-**Task**: Create a subset from the **fish** data frame, stored as object **fish_abur**, that only contains observations from Arroyo Burro (site "abur"). 
+**Task**: Create a subset from the **fish** data frame, stored as object **fish_abur**, that only contains observations from Arroyo Burro (site entered as "abur"). 
 
 **Solution**: 
 ```{r}
@@ -113,40 +113,67 @@ fish_over50 <- fish %>%
   filter(total_count >= 50)
 ```
 
+#### Activity
+
+**Task:** Create a subset from the **fish** data frame that only contains observations from year 2018, and store as object **fish_2018**.
+
+**Solution:**
+```{r}
+fish_2018 <- fish %>% 
+  filter(year == 2018)
+```
+
 ### Filter to return rows that match *this* OR *that* OR *that*
 
 What if we want to return a subset of the **fish** df that contains *garibaldi*, *blacksmith* OR *black surfperch*?
 
 There are several ways to write an "OR" statement for filtering, which will keep any observations that match Condition A *or* Condition B *or* Condition C. In this example, we will create a subset from **fish** that only contains rows where the **common_name** is *garibaldi* or *blacksmith* or *black surfperch*.
 
-Use `%in%` to ask R to look for *any matches* within a vector:
+Way 1: You can indicate **OR** using the vertical line operator `|` to indicate "OR":
+
+```{r}
+fish_3sp <- fish %>% 
+  filter(common_name == "garibaldi" | common_name == "blacksmith" | common_name == "black surfperch")
+
+```
+
+Alternatively, if you're looking for multiple matches in the *same variable*, you can use the `%in%` operator instead. Use `%in%` to ask R to look for *any matches* within a vector:
 
 ```{r}
 fish_3sp <- fish %>% 
   filter(common_name %in% c("garibaldi", "blacksmith", "black surfperch"))
 ```
 
-Alternatively, you can indicate **OR** using the vertical line operator `|` to do the same thing (but you can see that it's more repetitive when looking for matches within the same variable): 
-```{r, eval = FALSE}
+Notice that the two methods above return the same thing. 
 
-fish_3sp <- fish %>% 
-  filter(common_name == "garibaldi" | common_name == "blacksmith" | common_name == "black surfperch")
+**Critical thinking:** In what scenario might you *NOT* want to use `%in%` for an "or" filter statement? Hint: What if the "or" conditions aren't different outcomes for the same variable? 
 
+#### Activity
+
+**Task:** Create a subset from **fish** called **fish_gar_2016** that keeps all observations if the year is 2016 *OR* the species is "garibaldi."
+
+**Solution:**
+```{r}
+fish_gar_2016 <- fish %>% 
+  filter(year == 2016 | common_name == "garibaldi")
 ```
 
-### Filter to return rows that match conditions for multiple variables
+### Filter to return observations that match **this** AND **that**
 
-In the previous examples, we set filter conditions based on a single variable (e.g. common_name). What if we want to return observations that satisfy conditions for multiple variables? 
+In the examples above, we learned to keep observations that matched any of a number of conditions (**or** statements). 
 
-For example: We want to create a subset that only returns rows from **inverts** where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." In `filter()`, add a comma (or ampersand '&') between arguments for multiple "and" conditions:
+Sometimes we'll only want to keep observations that **do** satisfy multiple conditions (e.g., to keep this observation it must satisfy this **AND** that condition). For example, we may want to create a subset that only returns rows from **inverts** where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." 
+
+In `filter()`, add a comma (or ampersand '&') between arguments for multiple "and" conditions:
 
 ```{r}
 urchin_abur_mohk <- inverts %>% 
   filter(site %in% c("abur","mohk"), common_name == "purple urchin")
 ```
 
+Check it out to see that only observations where the site is "abur" or "mohk" **AND** the common name is "purple urchin" are retained: 
 ```{r}
-head(urchin_abur_mohk)
+urchin_abur_mohk
 ```
 
 Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using `&` (instead of a comma) between "and" conditions:
@@ -172,12 +199,11 @@ urchin_abur_mohk <- inverts %>%
 
 **Task:** Create a subset from the **fish** data frame, called **low_gb_wr** that only contains:
 
-- Observations of *garibaldi* and *rock wrasse*
+- Observations for *garibaldi* or *rock wrasse*
 - Where the *total_count* is *less than or equal to 10*
 
 **Solution:**
 ```{r}
-
 low_gb_wr <- fish %>% 
   filter(common_name %in% c("garibaldi", "rock wrasse"), 
          total_count <= 10)
@@ -185,39 +211,7 @@ low_gb_wr <- fish %>%
 
 **Sync your local project to your repo on GitHub.**
 
-<!----
-### Example: combining `filter()` with other functions using the pipe operator (`%>%`)
-
-We can also use `filter()` in combination with the functions we previously learned for wrangling. If we have multiple sequential steps to perform, we can string them together using the *pipe operator* (`%>%`).
-
-Here, we'll start with the `inverts` data frame and create a subset that:
-
-- Converts to long(er) format with `pivot_longer()`
-- Only keeps observations for rock scallops
-- Calculates the total count of rock scallops by site only
-
-```{r}
-
-# Counts of scallops by site (all years included):
-
-scallop_count_by_site <- inverts %>% 
-  pivot_longer(cols = '2016':'2018', 
-               names_to = "year", 
-               values_to = "sp_count") %>% 
-  filter(common_name == "rock scallop") %>% 
-  group_by(site) %>% 
-  summarize(tot_count = sum(sp_count, na.rm = TRUE))
-  
-```
-
-```{r}
-scallop_count_by_site
-```
------>
-
-## Join data frames with `dplyr::*_join()` 
-
-Excel's `VLOOKUP` can also be used to merge data from separate tables or worksheets. Here, we'll use the `*_join()` functions to merge separate data frames in R. 
+## `dplyr::*_join()` to merge data frames
 
 There are a number of ways to merge data frames in R. We'll use `full_join()`, `left_join()`, and `inner_join()` in this session. 
 
@@ -236,10 +230,10 @@ To clarify what the different joins are doing, let's first make a subset of the 
 
 ```{r}
 fish_16_17 <- fish %>% 
-  filter(year == 2016 | year == 2017)
+  filter(year %in% c(2016, 2017))
 ```
 
-Take a look to ensure that only those years are included with `View(fish_2016_2017)`. Now, let's merge it with our Arroyo Burro kelp fronds data (kelp_abur) in different ways. 
+Take a look to ensure that only those years are included with `View(fish_16_17)`. Now, let's merge it with our Arroyo Burro kelp fronds data (kelp_abur) in different ways. 
 
 ### `full_join()` to merge data frames, keeping everything
 
@@ -251,11 +245,16 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 **Note:** If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
 
 ```{r}
-
 # Join the fish_16_17 and kelp_abur
 abur_kelp_fish <- fish_16_17 %>% 
   full_join(kelp_abur, by = c("year", "site")) 
+```
 
+Explore the data frame. Is that what we want? Probably not...we might want to update our year format in kelp_abur to a 4-digit year instead. Let's do that by adding 20 to the existing values, then trying again! 
+
+```{r}
+kelp_abur_new <- kelp_abur %>% 
+  mutate(year = year + 2000)
 ```
 
 
@@ -267,9 +266,9 @@ Let's look at the merged data frame with `View(abur_kelp_fish)`. A few things to
 
 Because all data (observations & columns) are retained, `full_join()` is the safest option if you're unclear about how to merge data frames. 
 
-### `left_join()` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
+### `left_join(x,y)` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
-Now, we want to keep all observations in *fish_2016_2017*, and merge them with *kelp_abur* while only keeping observations from *kelp_abur* that match an observation within *fish_2016_2017*. So when we use `left_join()`, any information on kelp frond counts from 2018 should be dropped, because those wouldn't have a match in the left data frame. 
+Now, we want to keep all observations in *fish_16_17*, and merge them with *kelp_abur* while only keeping observations from *kelp_abur* that match an observation within *fish_16_17*. So when we use `left_join()`, any information on kelp frond counts from 2018 should be dropped, because those wouldn't have a match in the left data frame. 
 
 ```{r}
 fish_kelp_16_17 <- fish_16_17 %>% 
@@ -336,24 +335,4 @@ kelp_abur %>%
 
 **Sync your project with your repo on GitHub**
 
-<!----
-## Fun facts
-
-**How is this similar to `VLOOKUP` in Excel? How does it differ?**
-
-From [Microsoft Office Support](https://support.office.com/en-us/article/vlookup-function-0bbc8083-26fe-4963-8ab8-93a18ad188a1), "use VLOOKUP when you need to find things in a table or a range by row." 
-
-So, both `filter()` and `VLOOKUP` look through your data frame (or spreadsheet, in Excel) to look for observations that match your conditions. But they also differ in important ways:
-
-(1) By default `VLOOKUP` looks for and returns an observation for *approximate* matches (and you have to change the final argument to FALSE to look for an exact match). In contrast, by default `filter()` will look for exact conditional matches. 
-
-(2) `VLOOKUP` will look for and return information from the *first observation* that matches (or approximately matches) a condition. `filter()` will return all observations (rows) that exactly match a condition. 
-
-## Efficiency Tips
-
-- Comment out multiline code with Command + Shift + C
-- Knit with Command + Shift + K
-
----->
-
-### End `filter()` + `join()` section!
+### End `filter()` + `_join()` section!

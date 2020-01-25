@@ -20,8 +20,9 @@ knitr::include_graphics("img/r-for-excel-monsters.jpg")
 
 This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. It is a friendly intro to becoming a modern R user, full of tidyverse, RMarkdown, GitHub, collaboration & reproducibility. 
 
-**Short URL for this book**:   <https://rstd.io/conf20-r-excel>  
-**GitHub repo for this book**: <https://github.com/rstudio-conf-2020/r-for-excel>
+**This book**: <https://rstd.io/conf20-r-excel>  
+**Book GitHub repo**: <https://github.com/rstudio-conf-2020/r-for-excel>  
+**Accompanying slides**: [Google Slides](https://docs.google.com/presentation/d/1w9cVzEsdbyZ6vay4UnoTvTWd9t-AO_x06HoVzgAiSFE/edit?usp=sharing)  
 
 ---
 

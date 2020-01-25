@@ -1,20 +1,18 @@
-# Collaborating & Getting Help {#collaborating}
+# Collaborating & getting help {#collaborating}
 rstats community coding 
 
 TODO: swap out gh-pages screenshots
+add janitor:: excel!!
 
 ## Summary
 
-Since the GitHub session (Chapter \@ref(github)), we have been practicing using GitHub with RStudio to collaborate with our most important collaborator: Future You. Here we will practice using GitHub with RStudio to collaborate with others now, with a mindset towards Future Us. We will also how to engage with the R community broadly and how to continue being a part of the #rstats community, including how to engage on Twitter, and how to ask for help. 
+Since the GitHub session (Chapter \@ref(github)), we have been practicing using GitHub with RStudio to collaborate with our most important collaborator: Future You. 
 
-*TODO: refine* Main purpose: work better with colleagues, help you help yourself. A big theme of this workshop has been how to more seamlessly collaborate with each other.
+Here we will practice using GitHub with RStudio to collaborate with others now, with a mindset towards Future Us (your colleagues that you know and have yet to meet). We will also how to engage with the #rstats community, including how to engage on Twitter, and how to ask for help.
 
-The collaborative power of GitHub and RStudio is really game changing. So far we've been collaborating with our most important collaborator: ourselves. But, we are lucky that in science we have so many other collaborators, so let's learn how to accelerate our collaborations with them through GitHub! 
+We are going to teach you the simplest way to collaborate with someone, which is for both of you to have privileges to directly edit and add files to a repository. GitHub is built for software developer teams, and there is a lot of features that limit who can directly edit files (which lead to "pull requests"), but we won't cover that today. 
 
-We are going to teach you the simplest way to collaborate with someone, which is for both of you to have privileges to edit and add files to a repository. GitHub is built for software developer teams, and there is a lot of features that limit who can directly edit files, but we don't need to start there. 
-
-We will do this all with a partner, and we'll walk through some things all together, and then give you a chance to work with your collaborator on your own. 
-
+TODO move
 > ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
 
 
@@ -24,7 +22,7 @@ We will do this all with a partner, and we'll walk through some things all toget
 - How to effectively ask for help
   - Googling. Error messages are your friends
   - R communities and getting help (rOpenSci, RLadies)
-  - reprex & RStudio Community "do it with iris"
+  - reprex & RStudio Community "do it with iris" TODO cut one reprex
   - how to use Twitter for #rstats
   - Activity: reprex to GitHub "dplyr reprex"  
 - create a new repo and give permission to a collaborator 
@@ -34,11 +32,11 @@ We will do this all with a partner, and we'll walk through some things all toget
 
 ### Resources
 
-- [Allison Horst ESM 206 Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219)
--  [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) - Thomas Mock
+- [ESM 206 Intro to data science & stats](https://allisonhorst.github.io), specifically [ESM Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219) - by Allison Horst
+-  [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) - by Thomas Mock
 - [reprex.tidyverse.org](https://reprex.tidyverse.org/)
 - [Getting help in R: do as I say, not as I've done](https://sctyner.github.io/rhelp.html) by Sam Tyner
-- [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/)
+- [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/) - by Julie Lowndes
 
 
 <!---openscapes slides: 
@@ -48,23 +46,25 @@ https://docs.google.com/presentation/d/1ZYQERUuNJ69QRSUs_JKLdask_VnQRmvMTulv6m2V
 
 ## R communities 
 
-We are going to switch gears for a moment and talk about communities that exist around R and how you can engage with them. 
+We are going to start off by talking about communities that exist around R and how you can engage with them. 
 
-R connects us online and in person, and by being here at RStudio::conf, you are a part of it. 
+R connects us online and in person, and by being here at RStudio::conf, you are a part of this community. 
 
-One thing about the R community is that we use Twitter as a platform to connect with each other. Yes, Twitter is a legit tool for data science. Most communities have some degree of in-person and online presence, with Twitter being a big part of that online presence. We are going to talk about how you can start using it as a tool next, but first I want to show you who some of these communities you might want to engage with are.
+This is a small (and incomplete!) sampling to give you a sense of a few communities. Please see Thomas Mock's presentation [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) for more details.
 
-This is a small sampling to give you a sense of a few communities. Please see Thomas Mock's presentation [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) for more details.
+#### RStudio Community
 
-### RStudio Community
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("img/rstudio_logo.png")  
+```
 
+What is it: Online community forum for all questions R & RStudio
 
+Location: online at [community.rstudio.com](https://community.rstudio.com>)
 
-### R User Groups
+Also: [@RStudio](https://twitter.com/rstudio) on Twitter
 
-R User Groups ("RUGs") are in-person meetups supported by [The R Consortium](https://www.r-consortium.org/projects/r-user-group-support-program). See a [list of RUGs and conferences](https://jumpingrivers.github.io/meetingsR/r-user-groups.html).
-
-### RLadies
+#### RLadies
 
 ```{r, echo=FALSE, out.width="30%"}
 knitr::include_graphics("img/rladies-logo.png")  
@@ -72,45 +72,78 @@ knitr::include_graphics("img/rladies-logo.png")
 
 RLadies is a world-wide organization to promote gender diversity in the R community. 
 
-Web: [rladies.org](https://rladies.org/)  
-<!--break-->
-GitHub: [rladies](https://github.com/rladies/)  
-<!--break-->
-Twitter: [rladiesglobal](https://twitter.com/rladiesglobal)  
-<!--break-->
+Location: online at [rladies.org](https://rladies.org/), on Twitter at [rladiesglobal](https://twitter.com/rladiesglobal)  
 
-### rOpenSci
+Also: [WeAreRLadies](https://twitter.com/WeAreRLadies)  
+
+
+#### rOpenSci
 
 ```{r, echo=FALSE, out.width="30%"}
 knitr::include_graphics("img/ropensci-logo.png")  
 ```
 
+What is it: rOpenSci builds software with a community of users and developers, and educate scientists about transparent research practices.
 
-rOpenSci builds software with a community of users and developers, and educate scientists about transparent research practices.
+Location: online at [ropensci.org](https://ropensci.org/), on Twitter at [ropensci](https://twitter.com/ropensci)  
 
-Web: [ropensci.org](https://ropensci.org/)  
-<!--break-->
-GitHub: [ropensci](https://github.com/ropensci/)  
-<!--break-->
-Twitter: [ropensci](https://twitter.com/ropensci)  
-<!--break-->
+Also: [roknowtifier](https://twitter.com/roknowtifier), [rocitations](https://twitter.com/rocitations)
 
 
-http://sfirke.github.io/janitor/reference/excel_numeric_to_date.html
+#### R User Groups
 
-### The Carpentries
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("img/la_rusers.jpg")  
+```
+
+What is it: R User Groups ("RUGs") are in-person meetups supported by [The R Consortium](https://www.r-consortium.org/projects/r-user-group-support-program). 
+
+Location: local chapters. See a [list of RUGs and conferences](https://jumpingrivers.github.io/meetingsR/r-user-groups.html).
+
+Also: example: [Los Angeles R Users Group](https://twitter.com/la_rusers)
+
+#### The Carpentries
+
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("img/TheCarpentries-logo.png")  
+```
+
+What is it: Network teaching foundational data science skills to researchers worldwide
+
+Location: online at [carpentries.org](https://carpentries.org], on Twitter at [thecarpentries](https://twitter.com/thecarpentries), local workshops worldwide
 
 
+#### R4DS Community
 
-### R4DS Community
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("img/r4ds_community.jpg")  
+```
+
+What is it: A community of R learners at all skill levels working together to improve our skills.
+
+Location: on Twitter: [R4DScommunity](https://twitter.com/R4DScommunity), on Slack — sign up from [rfordatasci.com](https://www.rfordatasci.com/)
+
+Also: [#tidytuesday](https://twitter.com/search?q=%23tidytuesday&src=typed_query), [R4DS_es](https://twitter.com/RFDS_es)
 
 
+### Community awesomness
 
-### \#tidytuesday
+Example with Sam Firke's janitor package: [sfirke.github.io/janitor](http://sfirke.github.io/janitor/), highlighting the [`excel_numeric_to_date`](http://sfirke.github.io/janitor/reference/excel_numeric_to_date.html) function and learning about it through Twitter. 
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/community-ex-janitor.png")  
+```
+
 
 ## How to use Twitter for \#rstats
 
-Twitter is a legit tool for R. It's how we connect with other R users, learn from each other, develop together, and become friends. 
+One thing about the R community is that we use Twitter as a platform to connect with each other. Yes, Twitter is a legit tool for data science. Most communities have some degree of in-person and online presence, with Twitter being a big part of that online presence, and it enables you to talk directly with people. 
+
+Twitter is a legit tool for R. It's how we connect with other R users, learn from each other, develop together, and become friends. Especially at an event like RStudio::conf, it is a great way to stay connect and stay connected with folks you meet. 
+
+Twitter is definitely a firehose of information, but if you use it deliberately, you can hear the signal through the noise.
+
+I was super skeptical of Twitter. I thought it was a megaphone for angry people. But it turns out it is a place to have smaller conversations. 
 
 ### Interpreting an \#rstats tweet
 

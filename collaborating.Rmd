@@ -1,8 +1,4 @@
 # Collaborating & getting help {#collaborating}
-rstats community coding 
-
-TODO: swap out gh-pages screenshots
-add janitor:: excel!!
 
 ## Summary
 
@@ -12,21 +8,14 @@ Here we will practice using GitHub with RStudio to collaborate with others now, 
 
 We are going to teach you the simplest way to collaborate with someone, which is for both of you to have privileges to directly edit and add files to a repository. GitHub is built for software developer teams, and there is a lot of features that limit who can directly edit files (which lead to "pull requests"), but we won't cover that today. 
 
-TODO move
-> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
-
-
 ### Objectives
 
 - intro to R communities
 - How to effectively ask for help
   - Googling. Error messages are your friends
-  - R communities and getting help (rOpenSci, RLadies)
-  - reprex & RStudio Community "do it with iris" TODO cut one reprex
-  - how to use Twitter for #rstats
-  - Activity: reprex to GitHub "dplyr reprex"  
+  - How to use Twitter for #rstats
+  - Create a reproducible example with `reprex`
 - create a new repo and give permission to a collaborator 
-- open as a new RStudio project, collaborate with a partner 
 - publish webpages online
 
 
@@ -127,7 +116,7 @@ Location: on Twitter: [R4DScommunity](https://twitter.com/R4DScommunity), on Sla
 Also: [#tidytuesday](https://twitter.com/search?q=%23tidytuesday&src=typed_query), [R4DS_es](https://twitter.com/RFDS_es)
 
 
-### Community awesomness
+### Community awesomeness
 
 Example with Sam Firke's janitor package: [sfirke.github.io/janitor](http://sfirke.github.io/janitor/), highlighting the [`excel_numeric_to_date`](http://sfirke.github.io/janitor/reference/excel_numeric_to_date.html) function and learning about it through Twitter. 
 
@@ -379,13 +368,15 @@ And then click to change the default branch to `gh-pages`. I like to then delete
 <img src="img/github-change-branch.png" width="450px"> 
 
 
-### Give your collaborator administration privileges (Partner 1 and 2)
+### Give your collaborator privileges (Partner 1 and 2)
 
 Now, Partner 1, go into Settings > Collaborators > enter Partner 2's (your collaborator's) username. 
 
 Partner 2 then needs to check their email and accept as a collaborator. Notice that your collaborator has "Push access to the repository" (highlighted below):
 
-<img src="img/github_collab.png" width="450px"> 
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/gh_collab.png")  
+```
 
 ### Clone to a new R Project  (Partner 1)
 
@@ -447,8 +438,6 @@ I recommend pulling every time you come back to a collaborative repository. Whet
 
 ## Merge conflicts
 
-TODO: clarify that first when you pull it's because unstaged.
-
 What kind of heartache are we talking about? Merge conflicts. 
 
 Within a file, GitHub tracks changes line-by-line. So you can also have collaborators working on different lines within the same file and GitHub will be able to weave those changes into each other -- that's it's job! 
@@ -503,7 +492,7 @@ So this error is different from the previous: GitHub knows what has changed line
 <br>
 
 ```{r merge-conflict-img2, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/github_mergeconflict2.png")  
+knitr::include_graphics("img/gh_mergeconflict2.png")  
 ```
 
 <br>
@@ -533,7 +522,7 @@ I'll do this, and then commit again. In this example, we've kept Allison's line:
 <br>
 
 ```{r merge-conflict-img3, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/github_mergeconflict3.png")  
+knitr::include_graphics("img/gh_mergeconflict3.png")  
 ```
 
 <br>
@@ -585,6 +574,9 @@ Where is it? Figure out your website's url from your github repo's url — pay a
 1. Now navigate to your web page! For example: 
     - my github repo: <https://github.com/jules32/r-collab/julie_fisheries>
     - my website url: <https://jules32.github.io/r-collab/julie_fisheries>
+    
+    
+> ***ProTip*** Pay attention to URLs. An unsung skill of the modern analyst is to be able to navigate the internet by keeping an eye on patterns.
     
 So cool!     
 

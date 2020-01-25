@@ -22,4 +22,8 @@ Now that you're using R, join us to continue learning as part of the #rstats com
 - RStudio cheatsheets
 - OHI data science training
 
+- [Spreadsheet Drama (Episode 9)](http://nssdeviations.com/episode-9-spreadsheet-drama) — Not So Standard Deviations with Roger Peng & Hilary Parker
+
+<!---
 Consider: http://ohi-science.org/data-science-training/champion.html
+--->

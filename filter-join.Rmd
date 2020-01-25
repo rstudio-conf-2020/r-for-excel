@@ -27,7 +27,7 @@ The combination of `filter()` and `*_join()` - to return rows satisfying a condi
 
 Create a new R Markdown document in your r-workshop project and knit to save as **filter_join.Rmd**. Remove all the example code (everything below the set-up code chunk). 
 
-In this session, we'll use four packages: 
+In this session, we'll attach four packages: 
 
 - `tidyverse`
 - `readxl`
@@ -46,7 +46,7 @@ Then create a new code chunk to read in three files from your 'data' subfolder:
 
 - inverts.xlsx
 - fish.csv
-- kelp_fronds.xlsx (just read in the "abur" worksheet by adding argument `sheet = "abur"` to `read_excel()`)
+- kelp_fronds.xlsx (read in only the "abur" worksheet by adding argument `sheet = "abur"` to `read_excel()`)
 
 ```{r, message = FALSE}
 # Read in data: 
@@ -94,15 +94,15 @@ Check out the **fish_garibaldi** object to ensure that only *garibaldi* observat
 
 #### Activity
 
-**Task**: Create a subset from the **fish** data frame, stored as object **fish_abur**, that only contains observations from Arroyo Burro (site entered as "abur"). 
+**Task**: Create a subset starting from the **fish** data frame, stored as object **fish_mohk**, that only contains observations from Mohawk Reef (site entered as "mohk"). 
 
 **Solution**: 
 ```{r}
-fish_abur <- fish %>% 
-  filter(site == "abur")
+fish_mohk <- fish %>% 
+  filter(site == "mohk")
 ```
 
-Explore the subset you just created to ensure that only Arroyo Burro observations are returned. 
+Explore the subset you just created to ensure that only Mohawk Reef observations are returned. 
 
 ### Filter rows based on numeric conditions
 
@@ -306,19 +306,19 @@ my_fish_join <- fish %>%
 
 Explore the resulting **my_fish_join** data frame. 
 
-## A nice HTML table with `kable()` and `kableExtra`
+## An HTML table with `kable()` and `kableExtra`
 
 With any data frame, you can a nicer looking table in your knitted HTML using `knitr::kable()` and functions in the `kableExtra` package. 
 
 Start by using `kable()` with my_fish_join, and see what the default HTML table looks like in your knitted document:
 ```{r, eval=FALSE}
-kable(kelp_abur)
+kable(my_fish_join)
 ```
 
 Simple, but quick to get a clear & useful table! Now let's spruce it up a bit with `kableExtra::kable_styling()` to modify HTML table styles:
 
 ```{r, eval=FALSE}
-kelp_abur %>% 
+my_fish_join %>% 
   kable() %>% 
   kable_styling(bootstrap_options = "striped", 
                 full_width = FALSE)

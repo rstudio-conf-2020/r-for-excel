@@ -29,14 +29,14 @@ Source: Fisheries Statistics Division of the NOAA Fisheries
 
 ## Attach packages, read in and explore the data
 
-In **your** .Rmd that you created in the last session (TODO: name of that .Rmd here? If already created?), attach (load) packages with `library()`:
+In **your** .Rmd, attach the necessary packages in the topmost code chunk:
 
 ```{r, message = FALSE, warning = FALSE}
 
 library(tidyverse)
 library(here)  
 library(janitor) 
-library(kableExtra)
+library(paletteer) # install.packages("paletteer")
 
 ```
 
@@ -68,7 +68,7 @@ Brainstorm with your partner about ways you might clean the data up a bit. Thing
 - Are the column names manageable?
 - Do we want symbols alongside values?
 
-If your answer to all three is "no," then we're on the same plane. Here we'll do some wrangling led by your recommendations for step-by-step cleaning. 
+If your answer to all three is "no," then we're flying on the same plane. Here we'll do some wrangling led by your recommendations for step-by-step cleaning. 
 
 Which of these would it make sense to do *first*, to make any subsequent steps easier for coding? We'll start with `janitor::clean_names()` to get all column names into lowercase_snake_case:
 ```{r, eval = FALSE}
@@ -88,29 +88,28 @@ The entire thing might look like this:
 salmon_clean <- us_landings %>% 
   clean_names() %>% # Make column headers snake_case
   mutate(
-    state = str_to_lower(state),
     afs_name = str_to_lower(afs_name)
   ) %>% # Converts character columns to lowercase
   mutate(dollars_num = parse_number(dollars_usd)) %>% # Just keep numbers from $ column
   filter(str_detect(afs_name, pattern = "salmon")) %>% # Only keep entries w/"salmon"
-  separate(afs_name, into = c("group", "subgroup"), sep = ", ") # Note comma-space
+  separate(afs_name, into = c("group", "subgroup"), sep = ", ") %>% # Note comma-space
+  drop_na(dollars_num) # Drop (listwise deletion) any observations with NA for dollars_num
 ```
 
 Explore **salmon_clean**.
 
-## Find total US annual landings & dollar value for each salmon subgroup
+## Find total annual US value ($) for each salmon subgroup
 
 Find the annual total US landings and dollar value (summing across all states) for each type of salmon using `group_by()` + `summarize()`. 
 
-Ask: If we want to find **annual values** by **subgroup**, then what variables are we going to group by? 
+Think about what data/variables we want to use here: If we want to find **annual values** by **subgroup**, then what variables are we going to group by? Are we going to start from us_landings, or from salmon_clean?
 
 ```{r}
 
 salmon_us_annual <- salmon_clean %>% 
   group_by(year, subgroup) %>% 
   summarize(
-    tot_landings = sum(landings_pounds, na.rm = TRUE),
-    tot_value = sum(dollars_num, na.rm = TRUE)
+    tot_value = sum(dollars_num, na.rm = TRUE),
   )
 
 ```
@@ -120,21 +119,49 @@ salmon_us_annual <- salmon_clean %>%
 ```{r, warning = FALSE}
 salmon_gg <- 
   ggplot(salmon_us_annual, 
-         aes(x = year, y = tot_landings, group = subgroup)) +
+         aes(x = year, y = tot_value, group = subgroup)) +
   geom_line(aes(color = subgroup)) +
   theme_bw() +
-  labs(x = "year", y = "US commercial salmon landings (pounds)")
+  labs(x = "year", y = "US commercial salmon value (USD)")
 
 salmon_gg
 ```
 
-## Optional: a nice HTML table!
+## Built-in color palettes
 
-TODO: Let's make a subset of salmon_us_annual that only contains observations for the most recent year ()
+Want to change the color scheme of your graph? Using a consistent theme and color scheme is a great way to make reports more cohesive within groups or organizations, and means less time is spent manually updating graphs to maintain consistency!
 
-## Optional: use a different color palette
+Luckily, there are **many** already built color palettes. For a glimpse, check out the ReadMe for [`paletteer` by Emil Hvidtfelt](https://emilhvitfeldt.github.io/paletteer/), which is an aggregate package of many existing color palette packages. 
 
-TODO: `paletteer?`
+In fact, let's go ahead and install it by running `install.packages("paletteer")` in the Console. 
+
+**Question:** Once we have `paletteer` installed, what do have to do to actually **use** the functions & palettes in `paletteer`? 
+
+**Answer:** Attach the package! Update the topmost code chunk with `library(paletteer)` to make sure all of its functions are available. 
+
+Now, explore the different available packages and color palettes by typing (in the Console) `View(palettes_d_names)`. Then, add a new color palette from the list to your discrete series with an adding `ggplot` layer that looks like this:
+
+```{r, eval = FALSE}
+scale_color_paletteer_d("package_name::palette_name")
+```
+
+**Note:** Beware of the palette *length* - we have 7 subgroups of salmon, so we will want to pick palettes that have at least a length of 7.
+
+Once we add that layer, our entire graph code will look something like this (here, using the OkabeIto palette from the `colorblindr` package): 
+
+```{r}
+salmon_gg <- 
+  ggplot(salmon_us_annual, 
+         aes(x = year, y = tot_value, group = subgroup)) +
+  geom_line(aes(color = subgroup)) +
+  theme_bw() +
+  labs(x = "year", y = "US commercial salmon value (USD)") +
+  scale_color_paletteer_d("colorblindr::OkabeIto")
+
+salmon_gg
+```
+
+Looking again at `palettes_d_names`, choose another color palette and update your gg-graph. 
 
 ## Sync with GitHub remote
 
@@ -142,17 +169,15 @@ Stage, commit, (pull), and push your updates to GitHub for safe storage & sharin
 
 ## Add an image to your partner's document
 
-Now, let's add an image to our **partner's** .Rmd.
+Now, let's collaborate with our partner.
 
 First: 
 
-- Pull again to make sure you have your partner's most updated versions
-- Open your **partner's** .Rmd on your own computer
+- Pull again to make sure you have your partner's most updated versions (there shouldn't be any conflicts since you've been working in different .Rmd files)
+- Now, open your **partner's** .Rmd in RStudio
 
 Second: 
 
-- Pull again to make sure you have everyone's most updated versions
-- Open your **partner's** .Rmd ()
 - Go to [octodex.github.com](https://octodex.github.com/) and find a version of octocat that you like
 - On the image, right click and choose "Copy image location"
 - In your **partner's** .Rmd, add the image at the end using:
@@ -164,7 +189,8 @@ Second:
 - Pull again to make sure **your** .Rmd has updates from **your collaborator**
 - Check out out your document as a webpage published with gh-pages!
 
-#### Reminder for gh-pages link: `username.github.io/repo-name/file-name`
+#### Reminder for gh-pages link: 
+`username.github.io/repo-name/file-name`
 
 #### Troubleshooting gh-pages viewing revisited:
 

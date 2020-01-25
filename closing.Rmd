@@ -2,7 +2,24 @@
 
 ## Continued learning
 
+### Communities to join
+
+Now that you're using R, join us to continue learning as part of the #rstats community! Here are some places to get started: 
+
+- RStudio Community online
 - [R for Data Science]() with the R4DS community
-- #tidytuesday with a friend or colleague
+- R4DS Community on Slack
+- Participate in #tidytuesday with a friend or colleague
+- Join local R-Ladies and R-User groups
+- Join twitter for #rstats!
+
+### Resources
+
+- R4DS
+- Data viz (Kieran Healy)
+- Advanced R
+- R for the rest of us
+- RStudio cheatsheets
+- OHI data science training
 
 Consider: http://ohi-science.org/data-science-training/champion.html

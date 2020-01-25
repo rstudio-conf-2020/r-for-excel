@@ -4,19 +4,22 @@
 
 In previous sessions, we learned to read in data, do some wrangling, and create a graph and table. 
 
-Here, we'll continue by *reshaping* data frames (converting from long-to-wide, or wide-to-long format), *separating* and *uniting* variable (column) contents, finding and replacing string patterns, and isolating numbers from number-character combinations.
+Here, we'll continue by *reshaping* data frames (converting from long-to-wide, or wide-to-long format), *separating* and *uniting* variable (column) contents, and finding and replacing string patterns.
 
 ### Tidy data
 
-"Tidy" might sound like a generic way to describe non-messy looking data, but it is actually a specific data structure 
+"Tidy" might sound like a generic way to describe non-messy looking data, but it is actually a specific data structure. When data is *tidy*, it is rectangular with each variable as a column, each row an observation, and each cell contains a single value (see: [Ch. 12 in R for Data Science by Grolemund & Wickham](https://r4ds.had.co.nz/tidy-data.html)).
+
+![](img/tidy_data.png)
 
 ## Objectives
 
-- Reshape data frames with `tidyr::pivot_wider()` and `tidyr::pivot_longer()`
-- Convert column names with `janitor::clean_names()`
-- Combine or separate information from columns with `tidyr::unite()` and `tidyr::separate()`
-- Replace a string with `stringr::str_replace()`
-- Make an HTML table
+In this session we'll learn some tools to help make our data **tidy** and more coder-friendly. Those include:
+
+- Use `tidyr::pivot_wider()` and `tidyr::pivot_longer()` to reshape data frames
+- `janitor::clean_names()` to make column headers more manageable
+- `tidyr::unite()` and `tidyr::separate()` to merge or separate information from different columns
+- Detect or replace a string with `stringr` functions
 
 ## Resources
 
@@ -28,13 +31,15 @@ Here, we'll continue by *reshaping* data frames (converting from long-to-wide, o
 
 ### Create a new R Markdown and attach packages
 
-Within your day 2 R Project, create a new .Rmd. Attach the following packages (using `library(package_name)`): 
-
-- `tidyverse`
-- `here`
-- `janitor` 
-- `readxl` 
-- `kableExtra`
+- Open your project from Day 1 (click on the .Rproj file)
+- PULL to make sure your project is up to date
+- Create a new R Markdown file called `my_tidying.Rmd`
+- Remove all example code / text below the first code chunk
+- Attach the packages we'll use here (`library(package_name)`):
+    - `tidyverse`
+    - `here`
+    - `janitor` 
+    - `readxl` 
 
 Knit and save your new .Rmd within the project folder. 
 
@@ -44,7 +49,6 @@ library(tidyverse)
 library(janitor)
 library(here)
 library(readxl)
-library(kableExtra)
 ```
 
 ### Read in data with `read_excel()`
@@ -67,11 +71,11 @@ summary(inverts)
 
 ## Wide-to-longer format with `tidyr::pivot_longer()`
 
-In *tidy format*, each variable is contained within a single column. If we look at *inverts_df*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
+If we look at *inverts*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
 
 There may be times when you want to have data in wide format, but often with code it is more efficient to convert to **long format** by gathering together observations for a variable that is currently split into multiple columns. 
 
-Schematically, converting from wide to long format looks like this: 
+Schematically, converting from wide to long format using `pivot_longer()` looks like this: 
 
 ![](img/tidyr_pivot_longer.png)
 
@@ -107,7 +111,7 @@ Explore the class of *year* in *inverts_long*:
 class(inverts_long$year)
 ```
 
-We'll use `dplyr::mutate()` in a different way here: to create a new column (that's how we've used `mutate()` previously) that has the same name of an existing column, in order to update and overwrite the existing column. 
+That's a good thing! We don't want R to update classes of our data without our instruction. We'll use `dplyr::mutate()` in a different way here: to create a new column (that's how we've used `mutate()` previously) that has the same name of an existing column, in order to update and overwrite the existing column. 
 
 In this case, we'll `mutate()` to add a column called *year*, which contains an `as.numeric()` version of the existing *year* variable: 
 
@@ -241,9 +245,18 @@ head(inverts_unite)
 
 #### Activity: 
 
-Try updating the separator from "_" to "_hello!_" to see what the outcome column contains.
+**Task:** Create a new object called 'inverts_moyr', starting from inverts_wide, that unites the month and year columns into a single column named "mo_yr", using a dash "-" as the separator. Then try updating the separator to something else! Like "_hello!_".
 
-*Additional examples*: 
+**Solution:**
+```{r}
+inverts_moyr <- inverts_wide %>% 
+  unite(col = "mo_yr", # What to name the new united column
+               c(month, year), # The columns we'll unite (site, year)
+               sep = "-") 
+```
+
+
+**Merging information from > 2 columns (not done in workshop)** 
 
 `tidyr::unite()` can also combine information from *more* than two columns. For example, to combine the *site*, *common_name* and *year* columns from *inverts_long*, we could use:
 
@@ -281,41 +294,6 @@ inverts_sep <- inverts_unite %>%
 
 ```
 
-What is that warning `Expected 2 pieces...` telling us? If we take a look at the resulting data frame *inverts_sep*, we see that it only keeps the first **two** pieces, and gets rid of the third (name). Which is a bit concerning, because we rarely want to just throw away information in a data frame. 
-
-```{r}
-head(inverts_sep)
-```
-
-We see that the resulting data frame has split *site_year* into two separate columns, *sample_year*, *location*, and *sp_name*, but now everything after the second break ("-") remains together in *sp_name* instead of dropping pieces following the third word. 
-
-## Get just the numbers with `readr::parse_number()`
-
-Sometimes, data are entered in a way that combines numeric information with other character bits. Like: 
-
-- 152.4 grams
-- $ 800.23
-- 54.6 %
-- mass 458.9 lbs
-
-But usually, we want to work with the numeric piece on its own.
-
-**Note: keep that in mind for data entry - it's good to include units, symbols, and descriptive characters, but include them in a separate column, and/or in metadata!**
-
-We can isolate *just* the numeric part of an entry using `readr::parse_number()`. 
-
-As an example, let's return to the **inverts_unite** object we created previously. Let's say that we want to create a new column that contains only the numeric part from **site_year**. 
-
-We could use `parse_number()` as follows: 
-```{r}
-parse_yr <- inverts_unite %>% 
-  mutate(
-    year_num = parse_number(site_year)
-  )
-```
-
-Notice that **parse_yr** now has an additional column, year, which only contains the numeric piece from the **site_year** column. Cool! 
-
 ## Detecting a string pattern with `stringr::str_detect()`
 
 Sometimes we'll want to find observations that contain a specific string pattern within a variable of interest. 
@@ -341,7 +319,7 @@ There might be a time when we would want to use observations that:
 - Contain the string "fish", in isolation or within a larger string (like "rockfish")
 - Contain the string "blue"
 
-In those cases, it would be useful to **detect** a string pattern. Here, we'll use `stringr::str_detect()` to find and keep observations that contain our specified string pattern. 
+In those cases, it would be useful to **detect** a string pattern, and potentially keep any rows that contain it. Here, we'll use `stringr::str_detect()` to find and keep observations that contain our specified string pattern. 
 
 Refamiliarize yourself with the **inverts** object:
 ```{r, eval = FALSE}
@@ -365,11 +343,9 @@ We see that only sites **scdi** and **sctw** remain in **sc_detect**.
 
 ### Activity
 
-Create a new object called **in_detect**, starting from **inverts**, that only contains observations if the **common_name** variable contains the string pattern "in".
+**Task:** Create a new object called **in_detect**, starting from **inverts**, that only contains observations if the **common_name** variable contains the string pattern "in". What species remain?
 
-What species remain?
-
-Solution:
+**Solution:**
 ```{r}
 in_detect <- inverts %>% 
   filter(

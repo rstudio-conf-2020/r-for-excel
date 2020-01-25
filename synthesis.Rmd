@@ -16,14 +16,14 @@ Source: Fisheries Statistics Division of the NOAA Fisheries
 
 *Note on the data:* "aggregate" here means "These names represent aggregations of more than one species. They are not inclusive, but rather represent landings where we do not have species-specific data. Selecting "Sharks", for example, will not return all sharks but only those where we do not have more specific information."
 
-## Objectives
+### Objectives
 
 - Synthesize data wrangling and visualization skills learned so far
 - Add a few new tools for data cleaning from `stringr`
 - Work collaboratively in an R Markdown file
 - Publish your collaborative work as a webpage
 
-## Resources
+### Resources
 
 - [Project oriented workflows](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) by Jenny Bryan
 

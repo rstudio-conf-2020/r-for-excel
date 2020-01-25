@@ -11,13 +11,15 @@ library(htmltools)
 
 ## Summary 
 
-We will learn about version control using git and GitHub, and we will interface with this through RStudio. Why use version control? To save time when working with your most important collaborator: you. 
+We will learn about version control and practice a workflow with GitHub and RStudio that streamlines working with our most important collaborator: Future You. 
 
 ## Objectives
 
-Today, we'll interface with GitHub from our local computers using RStudio. There are many other ways to interact with GitHub, including GitHub's Desktop App or the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)), but today we are going to work from RStudio. You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio).
+Today, we'll interface with GitHub from our local computers using RStudio. 
 
-Here's what we'll do, since we've already set up git on your computers in the previous session ([Setup Git & GitHub](#rstudio/#setup-git-github): 
+> **Aside**: There are many other ways to interact with GitHub, including GitHub's Desktop App and the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)). You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio).
+
+Here's what we'll do, since we've already set up git on your computers in the previous session ([Setup Git & GitHub](#rstudio/#setup-git-github)): 
 
 1. create a repository on Github.com
 1. clone locally using RStudio 

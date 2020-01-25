@@ -10,7 +10,7 @@ Here, we'll continue by *reshaping* data frames (converting from long-to-wide, o
 
 "Tidy" might sound like a generic way to describe non-messy looking data, but it is actually a specific data structure 
 
-## Objectives
+### Objectives
 
 - Reshape data frames with `tidyr::pivot_wider()` and `tidyr::pivot_longer()`
 - Convert column names with `janitor::clean_names()`
@@ -18,7 +18,7 @@ Here, we'll continue by *reshaping* data frames (converting from long-to-wide, o
 - Replace a string with `stringr::str_replace()`
 - Make an HTML table
 
-## Resources
+### Resources
 
 -- [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
 - [`tidyr` documentation from tidyverse.org](https://tidyr.tidyverse.org/)

@@ -17,7 +17,7 @@ Pivot tables are powerful tools in Excel for summarizing data in different ways.
 - Citation: Reed D. 2019. SBC LTER: Reef: Abundance, size and fishing effort for California Spiny Lobster (Panulirus interruptus), ongoing since 2012. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/a593a675d644fdefb736750b291579a0). 
 
 
-## Objectives
+### Objectives
 
 In R, we can use the `dplyr` package for pivot tables by using 2 functions `group_by` and `summarize` together with the pipe operator `%>%`. We will also continue to emphasize reproducibility in all our analyses.
 
@@ -26,7 +26,7 @@ In R, we can use the `dplyr` package for pivot tables by using 2 functions `grou
 - Learn `mutate()` and `select()` to work column-wise
 - Practice our reproducible workflow with RMarkdown and GitHub
 
-## Resources
+### Resources
 
 - [`dplyr` website: dplyr.tidyverse.org](https://dplyr.tidyverse.org/)
 - [R for Data Science: Transform Chapter](https://r4ds.had.co.nz/transform.html) by Hadley Wickham & Garrett Grolemund

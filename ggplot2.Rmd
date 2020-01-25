@@ -345,7 +345,6 @@ So to export the faceted graph above at 180 dpi, width a width of 8" and a heigh
 ggsave(here("img","np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
 
-TODO: do they have a figures folder created yet? 
 ```{r, eval = FALSE}
 ggsave(here("figures", "np_graph.jpg"), dpi = 180, width = 8, height = 7)
 ```
@@ -358,10 +357,5 @@ Notice that a .jpg image of that name and size is now stored in the `figures\` f
 - Commit
 - Pull (to check for remote changes)
 - Push!
-
-### TODO: other cool stuff
-
-- Palettes (Beyonce, LaCroix, Palletteer)
-- Cohesive themes, styles, & palettes for reports
 
 ### End `ggplot` session!

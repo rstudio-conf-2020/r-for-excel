@@ -35,6 +35,7 @@ TODO move
 - [ESM 206 Intro to data science & stats](https://allisonhorst.github.io), specifically [ESM Lecture 2](https://docs.google.com/presentation/d/1u1DdhU_WTv1b-sbQgqVGAE-bA2Nq_Yym8BzcPW4lS3k/edit#slide=id.g63942ead2d_0_219) - by Allison Horst
 -  [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) - by Thomas Mock
 - [reprex.tidyverse.org](https://reprex.tidyverse.org/)
+- [Reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan) - by Jenny Bryan
 - [Getting help in R: do as I say, not as I've done](https://sctyner.github.io/rhelp.html) by Sam Tyner
 - [Making free websites with RStudio’s R Markdown](https://jules32.github.io/rmarkdown-website-tutorial/) - by Julie Lowndes
 
@@ -48,7 +49,7 @@ https://docs.google.com/presentation/d/1ZYQERUuNJ69QRSUs_JKLdask_VnQRmvMTulv6m2V
 
 We are going to start off by talking about communities that exist around R and how you can engage with them. 
 
-R connects us online and in person, and by being here at RStudio::conf, you are a part of this community. 
+R communities connect online and in person. And we use Twitter as a platform to connect with each other. Yes, Twitter is a legit tool for data science. Most communities have some degree of in-person and online presence, with Twitter being a big part of that online presence, and it enables you to talk directly with people. On Twitter, we connect using the \#rstats hashtag, and thus often called the "rstats community" (more on Twitter in a moment).
 
 This is a small (and incomplete!) sampling to give you a sense of a few communities. Please see Thomas Mock's presentation [Finding the YOU in the R community](https://github.com/jthomasmock/presentations/blob/master/r-community2.pdf) for more details.
 
@@ -62,7 +63,7 @@ What is it: Online community forum for all questions R & RStudio
 
 Location: online at [community.rstudio.com](https://community.rstudio.com>)
 
-Also: [@RStudio](https://twitter.com/rstudio) on Twitter
+Also: [RStudio](https://twitter.com/rstudio) on Twitter
 
 #### RLadies
 
@@ -110,7 +111,7 @@ knitr::include_graphics("img/TheCarpentries-logo.png")
 
 What is it: Network teaching foundational data science skills to researchers worldwide
 
-Location: online at [carpentries.org](https://carpentries.org], on Twitter at [thecarpentries](https://twitter.com/thecarpentries), local workshops worldwide
+Location: online at [carpentries.org](https://carpentries.org), on Twitter at [thecarpentries](https://twitter.com/thecarpentries), local workshops worldwide
 
 
 #### R4DS Community
@@ -137,23 +138,21 @@ knitr::include_graphics("img/community-ex-janitor.png")
 
 ## How to use Twitter for \#rstats
 
-One thing about the R community is that we use Twitter as a platform to connect with each other. Yes, Twitter is a legit tool for data science. Most communities have some degree of in-person and online presence, with Twitter being a big part of that online presence, and it enables you to talk directly with people. 
-
-Twitter is a legit tool for R. It's how we connect with other R users, learn from each other, develop together, and become friends. Especially at an event like RStudio::conf, it is a great way to stay connect and stay connected with folks you meet. 
+Twitter is how we connect with other R users, learn from each other, develop together, and become friends. Especially at an event like RStudio::conf, it is a great way to stay connect and stay connected with folks you meet. 
 
 Twitter is definitely a firehose of information, but if you use it deliberately, you can hear the signal through the noise.
 
-I was super skeptical of Twitter. I thought it was a megaphone for angry people. But it turns out it is a place to have smaller conversations. 
+I was super skeptical of Twitter. I thought it was a megaphone for angry people. But it turns out it is a place to have small, thoughtful conversations and be part of innovative and friendly communities. 
 
-### Interpreting an \#rstats tweet
+### Examples
 
-Here are a few examples to show how I use Twitter to learn new things and keep tabs on (some of!) what's going on in R. I miss a lot because I'm not on Twitter all the time. And that is OK. There is too much goodness to know it all, and I am by no stretch of the imagination on top of it all or experienced with everything folks are developing. But, I learn more than I would if I were never on Twitter. Also, you can always look back at past users and hashtags and get "news updates" as you please. The search feature is pretty good!
+Here are a few examples of how to use Twitter for #rstats. 
 
 <br>
 
-<center>
-  <a><img src="/img/blog/keynote/tweet-Md_Harris-rnoaa.png" width="400px"></a>
-</center>
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/tweet-Md_Harris-rnoaa.png")  
+```
 
 <br>
 
@@ -162,7 +161,7 @@ When I saw [this tweet](https://twitter.com/Md_Harris/status/1074469302974193665
 1. Cool visualization!
 1. I want to represent my data this way
 1. He includes his [code](https://gist.github.com/mrecos) that I can look at to understand what he did, and I can run and remix
-1. The package is from [sckottie](https://twitter.com/sckottie) — I know he is at [rOpenSci](https://ropensci.org), which is a really amazing software developer community for science
+1. The package is from [sckottie](https://twitter.com/sckottie) — who I know from [rOpenSci](https://ropensci.org), which is a really amazing software developer community for science
 1. [`rnoaa`](https://cran.r-project.org/web/packages/rnoaa/index.html) is a package making NOAA [US environmental] data more accessible! I didn't know about this, it will be so useful for my colleagues
 1. I will retweet so my network can benefit as well
 
@@ -172,31 +171,31 @@ Another example, [this tweet](https://twitter.com/JennyBryan/status/107433921798
 
 <br>
 
-<center>
-  <a><img src="/img/blog/keynote/tweet-jennybryan-readxl.png" width="400px"></a>
-</center>
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/tweet-jennybryan-readxl.png")  
+```
 
 <br>
 
 
 My internal monologue: 
 
-1. Yay, readxl is awesome, and also getting better
+1. Yay, `readxl` is awesome, and also getting better thanks to Jenny
 1. Do I have any spreadsheets to contribute? 
 1. In any case, I will retweet so others can contribute. And I'll like it too because I appreciate this work
 
 ### How to Twitter
 
-My advice for Twitter is to start off small and deliberately. Curate who you follow and what you say: although I have many interests beyond R, I use Twitter deliberately for R and science communities.
+My advice for Twitter is to start off small and deliberately. Curate who you follow and start by listening. I use Twitter deliberately for R and science communities, so that is the majority of the folks I follow (but of course I also follow [Mark Hamill](https://twitter.com/HamillHimself).
 
-Use it to listen and learn, and then you can gradually build up the courage to like and retweet things. And remember that liking and retweeting is not only a way to engage with the community yourself, but it is also a way to welcome and amplify other people.   
+So start using Twitter to listen and learn, and then as you gradually build up courage, you can like and retweet things. And remember that liking and retweeting is not only a way to engage with the community yourself, but it is also a way to welcome and amplify other people. Sometimes I just reply saying how cool something is. Sometimes I like it. Sometimes I retweet. Sometimes I retweet with a quote/comment. But I also miss a lot of things since I limit how much time I give to Twitter, and that's OK. You will always miss things but you are part of the community and they are there for you like you are for them.   
 
 If you're joining twitter to learn R, I suggest following:
 
 - [hadleywickham](https://twitter.com/hadleywickham) 
-- [JennyBryan](https://twitter.com/JennyBryan), 
-- [rOpenSci](https://twitter.com/ropensci), 
-- [WeAreRLadies](https://twitter.com/https://twitter.com/WeAreRLadies). 
+- [JennyBryan](https://twitter.com/JennyBryan)
+- [rOpenSci](https://twitter.com/ropensci)
+- [WeAreRLadies](https://twitter.com/https://twitter.com/WeAreRLadies)
 
 Listen to what they say and who joins those conversations, and follow other people and organizations. You could also look at who they are following. Also, check out the [#rstats](https://twitter.com/search?q=%23rstats&src=typed_query) hashtag. This is not something that you can follow (although you can have it as a column in software like TweetDeck), but you can search it and you'll see that the people you follow use it to help tag conversations. You'll find other useful tags as well, within your domain, as well as other R-related interests, e.g. [#rspatial](https://twitter.com/search?q=%23rspatial&src=typed_query). When I read marine science papers, I see if the authors are on Twitter; I sometimes follow them, ask them questions, or just tell them I liked their work!
 
@@ -207,15 +206,13 @@ You can also follow us:
 - [jafflerbach](https://twitter.com/jafflerbach)
 - [ECOuture9](https://twitter.com/ECOuture9)
 
-<br>
-
 These are just a few ways to learn and build community on Twitter. And as you feel comfortable, you can start sharing your ideas or your links too. Live-tweeting is a really great way to engage as well, and bridge in-person conferences with online communities. And of course, in addition to engaging on Twitter, check whether there are local RLadies chapters or other R meetups, and join! Or perhaps [start one](https://openscapes.org/blog/2018/11/16/how-to-start-a-coding-club/)?
 
 So Twitter is a place to engage with folks and learn, and while it is also a place to ask questions, there are other places to look first, depending on your question. 
 
-## Getting help: help you help yourself
+## Getting help
 
-Helping you help yourself means moving beyond "it's not working" and towards solution-oriented approaches. Part of this is the mindset where you **expect that someone has encountered this problem before** and that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. 
+Getting help, or really helping you help yourself, means moving beyond "it's not working" and towards solution-oriented approaches. Part of this is the mindset where you **expect that someone has encountered this problem before** and that **most likely the problem is your typo or misuse**, and not that R is broken or hates you. 
 
 We're going to talk about how to ask for help, how to interpret responses, and how to act upon the help you receive.
 
@@ -232,7 +229,14 @@ As we've talked about before, they may be red, they may be unfamiliar, but **err
 
 ### Googling
 
-Just as important as Googling your error message is being able to identify a useful result. 
+The internet has the answer to all of your R questions, hopes, and dreams.  
+
+When you get an error you don't understand, copy it and paste it into Google. You can also add "rstats" or "tidyverse" or something to help Google (although it's getting really good without it too). 
+
+For error messages, copy-pasting the exact message is best. But if you have a "how do I...?" type question you can also enter this into Google. You'll develop the vocabulary you need to refine your search terms as you become more familiar with R. It's a continued learning process.
+
+And just as important as Googling your error message is being able to identify a useful result. 
+
 Something I can't emphasize enough: **pay attention to filepaths**. They tell you the source, they help you find pages again. Often remembering a few things about it will let you either google it again or navigate back there yourself.
 
 **Check the date, check the source, check the relevance.** Is this a modern solution, or one from 2013? Do I trust the person responding? Is this about my question or on a different topic?
@@ -241,21 +245,22 @@ You will see links from many places, particularly:
 
 - RStudio Community 
 - Stack Overflow
-- Books, blogs, and tutorials
+- Books, blogs, tutorials, courses, webinars
 - GitHub Issues
 
-We haven't talked about GitHub Issues yet: let's do an example. 
+<!---TODO
+#### Google example
 
-TODO: Google example
+--->
 
 ### Create a reprex
 
-- [reprex.tidyverse.org](https://reprex.tidyverse.org/)
-- [Jenny Bryan's reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan)
+A "reprex" is a REPRoducible EXample: code that you need help with and want to ask someone about. 
 
-Jenny Bryan made `reprex` because "conversations about code are more productive with: code that ***actually runs***, that ***I don’t have to run***, and that ***I can easily run***".
+Jenny Bryan made the `reprex` package because "conversations about code are more productive with code that ***actually runs***, that ***I don’t have to run***, and that ***I can easily run***".
 
-Let me demo an example. This is Jenny's summary of what I'll do:
+Let me demo an example. This is Jenny's summary from her [reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan) of what I'll do:
+
 <br>
 
 ```{r, echo=FALSE, out.width="80%"}
@@ -268,15 +273,30 @@ knitr::include_graphics("img/reprex-bryan.png")
 library(reprex)
 ```
 
-First I'll type into our RMarkdown script: 
+First let me create a little example that I have a question about. I want to know how I change the color of the geom_points in my ggplot. (Reminder: this example is to illustrate reprex, not how you would actually look in the help pages!!!) 
+
+I'll type into our RMarkdown script: 
 
 ```{r, eval=FALSE}
 library(tidyverse)
 ggplot(cars, aes(speed, dist)) +
-  geom_point(color = "maroon")
+  geom_point()
 ```
 
-And then when I also have this in my clipboard. Now I am going to paste it into an [Issue for our r-for-excel repository](https://github.com/rstudio-conf-2020/r-for-excel/issues) 
+So this is the code I have a question about it. My next step is to select it all and copy it into my clipboard. 
+ 
+Then I go to my Console and type:
+
+```{r, eval=FALSE}
+reprex()
+```
+ 
+Reprex does its thing, making sure this is a reproducible example — this wouldn't be without `library(tidyverse)`! — and displaying it in my Viewer on the bottom-right of the RStudio IDE.
+ 
+
+reprex includes the output — experienced programmers who you might be asking for help can often read your code and know where the problem lies, especially when they can see the output.
+ 
+When it finishes I also have what I see in the Viewer copied in my clipboard. I can paste it anywhere! In an email, Google Doc, in Slack. I'm going to paste mine in an Issue for my r-workshop repository.
 
 When I paste it: 
 
@@ -284,25 +304,24 @@ When I paste it:
 knitr::include_graphics("img/reprex-ex-ggplot.png")  
 ```
 
-Notice that following the backticks, there is only `r`, not `r{}`. This is because what we have pasted is formatted for R, not to be executed by R through RMarkdown.
+Notice that following the backticks, there is only `r`, not `r{}`. This is because what we have pasted is so GitHub can format as R code, but it won't be executed by R through RMarkdown.
 
 I can click on the Preview button in the Issues to see how this will render: and it will show my code, nicely formatted for R. 
 
-So in this example I might write at the top of the comment "allison_horst how do I change the point color to cyan?" And when Allison is tagged
+So in this example I might write at the top of the comment: "Practicing a reprex and Issues.  "allison_horst how do I change the point color to cyan?" 
 
 **`reprex` is a "workflow package"**. That means that it's something we don't put in Rmds, scripts, or anything else. We use is in the Console when we are preparing to ask for help — from ourselves or someone else. 
 
-reprex includes the output — experienced programmers who you might be asking for help can often read your code and know where the problem lies, especially when they can see the output. 
 
-### Activity: "do it with iris"
+### Activity
 
-Make a reprex using the built-in `iris` dataset and paste it in the Issues for your repository. (Have a look at iris: `head(iris); summary(iris)`)
+Make a reprex using the built-in `mtcars` dataset and paste it in the Issues for your repository. (Have a look: `head(mtcars); skimr::skim(mtcars)`)
 
-1. For your reprex, take the iris dataset and then filter it for observations where the Petal.Length is more than 6.5
+1. For your reprex, take the `mtcars` dataset and then filter it for observations where the `mpg` is more than 26. 
 
 2. Navigate to github.com/your_username/r-workshop/issues
 
-Hint: remember to read the error message. "could not find function `%>%`" means you've forgotten to attach a package with `library()`
+Hint: remember to read the error message. "could not find function `%>%`" means you've forgotten to attach the appropriate package with `library()`
 
 #### Solution (no peeking)
 
@@ -312,12 +331,14 @@ library(reprex)
 
 ## reprex code: run in Rmd or Console
 library(tidyverse) # or library(dplyr) or library(magrittr)
-iris %>% filter(Petal.Length > 6.5)
+mtcars %>% filter(mpg > 26)
 
 ## copy the above
 
 ## reprex call: run in Console
 reprex()
+
+## paste in Issue!
 ```
 
 
@@ -404,12 +425,7 @@ Now it's Partner 2's turn! Partner 2, clone this repository following the same s
 
 Partner 2, let's create a folder for our data and copy our `noaa_landings.csv` there. 
 
-And now let's sync back to GitHub. 
-
-![](img/commit_overview.png)
-
-
-<br>
+And now let's sync back to GitHub: Pull, Stage, Commit, Push
 
 When we inspect on GitHub.com, click to view all the commits, you'll see commits logged from both Partner 1 and 2!
 

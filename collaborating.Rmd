@@ -5,7 +5,7 @@ TODO: swap out gh-pages screenshots
 
 ## Summary
 
-By being here at RStudio::conf and in this workshop, you are already part of the R community. We will discuss additional R communtities, how to engage, and how to ask for help. 
+Since the GitHub session (Chapter \@ref(github)), we have been practicing using GitHub with RStudio to collaborate with our most important collaborator: Future You. Here we will practice using GitHub with RStudio to collaborate with others now, with a mindset towards Future Us. We will also how to engage with the R community broadly and how to continue being a part of the #rstats community, including how to engage on Twitter, and how to ask for help. 
 
 *TODO: refine* Main purpose: work better with colleagues, help you help yourself. A big theme of this workshop has been how to more seamlessly collaborate with each other.
 

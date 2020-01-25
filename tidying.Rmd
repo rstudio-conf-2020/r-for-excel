@@ -12,7 +12,7 @@ Here, we'll continue by *reshaping* data frames (converting from long-to-wide, o
 
 ![](img/tidy_data.png)
 
-## Objectives
+### Objectives
 
 In this session we'll learn some tools to help make our data **tidy** and more coder-friendly. Those include:
 
@@ -21,7 +21,7 @@ In this session we'll learn some tools to help make our data **tidy** and more c
 - `tidyr::unite()` and `tidyr::separate()` to merge or separate information from different columns
 - Detect or replace a string with `stringr` functions
 
-## Resources
+### Resources
 
 -- [Ch. 12 *Tidy Data*, in R for Data Science](https://r4ds.had.co.nz/tidy-data.html) by Grolemund & Wickham
 - [`tidyr` documentation from tidyverse.org](https://tidyr.tidyverse.org/)

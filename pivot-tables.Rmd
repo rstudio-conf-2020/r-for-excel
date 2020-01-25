@@ -17,7 +17,7 @@ Pivot tables are powerful tools in Excel for summarizing data in different ways.
 - Citation: Reed D. 2019. SBC LTER: Reef: Abundance, size and fishing effort for California Spiny Lobster (Panulirus interruptus), ongoing since 2012. Environmental Data Initiative. [doi](https://doi.org/10.6073/pasta/a593a675d644fdefb736750b291579a0). 
 
 
-## Objectives
+### Objectives
 
 In R, we can use the `dplyr` package for pivot tables by using 2 functions `group_by` and `summarize` together with the pipe operator `%>%`. We will also continue to emphasize reproducibility in all our analyses.
 
@@ -26,7 +26,7 @@ In R, we can use the `dplyr` package for pivot tables by using 2 functions `grou
 - Learn `mutate()` and `select()` to work column-wise
 - Practice our reproducible workflow with RMarkdown and GitHub
 
-## Resources
+### Resources
 
 - [`dplyr` website: dplyr.tidyverse.org](https://dplyr.tidyverse.org/)
 - [R for Data Science: Transform Chapter](https://r4ds.had.co.nz/transform.html) by Hadley Wickham & Garrett Grolemund
@@ -67,6 +67,7 @@ library(tidyverse)
 library(readxl)
 library(here)
 library(skimr) # install.packages('skimr')
+library(kableExtra) # install.packages('kableExtra')
 ```
 
 We used the `read_excel()` before, which is the generic function that reads both .xls and .xlsx files. Since we know that this is a .xlsx file, we will demo using the `read_xlsx()` function. 
@@ -319,7 +320,19 @@ siteyear_summary <- lobsters %>%
 siteyear_summary 
 ```
 
-### R code in-line RMarkdown
+### Table formatting with `kable()`
+
+There are several options for formatting tables in RMarkdown; we'll show one here from the `kableExtra` package and learn more about it tomorrow. 
+
+It works nicely with the pipe operator, so we can build do this from our new object:
+
+```{r, eval=FALSE}
+## make a table with our new variable
+siteyear_summary %>%
+  kable()
+```
+
+### R code in-line in RMarkdown
 
 Before we let you try this on your own, let's go outside of our code chunk and write in Markdown. 
 

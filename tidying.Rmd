@@ -51,7 +51,7 @@ library(here)
 library(readxl)
 ```
 
-### Read in data with `read_excel()`
+### `read_excel()` to read in data from an Excel worksheet
 
 We've used both `read_csv()` and `read_excel()` to import data from spreadsheets into R. 
 
@@ -69,7 +69,7 @@ names(inverts)
 summary(inverts)
 ```
 
-## Wide-to-longer format with `tidyr::pivot_longer()`
+## `tidyr::pivot_longer()` to reshape from wider-to-longer format
 
 If we look at *inverts*, we can see that the *year* variable is actually split over 3 columns, so we'd say this is currently in **wide format**. 
 
@@ -130,7 +130,7 @@ Checking the class again, we see that *year* has been updated to a numeric varia
 class(inverts_long$year)
 ```
 
-## Long-to-wider format with `tidyr::pivot_wider()`
+## `tidyr::pivot_wider()` to convert from longer-to-wider format
 
 In the previous example, we had information spread over multiple columns that we wanted to *gather*. Sometimes, we'll have data that we want to *spread* over multiple columns. 
 
@@ -150,7 +150,7 @@ inverts_wide
 
 We can see that now each *species* has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format...
 
-## Clean up column names with `janitor::clean_names()`
+## `janitor::clean_names()` to clean up column names
 
 The `janitor` package by Sam Firke is a great collection of functions for some quick data cleaning, like:
 
@@ -188,7 +188,7 @@ And there are other case options in `clean_names()`, like:
 - "lower_upper" produces lowerUPPER
 - "upper_lower" produces UPPERlower
 
-## Combine or separate columns with `tidyr::unite()` and `tidyr::separate()`
+## `tidyr::unite()` and `tidyr::separate()` to combine or separate information in column(s)
 
 Sometimes we'll want to *separate* contents of a single column into multiple columns, or *combine* entries from different columns into a single column. 
 
@@ -221,7 +221,7 @@ Use `tidyr::unite()` to combine information from multiple columns into a single 
 
 ![](img/rstudio-cheatsheet-unite.png)
 
-To demonstrate uniting information from separate columns, we'll make a single column that has the combined information from *site* abbreviation and *year* in *inverts_wide*. 
+To demonstrate uniting information from separate columns, we'll make a single column that has the combined information from *site* abbreviation and *year* in *inverts_long*. 
 
 We need to give `tidyr::unite()` several arguments:
 
@@ -232,7 +232,7 @@ We need to give `tidyr::unite()` several arguments:
 
 ```{r}
 
-inverts_unite <- inverts_wide %>% 
+inverts_unite <- inverts_long %>% 
   unite(col = "site_year", # What to name the new united column
                c(site, year), # The columns we'll unite (site, year)
                sep = "_") # How to separate the things we're uniting
@@ -245,14 +245,14 @@ head(inverts_unite)
 
 #### Activity: 
 
-**Task:** Create a new object called 'inverts_moyr', starting from inverts_wide, that unites the month and year columns into a single column named "mo_yr", using a dash "-" as the separator. Then try updating the separator to something else! Like "_hello!_".
+**Task:** Create a new object called 'inverts_moyr', starting from inverts_long, that unites the month and year columns into a single column named "mo_yr", using a slash "/" as the separator. Then try updating the separator to something else! Like "_hello!_".
 
 **Solution:**
 ```{r}
-inverts_moyr <- inverts_wide %>% 
+inverts_moyr <- inverts_long %>% 
   unite(col = "mo_yr", # What to name the new united column
                c(month, year), # The columns we'll unite (site, year)
-               sep = "-") 
+               sep = "/") 
 ```
 
 
@@ -294,82 +294,7 @@ inverts_sep <- inverts_unite %>%
 
 ```
 
-## Detecting a string pattern with `stringr::str_detect()`
-
-Sometimes we'll want to find observations that contain a specific string pattern within a variable of interest. 
-
-For example, consider the fantasy data below:
-
-```{r, echo = FALSE, eval=FALSE}
-
-df_str_ex <- tribble(
-  ~id, ~species,
-  1, "rainbow rockfish",
-  2, "blue rockfish",
-  3, "sparkle urchin",
-  4, "royal blue fish"
-)
-
-kable(df_str_ex)
-
-```
-
-There might be a time when we would want to use observations that:
-
-- Contain the string "fish", in isolation or within a larger string (like "rockfish")
-- Contain the string "blue"
-
-In those cases, it would be useful to **detect** a string pattern, and potentially keep any rows that contain it. Here, we'll use `stringr::str_detect()` to find and keep observations that contain our specified string pattern. 
-
-Refamiliarize yourself with the **inverts** object:
-```{r, eval = FALSE}
-View(inverts)
-```
-
-First, we want to detect observations where the **site** variable contains string pattern "sc". Note that there are two sites that contain the pattern: **scdi** and **sctw**. 
-
-Using `str_detect()` to find and keep observations where the **site** variable contains pattern "sc":
-```{r}
-sc_detect <- inverts %>% 
-  filter(
-    str_detect(site, pattern = "sc")
-  )
-
-# Use `unique` to return the unique entries in the site column:
-unique(sc_detect$site)
-```
-
-We see that only sites **scdi** and **sctw** remain in **sc_detect**. 
-
-### Activity
-
-**Task:** Create a new object called **in_detect**, starting from **inverts**, that only contains observations if the **common_name** variable contains the string pattern "in". What species remain?
-
-**Solution:**
-```{r}
-in_detect <- inverts %>% 
-  filter(
-    str_detect(common_name, pattern = "in")
-  )
-
-unique(in_detect$common_name)
-
-# Only 'california spiny lobster' and 'purple urchin' remain!
-```
-
-We can similarly choose to *exclude* observations that contain a set string pattern by adding the `negate = TRUE` argument within `str_detect()`. 
-
-For example, to exclude any observations where the common name contains "california," we'd use:
-```{r}
-no_ca <- inverts %>% 
-  filter(
-    str_detect(common_name, pattern = "california", negate = TRUE)
-  )
-```
-
-Look at **no_ca** to confirm that "california spiny lobster" and "california cone snail" have been excluded.
-
-## Replacing a string with `stringr::str_replace()`
+## `stringr::str_replace()` to replace a pattern
 
 Was data entered in a way that's difficult to code with, or is just plain annoying? Did someone wrongly enter "fish" as "fsh" throughout the spreadsheet, and you want to update it everywhere? 
 

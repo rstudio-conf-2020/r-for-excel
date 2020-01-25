@@ -42,20 +42,18 @@ library(here)
 library(kableExtra)
 ```
 
-Then create a new code chunk to read in three files from your 'data' subfolder:
+Then create a new code chunk to read in two files from your 'data' subfolder:
 
-- inverts.xlsx
 - fish.csv
 - kelp_fronds.xlsx (read in only the "abur" worksheet by adding argument `sheet = "abur"` to `read_excel()`)
 
 ```{r, message = FALSE}
 # Read in data: 
-inverts <- read_excel(here("data", "inverts.xlsx"))
 fish <- read_csv(here("data", "fish.csv"))
 kelp_abur <- read_excel(here("data", "kelp_fronds.xlsx"), sheet = "abur")
 ```
 
-We should always explore the data we've read in using functions. Use `View()`, `names()`, `summary()`, `head()` and `tail()` to check them out. 
+We should always explore the data we've read in. Use functions like `View()`, `names()`, `summary()`, `head()` and `tail()` to check them out. 
 Now, let's use `filter()` to decide which observations (rows) we'll keep or exclude in new subsets, similar to using Excel's VLOOKUP function or filter tool.
 
 ## `dplyr::filter()` to conditionally subset by rows
@@ -113,16 +111,6 @@ fish_over50 <- fish %>%
   filter(total_count >= 50)
 ```
 
-#### Activity
-
-**Task:** Create a subset from the **fish** data frame that only contains observations from year 2018, and store as object **fish_2018**.
-
-**Solution:**
-```{r}
-fish_2018 <- fish %>% 
-  filter(year == 2018)
-```
-
 ### Filter to return rows that match *this* OR *that* OR *that*
 
 What if we want to return a subset of the **fish** df that contains *garibaldi*, *blacksmith* OR *black surfperch*?
@@ -133,7 +121,9 @@ Way 1: You can indicate **OR** using the vertical line operator `|` to indicate 
 
 ```{r}
 fish_3sp <- fish %>% 
-  filter(common_name == "garibaldi" | common_name == "blacksmith" | common_name == "black surfperch")
+  filter(common_name == "garibaldi" | 
+           common_name == "blacksmith" | 
+           common_name == "black surfperch")
 
 ```
 
@@ -150,7 +140,7 @@ Notice that the two methods above return the same thing.
 
 #### Activity
 
-**Task:** Create a subset from **fish** called **fish_gar_2016** that keeps all observations if the year is 2016 *OR* the species is "garibaldi."
+**Task:** Create a subset from **fish** called **fish_gar_2016** that keeps all observations if the year is 2016 *OR* the common name is "garibaldi."
 
 **Solution:**
 ```{r}
@@ -162,18 +152,18 @@ fish_gar_2016 <- fish %>%
 
 In the examples above, we learned to keep observations that matched any of a number of conditions (**or** statements). 
 
-Sometimes we'll only want to keep observations that **do** satisfy multiple conditions (e.g., to keep this observation it must satisfy this **AND** that condition). For example, we may want to create a subset that only returns rows from **inverts** where the **site** is "abur" or "mohk" *and* the **common_name** is "purple urchin." 
+Sometimes we'll only want to keep observations that satisfy multiple conditions (e.g., to keep this observation it must satisfy this condition **AND** that condition). For example, we may want to create a subset that only returns rows from **fish** where the **year** is 2018 *and* the **site** is Arroyo Quemado "aque" 
 
 In `filter()`, add a comma (or ampersand '&') between arguments for multiple "and" conditions:
 
 ```{r}
-urchin_abur_mohk <- inverts %>% 
-  filter(site %in% c("abur","mohk"), common_name == "purple urchin")
+aque_2018 <- fish %>% 
+  filter(year == 2018, site == "aque")
 ```
 
-Check it out to see that only observations where the site is "abur" or "mohk" **AND** the common name is "purple urchin" are retained: 
+Check it out to see that only observations where the site is "aque" in 2018 are retained: 
 ```{r}
-urchin_abur_mohk
+aque_2018
 ```
 
 Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using `&` (instead of a comma) between "and" conditions:
@@ -181,8 +171,8 @@ Like most things in R, there are other ways to do the same thing. For example, y
 ```{r, eval = FALSE}
 # Use the ampersand (&) to add another condition "and this must be true":
 
-urchin_abur_mohk <- inverts %>% 
-  filter(site %in% c("abur","mohk") & common_name == "purple urchin")
+aque_2018 <- fish %>% 
+  filter(year == 2018 & site == "aque")
 ```
 
 Or you could just do two filter steps in sequence: 
@@ -190,17 +180,17 @@ Or you could just do two filter steps in sequence:
 ```{r, eval = FALSE}
 # Written as sequential filter steps:
 
-urchin_abur_mohk <- inverts %>% 
-  filter(site %in% c("abur", "mohk")) %>% 
-  filter(common_name == "purple urchin")
+aque_2018 <- fish %>% 
+  filter(year == 2018) %>% 
+  filter(site == "aque")
 ```
 
 ### Activity: combined filter conditions
 
-**Task:** Create a subset from the **fish** data frame, called **low_gb_wr** that only contains:
+**Challenge task:** Create a subset from the **fish** data frame, called **low_gb_wr** that only contains:
 
 - Observations for *garibaldi* or *rock wrasse*
-- Where the *total_count* is *less than or equal to 10*
+- AND the *total_count* is *less than or equal to 10*
 
 **Solution:**
 ```{r}
@@ -208,6 +198,57 @@ low_gb_wr <- fish %>%
   filter(common_name %in% c("garibaldi", "rock wrasse"), 
          total_count <= 10)
 ```
+
+### `stringr::str_detect()` to filter by a partial pattern
+
+Sometimes we'll want to keep observations that contain a specific string pattern within a variable of interest. 
+
+For example, consider the fantasy data below:
+
+```{r, echo = FALSE}
+
+df_str_ex <- tribble(
+  ~id, ~species,
+  1, "rainbow rockfish",
+  2, "blue rockfish",
+  3, "sparkle urchin",
+  4, "royal blue fish"
+)
+
+kable(df_str_ex)
+
+```
+
+There might be a time when we would want to use observations that:
+
+- Contain the string "fish", in isolation or within a larger string (like "rockfish")
+- Contain the string "blue"
+
+In those cases, it would be useful to **detect** a string pattern, and potentially keep any rows that contain it. Here, we'll use `stringr::str_detect()` to find and keep observations that contain our specified string pattern. 
+
+Let's detect and keep observations from **fish** where the **common_name** variable contains string pattern "black". Note that there are two fish, blacksmith and black surfperch, that would satisfy this condition. 
+
+Using `filter()` + `str_detect()` in combination to find and keep observations where the **site** variable contains pattern "sc":
+```{r}
+fish_bl <- fish %>% 
+  filter(str_detect(common_name, pattern = "black"))
+```
+
+So `str_detect()` returns is a series of TRUE/FALSE responses for each row, based on whether or not they contain the specified pattern. In that example, any row that *does* contain "black" returns `TRUE`, and any row that *does not* contain "black" returns `FALSE`. 
+
+### Activity
+
+**Task:** Create a new object called **fish_it**, starting from **fish**, that only contains observations if the **common_name** variable contains the string pattern "it". What species remain?
+
+**Solution:**
+```{r}
+fish_it <- fish %>% 
+  filter(str_detect(common_name, pattern = "it"))
+
+# blacksmITh and senorITa remain!
+```
+
+We can also *exclude* observations that contain a set string pattern by adding the `negate = TRUE` argument within `str_detect()`. 
 
 **Sync your local project to your repo on GitHub.**
 
@@ -226,14 +267,7 @@ From R Documentation (`?join`):
 Schematic (from RStudio data wrangling cheat sheet): 
 ![](img/rstudio-cheatsheet-combine-options1.png)
 
-To clarify what the different joins are doing, let's first make a subset of the *fish* data frame that only contains observations from 2016 and 2017. 
-
-```{r}
-fish_16_17 <- fish %>% 
-  filter(year %in% c(2016, 2017))
-```
-
-Take a look to ensure that only those years are included with `View(fish_16_17)`. Now, let's merge it with our Arroyo Burro kelp fronds data (kelp_abur) in different ways. 
+We will use **kelp_abur** as our "left" data frame, and **fish** as our "right" data frame, to explore different join outcomes. 
 
 ### `full_join()` to merge data frames, keeping everything
 
@@ -242,32 +276,33 @@ When we join data frames in R, we need to tell R a couple of things (and it does
 - Which data frames we want to merge together
 - Which variables to merge by
 
-**Note:** If there are **exactly matching** column names in the data frames you're merging, the `*_join()` functions will assume that you want to join by those columns. If there are *no* matching column names, you can specify which columns to join by manually. We'll do both here. 
+Use `full_join()` to safely combine two data frames, keeping everything from both and populating with `NA` as necessary.
+
+Example: use `full_join()` to combine **kelp_abur** and **fish**:
 
 ```{r}
-# Join the fish_16_17 and kelp_abur
-abur_kelp_fish <- fish_16_17 %>% 
-  full_join(kelp_abur, by = c("year", "site")) 
+abur_kelp_fish <- kelp_abur %>% 
+  full_join(fish, by = c("year", "site")) 
 ```
 
 Let's look at the merged data frame with `View(abur_kelp_fish)`. A few things to notice about how `full_join()` has worked: 
 
 1. All columns that existed in **both data frames** still exist
-2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. The kelp frond data from 2018 is also returned, even though the fish counts dataset did not have 'year == 2018' in it.
+2. All observations are retained, even if they don't have a match. In this case, notice that for other sites (not 'abur') the observation for fish still exists, even though there was no corresponding kelp data to merge with it. 
 3. The kelp frond data is joined to *all observations* where the joining variables (*year*, *site*) are a match, which is why it is repeated 5 times for each year (once for each fish species).
 
 Because all data (observations & columns) are retained, `full_join()` is the safest option if you're unclear about how to merge data frames. 
 
 ### `left_join(x,y)` to merge data frames, keeping everything in the 'x' data frame and only matches from the 'y' data frame
 
-Now, we want to keep all observations in *fish_16_17*, and merge them with *kelp_abur* while only keeping observations from *kelp_abur* that match an observation within *fish_16_17*. So when we use `left_join()`, any information on kelp frond counts from 2018 should be dropped, because those wouldn't have a match in the left data frame. 
+Now, we want to keep all observations in *kelp_abur*, and merge them with *fish* while only keeping observations from *fish* that match an observation within *abur*. When we use `left_join()`, any information from *fish* that don't have a match (by year and site) in *kelp_abur* won't be retained, because those wouldn't have a match in the left data frame. 
 
 ```{r}
-fish_kelp_16_17 <- fish_16_17 %>% 
-  left_join(kelp_abur, by = c("year","site"))
+kelp_fish_left <- kelp_abur %>% 
+  left_join(fish, by = c("year","site"))
 ```
 
-Notice when you look at **fish_kelp_16_17**, the 2018 data that **does** exist in kelp_abur does **not** get joined to the **fish_16_17** data frame, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
+Notice when you look at **kelp_fish_left**, data for other sites that exist in fish do **not** get joined, because `left_join(df_a, df_b)` will only keep observations from `df_b` if they have a match in `df_a`! 
 
 ### `inner_join()` to merge data frames, only keeping observations with a match in **both**
 
@@ -275,8 +310,8 @@ Use `inner_join()` if you **only** want to retain observations that have matches
 
 For example, if we use `inner_join()` to merge fish and kelp_abur, then we are asking R to **only return observations where the joining variables (*year* and *site*) have matches in both data frames.** Let's see what the outcome is: 
 ```{r}
-kelp_fish_injoin <- fish %>% 
-  inner_join(kelp_abur, by = c("year", "site"))
+kelp_fish_injoin <- kelp_abur %>% 
+  inner_join(fish, by = c("year", "site"))
 
 # kelp_fish_injoin
 ```

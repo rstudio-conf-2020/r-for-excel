@@ -13,13 +13,13 @@ library(htmltools)
 
 We will learn about version control and practice a workflow with GitHub and RStudio that streamlines working with our most important collaborator: Future You. 
 
-## Objectives
+### Objectives
 
 Today, we'll interface with GitHub from our local computers using RStudio. 
 
 > **Aside**: There are many other ways to interact with GitHub, including GitHub's Desktop App and the command line ([here is Jenny Bryan's list of git clients](http://stat545.com/git02_git-clients.html)). You have the largest suite of options if you interface through the command line, but the most common things you'll do can be done through one of these other applications (i.e. RStudio).
 
-Here's what we'll do, since we've already set up git on your computers in the previous session ([Setup Git & GitHub](#rstudio/#setup-git-github)): 
+Here's what we'll do, since we've already set up git on your computers in the previous session (Chapter \@ref(github)): 
 
 1. create a repository on Github.com
 1. clone locally using RStudio 
@@ -28,7 +28,7 @@ Here's what we'll do, since we've already set up git on your computers in the pr
 1. project-oriented workflows
 1. project-oriented workflows in action
 
-## Resources
+### Resources
 
 These materials borrow from: 
 

@@ -192,7 +192,7 @@ You can also follow us:
 
 - [juliesquid](https://twitter.com/juliesquid)
 - [allison_horst](https://twitter.com/allison_horst)
-- [jafflerbach](https://twitter.com/jafflerbach)
+- [jamiecmonty](https://twitter.com/jamiecmonty)
 - [ECOuture9](https://twitter.com/ECOuture9)
 
 These are just a few ways to learn and build community on Twitter. And as you feel comfortable, you can start sharing your ideas or your links too. Live-tweeting is a really great way to engage as well, and bridge in-person conferences with online communities. And of course, in addition to engaging on Twitter, check whether there are local RLadies chapters or other R meetups, and join! Or perhaps [start one](https://openscapes.org/blog/2018/11/16/how-to-start-a-coding-club/)?

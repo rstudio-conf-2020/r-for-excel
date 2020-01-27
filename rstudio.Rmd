@@ -441,7 +441,7 @@ Object names can be whatever you want, although it is wise to not name objects b
 ```
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/horst_coding_case.png")  
+knitr::include_graphics("img/horst_coding_cases.png")  
 ```
 
 
@@ -580,7 +580,7 @@ Do you see what I see?
 <br>
 
 ```{r, echo=FALSE, out.width="80%"}
-knitr::include_graphics("img/new_project4.png")  
+knitr::include_graphics("img/new_project4b.png")  
 ```
 
 <br>

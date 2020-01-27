@@ -32,9 +32,5 @@ We will learn technical skills that you can incrementally incorporate into your 
 
 **"Keep the raw data raw"** — A hard line separating raw data and analyses. In R, we have data in one file and written computational commands saved as a separate file.
 
-**Scripted analyses** — We write analytical logic in code (rather than clicks) so that can be understood, rerun, and built upon.  
-
-**Learn from data that are not your own** — We aren't using your data in this workshop, but you will see similiarities and patterns, and you'll see that these tools and practices apply to your work.
-
 **Think ahead for Future You, Future Us.** Help make lives easier — first and foremost your own. Create breadcrumbs for yourselves and others: document and share your work. 
 

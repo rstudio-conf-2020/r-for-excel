@@ -54,6 +54,10 @@ Before the training, please do the following (20 minutes). All software is free.
     - Google Drive folder: [r-for-excel-data ](https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing)
     - Save it temporarily somewhere you will remember; we will move it together
 
+## Course Material
+
+All course material are openly available at [rstd.io/conf20-r-excel](https://rstd.io/conf20-r-excel).
+
 ## Schedule
 
 |Time       |      Day 1|      Day 2|

@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-01-27" />
+<meta name="date" content="2020-01-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -578,7 +578,7 @@ https://docs.google.com/presentation/d/1ZYQERUuNJ69QRSUs_JKLdask_VnQRmvMTulv6m2V
 <h3><span class="header-section-number">9.4.3</span> Create a reprex</h3>
 <p>A “reprex” is a REPRoducible EXample: code that you need help with and want to ask someone about.</p>
 <p>Jenny Bryan made the <code>reprex</code> package because “conversations about code are more productive with code that <strong><em>actually runs</em></strong>, that <strong><em>I don’t have to run</em></strong>, and that <strong><em>I can easily run</em></strong>”.</p>
-<p>Let me demo an example. This is Jenny’s summary from her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">reprex webinar</a> of what I’ll do:</p>
+<p>Let me demo an example, and then you will do it yourself. This is Jenny’s summary from her <a href="https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan">reprex webinar</a> of what I’ll do:</p>
 <p><br></p>
 <p><img src="img/reprex-bryan.png" width="80%" /></p>
 <p><code>reprex</code> is part of the Tidyverse, so we all already have it installed, but we do need to attach it:</p>
@@ -605,7 +605,8 @@ https://docs.google.com/presentation/d/1ZYQERUuNJ69QRSUs_JKLdask_VnQRmvMTulv6m2V
 <h3><span class="header-section-number">9.4.4</span> Activity</h3>
 <p>Make a reprex using the built-in <code>mtcars</code> dataset and paste it in the Issues for your repository. (Have a look: <code>head(mtcars); skimr::skim(mtcars)</code>)</p>
 <ol style="list-style-type: decimal">
-<li><p>For your reprex, take the <code>mtcars</code> dataset and then filter it for observations where the <code>mpg</code> is more than 26.</p></li>
+<li>install and attach the <code>reprex</code> package</li>
+<li><p>For your reprex: take the <code>mtcars</code> dataset and then filter it for observations where <code>mpg</code> is more than 26.</p></li>
 <li><p>Navigate to github.com/your_username/r-workshop/issues</p></li>
 </ol>
 <p>Hint: remember to read the error message. “could not find function <code>%&gt;%</code>” means you’ve forgotten to attach the appropriate package with <code>library()</code></p>

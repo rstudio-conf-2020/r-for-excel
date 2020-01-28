@@ -248,7 +248,7 @@ A "reprex" is a REPRoducible EXample: code that you need help with and want to a
 
 Jenny Bryan made the `reprex` package because "conversations about code are more productive with code that ***actually runs***, that ***I don’t have to run***, and that ***I can easily run***".
 
-Let me demo an example. This is Jenny's summary from her [reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan) of what I'll do:
+Let me demo an example, and then you will do it yourself. This is Jenny's summary from her [reprex webinar](https://resources.rstudio.com/webinars/help-me-help-you-creating-reproducible-examples-jenny-bryan) of what I'll do:
 
 <br>
 
@@ -306,9 +306,10 @@ So in this example I might write at the top of the comment: "Practicing a reprex
 
 Make a reprex using the built-in `mtcars` dataset and paste it in the Issues for your repository. (Have a look: `head(mtcars); skimr::skim(mtcars)`)
 
-1. For your reprex, take the `mtcars` dataset and then filter it for observations where the `mpg` is more than 26. 
+1. install and attach the `reprex` package 
+1. For your reprex: take the `mtcars` dataset and then filter it for observations where  `mpg` is more than 26. 
 
-2. Navigate to github.com/your_username/r-workshop/issues
+1. Navigate to github.com/your_username/r-workshop/issues
 
 Hint: remember to read the error message. "could not find function `%>%`" means you've forgotten to attach the appropriate package with `library()`
 

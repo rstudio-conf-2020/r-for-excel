@@ -32,9 +32,9 @@ Course materials are being fine-tuned but the most recent version is always avai
 
 We are environmental scientists who use and teach R in our daily work. We both work at the University of California Santa Barbara, USA. 
 
-[Julie](https://jules32.github.io) is a Senior Fellow and Director of Openscapes at the National Center for Ecological Analysis and Synthesis. 
+[Julie Lowndes](https://jules32.github.io) is a Senior Fellow and Director of Openscapes at the National Center for Ecological Analysis and Synthesis. 
 
-[Allison](https://allisonhorst.github.io) is a lecturer of data science & statistics at the Bren School of Environmental Science and Management. She is also Artist in Residence at RStudio!
+[Allison Horst](https://allisonhorst.github.io) is a lecturer of data science & statistics at the Bren School of Environmental Science and Management. She is also Artist in Residence at RStudio!
 
 ---
 

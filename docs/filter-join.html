@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 GitHub | R for Excel Users</title>
+  <title>Chapter 8 Filters and joins | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 GitHub | R for Excel Users" />
+  <meta property="og:title" content="Chapter 8 Filters and joins | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 GitHub | R for Excel Users" />
+  <meta name="twitter:title" content="Chapter 8 Filters and joins | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rstudio.html"/>
-<link rel="next" href="ggplot2.html"/>
+<link rel="prev" href="tidying.html"/>
+<link rel="next" href="collaborating.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -394,377 +394,317 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> GitHub</h1>
-<div id="summary-1" class="section level2">
-<h2><span class="header-section-number">4.1</span> Summary</h2>
-<p>We will learn about version control and practice a workflow with GitHub and RStudio that streamlines working with our most important collaborator: Future You.</p>
-<div id="objectives-1" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Objectives</h3>
-<p>Today, we’ll interface with GitHub from our local computers using RStudio.</p>
-<blockquote>
-<p><strong>Aside</strong>: There are many other ways to interact with GitHub, including GitHub’s Desktop App and the command line (<a href="http://stat545.com/git02_git-clients.html">here is Jenny Bryan’s list of git clients</a>). You have the largest suite of options if you interface through the command line, but the most common things you’ll do can be done through one of these other applications (i.e. RStudio).</p>
-</blockquote>
-<p>Here’s what we’ll do, since we’ve already set up git on your computers in the previous session (Chapter <a href="github.html#github">4</a>):</p>
-<ol style="list-style-type: decimal">
-<li>create a repository on Github.com (remote)</li>
-<li>clone locally using RStudio</li>
-<li>sync local to remote: pull, stage, commit, push</li>
-<li>explore github.com files, commit history, README</li>
-<li>project-oriented workflows</li>
-<li>project-oriented workflows in action</li>
-</ol>
-</div>
-<div id="resources-1" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Resources</h3>
+<div id="filter-join" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Filters and joins</h1>
+<div id="summary-5" class="section level2">
+<h2><span class="header-section-number">8.1</span> Summary</h2>
+<p>In previous sessions, we’ve learned to do some basic wrangling and find summary information with functions in the <code>dplyr</code> package, which exists within the <code>tidyverse</code>. In this session, we’ll expand our data wrangling toolkit using:</p>
 <ul>
-<li><a href="https://peerj.com/preprints/3159/">Excuse me, do you have a moment to talk about version control?</a> by Jenny Bryan</li>
-<li><a href="http://happygitwithr.com/">Happy Git with R</a> by Jenny Bryan, specifically <a href="http://happygitwithr.com/rstudio-see-git.html">Detect Git from RStudio</a></li>
-<li><a href="https://rstats.wtf/">What They Forgot to Teach You About R</a> by Jenny Bryan, specifically <a href="https://rstats.wtf/project-oriented-workflow.html">Project-oriented workflows</a><br />
-</li>
-<li><a href="https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html">GitHub Quickstart</a> by Melanie Frazier</li>
-<li><a href="https://openscapes.github.io/series/github-issues.html">GitHub for Project Management</a> by Openscapes</li>
+<li><code>filter()</code> to conditionally subset our data by <strong>rows</strong>, and</li>
+<li><code>*_join()</code> functions to merge data frames together</li>
+<li>And we’ll make a nicely formatted HTML table with <code>kable()</code> and <code>kableExtra</code></li>
+</ul>
+<p>The combination of <code>filter()</code> and <code>*_join()</code> - to return rows satisfying a condition we specify, and merging data frames by like variables - is analogous to the useful VLOOKUP function in Excel.</p>
+<div id="objectives-5" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Objectives</h3>
+<ul>
+<li>Use <code>filter()</code> to subset data frames, returning <strong>rows</strong> that satisfy variable conditions</li>
+<li>Use <code>full_join()</code>, <code>left_join()</code>, and <code>inner_join()</code> to merge data frames, with different endpoints in mind</li>
+<li>Use <code>filter()</code> and <code>*_join()</code> as part of a wrangling sequence</li>
+</ul>
+</div>
+<div id="resources-5" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Resources</h3>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code> documentation from tidyverse.org</a></li>
+<li><a href="https://dplyr.tidyverse.org/reference/join.html"><code>join()</code> documentation from tidyverse.org</a></li>
+<li><a href="https://r4ds.had.co.nz/">Chapters 5 and 13 in <em>R for Data Science</em> by Garrett Grolemund and Hadley Wickham</a></li>
+<li><a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">“Create awesome HTML tables with knitr::kable() and kableExtra” by Hao Zhu</a></li>
 </ul>
 </div>
 </div>
-<div id="why-should-r-users-use-github" class="section level2">
-<h2><span class="header-section-number">4.2</span> Why should R users use Github?</h2>
-<p>Modern R users use GitHub because it helps make coding collaborative and social while also providing huge benefits to organization, archiving, and being able to find your files easily when you need them.</p>
-<p>One of the most compelling reasons for me is that it ends (or nearly ends) the horror of keeping track of versions.</p>
-<p>Basically, we get away from this:</p>
-<p><br></p>
-<p><img src="img/excel_messy_saves.png" width="80%" />
-<br></p>
-<p>This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, it is very sad to think about the amount of time everyone involved is spending on bookkeeping: is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives.</p>
-<p>But then there is GitHub.</p>
-<p>In GitHub, in this example you will likely only see a single file, which is the most recent version. GitHub’s job is to track who made any changes and when (so no need to save a copy with your name or date at the end), and it also requires that you write something human-readable that will be a breadcrumb for you in the future. It is also designed to be easy to compare versions, and you can easily revert to previous versions.</p>
-<p>GitHub also supercharges you as a collaborator. First and foremost with Future You, but also sets you up to collaborate with Future Us!</p>
-<p>GitHub, especially in combination with RStudio, is also game-changing for publishing and distributing. You can — and we will — publish and share files openly on the internet.</p>
-<div id="what-is-github-and-git" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> What is Github? And Git?</h3>
-<p>OK so what is GitHub? And Git?</p>
+<div id="set-up-create-a-new-.rmd-attach-packages-get-data" class="section level2">
+<h2><span class="header-section-number">8.2</span> Set-up: Create a new .Rmd, attach packages &amp; get data</h2>
+<p>Create a new R Markdown document in your r-workshop project and knit to save as <strong>filter_join.Rmd</strong>. Remove all the example code (everything below the set-up code chunk).</p>
+<p>In this session, we’ll attach four packages:</p>
 <ul>
-<li><p><strong>Git</strong> is a program that you install on your computer: it is version control software that tracks changes to your files over time.</p></li>
-<li><p><strong>Github</strong> is an website that is essentially a social media platform for your git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people’s files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between <a href="https://help.github.com/articles/rendering-and-diffing-images/">images</a>, <a href="https://help.github.com/articles/mapping-geojson-files-on-github/">rendering</a> &amp; <a href="https://github.com/blog/1772-diffable-more-customizable-maps">diffing</a> map data files, <a href="https://help.github.com/articles/rendering-csv-and-tsv-data/">render text data files</a>, and <a href="https://help.github.com/articles/rendering-differences-in-prose-documents/">track changes in text</a>.</p></li>
+<li><code>tidyverse</code></li>
+<li><code>readxl</code></li>
+<li><code>here</code></li>
+<li><code>kableExtra</code></li>
 </ul>
-<p>Github was developed for software development, so much of the functionality and terminology of that is exciting for professional programmers (e.g., branches and pull requests) isn’t necessarily the right place for us as new R users to get started.</p>
-<p>So we will be learning and practicing GitHub’s features and terminology on a “need to know basis” as we start managing our projects with GitHub.</p>
-<p>Let’s get started by going to <a href="https://github.com" class="uri">https://github.com</a> and going to our user profile. You can do this by typing your username in the URL (github.com/username), or after signing in, by clicking on the top-right button and going to your profile.</p>
-<p>This will have an overview of you and your work, and then you can click on the Repository button.</p>
-<p>Repositories are the main “unit” of GitHub: they are what GitHub tracks. They are essentially project-level folders that will contain everything associated with a project. It’s where we’ll start too.</p>
-<!---
-### Some Github terminology
-
-* **User**: A Github account for you (e.g., jules32).
-* **Organization**: The Github account for one or more user (e.g., datacarpentry).
-* **Repository**: A folder within the organization that includes files dedicated to a project.
-* **Local Github**: Copies of Github files located your computer.
-* **Remote Github**: Github files located on the https://github.com website.
-* **Clone**: Process of making a local copy of a remote Github repository.  This only needs to be done once (unless you mess up your local copy).
-* **Pull**: Copy changes on the remote Github repository to your local Github repository.  This is useful if multiple people are making changes to a repository.
-* **Push**: Save local changes to remote Github
-<br />
-<br />
-
-[](img/push_pull_clone.png)
-<br />
-<br />
---->
-</div>
-</div>
-<div id="create-a-repository-on-github.com" class="section level2">
-<h2><span class="header-section-number">4.3</span> Create a repository on Github.com</h2>
-<p>We create a new repository (called a “repo”) by clicking “New repository”.</p>
-<p><br></p>
-<p><img src="img/gh_repo_create.png" width="80%" /></p>
-<p><br></p>
-<p>Choose a name. Call it whatever you want (the shorter the better), or follow me for convenience. I will call mine <code>r-workshop</code>.</p>
-<p>Also, add a description, make it public, create a README file, and create your repo!</p>
-<p><br></p>
-<p><img src="img/gh_repo_create2.png" width="80%" /></p>
-<p><br></p>
-<p>The <em>Add gitignore</em> option adds a document where you can identify files or file-types you want Github to ignore. These files will stay in on the local Github folder (the one on your computer), but will not be uploaded onto the web version of Github.</p>
-<p>The <em>Add a license</em> option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.). We won’t worry about this today.</p>
-<p>Check out our new repository!</p>
-<p><br></p>
-<p><img src="img/gh_repo_new.png" width="80%" /></p>
-<p><br></p>
-<p>Great! So now we have our new repository that exists in the Cloud. Let’s get it established locally on our computers: that is called “cloning”.</p>
-</div>
-<div id="clone-your-repository-using-rstudio" class="section level2">
-<h2><span class="header-section-number">4.4</span> Clone your repository using RStudio</h2>
-<p>Let’s clone this repo to our local computer using RStudio. Unlike downloading, cloning keeps all the version control and user information bundled with the files.</p>
-<div id="copy-the-repo-address" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Copy the repo address</h3>
-<p>First, copy the web address of the repository you want to clone. We will use HTTPS.</p>
-<blockquote>
-<p><strong>Aside</strong>: HTTPS is default, but you could alternatively set up with SSH. This is more advanced than we will get into here, but allows 2-factor authentication. See <a href="https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication">Happy Git with R</a> for more information.</p>
-</blockquote>
-<p><br></p>
-<p><img src="img/gh_repo_clone1.png" width="100%" /></p>
-<p><br></p>
-</div>
-<div id="rstudio-new-project-1" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> RStudio: New Project</h3>
-<p>Now go back to RStudio, and click on New Project. There are a few different ways; you could also go to File &gt; New Project…, or click the little green + with the R box in the top left.
-also in the File menu).</p>
-<p><br></p>
-<p><img src="img/new_project1.png" width="80%" /></p>
-<p><br></p>
-</div>
-<div id="select-version-control-1" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> Select Version Control</h3>
-<p><br></p>
-<p><img src="img/new_project2.png" width="80%" /></p>
-<p><br></p>
-</div>
-<div id="select-git-1" class="section level3">
-<h3><span class="header-section-number">4.4.4</span> Select Git</h3>
-<p>Since we are using git.</p>
-<p><br></p>
-<p><img src="img/new_project3.png" width="80%" /></p>
-<p><br></p>
-</div>
-<div id="paste-the-repo-address" class="section level3">
-<h3><span class="header-section-number">4.4.5</span> Paste the repo address</h3>
-<p>Paste the repo address (which is still in your clipboard) into in the “Repository URL” field. The “Project directory name” should autofill; if it does not press <em>tab</em>, or type it in. It is best practice to keep the “Project directory name” THE SAME as the repository name.</p>
-<p>When cloned, this repository is going to become a folder on your computer.</p>
-<p>At this point you can save this repo anywhere. There are different schools of thought but we think it is useful to create a high-level folder where you will keep your github repos to keep them organized. We call ours <code>github</code> and keep it in our root folder (<code>~/github</code>), and so that is what we will demonstrate here — you are welcome to do the same. Press “Browse…” to navigate to a folder and you have the option of creating a new folder.</p>
-<p>Finally, click Create Project.</p>
-<p><br></p>
-<p><img src="img/new_project4.png" width="80%" /></p>
-<p><br></p>
-</div>
-<div id="admire-your-local-repo" class="section level3">
-<h3><span class="header-section-number">4.4.6</span> Admire your local repo</h3>
-<p>If everything went well, the repository will show up in RStudio!</p>
-<p><br></p>
-<p><img src="img/new_project5.png" width="100%" /></p>
-<p><br></p>
-<p>The repository is also saved to the location you specified, and you can navigate to it as you normally would in Finder or Windows Explorer:</p>
-<p><br></p>
-<p><img src="img/new_project6.png" width="80%" /></p>
-<p><br></p>
-<p>Hooray!</p>
-</div>
-<div id="inspect-your-local-repo" class="section level3">
-<h3><span class="header-section-number">4.4.7</span> Inspect your local repo</h3>
-<p>Let’s notice a few things:</p>
-<p>First, our working directory is set to <code>~/github/r-workshop</code>, and <code>r-workshop</code> is also named in the top right hand corner.</p>
-<p>Second, we have a Git tab in the top right pane! Let’s click on it.</p>
-<p><br></p>
-<p><img src="img/new_project5_annotated.png" width="80%" /></p>
-<p><br></p>
-<p>Our Git tab has 2 items:</p>
+<p>Attach the packages in the setup code chunk in your .Rmd:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">library</span>(here) </a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="kw">library</span>(kableExtra)</a></code></pre></div>
+<p>Then create a new code chunk to read in two files from your ‘data’ subfolder:</p>
 <ul>
-<li>.gitignore file</li>
-<li>.Rproj file</li>
-</ul>
-<p>These have been added to our repo by RStudio — we can also see them in the File pane in the bottom right of RStudio. These are helper files that RStudio has added to streamline our workflow with GitHub and R. We will talk about these a bit more soon. One thing to note about these files is that they begin with a period (<code>.</code>) which means they are hidden files: they show up in the Files pane of RStudio but won’t show up in your Finder or Windows Explorer.</p>
-<p>Going back to the Git tab, both these files have little yellow icons with question marks <code>?</code>. This is GitHub’s way of saying: “I am responsible for tracking everything that happens in this repo, but I’m not sure what is going on with these files yet. Do you want me to track them too?”</p>
-<p>We will handle this in a moment; first let’s look at the README.md file.</p>
-</div>
-<div id="edit-your-readme-file" class="section level3">
-<h3><span class="header-section-number">4.4.8</span> Edit your README file</h3>
-<p>Let’s also open up the README.md. This is a Markdown file, which is the same language we just learned with R Markdown. It’s like an R Markdown file without the abilities to run R code.</p>
-<p>We will edit the file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added.</p>
-<p>README files are common in programming; they are the first place that someone will look to see why code exists and how to run it.</p>
-<p>In my README, I’ll write:</p>
-<pre><code>This repo is for my analyses at RStudio::conf(2020). </code></pre>
-<p>When I save this, notice how it shows up in my Git tab. It has a blue “M”: GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different: it’s Modified with an M.</p>
-<p>Great. Now let’s sync back to GitHub in 4 steps.</p>
-</div>
-</div>
-<div id="sync-from-rstudio-local-to-github-remote" class="section level2">
-<h2><span class="header-section-number">4.5</span> Sync from RStudio (local) to GitHub (remote)</h2>
-<p>Syncing to GitHub.com means 4 steps:</p>
-<ol style="list-style-type: decimal">
-<li>Pull</li>
-<li>Stage</li>
-<li>Commit</li>
-<li>Push</li>
-</ol>
-<p><br></p>
-<p><img src="img/commit_steps.png" width="100%" /></p>
-<p><br></p>
-<p>We start off this whole process by clicking on the Commit section.</p>
-<p><br></p>
-<p><img src="img/commit_circled.png" width="100%" /></p>
-<p><br></p>
-<div id="pull" class="section level3">
-<h3><span class="header-section-number">4.5.1</span> Pull</h3>
-<p>We start off by “Pulling” from the remote repository (GitHub.com) to make sure that our local copy has the most up-to-date information that is available online. Right now, since we just created the repo and are the only ones that have permission to work on it, we can be pretty confident that there isn’t new information available. But we pull anyways because this is a very safe habit to get into for when you start collaborating with yourself across computers or others. Best practice is to pull often: it costs nothing (other than an internet connection).</p>
-<p>Pull by clicking the teal Down Arrow. (Notice also how when you highlight a filename, a preview of the differences displays below).</p>
-<p><br></p>
-<p><img src="img/commit_pull.png" width="100%" /></p>
-<p><br></p>
-</div>
-<div id="stage" class="section level3">
-<h3><span class="header-section-number">4.5.2</span> Stage</h3>
-<p>Let’s click the boxes next to each file. This is called “staging a file”: you are indicating that you want GitHub to track this file, and that you will be syncing it shortly. Notice:</p>
-<ul>
-<li>.Rproj and .gitignore files: the question marks turn into an A because these are new files that have been added to your repo (automatically by RStudio, not by you).</li>
-<li>README.md file: the M indicates that this was modified (by you)</li>
-</ul>
-<p>These are the codes used to describe how the files are changed, (from the RStudio <a href="http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">cheatsheet</a>):</p>
-<p><br></p>
-<p><img src="img/commit_codes_added_modified.png" width="30%" /></p>
-<p><br></p>
-</div>
-<div id="commit" class="section level3">
-<h3><span class="header-section-number">4.5.3</span> Commit</h3>
-<p>Committing is different from saving our files (which we still have to do! RStudio will indicate a file is unsaved with red text and an asterix). We commit a single file or a group of files when we are ready to save a snapshot in time of the progress we’ve made. Maybe this is after a big part of the analysis was done, or when you’re done working for the day.</p>
-<p>Committing our files is a 2-step process.</p>
-<p>First, you write a “commit message”, which is a human-readable note about what has changed that will accompany GitHub’s non-human-readable alphanumeric code to track our files. I think of commit messages like breadcrumbs to my Future Self: how can I use this space to be useful for me if I’m trying to retrace my steps (and perhaps in a panic?).</p>
-<p>Second, you press Commit.</p>
-<p><br></p>
-<p><img src="img/commit_message_arrow.png" width="100%" /></p>
-<p><br></p>
-<p>When we have committed successfully, we get a rather unsuccessful-looking pop-up message. You can read this message as “Congratulations! You’ve successfully committed 3 files, 2 of which are new!” It is also providing you with that alphanumeric SHA code that GitHub is using to track these files.</p>
-<p>If our attempt was not successful, we will see an Error. Otherwise, interpret this message as a joyous one.</p>
-<blockquote>
-<p>Does your pop-up message say “Aborting commit due to empty commit message.”? GitHub is really serious about writing human-readable commit messages.</p>
-</blockquote>
-<p><br></p>
-<p><img src="img/commit_success.png" width="100%" /></p>
-<p><br></p>
-<p>When we close this window there is going to be (in my opinion) a very subtle indication that we are not done with the syncing process.</p>
-<p><br></p>
-<p><img src="img/commit_branch_ahead_of_origin_master.png" width="100%" /></p>
-<p><br></p>
-<p>We have successfully committed our work as a breadcrumb-message-approved snapshot in time, but it still only exists locally on our computer. We can commit without an internet connection; we have not done anything yet to tell GitHub that we want this pushed to the remote repo at GitHub.com. So as the last step, we push.</p>
-</div>
-<div id="push" class="section level3">
-<h3><span class="header-section-number">4.5.4</span> Push</h3>
-<p>The last step in the syncing process is to Push!</p>
-<p><br></p>
-<p><img src="img/commit_push.png" width="100%" /></p>
-<p><br></p>
-<p>Awesome! We’re done here in RStudio for the moment, let’s check out the remote on GitHub.com.</p>
-</div>
-</div>
-<div id="commit-history" class="section level2">
-<h2><span class="header-section-number">4.6</span> Commit history</h2>
-<p>The files you added should be on github.com.</p>
-<p>Notice how the README.md file we created is automatically displayed at the bottom. Since it is good practice to have a README file that identifies what code does (i.e. why it exists), GitHub will display a Markdown file called README nicely formatted.</p>
-<p><br></p>
-<p><img src="img/gh_repo_view.png" width="100%" /></p>
-<p><br></p>
-<p>Let’s also explore the commit history. The 2 commits we’ve made (the first was when we originally initiated the repo from GitHub.com) are there!</p>
-</div>
-<div id="project-oriented-workflows" class="section level2">
-<h2><span class="header-section-number">4.7</span> Project-oriented workflows</h2>
-<p>Let’s go back to RStudio and how we set up well-organized projects and workflows for our data analyses.</p>
-<p>This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension <code>.Rproj</code> (ours is <code>r-workshop.Rproj</code>) to store specific settings for this project. It’s a bit of technology to help us get into the good habit of having a project-oriented workflow.</p>
-<p>A <a href="https://rstats.wtf/project-oriented-workflow.html">project-oriented workflow</a> means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc.</p>
-<p>R Projects are great for reproducibility, because our self-contained working directory will be the <strong>first</strong> place R looks for files.</p>
-<!---
-Why does this matter? It's convenient for us to have everything associated with our analyses close at-hand.  When we work with different files in R (like data or saved graphs) we always need to tell R where things "live" by identifying its file path. If files are scattered across your computer, we would have to keep track of many different filepaths. So using RStudio Projects and having a project-oriented workflow and mindset makes our analysis less brittle and more portable — across people, time, and computers.  
-
---->
-<div id="working-directory" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Working directory</h3>
-<p>Now that we have our Project, let’s revisit this important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized.</p>
-<p>And this is important because if Allison clones this repository that you just made and saves it in <code>Allison/my/projects/way/over/here</code>, she will still be able to interact with your files as you are here.</p>
-<p><img src="img/RStudio_IDE_projdir.png" width="100%" /></p>
-</div>
-</div>
-<div id="project-oriented-workflows-in-action-aka-our-analytical-setup" class="section level2">
-<h2><span class="header-section-number">4.8</span> Project-oriented workflows in action (aka our analytical setup)</h2>
-<p>Let’s get a bit organized. First, let’s create our a new R Markdown file where we will do our analyses. This will be nice because you can also write notes to yourself in this document.</p>
-<div id="create-a-new-rmd-file" class="section level3">
-<h3><span class="header-section-number">4.8.1</span> Create a new Rmd file</h3>
-<p>So let’s do this (again):</p>
-<p>File &gt; New File &gt; R Markdown … (or click the green plus in the top left corner).</p>
-<p>Let’s set up this file so we can use it for the rest of the day. I’m going to update the header with a new title and add my name, and then I’m going to delete the rest of the document so that we have a clean start.</p>
-<blockquote>
-<p><strong>Efficiency Tip</strong>: I use Shift - Command - Down Arrow to highlight text from my cursor to the end of the document</p>
-</blockquote>
-<pre><code>---
-title: &quot;Creating graphs in R with `ggplot2`&quot;
-author: &quot;Julie Lowndes&quot;
-date: &quot;01/27/2020&quot;
-output: html_document
----
-
-# Plots with ggplot2
-
-We are going to make plots in R and it&#39;s going to be amazing.
-</code></pre>
-<p>Now, let’s save it. I’m going to call my file <code>plots-ggplot.Rmd</code>.</p>
-<p>Notice that when we save this file, it pops up in our Git tab. Git knows that there is something new in our repo.</p>
-<p>Let’s also knit this file. And look: Git also sees the knitted .html.</p>
-<p>And let’s practice syncing our file to to GitHub: pull, stage, commit, push</p>
-<blockquote>
-<p><strong>Troubleshooting:</strong> What if a file doesn’t show up in the Git tab and you expect that it should? Check to make sure you’ve saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!</p>
-</blockquote>
-</div>
-<div id="create-data-and-figures-folders" class="section level3">
-<h3><span class="header-section-number">4.8.2</span> Create data and figures folders</h3>
-<p>Let’s create a few folders to be organized. Let’s have one for our the raw data, and one for the figures we will output. We can do this in RStudio, in the bottom right pane Files pane by clicking the New Folder button:</p>
-<ul>
-<li>folder called “data”</li>
-<li>folder called “figures”</li>
-</ul>
-<p>We can press the refresh button in the top-right of this pane (next to the “More” button) to have these show up in alphabetical order.</p>
-<p>Now let’s go to our Finder or Windows Explorer: our new folders are there as well!</p>
-</div>
-<div id="move-data-files-to-data-folder" class="section level3">
-<h3><span class="header-section-number">4.8.3</span> Move data files to data folder</h3>
-<p>You downloaded several files for this workshop from the <a href="https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing">r-for-excel-data folder</a>, and we’ll move these data into our repo now. These data files are a mix of comma separate value (.csv) files and some as Excel spreadsheets (.xlsx):</p>
-<ul>
-<li>ca_np.csv</li>
-<li>ci_np.xlsx</li>
 <li>fish.csv</li>
-<li>inverts.xlsx</li>
-<li>kelp_fronds.xlsx</li>
-<li>lobsters.xlsx</li>
-<li>lobsters2.xlsx</li>
-<li>noaa_landings.csv</li>
-<li>substrate.xlsx</li>
+<li>kelp_fronds.xlsx (read in only the “abur” worksheet by adding argument <code>sheet = &quot;abur&quot;</code> to <code>read_excel()</code>)</li>
 </ul>
-<p>Copy-paste or drag all of these files into the ‘data’ subfolder of your R project. Make sure you do not also copy the original folder; we don’t need any subfolders in our data folder.</p>
-<p>Now let’s go back to RStudio. We can click on the data folder in the Files tab and see them.</p>
-<p>The data folder also shows up in your Git tab. But the figures folder does not. That is because GitHub cannot track an empty folder, it can only track files within a folder.</p>
-<p>Let’s sync these data files (we will be able to sync the figures folder shortly). We can stage multiple files at once by typing Command - A and clicking “Stage” (or using the space bar). To Sync: pull - stage - commit - push!</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># Read in data: </span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">fish &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">kelp_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_fronds.xlsx&quot;</span>), <span class="dt">sheet =</span> <span class="st">&quot;abur&quot;</span>)</a></code></pre></div>
+<p>We should always explore the data we’ve read in. Use functions like <code>View()</code>, <code>names()</code>, <code>summary()</code>, <code>head()</code> and <code>tail()</code> to check them out.
+Now, let’s use <code>filter()</code> to decide which observations (rows) we’ll keep or exclude in new subsets, similar to using Excel’s VLOOKUP function or filter tool.</p>
 </div>
-<div id="activity-1" class="section level3">
-<h3><span class="header-section-number">4.8.4</span> Activity</h3>
-<p>Edit your README and practice syncing (pull, stage, commit, push). For example,</p>
-<pre><code>&quot;We use the following data from the Santa Barbara Coastal Term Ecological Research and National  Oceanic and Atmospheric Administration in our analyses&quot;</code></pre>
-<p>Explore your Commit History, and discuss with your neighbor.</p>
+<div id="dplyrfilter-to-conditionally-subset-by-rows" class="section level2">
+<h2><span class="header-section-number">8.3</span> <code>dplyr::filter()</code> to conditionally subset by rows</h2>
+<p>Use <code>filter()</code> to let R know which <strong>rows</strong> you want to keep or exclude, based whether or not their contents match conditions that you set for one or more variables.</p>
+<p><img src="img/rstudio-cheatsheet-filter.png" /></p>
+<p>Some examples in words that might inspire you to use <code>filter()</code>:</p>
+<ul>
+<li>“I only want to keep rows where the temperature is greater than 90°F.”</li>
+<li>“I want to keep all observations <strong>except</strong> those where the tree type is listed as <strong>unknown</strong>.”</li>
+<li>“I want to make a new subset with only data for mountain lions (the species variable) in California (the state variable).”</li>
+</ul>
+<p>When we use <code>filter()</code>, we need to let R know a couple of things:</p>
+<ul>
+<li>What data frame we’re filtering from</li>
+<li>What condition(s) we want observations to <strong>match</strong> and/or <strong>not match</strong> in order to keep them in the new subset</li>
+</ul>
+<p>Here, we’ll learn some common ways to use <code>filter()</code>.</p>
+<div id="filter-rows-by-matching-a-single-character-string" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Filter rows by matching a single character string</h3>
+<p>Let’s say we want to keep all observations from the <strong>fish</strong> data frame where the common name is “garibaldi” (fun fact: that’s California’s official marine state fish, protected in California coastal waters!).</p>
+<p>Here, we need to tell R to only <em>keep rows</em> from the <strong>fish</strong> data frame when the common name (<strong>common_name</strong> variable) exactly matches <strong>garibaldi</strong>.</p>
+<p>Use <code>==</code> to ask R to look for exact matches:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">fish_garibaldi &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<p>Check out the <strong>fish_garibaldi</strong> object to ensure that only <em>garibaldi</em> observations remain.</p>
+<div id="activity-4" class="section level4">
+<h4><span class="header-section-number">8.3.1.1</span> Activity</h4>
+<p><strong>Task</strong>: Create a subset starting from the <strong>fish</strong> data frame, stored as object <strong>fish_mohk</strong>, that only contains observations from Mohawk Reef (site entered as “mohk”).</p>
+<p><strong>Solution</strong>:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">fish_mohk &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;mohk&quot;</span>)</a></code></pre></div>
+<p>Explore the subset you just created to ensure that only Mohawk Reef observations are returned.</p>
 </div>
 </div>
-<div id="committing---how-often-tracking-changes-in-your-files" class="section level2">
-<h2><span class="header-section-number">4.9</span> Committing - how often? Tracking changes in your files</h2>
-<p>Whenever you make changes to the files in Github, you will walk through the Pull -&gt; Stage -&gt; Commit -&gt; Push steps.</p>
-<p>I tend to do this every time I finish a task (basically when I start getting nervous that I will lose my work). Once something is committed, it is very difficult to lose it.</p>
+<div id="filter-rows-based-on-numeric-conditions" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Filter rows based on numeric conditions</h3>
+<p>Use expected operators (&gt;, &lt;, &gt;=, &lt;=, ==) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the <strong>total_count</strong> column value is &gt;= 50:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
 </div>
-<div id="issues" class="section level2">
-<h2><span class="header-section-number">4.10</span> Issues</h2>
-<p>Let’s go back to our repo on GitHub.com, and talk about Issues.</p>
-<p>Issues “track ideas, enhancements, tasks, or bugs for work on GitHub.” - <a href="https://help.github.com/en/articles/about-issues">GitHub help article</a>.</p>
-<p>You can create an issue for a topic, track progress, others ask questions, provide links and updates, close issue when completed.</p>
-<p>In a public repo, anyone with a username can create and comment on issues. In a private repo, only users with permission can create and comment on issues, or see them at all.</p>
-<p>GitHub search is awesome – will search code and issues!</p>
-<div id="issues-in-the-wild" class="section level3">
-<h3><span class="header-section-number">4.10.1</span> Issues in the wild!</h3>
-<p>Here are some examples of “traditional” and “less traditional” Issues:</p>
-<p>Bug reports, code, feature, &amp; help requests: <a href="https://github.com/tidyverse/ggplot2/issues">ggplot2</a></p>
-<p><br></p>
-<p><img src="img/issues_ggplot2.png" width="100%" /></p>
-<p><br></p>
-<p>Project submissions and progress tracking: <a href="https://github.com/MozillaFestival/mozfest-program-2018/issues">MozillaFestival</a></p>
-<p><br></p>
-<p><img src="img/issues_MozillaFestival.png" width="100%" /></p>
-<p><br></p>
-<p>Private conversations and archiving: <a href="https://github.com/OHI-Science/globalfellows-issues/issues/">OHI Fellows (private)</a></p>
-<p><br></p>
-<p><img src="img/issues_globalfellows.png" width="100%" /></p>
-<p><br></p>
+<div id="filter-to-return-rows-that-match-this-or-that-or-that" class="section level3">
+<h3><span class="header-section-number">8.3.3</span> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></h3>
+<p>What if we want to return a subset of the <strong>fish</strong> df that contains <em>garibaldi</em>, <em>blacksmith</em> OR <em>black surfperch</em>?</p>
+<p>There are several ways to write an “OR” statement for filtering, which will keep any observations that match Condition A <em>or</em> Condition B <em>or</em> Condition C. In this example, we will create a subset from <strong>fish</strong> that only contains rows where the <strong>common_name</strong> is <em>garibaldi</em> or <em>blacksmith</em> or <em>black surfperch</em>.</p>
+<p>Way 1: You can indicate <strong>OR</strong> using the vertical line operator <code>|</code> to indicate “OR”:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">           </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="st">           </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</a></code></pre></div>
+<p>Alternatively, if you’re looking for multiple matches in the <em>same variable</em>, you can use the <code>%in%</code> operator instead. Use <code>%in%</code> to ask R to look for <em>any matches</em> within a vector:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</a></code></pre></div>
+<p>Notice that the two methods above return the same thing.</p>
+<p><strong>Critical thinking:</strong> In what scenario might you <em>NOT</em> want to use <code>%in%</code> for an “or” filter statement? Hint: What if the “or” conditions aren’t different outcomes for the same variable?</p>
+<div id="activity-5" class="section level4">
+<h4><span class="header-section-number">8.3.3.1</span> Activity</h4>
+<p><strong>Task:</strong> Create a subset from <strong>fish</strong> called <strong>fish_gar_2016</strong> that keeps all observations if the year is 2016 <em>OR</em> the common name is “garibaldi.”</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">fish_gar_<span class="dv">2016</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
 </div>
-<div id="end-github-session" class="section level3">
-<h3><span class="header-section-number">4.10.2</span> END <strong>GitHub</strong> session!</h3>
+</div>
+<div id="filter-to-return-observations-that-match-this-and-that" class="section level3">
+<h3><span class="header-section-number">8.3.4</span> Filter to return observations that match <strong>this</strong> AND <strong>that</strong></h3>
+<p>In the examples above, we learned to keep observations that matched any of a number of conditions (<strong>or</strong> statements).</p>
+<p>Sometimes we’ll only want to keep observations that satisfy multiple conditions (e.g., to keep this observation it must satisfy this condition <strong>AND</strong> that condition). For example, we may want to create a subset that only returns rows from <strong>fish</strong> where the <strong>year</strong> is 2018 <em>and</em> the <strong>site</strong> is Arroyo Quemado “aque”</p>
+<p>In <code>filter()</code>, add a comma (or ampersand ‘&amp;’) between arguments for multiple “and” conditions:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>, site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</a></code></pre></div>
+<p>Check it out to see that only observations where the site is “aque” in 2018 are retained:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">aque_<span class="dv">2018</span></a></code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##    year site  common_name     total_count
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
+## 1  2018 aque  black surfperch           2
+## 2  2018 aque  blacksmith                1
+## 3  2018 aque  garibaldi                 1
+## 4  2018 aque  rock wrasse               4
+## 5  2018 aque  senorita                 36</code></pre>
+<p>Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using <code>&amp;</code> (instead of a comma) between “and” conditions:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span> <span class="op">&amp;</span><span class="st"> </span>site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</a></code></pre></div>
+<p>Or you could just do two filter steps in sequence:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># Written as sequential filter steps:</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb121-3" data-line-number="3">aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</a></code></pre></div>
+</div>
+<div id="activity-combined-filter-conditions" class="section level3">
+<h3><span class="header-section-number">8.3.5</span> Activity: combined filter conditions</h3>
+<p><strong>Challenge task:</strong> Create a subset from the <strong>fish</strong> data frame, called <strong>low_gb_wr</strong> that only contains:</p>
+<ul>
+<li>Observations for <em>garibaldi</em> or <em>rock wrasse</em></li>
+<li>AND the <em>total_count</em> is <em>less than or equal to 10</em></li>
+</ul>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">low_gb_wr &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>), </a>
+<a class="sourceLine" id="cb122-3" data-line-number="3">         total_count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
+</div>
+<div id="stringrstr_detect-to-filter-by-a-partial-pattern" class="section level3">
+<h3><span class="header-section-number">8.3.6</span> <code>stringr::str_detect()</code> to filter by a partial pattern</h3>
+<p>Sometimes we’ll want to keep observations that contain a specific string pattern within a variable of interest.</p>
+<p>For example, consider the fantasy data below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+id
+</th>
+<th style="text-align:left;">
+species
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+rainbow rockfish
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+blue rockfish
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+sparkle urchin
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+royal blue fish
+</td>
+</tr>
+</tbody>
+</table>
+<p>There might be a time when we would want to use observations that:</p>
+<ul>
+<li>Contain the string “fish”, in isolation or within a larger string (like “rockfish”)</li>
+<li>Contain the string “blue”</li>
+</ul>
+<p>In those cases, it would be useful to <strong>detect</strong> a string pattern, and potentially keep any rows that contain it. Here, we’ll use <code>stringr::str_detect()</code> to find and keep observations that contain our specified string pattern.</p>
+<p>Let’s detect and keep observations from <strong>fish</strong> where the <strong>common_name</strong> variable contains string pattern “black”. Note that there are two fish, blacksmith and black surfperch, that would satisfy this condition.</p>
+<p>Using <code>filter()</code> + <code>str_detect()</code> in combination to find and keep observations where the <strong>site</strong> variable contains pattern “sc”:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">fish_bl &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(common_name, <span class="dt">pattern =</span> <span class="st">&quot;black&quot;</span>))</a></code></pre></div>
+<p>So <code>str_detect()</code> returns is a series of TRUE/FALSE responses for each row, based on whether or not they contain the specified pattern. In that example, any row that <em>does</em> contain “black” returns <code>TRUE</code>, and any row that <em>does not</em> contain “black” returns <code>FALSE</code>.</p>
+</div>
+<div id="activity-6" class="section level3">
+<h3><span class="header-section-number">8.3.7</span> Activity</h3>
+<p><strong>Task:</strong> Create a new object called <strong>fish_it</strong>, starting from <strong>fish</strong>, that only contains observations if the <strong>common_name</strong> variable contains the string pattern “it”. What species remain?</p>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">fish_it &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(common_name, <span class="dt">pattern =</span> <span class="st">&quot;it&quot;</span>))</a>
+<a class="sourceLine" id="cb124-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="co"># blacksmITh and senorITa remain!</span></a></code></pre></div>
+<p>We can also <em>exclude</em> observations that contain a set string pattern by adding the <code>negate = TRUE</code> argument within <code>str_detect()</code>.</p>
+<p><strong>Sync your local project to your repo on GitHub.</strong></p>
+</div>
+</div>
+<div id="dplyr_join-to-merge-data-frames" class="section level2">
+<h2><span class="header-section-number">8.4</span> <code>dplyr::*_join()</code> to merge data frames</h2>
+<p>There are a number of ways to merge data frames in R. We’ll use <code>full_join()</code>, <code>left_join()</code>, and <code>inner_join()</code> in this session.</p>
+<p>From R Documentation (<code>?join</code>):</p>
+<ul>
+<li><p><code>full_join()</code>: “returns all rows and all columns from both x and y. Where there are not matching values, returns NA for the one missing.” Basically, nothing gets thrown out, even if a match doesn’t exist - making <code>full_join()</code> the safest option for merging data frames. When in doubt, <code>full_join()</code>.</p></li>
+<li><p><code>left_join()</code>: “return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns. If there are multiple matches between x and y, all combinations of the matches are returned.”</p></li>
+<li><p><code>inner_join()</code>: “returns all rows from x where there are matching values in y, and all columns from x and y. If there are multiple matches between x and y, all combination of the matches are returned.” This will drop observations that don’t have a match between the merged data frames, which makes it a riskier merging option if you’re not sure what you’re trying to do.</p></li>
+</ul>
+<p>Schematic (from RStudio data wrangling cheat sheet):
+<img src="img/rstudio-cheatsheet-combine-options1.png" /></p>
+<p>We will use <strong>kelp_abur</strong> as our “left” data frame, and <strong>fish</strong> as our “right” data frame, to explore different join outcomes.</p>
+<div id="full_join-to-merge-data-frames-keeping-everything" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> <code>full_join()</code> to merge data frames, keeping everything</h3>
+<p>When we join data frames in R, we need to tell R a couple of things (and it does the hard joining work for us):</p>
+<ul>
+<li>Which data frames we want to merge together</li>
+<li>Which variables to merge by</li>
+</ul>
+<p>Use <code>full_join()</code> to safely combine two data frames, keeping everything from both and populating with <code>NA</code> as necessary.</p>
+<p>Example: use <code>full_join()</code> to combine <strong>kelp_abur</strong> and <strong>fish</strong>:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">abur_kelp_fish &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) </a></code></pre></div>
+<p>Let’s look at the merged data frame with <code>View(abur_kelp_fish)</code>. A few things to notice about how <code>full_join()</code> has worked:</p>
+<ol style="list-style-type: decimal">
+<li>All columns that existed in <strong>both data frames</strong> still exist</li>
+<li>All observations are retained, even if they don’t have a match. In this case, notice that for other sites (not ‘abur’) the observation for fish still exists, even though there was no corresponding kelp data to merge with it.</li>
+<li>The kelp frond data is joined to <em>all observations</em> where the joining variables (<em>year</em>, <em>site</em>) are a match, which is why it is repeated 5 times for each year (once for each fish species).</li>
+</ol>
+<p>Because all data (observations &amp; columns) are retained, <code>full_join()</code> is the safest option if you’re unclear about how to merge data frames.</p>
+</div>
+<div id="left_joinxy-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> <code>left_join(x,y)</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</h3>
+<p>Now, we want to keep all observations in <em>kelp_abur</em>, and merge them with <em>fish</em> while only keeping observations from <em>fish</em> that match an observation within <em>abur</em>. When we use <code>left_join()</code>, any information from <em>fish</em> that don’t have a match (by year and site) in <em>kelp_abur</em> won’t be retained, because those wouldn’t have a match in the left data frame.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">kelp_fish_left &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;site&quot;</span>))</a></code></pre></div>
+<p>Notice when you look at <strong>kelp_fish_left</strong>, data for other sites that exist in fish do <strong>not</strong> get joined, because <code>left_join(df_a, df_b)</code> will only keep observations from <code>df_b</code> if they have a match in <code>df_a</code>!</p>
+</div>
+<div id="inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both" class="section level3">
+<h3><span class="header-section-number">8.4.3</span> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></h3>
+<p>Use <code>inner_join()</code> if you <strong>only</strong> want to retain observations that have matches across <strong>both data</strong> frames. Caution: this is built to exclude any observations that don’t match across data frames by joined variables - double check to make sure this is actually what you want to do!</p>
+<p>For example, if we use <code>inner_join()</code> to merge fish and kelp_abur, then we are asking R to <strong>only return observations where the joining variables (<em>year</em> and <em>site</em>) have matches in both data frames.</strong> Let’s see what the outcome is:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">kelp_fish_injoin &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>))</a>
+<a class="sourceLine" id="cb127-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb127-4" data-line-number="4"><span class="co"># kelp_fish_injoin</span></a></code></pre></div>
+<p>Here, we see that only observations (rows) where there is a match for <em>year</em> and <em>site</em> in both data frames are returned.</p>
+</div>
+<div id="filter-and-join-in-a-sequence" class="section level3">
+<h3><span class="header-section-number">8.4.4</span> <code>filter()</code> and <code>join()</code> in a sequence</h3>
+<p>Now let’s combine what we’ve learned about piping, filtering and joining!</p>
+<p>Let’s complete the following as part of a single sequence (remember, check to see what you’ve produced after each step) to create a new data frame called <strong>my_fish_join</strong>:</p>
+<ul>
+<li>Start with <strong>fish</strong> data frame</li>
+<li>Filter <strong>fish</strong> to only including observations for 2017 at Arroyo Burro</li>
+<li>Join the <strong>kelp_abur</strong> data frame to the resulting subset using <code>left_join()</code></li>
+<li>Add a new column that contains the ‘fish per kelp fronds’ density (total_count / total_fronds)</li>
+</ul>
+<p>That sequence might look like this:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">my_fish_join &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>, site <span class="op">==</span><span class="st"> &quot;abur&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(kelp_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fish_per_frond =</span> total_count <span class="op">/</span><span class="st"> </span>total_fronds)</a></code></pre></div>
+<p>Explore the resulting <strong>my_fish_join</strong> data frame.</p>
+</div>
+</div>
+<div id="an-html-table-with-kable-and-kableextra" class="section level2">
+<h2><span class="header-section-number">8.5</span> An HTML table with <code>kable()</code> and <code>kableExtra</code></h2>
+<p>With any data frame, you can a nicer looking table in your knitted HTML using <code>knitr::kable()</code> and functions in the <code>kableExtra</code> package.</p>
+<p>Start by using <code>kable()</code> with my_fish_join, and see what the default HTML table looks like in your knitted document:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">kable</span>(my_fish_join)</a></code></pre></div>
+<p>Simple, but quick to get a clear &amp; useful table! Now let’s spruce it up a bit with <code>kableExtra::kable_styling()</code> to modify HTML table styles:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">my_fish_join <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </a>
+<a class="sourceLine" id="cb130-4" data-line-number="4">                <span class="dt">full_width =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>…with many other options for customizing HTML tables! Make sure to check out <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">“Create awesome HTML tables with knitr::kable() and kableExtra” by Hao Zhu</a> for more examples and options.</p>
+<p><strong>Sync your project with your repo on GitHub</strong></p>
+<div id="end-filter-_join-section" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> End <code>filter()</code> + <code>_join()</code> section!</h3>
 
 </div>
 </div>
@@ -774,8 +714,8 @@ We are going to make plots in R and it&#39;s going to be amazing.
           </div>
         </div>
       </div>
-<a href="rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidying.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="collaborating.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

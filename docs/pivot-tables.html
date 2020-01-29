@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 GitHub | R for Excel Users</title>
+  <title>Chapter 6 Pivot Tables with dplyr | R for Excel Users</title>
   <meta name="description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 GitHub | R for Excel Users" />
+  <meta property="og:title" content="Chapter 6 Pivot Tables with dplyr | R for Excel Users" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 GitHub | R for Excel Users" />
+  <meta name="twitter:title" content="Chapter 6 Pivot Tables with dplyr | R for Excel Users" />
   
   <meta name="twitter:description" content="This is a workshop for RStudio::conf(2020) in San Francisco, California" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rstudio.html"/>
-<link rel="next" href="ggplot2.html"/>
+<link rel="prev" href="ggplot2.html"/>
+<link rel="next" href="tidying.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -394,377 +394,390 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> GitHub</h1>
-<div id="summary-1" class="section level2">
-<h2><span class="header-section-number">4.1</span> Summary</h2>
-<p>We will learn about version control and practice a workflow with GitHub and RStudio that streamlines working with our most important collaborator: Future You.</p>
-<div id="objectives-1" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Objectives</h3>
-<p>Today, we’ll interface with GitHub from our local computers using RStudio.</p>
-<blockquote>
-<p><strong>Aside</strong>: There are many other ways to interact with GitHub, including GitHub’s Desktop App and the command line (<a href="http://stat545.com/git02_git-clients.html">here is Jenny Bryan’s list of git clients</a>). You have the largest suite of options if you interface through the command line, but the most common things you’ll do can be done through one of these other applications (i.e. RStudio).</p>
-</blockquote>
-<p>Here’s what we’ll do, since we’ve already set up git on your computers in the previous session (Chapter <a href="github.html#github">4</a>):</p>
-<ol style="list-style-type: decimal">
-<li>create a repository on Github.com (remote)</li>
-<li>clone locally using RStudio</li>
-<li>sync local to remote: pull, stage, commit, push</li>
-<li>explore github.com files, commit history, README</li>
-<li>project-oriented workflows</li>
-<li>project-oriented workflows in action</li>
-</ol>
-</div>
-<div id="resources-1" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Resources</h3>
+<div id="pivot-tables" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Pivot Tables with <code>dplyr</code></h1>
+<!---
+Why would you ever want to uncount? You don’t want to assume how future you will want to use this data
+How easy is it to get these counts by different groupings
+--->
+<div id="summary-3" class="section level2">
+<h2><span class="header-section-number">6.1</span> Summary</h2>
+<p>Pivot tables are powerful tools in Excel for summarizing data in different ways. We will create these tables using the <code>group_by</code> and <code>summarize</code> functions from the <code>dplyr</code> package (part of the Tidyverse). We will also learn how to format tables and practice creating a reproducible report using RMarkdown and sharing it with GitHub.</p>
+<p><strong>Data used in the synthesis section:</strong></p>
 <ul>
-<li><a href="https://peerj.com/preprints/3159/">Excuse me, do you have a moment to talk about version control?</a> by Jenny Bryan</li>
-<li><a href="http://happygitwithr.com/">Happy Git with R</a> by Jenny Bryan, specifically <a href="http://happygitwithr.com/rstudio-see-git.html">Detect Git from RStudio</a></li>
-<li><a href="https://rstats.wtf/">What They Forgot to Teach You About R</a> by Jenny Bryan, specifically <a href="https://rstats.wtf/project-oriented-workflow.html">Project-oriented workflows</a><br />
+<li>File name: lobsters.xlsx and lobsters2.xlsx<br />
 </li>
-<li><a href="https://rawgit.com/nazrug/Quickstart/master/GithubQuickstart.html">GitHub Quickstart</a> by Melanie Frazier</li>
-<li><a href="https://openscapes.github.io/series/github-issues.html">GitHub for Project Management</a> by Openscapes</li>
+<li>Description: Lobster size, abundance and fishing pressure (Santa Barbara coast)<br />
+</li>
+<li>Link: <a href="https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&amp;identifier=77&amp;revision=newest" class="uri">https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-sbc&amp;identifier=77&amp;revision=newest</a><br />
+</li>
+<li>Citation: Reed D. 2019. SBC LTER: Reef: Abundance, size and fishing effort for California Spiny Lobster (Panulirus interruptus), ongoing since 2012. Environmental Data Initiative. <a href="https://doi.org/10.6073/pasta/a593a675d644fdefb736750b291579a0">doi</a>.</li>
+</ul>
+<div id="objectives-3" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Objectives</h3>
+<p>In R, we can use the <code>dplyr</code> package for pivot tables by using 2 functions <code>group_by</code> and <code>summarize</code> together with the pipe operator <code>%&gt;%</code>. We will also continue to emphasize reproducibility in all our analyses.</p>
+<ul>
+<li>Discuss pivot tables in Excel</li>
+<li>Introduce <code>group_by() %&gt;% summarize()</code> from the <code>dplyr</code> package</li>
+<li>Learn <code>mutate()</code> and <code>select()</code> to work column-wise</li>
+<li>Practice our reproducible workflow with RMarkdown and GitHub</li>
+</ul>
+</div>
+<div id="resources-3" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Resources</h3>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/"><code>dplyr</code> website: dplyr.tidyverse.org</a></li>
+<li><a href="https://r4ds.had.co.nz/transform.html">R for Data Science: Transform Chapter</a> by Hadley Wickham &amp; Garrett Grolemund</li>
+<li><a href="https://youtu.be/g530cnFfk8Y">Intro to Pivot Tables I-III videos</a> by Excel Campus</li>
+<li><a href="https://peerj.com/preprints/3183/">Data organization in spreadsheets</a> by Karl Broman &amp; Kara Woo</li>
 </ul>
 </div>
 </div>
-<div id="why-should-r-users-use-github" class="section level2">
-<h2><span class="header-section-number">4.2</span> Why should R users use Github?</h2>
-<p>Modern R users use GitHub because it helps make coding collaborative and social while also providing huge benefits to organization, archiving, and being able to find your files easily when you need them.</p>
-<p>One of the most compelling reasons for me is that it ends (or nearly ends) the horror of keeping track of versions.</p>
-<p>Basically, we get away from this:</p>
+<div id="overview-setup" class="section level2">
+<h2><span class="header-section-number">6.2</span> Overview &amp; setup</h2>
+<p><a href="https://en.wikipedia.org/wiki/Pivot_table">Wikipedia describes a pivot table</a> as a “table of statistics that summarizes the data of a more extensive table…this summary might include sums, averages, or other statistics, which the pivot table groups together in a meaningful way.”</p>
+<blockquote>
+<p><strong>Aside:</strong> Wikipedia also says that “Although pivot table is a generic term, Microsoft trademarked PivotTable in the United States in 1994.”</p>
+</blockquote>
+<p>Pivot tables are a really powerful tool for summarizing data, and we can have similar functionality in R — as well as nicely automating and reporting these tables.</p>
+<p>We will first have a look at our data, demo using pivot tables in Excel, and then create reproducible tables in R.</p>
+<div id="view-data-in-excel" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> View data in Excel</h3>
+<p>When reading in Excel files (or really any data that isn’t yours), it can be a good idea to open the data and look at it so you know what you’re up against.</p>
+<p>Let’s open the lobsters.xlsx data in Excel.</p>
+<p>It’s one sheet, and it’s rectangular. In this data set, every row is a unique observation. This is called “uncounted” data; you’ll see there is no row for how many lobsters were seen because each row is an observation, or an “n of 1”.</p>
+<p>But also notice that the data doesn’t start until line 5; there are 4 lines of metadata — data about the data that is super important! — that we don’t want to muddy our analyses.</p>
+<p>Now your first idea might be to delete these 4 rows from this Excel sheet and save them on another, but we also know that we need to keep the raw data raw. So let’s not touch this data in Excel, we’ll remove these lines in R. Let’s do that first so then we’ll be all set.</p>
+</div>
+<div id="rmarkdown-setup" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> RMarkdown setup</h3>
+<p>Let’s start a new RMarkdown file in our repo, at the top-level (where it will be created by default in our Project). I’ll call mine <code>pivot_lobsters.Rmd</code>.</p>
+<p>In the setup chunk, let’s attach our libraries and read in our lobster data. In addition to the <code>tidyverse</code> package we will also use the <code>skimr</code> package. You will have to install it, but don’t want it to be installed every time you write your code. The following is a nice convention for having the install instructions available (on the same line) as the <code>library()</code> call.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co">## attach libraries</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="kw">library</span>(skimr) <span class="co"># install.packages(&#39;skimr&#39;)</span></a>
+<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="kw">library</span>(kableExtra) <span class="co"># install.packages(&#39;kableExtra&#39;)</span></a></code></pre></div>
+<p>We used the <code>read_excel()</code> before, which is the generic function that reads both .xls and .xlsx files. Since we know that this is a .xlsx file, we will demo using the <code>read_xlsx()</code> function.</p>
+<p>We can expect that someone in the history of R and especially the history of the <code>readxl</code> package has needed to skip lines at the top of an Excel file before. So let’s look at the help pages <code>?read_xlsx</code>: there is an argument called <code>skip</code> that we can set to 4 to skip 4 lines.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co">## read in data</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">lobsters &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="kw">here</span>(<span class="st">&quot;data/lobsters.xlsx&quot;</span>), <span class="dt">skip=</span><span class="dv">4</span>)</a></code></pre></div>
+<p>Great. We’ve seen this data in Excel so I don’t feel the need to use <code>head()</code> here like we’ve done before, but I do like having a look at summary statistics and classes.</p>
+<div id="skimrskim" class="section level4">
+<h4><span class="header-section-number">6.2.2.1</span> <code>skimr::skim</code></h4>
+<p>To look at summary statistics we’ve used <code>summary</code>, which is good for numeric columns, but it doesn’t give a lot of useful information for non-numeric data. So it means it wouldn’t tell us how many unique sites there are in this dataset. To have a look there I like using the <code>skimr</code> package:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># explore data</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">skimr<span class="op">::</span><span class="kw">skim</span>(lobsters) </a></code></pre></div>
+<p>This <code>skimr::</code> notation is a reminder to me that <code>skim</code> is from the <code>skimr</code> package. It is a nice convention: it’s a reminder to others (especially you!).</p>
+<p><code>skim</code> lets us look more at each variable. Here we can look at our character variables and see that there are 5 unique sites (in the <code>n_unique</code> output). Also, I particularly like looking at missing data. There are 6 missing values in the <code>size_mm</code> variable.</p>
+</div>
+</div>
+<div id="our-task" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Our task</h3>
+<p>So now we have an idea of our data. But now we have a task: we’ve been asked by a colleague to report about how the average size of lobsters has changed for each site across time.</p>
+<p>We will complete this task with R by using the <code>dplyr</code> package for data wrangling, which we will do after demoing how this would do it with pivot tables in Excel.</p>
+</div>
+</div>
+<div id="pivot-table-demo" class="section level2">
+<h2><span class="header-section-number">6.3</span> Pivot table demo</h2>
+<p>I will demo how we will make a pivot table with our lobster data. You are welcome to sit back and watch rather than following along.</p>
+<p>First let’s summarize how many lobsters were counted each year. This means I want to count of rows by year.</p>
+<p>So to do this in Excel we would initiate the Pivot Table Process:</p>
 <p><br></p>
-<p><img src="img/excel_messy_saves.png" width="80%" />
+<p><img src="img/pivot-table-menu.png" width="60%" /></p>
+<p><br></p>
+<p>Excel will ask what data I would like to include, and it will do its best to suggest coordinates for my data within the spreadsheet (it can have difficulty with non-rectangular or “non-tidy” data). It does a good job here of ignoring those top lines of data description.</p>
+<p>It will also suggest we make our PivotTable in a new worksheet.</p>
+<p><br></p>
+<p><img src="img/pivot-table-create.png" width="60%" /></p>
+<p><br></p>
+<p>And then we’ll see our new sheet and a little wizard to help us create the PivotTable.</p>
+<div id="pivot-one-variable" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> pivot one variable</h3>
+<p>I want to start by summarizing by year, so I first drag the <code>year</code> variable down into the “Rows” box. What I see at this point are the years listed: this confirms that I’m going to group by years.</p>
+<p><br></p>
+<p><img src="img/pivot-table-count-year-groupby.png" width="60%" /></p>
+<p><br></p>
+<p>And then, to summarize the counts for each year, I actually drag the same <code>year</code> variable into the “Values” box. And it will create a Pivot Table for me! But “sum” as the default summary statistic; this doesn’t make a whole lot of sense for summarizing years. I can click the little “I” icon to change this summary statistic to what I want: Count of year.</p>
+<p><br></p>
+<p><img src="img/pivot-table-count-year.png" width="60%" /></p>
+<p><br></p>
+<p>A few things to note:</p>
+<ul>
+<li>The pivot table is separate entity from our data (it’s on a different sheet); the original data has not been affected. This “keeps the raw data raw”, which is great practice.</li>
+<li>The pivot table summarizes on the variables you request meaning that we don’t see other columns (like date, month, or site).</li>
+<li>Excel also calculates the Grand total for all sites (in bold). This is nice for communicating about data. But it can be problematic in the future, because it might not be clear that this is a calculation and not data. It could be easy to take a total of this column and introduce errors by doubling the total count.</li>
+</ul>
+<p>So pivot tables are great because they summarize the data and keep the raw data raw — they even promote good practice because they by default ask you if you’d like to present the data in a new sheet rather than in the same sheet.</p>
+</div>
+<div id="pivot-two-variables" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> pivot two variables</h3>
+<p>We can include multiple variables in our PivotTable. If we want to add site as a second variable, we can drag it down:</p>
+<p><img src="img/pivot-table-count-year-site.png" width="60%" /></p>
+<p>But this is comparing sites within a year; we want to compare years within a site. We can reverse the order easily enough by dragging (you just have to remember to do all of these steps the next time you’d want to repeat this):</p>
+<p><img src="img/pivot-table-count-site-year.png" width="60%" /></p>
+<p>So in terms of our full task, which is to compare the average lobster size by site and year, we are on our way! I’ll leave this as a cliff-hanger here in Excel and we will carry forward in R.</p>
+<p>Just to recap what we did here: we told Excel we wanted to group by something (here: <code>year</code> and <code>site</code>) and then summarize by something (here: count, not sum!)</p>
+<!---
+All verbs work similarly:
+
+1. The first argument is a data frame.
+2. The subsequent arguments describe what to do with the data frame. You can refer to columns in the data frame directly without using `$`.
+3. The result is a new data frame.
+
+Together these properties make it easy to chain together multiple simple steps to achieve a complex result using the pipe operator `%>%`.
+
+I love thinking of these `dplyr` verbs and the pipe operator `%>%` as telling a story. When I see `%>%` I think "and then":
+
+
+```r
+data %>%          # start with data, and then
+  group_by() %>%  # group by a variable, and then
+  mutate() %>%    # mutate to add a new column, and then
+  select()        # select specific columns
+```
+
+
+--->
+</div>
+</div>
+<div id="group_by-summarize" class="section level2">
+<h2><span class="header-section-number">6.4</span> <code>group_by()</code> %&gt;% <code>summarize()</code></h2>
+<p>In R, we can create the functionality of pivot tables with the same logic: we will tell R to group by something and then summarize by something. Visually, it looks like this:</p>
+<p><br>
+<img src="img/rstudio-cheatsheet-group_by_summarize.png" width="80%" />
 <br></p>
-<p>This is a nightmare not only because I have NO idea which is truly the version we used in that analysis we need to update, but because it is going to take a lot of detective work to see what actually changed between each file. Also, it is very sad to think about the amount of time everyone involved is spending on bookkeeping: is everyone downloading an attachment, dragging it to wherever they organize this on their own computers, and then renaming everything? Hours and hours of all of our lives.</p>
-<p>But then there is GitHub.</p>
-<p>In GitHub, in this example you will likely only see a single file, which is the most recent version. GitHub’s job is to track who made any changes and when (so no need to save a copy with your name or date at the end), and it also requires that you write something human-readable that will be a breadcrumb for you in the future. It is also designed to be easy to compare versions, and you can easily revert to previous versions.</p>
-<p>GitHub also supercharges you as a collaborator. First and foremost with Future You, but also sets you up to collaborate with Future Us!</p>
-<p>GitHub, especially in combination with RStudio, is also game-changing for publishing and distributing. You can — and we will — publish and share files openly on the internet.</p>
-<div id="what-is-github-and-git" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> What is Github? And Git?</h3>
-<p>OK so what is GitHub? And Git?</p>
-<ul>
-<li><p><strong>Git</strong> is a program that you install on your computer: it is version control software that tracks changes to your files over time.</p></li>
-<li><p><strong>Github</strong> is an website that is essentially a social media platform for your git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people’s files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between <a href="https://help.github.com/articles/rendering-and-diffing-images/">images</a>, <a href="https://help.github.com/articles/mapping-geojson-files-on-github/">rendering</a> &amp; <a href="https://github.com/blog/1772-diffable-more-customizable-maps">diffing</a> map data files, <a href="https://help.github.com/articles/rendering-csv-and-tsv-data/">render text data files</a>, and <a href="https://help.github.com/articles/rendering-differences-in-prose-documents/">track changes in text</a>.</p></li>
-</ul>
-<p>Github was developed for software development, so much of the functionality and terminology of that is exciting for professional programmers (e.g., branches and pull requests) isn’t necessarily the right place for us as new R users to get started.</p>
-<p>So we will be learning and practicing GitHub’s features and terminology on a “need to know basis” as we start managing our projects with GitHub.</p>
-<p>Let’s get started by going to <a href="https://github.com" class="uri">https://github.com</a> and going to our user profile. You can do this by typing your username in the URL (github.com/username), or after signing in, by clicking on the top-right button and going to your profile.</p>
-<p>This will have an overview of you and your work, and then you can click on the Repository button.</p>
-<p>Repositories are the main “unit” of GitHub: they are what GitHub tracks. They are essentially project-level folders that will contain everything associated with a project. It’s where we’ll start too.</p>
-<!---
-### Some Github terminology
-
-* **User**: A Github account for you (e.g., jules32).
-* **Organization**: The Github account for one or more user (e.g., datacarpentry).
-* **Repository**: A folder within the organization that includes files dedicated to a project.
-* **Local Github**: Copies of Github files located your computer.
-* **Remote Github**: Github files located on the https://github.com website.
-* **Clone**: Process of making a local copy of a remote Github repository.  This only needs to be done once (unless you mess up your local copy).
-* **Pull**: Copy changes on the remote Github repository to your local Github repository.  This is useful if multiple people are making changes to a repository.
-* **Push**: Save local changes to remote Github
-<br />
-<br />
-
-[](img/push_pull_clone.png)
-<br />
-<br />
---->
-</div>
-</div>
-<div id="create-a-repository-on-github.com" class="section level2">
-<h2><span class="header-section-number">4.3</span> Create a repository on Github.com</h2>
-<p>We create a new repository (called a “repo”) by clicking “New repository”.</p>
-<p><br></p>
-<p><img src="img/gh_repo_create.png" width="80%" /></p>
-<p><br></p>
-<p>Choose a name. Call it whatever you want (the shorter the better), or follow me for convenience. I will call mine <code>r-workshop</code>.</p>
-<p>Also, add a description, make it public, create a README file, and create your repo!</p>
-<p><br></p>
-<p><img src="img/gh_repo_create2.png" width="80%" /></p>
-<p><br></p>
-<p>The <em>Add gitignore</em> option adds a document where you can identify files or file-types you want Github to ignore. These files will stay in on the local Github folder (the one on your computer), but will not be uploaded onto the web version of Github.</p>
-<p>The <em>Add a license</em> option adds a license that describes how other people can use your Github files (e.g., open source, but no one can profit from them, etc.). We won’t worry about this today.</p>
-<p>Check out our new repository!</p>
-<p><br></p>
-<p><img src="img/gh_repo_new.png" width="80%" /></p>
-<p><br></p>
-<p>Great! So now we have our new repository that exists in the Cloud. Let’s get it established locally on our computers: that is called “cloning”.</p>
-</div>
-<div id="clone-your-repository-using-rstudio" class="section level2">
-<h2><span class="header-section-number">4.4</span> Clone your repository using RStudio</h2>
-<p>Let’s clone this repo to our local computer using RStudio. Unlike downloading, cloning keeps all the version control and user information bundled with the files.</p>
-<div id="copy-the-repo-address" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Copy the repo address</h3>
-<p>First, copy the web address of the repository you want to clone. We will use HTTPS.</p>
+<p>This graphic is from <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">RStudio’s old-school data wrangling cheatsheet</a>; all cheatsheets available from <a href="https://rstudio.com/resources/cheatsheets" class="uri">https://rstudio.com/resources/cheatsheets</a>). It’s incredibly powerful to visualize what we are talking about with our data when do do these kinds of operations.</p>
+<p>And in code, it looks like this:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>()</a></code></pre></div>
+<p>It reads: “Take the data and then group by something and then summarize by something”.</p>
+<p>The pipe operator <code>%&gt;%</code> is a really critical feature of the <code>dplyr</code> package, originally created for the <code>magrittr</code> package. It lets us chain together steps of our data wrangling, enabling us to tell a clear story about our entire data analysis. This is not only a written story to archive what we’ve done, but it will be a reproducible story that can be rerun and remixed. It is not difficult to read as a human, and it is not a series of clicks to remember.
+Let’s try it out!</p>
+<div id="group_by-one-variable" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> <code>group_by</code> one variable</h3>
+<p>Let’s use <code>group_by() %&gt;% summarize()</code> with our <code>lobsters</code> data, just like we did in Excel. We will first group_by year and then summarize by count, using the function <code>n()</code> (in the <code>dplyr</code> package). <code>n()</code> counts the number of times an observation shows up, and since this is uncounted data, this will count each row.</p>
+<p>We can say this out loud while we write it: “take the lobsters data and then group_by year and then summarize by count in a new column we’ll call <code>count_by_year</code>”.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_year =</span> <span class="kw">n</span>())</a></code></pre></div>
+<p>Notice how together, <code>group_by</code> and <code>summarize</code> minimize the amount of information we see. We also saw this with the pivot table. We lose the other columns that aren’t involved here.</p>
+<p>Question: What if you <em>don’t</em> group_by first? Let’s try it and discuss what’s going on.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span>  <span class="kw">n</span>())</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   count
+##   &lt;int&gt;
+## 1  2893</code></pre>
+<p>So if we don’t <code>group_by</code> first, we will get a single summary statistic (sum in this case) for the whole dataset.</p>
+<p>Another question: what if we <em>only</em> group_by?</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year)</a></code></pre></div>
+<pre><code>## # A tibble: 2,893 x 7
+## # Groups:   year [5]
+##     year month date    site  transect replicate size_mm
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+##  1  2012     8 8/20/12 ivee         3 A              70
+##  2  2012     8 8/20/12 ivee         3 B              60
+##  3  2012     8 8/20/12 ivee         3 B              65
+##  4  2012     8 8/20/12 ivee         3 B              70
+##  5  2012     8 8/20/12 ivee         3 B              85
+##  6  2012     8 8/20/12 ivee         3 C              60
+##  7  2012     8 8/20/12 ivee         3 C              65
+##  8  2012     8 8/20/12 ivee         3 C              67
+##  9  2012     8 8/20/12 ivee         3 D              70
+## 10  2012     8 8/20/12 ivee         4 B              85
+## # … with 2,883 more rows</code></pre>
+<p>R doesn’t summarize our data, but you can see from the output that it is indeed grouped. However, we haven’t done anything to the original data: we are only exploring. We are keeping the raw data raw.</p>
+<p>To convince ourselves, let’s now check the <code>lobsters</code> variable. We can do this by clicking on <code>lobsters</code> in the Environment pane in RStudio.</p>
+<p>We see that we haven’t changed any of our original data that was stored in this variable. (Just like how the pivot table didn’t affect the raw data on the original sheet).</p>
 <blockquote>
-<p><strong>Aside</strong>: HTTPS is default, but you could alternatively set up with SSH. This is more advanced than we will get into here, but allows 2-factor authentication. See <a href="https://happygitwithr.com/credential-caching.html#special-consideration-re-two-factor-authentication">Happy Git with R</a> for more information.</p>
+<p><strong><em>Aside</em></strong>: You’ll also see that when you click on the variable name in the Environment pane, <code>View(lobsters)</code> shows up in your Console. <code>View()</code> (capital V) is the R function to view any variable in the viewer. So this is something that you can write in your RMarkdown script, although RMarkdown will not be able to knit this view feature into the formatted document. So, if you want include <code>View()</code> in your RMarkdown document you will need to either comment it out <code>#View()</code> or add <code>eval=FALSE</code> to the top of the code chunk so that the full line reads <code>{r, eval=FALSE}</code>.</p>
 </blockquote>
-<p><br></p>
-<p><img src="img/gh_repo_clone1.png" width="100%" /></p>
-<p><br></p>
 </div>
-<div id="rstudio-new-project-1" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> RStudio: New Project</h3>
-<p>Now go back to RStudio, and click on New Project. There are a few different ways; you could also go to File &gt; New Project…, or click the little green + with the R box in the top left.
-also in the File menu).</p>
-<p><br></p>
-<p><img src="img/new_project1.png" width="80%" /></p>
-<p><br></p>
+<div id="group_by-multiple-variables" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> <code>group_by</code> multiple variables</h3>
+<p>Great. Now let’s summarize by both year and site like we did in the pivot table. We are able to <code>group_by</code> more than one variable. Let’s do this together:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>())</a></code></pre></div>
+<p>We put the site first because that is what we want as an end product. But we could easily have put year first. We saw visually what would happen when we did this in the Pivot Table.</p>
+<p>Great.</p>
 </div>
-<div id="select-version-control-1" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> Select Version Control</h3>
-<p><br></p>
-<p><img src="img/new_project2.png" width="80%" /></p>
-<p><br></p>
+<div id="summarize-multiple-variables" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> <code>summarize</code> multiple variables</h3>
+<p>We can summarize multiple variables at a time.</p>
+<p>So far we’ve summarized the count of lobster observations. Let’s also calculate the mean and standard deviation. First let’s use the <code>mean()</code> function to calculate the mean. We do this within the same <code>summarize()</code> function, but we can add a new line to make it easier to read. Notice how when you put your curser within the parenthesis and hit return, the indentation will automatically align.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm))</a></code></pre></div>
+<blockquote>
+<p><strong><em>Aside</em></strong> Command-I will properly indent selected lines.</p>
+</blockquote>
+<p>Great! But this will actually calculate some of the means as NA because one or more values in that year are NA. So we can pass an argument that says to remove NAs first before calculating the average. Let’s do that, and then also calculate the standard deviation with the <code>sd()</code> function:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm=</span><span class="ot">TRUE</span>))</a></code></pre></div>
+<p>So we can make the equivalent of Excel’s pivot table in R with <code>group_by() %&gt;% summarize()</code>.</p>
+<p>Now we are at the point where we actually want to save this summary information as a variable so we can use it in further analyses and formatting.</p>
+<p>So let’s add a variable assignment to that first line:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb67-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb67-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb67-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7"><span class="co">## inspect our new variable </span></a>
+<a class="sourceLine" id="cb67-8" data-line-number="8">siteyear_summary </a></code></pre></div>
 </div>
-<div id="select-git-1" class="section level3">
-<h3><span class="header-section-number">4.4.4</span> Select Git</h3>
-<p>Since we are using git.</p>
-<p><br></p>
-<p><img src="img/new_project3.png" width="80%" /></p>
-<p><br></p>
+<div id="table-formatting-with-kable" class="section level3">
+<h3><span class="header-section-number">6.4.4</span> Table formatting with <code>kable()</code></h3>
+<p>There are several options for formatting tables in RMarkdown; we’ll show one here from the <code>kableExtra</code> package and learn more about it tomorrow.</p>
+<p>It works nicely with the pipe operator, so we can build do this from our new object:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co">## make a table with our new variable</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">siteyear_summary <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 </div>
-<div id="paste-the-repo-address" class="section level3">
-<h3><span class="header-section-number">4.4.5</span> Paste the repo address</h3>
-<p>Paste the repo address (which is still in your clipboard) into in the “Repository URL” field. The “Project directory name” should autofill; if it does not press <em>tab</em>, or type it in. It is best practice to keep the “Project directory name” THE SAME as the repository name.</p>
-<p>When cloned, this repository is going to become a folder on your computer.</p>
-<p>At this point you can save this repo anywhere. There are different schools of thought but we think it is useful to create a high-level folder where you will keep your github repos to keep them organized. We call ours <code>github</code> and keep it in our root folder (<code>~/github</code>), and so that is what we will demonstrate here — you are welcome to do the same. Press “Browse…” to navigate to a folder and you have the option of creating a new folder.</p>
-<p>Finally, click Create Project.</p>
-<p><br></p>
-<p><img src="img/new_project4.png" width="80%" /></p>
-<p><br></p>
+<div id="r-code-in-line-in-rmarkdown" class="section level3">
+<h3><span class="header-section-number">6.4.5</span> R code in-line in RMarkdown</h3>
+<p>Before we let you try this on your own, let’s go outside of our code chunk and write in Markdown.</p>
+<p>I want to demo something that is a really powerful RMarkdown feature that we can already leverage with what we know in R.</p>
+<p>Write this <strong>in Markdown</strong> but replace the # with a backtick (`): “There are #r nrow(lobsters)# total lobsters included in this report.” Let’s knit to see what happens.</p>
+<p>I hope you can start to imagine the possibilities. If you wanted to write which year had the most observations, or which site had a decreasing trend, you would be able to.</p>
 </div>
-<div id="admire-your-local-repo" class="section level3">
-<h3><span class="header-section-number">4.4.6</span> Admire your local repo</h3>
-<p>If everything went well, the repository will show up in RStudio!</p>
-<p><br></p>
-<p><img src="img/new_project5.png" width="100%" /></p>
-<p><br></p>
-<p>The repository is also saved to the location you specified, and you can navigate to it as you normally would in Finder or Windows Explorer:</p>
-<p><br></p>
-<p><img src="img/new_project6.png" width="80%" /></p>
-<p><br></p>
-<p>Hooray!</p>
-</div>
-<div id="inspect-your-local-repo" class="section level3">
-<h3><span class="header-section-number">4.4.7</span> Inspect your local repo</h3>
-<p>Let’s notice a few things:</p>
-<p>First, our working directory is set to <code>~/github/r-workshop</code>, and <code>r-workshop</code> is also named in the top right hand corner.</p>
-<p>Second, we have a Git tab in the top right pane! Let’s click on it.</p>
-<p><br></p>
-<p><img src="img/new_project5_annotated.png" width="80%" /></p>
-<p><br></p>
-<p>Our Git tab has 2 items:</p>
-<ul>
-<li>.gitignore file</li>
-<li>.Rproj file</li>
-</ul>
-<p>These have been added to our repo by RStudio — we can also see them in the File pane in the bottom right of RStudio. These are helper files that RStudio has added to streamline our workflow with GitHub and R. We will talk about these a bit more soon. One thing to note about these files is that they begin with a period (<code>.</code>) which means they are hidden files: they show up in the Files pane of RStudio but won’t show up in your Finder or Windows Explorer.</p>
-<p>Going back to the Git tab, both these files have little yellow icons with question marks <code>?</code>. This is GitHub’s way of saying: “I am responsible for tracking everything that happens in this repo, but I’m not sure what is going on with these files yet. Do you want me to track them too?”</p>
-<p>We will handle this in a moment; first let’s look at the README.md file.</p>
-</div>
-<div id="edit-your-readme-file" class="section level3">
-<h3><span class="header-section-number">4.4.8</span> Edit your README file</h3>
-<p>Let’s also open up the README.md. This is a Markdown file, which is the same language we just learned with R Markdown. It’s like an R Markdown file without the abilities to run R code.</p>
-<p>We will edit the file and illustrate how GitHub tracks files that have been modified (to complement seeing how it tracks files that have been added.</p>
-<p>README files are common in programming; they are the first place that someone will look to see why code exists and how to run it.</p>
-<p>In my README, I’ll write:</p>
-<pre><code>This repo is for my analyses at RStudio::conf(2020). </code></pre>
-<p>When I save this, notice how it shows up in my Git tab. It has a blue “M”: GitHub is already tracking this file, and tracking it line-by-line, so it knows that something is different: it’s Modified with an M.</p>
-<p>Great. Now let’s sync back to GitHub in 4 steps.</p>
-</div>
-</div>
-<div id="sync-from-rstudio-local-to-github-remote" class="section level2">
-<h2><span class="header-section-number">4.5</span> Sync from RStudio (local) to GitHub (remote)</h2>
-<p>Syncing to GitHub.com means 4 steps:</p>
+<div id="activity-2" class="section level3">
+<h3><span class="header-section-number">6.4.6</span> Activity</h3>
 <ol style="list-style-type: decimal">
-<li>Pull</li>
-<li>Stage</li>
-<li>Commit</li>
-<li>Push</li>
+<li>Build from our analysis and calculate the median lobster size for each site year. Your calculation will use the <code>size_mm</code> variable and function to calculate the median (Hint: ?median)</li>
+<li>create and ggsave() a plot.</li>
 </ol>
-<p><br></p>
-<p><img src="img/commit_steps.png" width="100%" /></p>
-<p><br></p>
-<p>We start off this whole process by clicking on the Commit section.</p>
-<p><br></p>
-<p><img src="img/commit_circled.png" width="100%" /></p>
-<p><br></p>
-<div id="pull" class="section level3">
-<h3><span class="header-section-number">4.5.1</span> Pull</h3>
-<p>We start off by “Pulling” from the remote repository (GitHub.com) to make sure that our local copy has the most up-to-date information that is available online. Right now, since we just created the repo and are the only ones that have permission to work on it, we can be pretty confident that there isn’t new information available. But we pull anyways because this is a very safe habit to get into for when you start collaborating with yourself across computers or others. Best practice is to pull often: it costs nothing (other than an internet connection).</p>
-<p>Pull by clicking the teal Down Arrow. (Notice also how when you highlight a filename, a preview of the differences displays below).</p>
-<p><br></p>
-<p><img src="img/commit_pull.png" width="100%" /></p>
-<p><br></p>
-</div>
-<div id="stage" class="section level3">
-<h3><span class="header-section-number">4.5.2</span> Stage</h3>
-<p>Let’s click the boxes next to each file. This is called “staging a file”: you are indicating that you want GitHub to track this file, and that you will be syncing it shortly. Notice:</p>
-<ul>
-<li>.Rproj and .gitignore files: the question marks turn into an A because these are new files that have been added to your repo (automatically by RStudio, not by you).</li>
-<li>README.md file: the M indicates that this was modified (by you)</li>
-</ul>
-<p>These are the codes used to describe how the files are changed, (from the RStudio <a href="http://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">cheatsheet</a>):</p>
-<p><br></p>
-<p><img src="img/commit_codes_added_modified.png" width="30%" /></p>
-<p><br></p>
-</div>
-<div id="commit" class="section level3">
-<h3><span class="header-section-number">4.5.3</span> Commit</h3>
-<p>Committing is different from saving our files (which we still have to do! RStudio will indicate a file is unsaved with red text and an asterix). We commit a single file or a group of files when we are ready to save a snapshot in time of the progress we’ve made. Maybe this is after a big part of the analysis was done, or when you’re done working for the day.</p>
-<p>Committing our files is a 2-step process.</p>
-<p>First, you write a “commit message”, which is a human-readable note about what has changed that will accompany GitHub’s non-human-readable alphanumeric code to track our files. I think of commit messages like breadcrumbs to my Future Self: how can I use this space to be useful for me if I’m trying to retrace my steps (and perhaps in a panic?).</p>
-<p>Second, you press Commit.</p>
-<p><br></p>
-<p><img src="img/commit_message_arrow.png" width="100%" /></p>
-<p><br></p>
-<p>When we have committed successfully, we get a rather unsuccessful-looking pop-up message. You can read this message as “Congratulations! You’ve successfully committed 3 files, 2 of which are new!” It is also providing you with that alphanumeric SHA code that GitHub is using to track these files.</p>
-<p>If our attempt was not successful, we will see an Error. Otherwise, interpret this message as a joyous one.</p>
-<blockquote>
-<p>Does your pop-up message say “Aborting commit due to empty commit message.”? GitHub is really serious about writing human-readable commit messages.</p>
-</blockquote>
-<p><br></p>
-<p><img src="img/commit_success.png" width="100%" /></p>
-<p><br></p>
-<p>When we close this window there is going to be (in my opinion) a very subtle indication that we are not done with the syncing process.</p>
-<p><br></p>
-<p><img src="img/commit_branch_ahead_of_origin_master.png" width="100%" /></p>
-<p><br></p>
-<p>We have successfully committed our work as a breadcrumb-message-approved snapshot in time, but it still only exists locally on our computer. We can commit without an internet connection; we have not done anything yet to tell GitHub that we want this pushed to the remote repo at GitHub.com. So as the last step, we push.</p>
-</div>
-<div id="push" class="section level3">
-<h3><span class="header-section-number">4.5.4</span> Push</h3>
-<p>The last step in the syncing process is to Push!</p>
-<p><br></p>
-<p><img src="img/commit_push.png" width="100%" /></p>
-<p><br></p>
-<p>Awesome! We’re done here in RStudio for the moment, let’s check out the remote on GitHub.com.</p>
+<p>Then, save, commit, and push your .Rmd, .html, and .png.</p>
+<p>Solution (no peeking):</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb69-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb69-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb69-6" data-line-number="6">            <span class="dt">median_size_mm =</span> <span class="kw">median</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb69-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb69-8" data-line-number="8"><span class="co">## a ggplot option:</span></a>
+<a class="sourceLine" id="cb69-9" data-line-number="9"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_line</span>() </a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-line.png&quot;</span>))</a></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="co">## another option:</span></a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-82-2.png" width="672" /></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-col.png&quot;</span>))</a></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<p>Don’t forget to knit, commit, and push!</p>
+<p>Nice work everybody.</p>
 </div>
 </div>
-<div id="commit-history" class="section level2">
-<h2><span class="header-section-number">4.6</span> Commit history</h2>
-<p>The files you added should be on github.com.</p>
-<p>Notice how the README.md file we created is automatically displayed at the bottom. Since it is good practice to have a README file that identifies what code does (i.e. why it exists), GitHub will display a Markdown file called README nicely formatted.</p>
-<p><br></p>
-<p><img src="img/gh_repo_view.png" width="100%" /></p>
-<p><br></p>
-<p>Let’s also explore the commit history. The 2 commits we’ve made (the first was when we originally initiated the repo from GitHub.com) are there!</p>
+<div id="oh-no-they-sent-the-wrong-data" class="section level2">
+<h2><span class="header-section-number">6.5</span> Oh no, they sent the wrong data!</h2>
+<p>Oh no! After all our analyses and everything we’ve done, our colleague just emailed us at 4:30pm on Friday that he sent the wrong data and we need to redo all our analyses with a new .xlsx file: <code>lobsters2.xlsx</code>, not <code>lobsters.xlsx</code>. Aaaaah!</p>
+<p>If we were doing this in Excel, this would be a bummer; we’d have to rebuild our pivot table and click through all of our logic again. And then export our figures and save them into our report.</p>
+<p>But, since we did it in R, we are much safer. R’s power is not only in analytical power, but in automation and reproducibility.</p>
+<p>This means we can go back to the top of our RMarkdown file, and read in this new data file, and then re-knit. We will still need to check that everything outputs correctly, (and that column headers haven’t been renamed), but our first pass will be to update the filename and re-knit:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="co">## read in data</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">lobsters &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="kw">here</span>(<span class="st">&quot;data/lobsters2.xlsx&quot;</span>), <span class="dt">skip=</span><span class="dv">4</span>)</a></code></pre></div>
+<p>And now we can see that our plot updated as well:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">siteyear_summary &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count_by_siteyear =</span>  <span class="kw">n</span>(), </a>
+<a class="sourceLine" id="cb76-4" data-line-number="4">            <span class="dt">mean_size_mm =</span> <span class="kw">mean</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb76-5" data-line-number="5">            <span class="dt">sd_size_mm =</span> <span class="kw">sd</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb76-6" data-line-number="6">            <span class="dt">median_size_mm =</span> <span class="kw">median</span>(size_mm, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), )</a>
+<a class="sourceLine" id="cb76-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb76-8" data-line-number="8">siteyear_summary</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co">## a ggplot option:</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">data =</span> siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm, <span class="dt">color =</span> site)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>() </a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-line.png&quot;</span>))</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="co">## another option:</span></a>
+<a class="sourceLine" id="cb78-4" data-line-number="4"><span class="kw">ggplot</span>(siteyear_summary, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median_size_mm)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb78-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb78-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>site)</a></code></pre></div>
+<p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-85-2.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">ggsave</span>(<span class="kw">here</span>(<span class="st">&quot;figures&quot;</span>, <span class="st">&quot;lobsters-col.png&quot;</span>))</a></code></pre></div>
+<div id="knit-push-show-differences-on-github" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Knit, push, &amp; show differences on GitHub</h3>
+<p>So cool.</p>
 </div>
-<div id="project-oriented-workflows" class="section level2">
-<h2><span class="header-section-number">4.7</span> Project-oriented workflows</h2>
-<p>Let’s go back to RStudio and how we set up well-organized projects and workflows for our data analyses.</p>
-<p>This GitHub repository is now also an RStudio Project (capital P Project). This just means that RStudio has saved this additional file with extension <code>.Rproj</code> (ours is <code>r-workshop.Rproj</code>) to store specific settings for this project. It’s a bit of technology to help us get into the good habit of having a project-oriented workflow.</p>
-<p>A <a href="https://rstats.wtf/project-oriented-workflow.html">project-oriented workflow</a> means that we are going to organize all of the relevant things we need for our analyses in the same place. That means that this is the place where we keep all of our data, code, figures, notes, etc.</p>
-<p>R Projects are great for reproducibility, because our self-contained working directory will be the <strong>first</strong> place R looks for files.</p>
+<div id="dplyrcount" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> <code>dplyr::count()</code></h3>
+<p>Now that we’ve spent time with group_by %&gt;% summarize, there is a shortcut if you only want to summarize by count. This is with a function called <code>count()</code>, and it will group_by your selected variable, count, and then also ungroup. It looks like this:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(site, year)</a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"><span class="co">## This is the same as:</span></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="st">  </span><span class="kw">group_by</span>(site, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb80-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>()</a></code></pre></div>
+<p>Hey, we could update our RMarkdown text knowing this: There are #r count(lobsters)# total lobsters included in this summary.</p>
+<p>Switching gears…</p>
+</div>
+</div>
+<div id="mutate" class="section level2">
+<h2><span class="header-section-number">6.6</span> <code>mutate()</code></h2>
+<p><img src="img/rstudio-cheatsheet-mutate.png" width="80%" /></p>
+<p><br></p>
+<p>There are a lot of times where you don’t want to summarize your data, but you do want to operate beyond the original data. This is often done by adding a column. We do this with the <code>mutate()</code> function from <code>dplyr</code>. Let’s try this with our original lobsters data. The sizes are in millimeters but let’s say it was important for them to be in meters. We can add a column with this calculation:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_m =</span> size_mm <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</a></code></pre></div>
+<p>If we want to add a column that has the same value repeated, we can pass it just one value, either a number or a character string (in quotes). And let’s save this as a variable called <code>lobsters_detailed</code></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">lobsters_detailed &lt;-<span class="st"> </span>lobsters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size_m =</span> size_mm <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>, </a>
+<a class="sourceLine" id="cb82-3" data-line-number="3">         <span class="dt">millenia =</span> <span class="dv">2000</span>,</a>
+<a class="sourceLine" id="cb82-4" data-line-number="4">         <span class="dt">observer =</span> <span class="st">&quot;Allison Horst&quot;</span>)</a></code></pre></div>
+</div>
+<div id="select" class="section level2">
+<h2><span class="header-section-number">6.7</span> <code>select()</code></h2>
+<p>We will end with one final function, <code>select</code>. This is how to choose, retain, and move your data by columns:</p>
+<p><img src="img/rstudio-cheatsheet-select.png" width="80%" /></p>
+<p><br></p>
+<p>Let’s say that we want to present this data finally with only columns for date, site, and size in meters. We would do this:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">lobsters_detailed <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(date, site, size_m)</a></code></pre></div>
+<p>One last time, let’s knit, save, commit, and push to GitHub.</p>
 <!---
-Why does this matter? It's convenient for us to have everything associated with our analyses close at-hand.  When we work with different files in R (like data or saved graphs) we always need to tell R where things "live" by identifying its file path. If files are scattered across your computer, we would have to keep track of many different filepaths. So using RStudio Projects and having a project-oriented workflow and mindset makes our analysis less brittle and more portable — across people, time, and computers.  
+
+## Deep thoughts
+
+Highly recommended read: [Broman & Woo: Data organization in spreadsheets](https://peerj.com/preprints/3183/). Practical tips to make spreadsheets less error-prone, easier for computers to process, easier to share
+
+Great opening line: "Spreadsheets, for all of their mundane rectangularness, have been the subject of angst and controversy for decades."
+
+
+## Efficiency Tip
+
+Command - Z to undo  
+Command - Shift - Z to redo
+
+Arrow keys to move letter by letter  
+Arrow keys - Shift to highlight letter by letter 
+
+Arrow keys - Option to move word by word
+Arrow keys - Option to highlight word by word
+
+Arrow keys - Command to move end to end
+Arrow keys - Command to highlight end to end
 
 --->
-<div id="working-directory" class="section level3">
-<h3><span class="header-section-number">4.7.1</span> Working directory</h3>
-<p>Now that we have our Project, let’s revisit this important question: where are we? Now we are in our Project. Everything we do will by default be saved here so we can be nice and organized.</p>
-<p>And this is important because if Allison clones this repository that you just made and saves it in <code>Allison/my/projects/way/over/here</code>, she will still be able to interact with your files as you are here.</p>
-<p><img src="img/RStudio_IDE_projdir.png" width="100%" /></p>
-</div>
-</div>
-<div id="project-oriented-workflows-in-action-aka-our-analytical-setup" class="section level2">
-<h2><span class="header-section-number">4.8</span> Project-oriented workflows in action (aka our analytical setup)</h2>
-<p>Let’s get a bit organized. First, let’s create our a new R Markdown file where we will do our analyses. This will be nice because you can also write notes to yourself in this document.</p>
-<div id="create-a-new-rmd-file" class="section level3">
-<h3><span class="header-section-number">4.8.1</span> Create a new Rmd file</h3>
-<p>So let’s do this (again):</p>
-<p>File &gt; New File &gt; R Markdown … (or click the green plus in the top left corner).</p>
-<p>Let’s set up this file so we can use it for the rest of the day. I’m going to update the header with a new title and add my name, and then I’m going to delete the rest of the document so that we have a clean start.</p>
-<blockquote>
-<p><strong>Efficiency Tip</strong>: I use Shift - Command - Down Arrow to highlight text from my cursor to the end of the document</p>
-</blockquote>
-<pre><code>---
-title: &quot;Creating graphs in R with `ggplot2`&quot;
-author: &quot;Julie Lowndes&quot;
-date: &quot;01/27/2020&quot;
-output: html_document
----
-
-# Plots with ggplot2
-
-We are going to make plots in R and it&#39;s going to be amazing.
-</code></pre>
-<p>Now, let’s save it. I’m going to call my file <code>plots-ggplot.Rmd</code>.</p>
-<p>Notice that when we save this file, it pops up in our Git tab. Git knows that there is something new in our repo.</p>
-<p>Let’s also knit this file. And look: Git also sees the knitted .html.</p>
-<p>And let’s practice syncing our file to to GitHub: pull, stage, commit, push</p>
-<blockquote>
-<p><strong>Troubleshooting:</strong> What if a file doesn’t show up in the Git tab and you expect that it should? Check to make sure you’ve saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!</p>
-</blockquote>
-</div>
-<div id="create-data-and-figures-folders" class="section level3">
-<h3><span class="header-section-number">4.8.2</span> Create data and figures folders</h3>
-<p>Let’s create a few folders to be organized. Let’s have one for our the raw data, and one for the figures we will output. We can do this in RStudio, in the bottom right pane Files pane by clicking the New Folder button:</p>
-<ul>
-<li>folder called “data”</li>
-<li>folder called “figures”</li>
-</ul>
-<p>We can press the refresh button in the top-right of this pane (next to the “More” button) to have these show up in alphabetical order.</p>
-<p>Now let’s go to our Finder or Windows Explorer: our new folders are there as well!</p>
-</div>
-<div id="move-data-files-to-data-folder" class="section level3">
-<h3><span class="header-section-number">4.8.3</span> Move data files to data folder</h3>
-<p>You downloaded several files for this workshop from the <a href="https://drive.google.com/drive/folders/1RywSUw8hxETlROdIhLIntxPsZq0tKSdS?usp=sharing">r-for-excel-data folder</a>, and we’ll move these data into our repo now. These data files are a mix of comma separate value (.csv) files and some as Excel spreadsheets (.xlsx):</p>
-<ul>
-<li>ca_np.csv</li>
-<li>ci_np.xlsx</li>
-<li>fish.csv</li>
-<li>inverts.xlsx</li>
-<li>kelp_fronds.xlsx</li>
-<li>lobsters.xlsx</li>
-<li>lobsters2.xlsx</li>
-<li>noaa_landings.csv</li>
-<li>substrate.xlsx</li>
-</ul>
-<p>Copy-paste or drag all of these files into the ‘data’ subfolder of your R project. Make sure you do not also copy the original folder; we don’t need any subfolders in our data folder.</p>
-<p>Now let’s go back to RStudio. We can click on the data folder in the Files tab and see them.</p>
-<p>The data folder also shows up in your Git tab. But the figures folder does not. That is because GitHub cannot track an empty folder, it can only track files within a folder.</p>
-<p>Let’s sync these data files (we will be able to sync the figures folder shortly). We can stage multiple files at once by typing Command - A and clicking “Stage” (or using the space bar). To Sync: pull - stage - commit - push!</p>
-</div>
-<div id="activity-1" class="section level3">
-<h3><span class="header-section-number">4.8.4</span> Activity</h3>
-<p>Edit your README and practice syncing (pull, stage, commit, push). For example,</p>
-<pre><code>&quot;We use the following data from the Santa Barbara Coastal Term Ecological Research and National  Oceanic and Atmospheric Administration in our analyses&quot;</code></pre>
-<p>Explore your Commit History, and discuss with your neighbor.</p>
-</div>
-</div>
-<div id="committing---how-often-tracking-changes-in-your-files" class="section level2">
-<h2><span class="header-section-number">4.9</span> Committing - how often? Tracking changes in your files</h2>
-<p>Whenever you make changes to the files in Github, you will walk through the Pull -&gt; Stage -&gt; Commit -&gt; Push steps.</p>
-<p>I tend to do this every time I finish a task (basically when I start getting nervous that I will lose my work). Once something is committed, it is very difficult to lose it.</p>
-</div>
-<div id="issues" class="section level2">
-<h2><span class="header-section-number">4.10</span> Issues</h2>
-<p>Let’s go back to our repo on GitHub.com, and talk about Issues.</p>
-<p>Issues “track ideas, enhancements, tasks, or bugs for work on GitHub.” - <a href="https://help.github.com/en/articles/about-issues">GitHub help article</a>.</p>
-<p>You can create an issue for a topic, track progress, others ask questions, provide links and updates, close issue when completed.</p>
-<p>In a public repo, anyone with a username can create and comment on issues. In a private repo, only users with permission can create and comment on issues, or see them at all.</p>
-<p>GitHub search is awesome – will search code and issues!</p>
-<div id="issues-in-the-wild" class="section level3">
-<h3><span class="header-section-number">4.10.1</span> Issues in the wild!</h3>
-<p>Here are some examples of “traditional” and “less traditional” Issues:</p>
-<p>Bug reports, code, feature, &amp; help requests: <a href="https://github.com/tidyverse/ggplot2/issues">ggplot2</a></p>
-<p><br></p>
-<p><img src="img/issues_ggplot2.png" width="100%" /></p>
-<p><br></p>
-<p>Project submissions and progress tracking: <a href="https://github.com/MozillaFestival/mozfest-program-2018/issues">MozillaFestival</a></p>
-<p><br></p>
-<p><img src="img/issues_MozillaFestival.png" width="100%" /></p>
-<p><br></p>
-<p>Private conversations and archiving: <a href="https://github.com/OHI-Science/globalfellows-issues/issues/">OHI Fellows (private)</a></p>
-<p><br></p>
-<p><img src="img/issues_globalfellows.png" width="100%" /></p>
-<p><br></p>
-</div>
-<div id="end-github-session" class="section level3">
-<h3><span class="header-section-number">4.10.2</span> END <strong>GitHub</strong> session!</h3>
+<div id="end-dplyr-pivot-tables-session" class="section level3">
+<h3><span class="header-section-number">6.7.1</span> END <strong>dplyr-pivot-tables</strong> session!</h3>
 
 </div>
 </div>
@@ -774,8 +787,8 @@ We are going to make plots in R and it&#39;s going to be amazing.
           </div>
         </div>
       </div>
-<a href="rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidying.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

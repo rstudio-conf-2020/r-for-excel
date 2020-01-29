@@ -1,4 +1,4 @@
-# Pivot Tables with `dplyr` {#pivot}
+# Pivot Tables with `dplyr` {#pivot-tables}
 
 <!---
 Why would you ever want to uncount? You don’t want to assume how future you will want to use this data

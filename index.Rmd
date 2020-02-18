@@ -20,7 +20,7 @@ knitr::include_graphics("img/r-for-excel-monsters.jpg")
 
 This course is for Excel users who want to add or integrate R and RStudio into their existing data analysis toolkit. It is a friendly intro to becoming a modern R user, full of tidyverse, RMarkdown, GitHub, collaboration & reproducibility. 
 
-This book is written to be used as a reference, to teach, or as self-paced learning. And also, awesomely, it’s created with the same tools and practices we will be talking about: R and RStudio — specifially [bookdown](https://bookdown.org/yihui/bookdown/) — and GitHub. It is being fine-tuned but the most recent version is always available: 
+This book is written to be used as a reference, to teach, or as self-paced learning. And also, awesomely, it’s created with the same tools and practices we will be talking about: R and RStudio — specifically [bookdown](https://bookdown.org/yihui/bookdown/) — and GitHub. It is being fine-tuned but the most recent version is always available: 
 
 **This book**: <https://rstudio-conf-2020.github.io/r-for-excel/>  
 **Book GitHub repo**: <https://github.com/rstudio-conf-2020/r-for-excel>  

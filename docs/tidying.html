@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-02-14" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -159,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.-console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
@@ -440,21 +442,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Knit and save your new .Rmd within the project folder.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="co"># Attach packages</span></a>
-<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="kw">library</span>(janitor)</a>
-<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="kw">library</span>(here)</a>
-<a class="sourceLine" id="cb84-5" data-line-number="5"><span class="kw">library</span>(readxl)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="tidying.html#cb84-1"></a><span class="co"># Attach packages</span></span>
+<span id="cb84-2"><a href="tidying.html#cb84-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb84-3"><a href="tidying.html#cb84-3"></a><span class="kw">library</span>(janitor)</span>
+<span id="cb84-4"><a href="tidying.html#cb84-4"></a><span class="kw">library</span>(here)</span>
+<span id="cb84-5"><a href="tidying.html#cb84-5"></a><span class="kw">library</span>(readxl)</span></code></pre></div>
 </div>
 <div id="read_excel-to-read-in-data-from-an-excel-worksheet" class="section level3">
 <h3><span class="header-section-number">7.2.2</span> <code>read_excel()</code> to read in data from an Excel worksheet</h3>
 <p>We’ve used both <code>read_csv()</code> and <code>read_excel()</code> to import data from spreadsheets into R.</p>
 <p>Use <code>read_excel()</code> to read in the <strong>inverts.xlsx</strong> data as an objected called <strong>inverts</strong>.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">inverts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;inverts.xlsx&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="tidying.html#cb85-1"></a>inverts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;inverts.xlsx&quot;</span>))</span></code></pre></div>
 <p>Be sure to explore the imported data a bit:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">View</span>(inverts)</a>
-<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="kw">names</span>(inverts)</a>
-<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="kw">summary</span>(inverts)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="tidying.html#cb86-1"></a><span class="kw">View</span>(inverts)</span>
+<span id="cb86-2"><a href="tidying.html#cb86-2"></a><span class="kw">names</span>(inverts)</span>
+<span id="cb86-3"><a href="tidying.html#cb86-3"></a><span class="kw">summary</span>(inverts)</span></code></pre></div>
 </div>
 </div>
 <div id="tidyrpivot_longer-to-reshape-from-wider-to-longer-format" class="section level2">
@@ -469,14 +471,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>one called <em>sp_count</em> containing the number of each species observed.</li>
 </ul>
 <p>The new data frame will be stored as <em>inverts_long</em>:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="co"># Note: Either single-quotes, double-quotes, OR backticks around years work!</span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb87-3" data-line-number="3">inverts_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> inverts, </a>
-<a class="sourceLine" id="cb87-4" data-line-number="4">                                    <span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>,</a>
-<a class="sourceLine" id="cb87-5" data-line-number="5">                                    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>,</a>
-<a class="sourceLine" id="cb87-6" data-line-number="6">                                    <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="tidying.html#cb87-1"></a><span class="co"># Note: Either single-quotes, double-quotes, OR backticks around years work!</span></span>
+<span id="cb87-2"><a href="tidying.html#cb87-2"></a></span>
+<span id="cb87-3"><a href="tidying.html#cb87-3"></a>inverts_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> inverts, </span>
+<span id="cb87-4"><a href="tidying.html#cb87-4"></a>                                    <span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>,</span>
+<span id="cb87-5"><a href="tidying.html#cb87-5"></a>                                    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb87-6"><a href="tidying.html#cb87-6"></a>                                    <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>)</span></code></pre></div>
 <p>The outcome is the new long-format <em>inverts_long</em> data frame:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">inverts_long</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="tidying.html#cb88-1"></a>inverts_long</span></code></pre></div>
 <pre><code>## # A tibble: 165 x 5
 ##    month site  common_name              year  sp_count
 ##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                    &lt;chr&gt;    &lt;dbl&gt;
@@ -494,16 +496,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Hooray, long format!</p>
 <p>One thing that isn’t obvious at first (but would become obvious if you continued working with this data) is that since those year numbers were initially column names (characters), when they are stacked into the <em>year</em> column, their class wasn’t auto-updated to numeric.</p>
 <p>Explore the class of <em>year</em> in <em>inverts_long</em>:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tidying.html#cb90-1"></a><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>That’s a good thing! We don’t want R to update classes of our data without our instruction. We’ll use <code>dplyr::mutate()</code> in a different way here: to create a new column (that’s how we’ve used <code>mutate()</code> previously) that has the same name of an existing column, in order to update and overwrite the existing column.</p>
 <p>In this case, we’ll <code>mutate()</code> to add a column called <em>year</em>, which contains an <code>as.numeric()</code> version of the existing <em>year</em> variable:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="co"># Coerce &quot;year&quot; class to numeric: </span></a>
-<a class="sourceLine" id="cb92-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb92-3" data-line-number="3">inverts_long &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tidying.html#cb92-1"></a><span class="co"># Coerce &quot;year&quot; class to numeric: </span></span>
+<span id="cb92-2"><a href="tidying.html#cb92-2"></a></span>
+<span id="cb92-3"><a href="tidying.html#cb92-3"></a>inverts_long &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-4"><a href="tidying.html#cb92-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</span></code></pre></div>
 <p>Checking the class again, we see that <em>year</em> has been updated to a numeric variable:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tidying.html#cb93-1"></a><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 </div>
 <div id="tidyrpivot_wider-to-convert-from-longer-to-wider-format" class="section level2">
@@ -511,10 +513,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the previous example, we had information spread over multiple columns that we wanted to <em>gather</em>. Sometimes, we’ll have data that we want to <em>spread</em> over multiple columns.</p>
 <p>For example, imagine that starting from <em>inverts_long</em> we want each species in the <em>common_name</em> column to exist as its <strong>own column</strong>. In that case, we would be converting from a longer to a wider format, and will use <code>tidyr::pivot_wider()</code>.</p>
 <p>Specifically for our data, we’ll use <code>pivot_wider()</code> to spread the <em>common_name</em> across multiple columns as follows:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">inverts_wide &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> common_name, </a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">                     <span class="dt">values_from =</span> sp_count)</a></code></pre></div>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">inverts_wide</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="tidying.html#cb95-1"></a>inverts_wide &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb95-2"><a href="tidying.html#cb95-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> common_name, </span>
+<span id="cb95-3"><a href="tidying.html#cb95-3"></a>                     <span class="dt">values_from =</span> sp_count)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tidying.html#cb96-1"></a>inverts_wide</span></code></pre></div>
 <pre><code>## # A tibble: 33 x 8
 ##    month site   year `california con… `california spi… `orange cup cor…
 ##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -550,9 +552,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>2015</code> becomes <code>x2015</code></li>
 </ul>
 <p>If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with <code>janitor::clean_names()</code>:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">inverts_wide &lt;-<span class="st"> </span>inverts_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">  </span><span class="kw">clean_names</span>()</a></code></pre></div>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">names</span>(inverts_wide)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="tidying.html#cb98-1"></a>inverts_wide &lt;-<span class="st"> </span>inverts_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-2"><a href="tidying.html#cb98-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tidying.html#cb99-1"></a><span class="kw">names</span>(inverts_wide)</span></code></pre></div>
 <pre><code>## [1] &quot;month&quot;                    &quot;site&quot;                    
 ## [3] &quot;year&quot;                     &quot;california_cone_snail&quot;   
 ## [5] &quot;california_spiny_lobster&quot; &quot;orange_cup_coral&quot;        
@@ -585,10 +587,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>the <strong>columns you are uniting</strong></li>
 <li><strong>sep:</strong> the symbol, value or character to put between the united information from each column</li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">inverts_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;site_year&quot;</span>, <span class="co"># What to name the new united column</span></a>
-<a class="sourceLine" id="cb101-3" data-line-number="3">               <span class="kw">c</span>(site, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></a>
-<a class="sourceLine" id="cb101-4" data-line-number="4">               <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="co"># How to separate the things we&#39;re uniting</span></a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tidying.html#cb101-1"></a>inverts_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb101-2"><a href="tidying.html#cb101-2"></a><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;site_year&quot;</span>, <span class="co"># What to name the new united column</span></span>
+<span id="cb101-3"><a href="tidying.html#cb101-3"></a>               <span class="kw">c</span>(site, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></span>
+<span id="cb101-4"><a href="tidying.html#cb101-4"></a>               <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="co"># How to separate the things we&#39;re uniting</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   month site_year common_name              sp_count
 ##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;                       &lt;dbl&gt;
@@ -602,19 +604,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">7.6.1.1</span> Activity:</h4>
 <p><strong>Task:</strong> Create a new object called ‘inverts_moyr’, starting from inverts_long, that unites the month and year columns into a single column named “mo_yr”, using a slash “/” as the separator. Then try updating the separator to something else! Like “<em>hello!</em>”.</p>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">inverts_moyr &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;mo_yr&quot;</span>, <span class="co"># What to name the new united column</span></a>
-<a class="sourceLine" id="cb103-3" data-line-number="3">               <span class="kw">c</span>(month, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></a>
-<a class="sourceLine" id="cb103-4" data-line-number="4">               <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="tidying.html#cb103-1"></a>inverts_moyr &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb103-2"><a href="tidying.html#cb103-2"></a><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;mo_yr&quot;</span>, <span class="co"># What to name the new united column</span></span>
+<span id="cb103-3"><a href="tidying.html#cb103-3"></a>               <span class="kw">c</span>(month, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></span>
+<span id="cb103-4"><a href="tidying.html#cb103-4"></a>               <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) </span></code></pre></div>
 <p><strong>Merging information from &gt; 2 columns (not done in workshop)</strong></p>
 <p><code>tidyr::unite()</code> can also combine information from <em>more</em> than two columns. For example, to combine the <em>site</em>, <em>common_name</em> and <em>year</em> columns from <em>inverts_long</em>, we could use:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co"># Uniting more than 2 columns: </span></a>
-<a class="sourceLine" id="cb104-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">inverts_triple_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;year_site_name&quot;</span>,</a>
-<a class="sourceLine" id="cb104-5" data-line-number="5">               <span class="kw">c</span>(year, site, common_name),</a>
-<a class="sourceLine" id="cb104-6" data-line-number="6">               <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="co"># Note: this is a dash</span></a></code></pre></div>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">head</span>(inverts_triple_unite)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="tidying.html#cb104-1"></a><span class="co"># Uniting more than 2 columns: </span></span>
+<span id="cb104-2"><a href="tidying.html#cb104-2"></a></span>
+<span id="cb104-3"><a href="tidying.html#cb104-3"></a>inverts_triple_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb104-4"><a href="tidying.html#cb104-4"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;year_site_name&quot;</span>,</span>
+<span id="cb104-5"><a href="tidying.html#cb104-5"></a>               <span class="kw">c</span>(year, site, common_name),</span>
+<span id="cb104-6"><a href="tidying.html#cb104-6"></a>               <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="co"># Note: this is a dash</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tidying.html#cb105-1"></a><span class="kw">head</span>(inverts_triple_unite)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   month year_site_name                     sp_count
 ##   &lt;chr&gt; &lt;chr&gt;                                 &lt;dbl&gt;
@@ -633,8 +635,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Use <code>tidyr::separate()</code> to “separate a character column into multiple columns using a regular expression separator.”</p>
 <p><img src="img/rstudio-cheatsheet-separate.png" /></p>
 <p>Let’s start again with <em>inverts_unite</em>, where we have combined the <em>site</em> and <em>year</em> into a single column called <em>site_year</em>. If we want to <strong>separate</strong> those, we can use:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">inverts_sep &lt;-<span class="st"> </span>inverts_unite <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">separate</span>(site_year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;my_site&quot;</span>, <span class="st">&quot;my_year&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tidying.html#cb107-1"></a>inverts_sep &lt;-<span class="st"> </span>inverts_unite <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb107-2"><a href="tidying.html#cb107-2"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">separate</span>(site_year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;my_site&quot;</span>, <span class="st">&quot;my_year&quot;</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="stringrstr_replace-to-replace-a-pattern" class="section level2">
@@ -643,13 +645,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Use <code>stringr::str_replace()</code> to automatically replace a string pattern.</p>
 <p><strong>Warning</strong>: The pattern will be replaced everywhere - so if you ask to replace “fsh” with “fish”, then “offshore” would be updated to “offishore”. Be careful to ensure that when you think you’re making one replacement, you’re not also replacing something else unexpectedly.</p>
 <p>Starting with inverts, let’s any place we find “california” we want to replace it with the abbreviation “CA”:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">ca_abbr &lt;-<span class="st"> </span>inverts <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb108-3" data-line-number="3">    <span class="dt">common_name =</span> </a>
-<a class="sourceLine" id="cb108-4" data-line-number="4">      <span class="kw">str_replace</span>(common_name, </a>
-<a class="sourceLine" id="cb108-5" data-line-number="5">              <span class="dt">pattern =</span> <span class="st">&quot;california&quot;</span>, </a>
-<a class="sourceLine" id="cb108-6" data-line-number="6">              <span class="dt">replacement =</span> <span class="st">&quot;CA&quot;</span>)</a>
-<a class="sourceLine" id="cb108-7" data-line-number="7">  )</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="tidying.html#cb108-1"></a>ca_abbr &lt;-<span class="st"> </span>inverts <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb108-2"><a href="tidying.html#cb108-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb108-3"><a href="tidying.html#cb108-3"></a>    <span class="dt">common_name =</span> </span>
+<span id="cb108-4"><a href="tidying.html#cb108-4"></a>      <span class="kw">str_replace</span>(common_name, </span>
+<span id="cb108-5"><a href="tidying.html#cb108-5"></a>              <span class="dt">pattern =</span> <span class="st">&quot;california&quot;</span>, </span>
+<span id="cb108-6"><a href="tidying.html#cb108-6"></a>              <span class="dt">replacement =</span> <span class="st">&quot;CA&quot;</span>)</span>
+<span id="cb108-7"><a href="tidying.html#cb108-7"></a>  )</span></code></pre></div>
 <p>Now, check to confirm that “california” has been replaced with “CA”.</p>
 <div id="end-tidying-session" class="section level3">
 <h3><span class="header-section-number">7.7.1</span> END <strong>tidying</strong> session!</h3>

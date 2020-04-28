@@ -25,6 +25,7 @@ This book is written to be used as a reference, to teach, or as self-paced learn
 **This book**: <https://rstudio-conf-2020.github.io/r-for-excel/>  
 **Book GitHub repo**: <https://github.com/rstudio-conf-2020/r-for-excel>  
 **Accompanying slides**: [Google Slides](https://docs.google.com/presentation/d/1w9cVzEsdbyZ6vay4UnoTvTWd9t-AO_x06HoVzgAiSFE/edit?usp=sharing)  
+**Blog**: <https://education.rstudio.com/blog/2020/02/conf20-r-excel/>
 
 ---
 

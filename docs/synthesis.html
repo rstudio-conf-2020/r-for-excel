@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-02-14" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -159,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.-console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
@@ -424,20 +426,20 @@ Source: Fisheries Statistics Division of the NOAA Fisheries</p>
 <div id="attach-packages-read-in-and-explore-the-data" class="section level2">
 <h2><span class="header-section-number">10.2</span> Attach packages, read in and explore the data</h2>
 <p>In <strong>your</strong> .Rmd, attach the necessary packages in the topmost code chunk:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">library</span>(here)  </a>
-<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="kw">library</span>(janitor) </a>
-<a class="sourceLine" id="cb136-4" data-line-number="4"><span class="kw">library</span>(paletteer) <span class="co"># install.packages(&quot;paletteer&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="synthesis.html#cb136-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb136-2"><a href="synthesis.html#cb136-2"></a><span class="kw">library</span>(here)  </span>
+<span id="cb136-3"><a href="synthesis.html#cb136-3"></a><span class="kw">library</span>(janitor) </span>
+<span id="cb136-4"><a href="synthesis.html#cb136-4"></a><span class="kw">library</span>(paletteer) <span class="co"># install.packages(&quot;paletteer&quot;)</span></span></code></pre></div>
 <p>Open the noaa_landings.csv file in Excel. Note that cells we want to be stored as <code>NA</code> actually have the words “no data” - but we can include an additional argument in <code>read_csv()</code> to specify what we want to replace with <code>NA</code>.</p>
-<p>Read in the noaa_landings.csv data as object <strong>us_landings</strong>, adding argument <code>na = &quot;no data&quot;</code> to automatically reassign any “no data” entries to <code>NA</code> during import:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">us_landings &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;noaa_landings.csv&quot;</span>),</a>
-<a class="sourceLine" id="cb137-2" data-line-number="2">                        <span class="dt">na =</span> <span class="st">&quot;no data&quot;</span>)</a></code></pre></div>
+<p>Read in the noaa_landings.csv data as object <strong>us_landings</strong>, adding argument <code>na = "no data"</code> to automatically reassign any “no data” entries to <code>NA</code> during import:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="synthesis.html#cb137-1"></a>us_landings &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;noaa_landings.csv&quot;</span>),</span>
+<span id="cb137-2"><a href="synthesis.html#cb137-2"></a>                        <span class="dt">na =</span> <span class="st">&quot;no data&quot;</span>)</span></code></pre></div>
 <p>Go exploring a bit:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">summary</span>(us_landings)</a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">View</span>(us_landings)</a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="kw">names</span>(us_landings)</a>
-<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="kw">head</span>(us_landings)</a>
-<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="kw">tail</span>(us_landings)</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="synthesis.html#cb138-1"></a><span class="kw">summary</span>(us_landings)</span>
+<span id="cb138-2"><a href="synthesis.html#cb138-2"></a><span class="kw">View</span>(us_landings)</span>
+<span id="cb138-3"><a href="synthesis.html#cb138-3"></a><span class="kw">names</span>(us_landings)</span>
+<span id="cb138-4"><a href="synthesis.html#cb138-4"></a><span class="kw">head</span>(us_landings)</span>
+<span id="cb138-5"><a href="synthesis.html#cb138-5"></a><span class="kw">tail</span>(us_landings)</span></code></pre></div>
 </div>
 <div id="some-data-cleaning-to-get-salmon-landings-by-species" class="section level2">
 <h2><span class="header-section-number">10.3</span> Some data cleaning to get salmon landings by species</h2>
@@ -450,8 +452,8 @@ Source: Fisheries Statistics Division of the NOAA Fisheries</p>
 </ul>
 <p>If your answer to all three is “no,” then we’re flying on the same plane. Here we’ll do some wrangling led by your recommendations for step-by-step cleaning.</p>
 <p>Which of these would it make sense to do <em>first</em>, to make any subsequent steps easier for coding? We’ll start with <code>janitor::clean_names()</code> to get all column names into lowercase_snake_case:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">salmon_clean &lt;-<span class="st"> </span>us_landings <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="st">  </span><span class="kw">clean_names</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="synthesis.html#cb139-1"></a>salmon_clean &lt;-<span class="st"> </span>us_landings <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb139-2"><a href="synthesis.html#cb139-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
 <p>Continue building on that sequence to:</p>
 <ul>
 <li>Convert everything to lower case with <code>mutate()</code> + (<code>str_to_lower()</code>)</li>
@@ -460,59 +462,59 @@ Source: Fisheries Statistics Division of the NOAA Fisheries</p>
 <li>Separate “salmon” from any additional refined information on species (<code>separate()</code>)</li>
 </ul>
 <p>The entire thing might look like this:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">salmon_clean &lt;-<span class="st"> </span>us_landings <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Make column headers snake_case</span></a>
-<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
-<a class="sourceLine" id="cb140-4" data-line-number="4">    <span class="dt">afs_name =</span> <span class="kw">str_to_lower</span>(afs_name)</a>
-<a class="sourceLine" id="cb140-5" data-line-number="5">  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Converts character columns to lowercase</span></a>
-<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dollars_num =</span> <span class="kw">parse_number</span>(dollars_usd)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Just keep numbers from $ column</span></a>
-<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(afs_name, <span class="dt">pattern =</span> <span class="st">&quot;salmon&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Only keep entries w/&quot;salmon&quot;</span></a>
-<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="st">  </span><span class="kw">separate</span>(afs_name, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;subgroup&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Note comma-space</span></a>
-<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="st">  </span><span class="kw">drop_na</span>(dollars_num) <span class="co"># Drop (listwise deletion) any observations with NA for dollars_num</span></a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="synthesis.html#cb140-1"></a>salmon_clean &lt;-<span class="st"> </span>us_landings <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-2"><a href="synthesis.html#cb140-2"></a><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Make column headers snake_case</span></span>
+<span id="cb140-3"><a href="synthesis.html#cb140-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb140-4"><a href="synthesis.html#cb140-4"></a>    <span class="dt">afs_name =</span> <span class="kw">str_to_lower</span>(afs_name)</span>
+<span id="cb140-5"><a href="synthesis.html#cb140-5"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Converts character columns to lowercase</span></span>
+<span id="cb140-6"><a href="synthesis.html#cb140-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dollars_num =</span> <span class="kw">parse_number</span>(dollars_usd)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Just keep numbers from $ column</span></span>
+<span id="cb140-7"><a href="synthesis.html#cb140-7"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(afs_name, <span class="dt">pattern =</span> <span class="st">&quot;salmon&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Only keep entries w/&quot;salmon&quot;</span></span>
+<span id="cb140-8"><a href="synthesis.html#cb140-8"></a><span class="st">  </span><span class="kw">separate</span>(afs_name, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;subgroup&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;, &quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Note comma-space</span></span>
+<span id="cb140-9"><a href="synthesis.html#cb140-9"></a><span class="st">  </span><span class="kw">drop_na</span>(dollars_num) <span class="co"># Drop (listwise deletion) any observations with NA for dollars_num</span></span></code></pre></div>
 <p>Explore <strong>salmon_clean</strong>.</p>
 </div>
 <div id="find-total-annual-us-value-for-each-salmon-subgroup" class="section level2">
 <h2><span class="header-section-number">10.4</span> Find total annual US value ($) for each salmon subgroup</h2>
 <p>Find the annual total US landings and dollar value (summing across all states) for each type of salmon using <code>group_by()</code> + <code>summarize()</code>.</p>
 <p>Think about what data/variables we want to use here: If we want to find <strong>annual values</strong> by <strong>subgroup</strong>, then what variables are we going to group by? Are we going to start from us_landings, or from salmon_clean?</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">salmon_us_annual &lt;-<span class="st"> </span>salmon_clean <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year, subgroup) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb141-4" data-line-number="4">    <span class="dt">tot_value =</span> <span class="kw">sum</span>(dollars_num, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb141-5" data-line-number="5">  )</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="synthesis.html#cb141-1"></a>salmon_us_annual &lt;-<span class="st"> </span>salmon_clean <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb141-2"><a href="synthesis.html#cb141-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, subgroup) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb141-3"><a href="synthesis.html#cb141-3"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb141-4"><a href="synthesis.html#cb141-4"></a>    <span class="dt">tot_value =</span> <span class="kw">sum</span>(dollars_num, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb141-5"><a href="synthesis.html#cb141-5"></a>  )</span></code></pre></div>
 </div>
 <div id="make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2" class="section level2">
 <h2><span class="header-section-number">10.5</span> Make a graph of US commercial fisheries value by species over time with <code>ggplot2</code></h2>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">salmon_gg &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb142-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(salmon_us_annual, </a>
-<a class="sourceLine" id="cb142-3" data-line-number="3">         <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_value, <span class="dt">group =</span> subgroup)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> subgroup)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;US commercial salmon value (USD)&quot;</span>)</a>
-<a class="sourceLine" id="cb142-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb142-8" data-line-number="8">salmon_gg</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="synthesis.html#cb142-1"></a>salmon_gg &lt;-<span class="st"> </span></span>
+<span id="cb142-2"><a href="synthesis.html#cb142-2"></a><span class="st">  </span><span class="kw">ggplot</span>(salmon_us_annual, </span>
+<span id="cb142-3"><a href="synthesis.html#cb142-3"></a>         <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_value, <span class="dt">group =</span> subgroup)) <span class="op">+</span></span>
+<span id="cb142-4"><a href="synthesis.html#cb142-4"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> subgroup)) <span class="op">+</span></span>
+<span id="cb142-5"><a href="synthesis.html#cb142-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb142-6"><a href="synthesis.html#cb142-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;US commercial salmon value (USD)&quot;</span>)</span>
+<span id="cb142-7"><a href="synthesis.html#cb142-7"></a></span>
+<span id="cb142-8"><a href="synthesis.html#cb142-8"></a>salmon_gg</span></code></pre></div>
 <p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
 </div>
 <div id="built-in-color-palettes" class="section level2">
 <h2><span class="header-section-number">10.6</span> Built-in color palettes</h2>
 <p>Want to change the color scheme of your graph? Using a consistent theme and color scheme is a great way to make reports more cohesive within groups or organizations, and means less time is spent manually updating graphs to maintain consistency!</p>
 <p>Luckily, there are <strong>many</strong> already built color palettes. For a glimpse, check out the ReadMe for <a href="https://emilhvitfeldt.github.io/paletteer/"><code>paletteer</code> by Emil Hvidtfelt</a>, which is an aggregate package of many existing color palette packages.</p>
-<p>In fact, let’s go ahead and install it by running <code>install.packages(&quot;paletteer&quot;)</code> in the Console.</p>
+<p>In fact, let’s go ahead and install it by running <code>install.packages("paletteer")</code> in the Console.</p>
 <p><strong>Question:</strong> Once we have <code>paletteer</code> installed, what do have to do to actually <strong>use</strong> the functions &amp; palettes in <code>paletteer</code>?</p>
 <p><strong>Answer:</strong> Attach the package! Update the topmost code chunk with <code>library(paletteer)</code> to make sure all of its functions are available.</p>
 <p>Now, explore the different available packages and color palettes by typing (in the Console) <code>View(palettes_d_names)</code>. Then, add a new color palette from the list to your discrete series with an adding <code>ggplot</code> layer that looks like this:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">scale_color_paletteer_d</span>(<span class="st">&quot;package_name::palette_name&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="synthesis.html#cb143-1"></a><span class="kw">scale_color_paletteer_d</span>(<span class="st">&quot;package_name::palette_name&quot;</span>)</span></code></pre></div>
 <p><strong>Note:</strong> Beware of the palette <em>length</em> - we have 7 subgroups of salmon, so we will want to pick palettes that have at least a length of 7.</p>
 <p>Once we add that layer, our entire graph code will look something like this (here, using the OkabeIto palette from the <code>colorblindr</code> package):</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">salmon_gg &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(salmon_us_annual, </a>
-<a class="sourceLine" id="cb144-3" data-line-number="3">         <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_value, <span class="dt">group =</span> subgroup)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> subgroup)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;US commercial salmon value (USD)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_color_paletteer_d</span>(<span class="st">&quot;colorblindr::OkabeIto&quot;</span>)</a>
-<a class="sourceLine" id="cb144-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb144-9" data-line-number="9">salmon_gg</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="synthesis.html#cb144-1"></a>salmon_gg &lt;-<span class="st"> </span></span>
+<span id="cb144-2"><a href="synthesis.html#cb144-2"></a><span class="st">  </span><span class="kw">ggplot</span>(salmon_us_annual, </span>
+<span id="cb144-3"><a href="synthesis.html#cb144-3"></a>         <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> tot_value, <span class="dt">group =</span> subgroup)) <span class="op">+</span></span>
+<span id="cb144-4"><a href="synthesis.html#cb144-4"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> subgroup)) <span class="op">+</span></span>
+<span id="cb144-5"><a href="synthesis.html#cb144-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb144-6"><a href="synthesis.html#cb144-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;US commercial salmon value (USD)&quot;</span>) <span class="op">+</span></span>
+<span id="cb144-7"><a href="synthesis.html#cb144-7"></a><span class="st">  </span><span class="kw">scale_color_paletteer_d</span>(<span class="st">&quot;colorblindr::OkabeIto&quot;</span>)</span>
+<span id="cb144-8"><a href="synthesis.html#cb144-8"></a></span>
+<span id="cb144-9"><a href="synthesis.html#cb144-9"></a>salmon_gg</span></code></pre></div>
 <p><img src="R-for-Excel-Users_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
 <p>Looking again at <code>palettes_d_names</code>, choose another color palette and update your gg-graph.</p>
 </div>

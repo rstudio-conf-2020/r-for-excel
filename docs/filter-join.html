@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-02-14" />
+<meta name="date" content="2020-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,9 +53,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -159,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
-<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
+<li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.-console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="rstudio.html"><a href="rstudio.html#r-functions"><i class="fa fa-check"></i><b>3.5</b> R functions</a></li>
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
@@ -434,18 +436,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>kableExtra</code></li>
 </ul>
 <p>Attach the packages in the setup code chunk in your .Rmd:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">library</span>(here) </a>
-<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="kw">library</span>(kableExtra)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="filter-join.html#cb109-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb109-2"><a href="filter-join.html#cb109-2"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb109-3"><a href="filter-join.html#cb109-3"></a><span class="kw">library</span>(here) </span>
+<span id="cb109-4"><a href="filter-join.html#cb109-4"></a><span class="kw">library</span>(kableExtra)</span></code></pre></div>
 <p>Then create a new code chunk to read in two files from your ‘data’ subfolder:</p>
 <ul>
 <li>fish.csv</li>
-<li>kelp_fronds.xlsx (read in only the “abur” worksheet by adding argument <code>sheet = &quot;abur&quot;</code> to <code>read_excel()</code>)</li>
+<li>kelp_fronds.xlsx (read in only the “abur” worksheet by adding argument <code>sheet = "abur"</code> to <code>read_excel()</code>)</li>
 </ul>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="co"># Read in data: </span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2">fish &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb110-3" data-line-number="3">kelp_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_fronds.xlsx&quot;</span>), <span class="dt">sheet =</span> <span class="st">&quot;abur&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="filter-join.html#cb110-1"></a><span class="co"># Read in data: </span></span>
+<span id="cb110-2"><a href="filter-join.html#cb110-2"></a>fish &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;fish.csv&quot;</span>))</span>
+<span id="cb110-3"><a href="filter-join.html#cb110-3"></a>kelp_abur &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;kelp_fronds.xlsx&quot;</span>), <span class="dt">sheet =</span> <span class="st">&quot;abur&quot;</span>)</span></code></pre></div>
 <p>We should always explore the data we’ve read in. Use functions like <code>View()</code>, <code>names()</code>, <code>summary()</code>, <code>head()</code> and <code>tail()</code> to check them out.
 Now, let’s use <code>filter()</code> to decide which observations (rows) we’ll keep or exclude in new subsets, similar to using Excel’s VLOOKUP function or filter tool.</p>
 </div>
@@ -470,44 +472,44 @@ Now, let’s use <code>filter()</code> to decide which observations (rows) we’
 <p>Let’s say we want to keep all observations from the <strong>fish</strong> data frame where the common name is “garibaldi” (fun fact: that’s California’s official marine state fish, protected in California coastal waters!).</p>
 <p>Here, we need to tell R to only <em>keep rows</em> from the <strong>fish</strong> data frame when the common name (<strong>common_name</strong> variable) exactly matches <strong>garibaldi</strong>.</p>
 <p>Use <code>==</code> to ask R to look for exact matches:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">fish_garibaldi &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="filter-join.html#cb111-1"></a>fish_garibaldi &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb111-2"><a href="filter-join.html#cb111-2"></a><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</span></code></pre></div>
 <p>Check out the <strong>fish_garibaldi</strong> object to ensure that only <em>garibaldi</em> observations remain.</p>
 <div id="activity-4" class="section level4">
 <h4><span class="header-section-number">8.3.1.1</span> Activity</h4>
 <p><strong>Task</strong>: Create a subset starting from the <strong>fish</strong> data frame, stored as object <strong>fish_mohk</strong>, that only contains observations from Mohawk Reef (site entered as “mohk”).</p>
 <p><strong>Solution</strong>:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">fish_mohk &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;mohk&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="filter-join.html#cb112-1"></a>fish_mohk &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb112-2"><a href="filter-join.html#cb112-2"></a><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;mohk&quot;</span>)</span></code></pre></div>
 <p>Explore the subset you just created to ensure that only Mohawk Reef observations are returned.</p>
 </div>
 </div>
 <div id="filter-rows-based-on-numeric-conditions" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Filter rows based on numeric conditions</h3>
 <p>Use expected operators (&gt;, &lt;, &gt;=, &lt;=, ==) to set conditions for a numeric variable when filtering. For this example, we only want to retain observations when the <strong>total_count</strong> column value is &gt;= 50:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">fish_over50 &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="filter-join.html#cb113-1"></a>fish_over50 &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb113-2"><a href="filter-join.html#cb113-2"></a><span class="st">  </span><span class="kw">filter</span>(total_count <span class="op">&gt;=</span><span class="st"> </span><span class="dv">50</span>)</span></code></pre></div>
 </div>
 <div id="filter-to-return-rows-that-match-this-or-that-or-that" class="section level3">
 <h3><span class="header-section-number">8.3.3</span> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></h3>
 <p>What if we want to return a subset of the <strong>fish</strong> df that contains <em>garibaldi</em>, <em>blacksmith</em> OR <em>black surfperch</em>?</p>
 <p>There are several ways to write an “OR” statement for filtering, which will keep any observations that match Condition A <em>or</em> Condition B <em>or</em> Condition C. In this example, we will create a subset from <strong>fish</strong> that only contains rows where the <strong>common_name</strong> is <em>garibaldi</em> or <em>blacksmith</em> or <em>black surfperch</em>.</p>
 <p>Way 1: You can indicate <strong>OR</strong> using the vertical line operator <code>|</code> to indicate “OR”:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">           </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="st">           </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="filter-join.html#cb114-1"></a>fish_3sp &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb114-2"><a href="filter-join.html#cb114-2"></a><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span> <span class="op">|</span><span class="st"> </span></span>
+<span id="cb114-3"><a href="filter-join.html#cb114-3"></a><span class="st">           </span>common_name <span class="op">==</span><span class="st"> &quot;blacksmith&quot;</span> <span class="op">|</span><span class="st"> </span></span>
+<span id="cb114-4"><a href="filter-join.html#cb114-4"></a><span class="st">           </span>common_name <span class="op">==</span><span class="st"> &quot;black surfperch&quot;</span>)</span></code></pre></div>
 <p>Alternatively, if you’re looking for multiple matches in the <em>same variable</em>, you can use the <code>%in%</code> operator instead. Use <code>%in%</code> to ask R to look for <em>any matches</em> within a vector:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">fish_3sp &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="filter-join.html#cb115-1"></a>fish_3sp &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb115-2"><a href="filter-join.html#cb115-2"></a><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;blacksmith&quot;</span>, <span class="st">&quot;black surfperch&quot;</span>))</span></code></pre></div>
 <p>Notice that the two methods above return the same thing.</p>
 <p><strong>Critical thinking:</strong> In what scenario might you <em>NOT</em> want to use <code>%in%</code> for an “or” filter statement? Hint: What if the “or” conditions aren’t different outcomes for the same variable?</p>
 <div id="activity-5" class="section level4">
 <h4><span class="header-section-number">8.3.3.1</span> Activity</h4>
 <p><strong>Task:</strong> Create a subset from <strong>fish</strong> called <strong>fish_gar_2016</strong> that keeps all observations if the year is 2016 <em>OR</em> the common name is “garibaldi.”</p>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">fish_gar_<span class="dv">2016</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="filter-join.html#cb116-1"></a>fish_gar_<span class="dv">2016</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb116-2"><a href="filter-join.html#cb116-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2016</span> <span class="op">|</span><span class="st"> </span>common_name <span class="op">==</span><span class="st"> &quot;garibaldi&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="filter-to-return-observations-that-match-this-and-that" class="section level3">
@@ -515,10 +517,10 @@ Now, let’s use <code>filter()</code> to decide which observations (rows) we’
 <p>In the examples above, we learned to keep observations that matched any of a number of conditions (<strong>or</strong> statements).</p>
 <p>Sometimes we’ll only want to keep observations that satisfy multiple conditions (e.g., to keep this observation it must satisfy this condition <strong>AND</strong> that condition). For example, we may want to create a subset that only returns rows from <strong>fish</strong> where the <strong>year</strong> is 2018 <em>and</em> the <strong>site</strong> is Arroyo Quemado “aque”</p>
 <p>In <code>filter()</code>, add a comma (or ampersand ‘&amp;’) between arguments for multiple “and” conditions:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>, site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="filter-join.html#cb117-1"></a>aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb117-2"><a href="filter-join.html#cb117-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>, site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</span></code></pre></div>
 <p>Check it out to see that only observations where the site is “aque” in 2018 are retained:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">aque_<span class="dv">2018</span></a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="filter-join.html#cb118-1"></a>aque_<span class="dv">2018</span></span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##    year site  common_name     total_count
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
@@ -528,16 +530,16 @@ Now, let’s use <code>filter()</code> to decide which observations (rows) we’
 ## 4  2018 aque  rock wrasse               4
 ## 5  2018 aque  senorita                 36</code></pre>
 <p>Like most things in R, there are other ways to do the same thing. For example, you could do the same thing using <code>&amp;</code> (instead of a comma) between “and” conditions:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span></a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb120-3" data-line-number="3">aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span> <span class="op">&amp;</span><span class="st"> </span>site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="filter-join.html#cb120-1"></a><span class="co"># Use the ampersand (&amp;) to add another condition &quot;and this must be true&quot;:</span></span>
+<span id="cb120-2"><a href="filter-join.html#cb120-2"></a></span>
+<span id="cb120-3"><a href="filter-join.html#cb120-3"></a>aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb120-4"><a href="filter-join.html#cb120-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span> <span class="op">&amp;</span><span class="st"> </span>site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</span></code></pre></div>
 <p>Or you could just do two filter steps in sequence:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># Written as sequential filter steps:</span></a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb121-3" data-line-number="3">aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="filter-join.html#cb121-1"></a><span class="co"># Written as sequential filter steps:</span></span>
+<span id="cb121-2"><a href="filter-join.html#cb121-2"></a></span>
+<span id="cb121-3"><a href="filter-join.html#cb121-3"></a>aque_<span class="dv">2018</span> &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb121-4"><a href="filter-join.html#cb121-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb121-5"><a href="filter-join.html#cb121-5"></a><span class="st">  </span><span class="kw">filter</span>(site <span class="op">==</span><span class="st"> &quot;aque&quot;</span>)</span></code></pre></div>
 </div>
 <div id="activity-combined-filter-conditions" class="section level3">
 <h3><span class="header-section-number">8.3.5</span> Activity: combined filter conditions</h3>
@@ -547,9 +549,9 @@ Now, let’s use <code>filter()</code> to decide which observations (rows) we’
 <li>AND the <em>total_count</em> is <em>less than or equal to 10</em></li>
 </ul>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">low_gb_wr &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>), </a>
-<a class="sourceLine" id="cb122-3" data-line-number="3">         total_count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="filter-join.html#cb122-1"></a>low_gb_wr &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb122-2"><a href="filter-join.html#cb122-2"></a><span class="st">  </span><span class="kw">filter</span>(common_name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;garibaldi&quot;</span>, <span class="st">&quot;rock wrasse&quot;</span>), </span>
+<span id="cb122-3"><a href="filter-join.html#cb122-3"></a>         total_count <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span>)</span></code></pre></div>
 </div>
 <div id="stringrstr_detect-to-filter-by-a-partial-pattern" class="section level3">
 <h3><span class="header-section-number">8.3.6</span> <code>stringr::str_detect()</code> to filter by a partial pattern</h3>
@@ -609,18 +611,18 @@ royal blue fish
 <p>In those cases, it would be useful to <strong>detect</strong> a string pattern, and potentially keep any rows that contain it. Here, we’ll use <code>stringr::str_detect()</code> to find and keep observations that contain our specified string pattern.</p>
 <p>Let’s detect and keep observations from <strong>fish</strong> where the <strong>common_name</strong> variable contains string pattern “black”. Note that there are two fish, blacksmith and black surfperch, that would satisfy this condition.</p>
 <p>Using <code>filter()</code> + <code>str_detect()</code> in combination to find and keep observations where the <strong>site</strong> variable contains pattern “sc”:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">fish_bl &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(common_name, <span class="dt">pattern =</span> <span class="st">&quot;black&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="filter-join.html#cb123-1"></a>fish_bl &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb123-2"><a href="filter-join.html#cb123-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(common_name, <span class="dt">pattern =</span> <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
 <p>So <code>str_detect()</code> returns is a series of TRUE/FALSE responses for each row, based on whether or not they contain the specified pattern. In that example, any row that <em>does</em> contain “black” returns <code>TRUE</code>, and any row that <em>does not</em> contain “black” returns <code>FALSE</code>.</p>
 </div>
 <div id="activity-6" class="section level3">
 <h3><span class="header-section-number">8.3.7</span> Activity</h3>
 <p><strong>Task:</strong> Create a new object called <strong>fish_it</strong>, starting from <strong>fish</strong>, that only contains observations if the <strong>common_name</strong> variable contains the string pattern “it”. What species remain?</p>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">fish_it &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(common_name, <span class="dt">pattern =</span> <span class="st">&quot;it&quot;</span>))</a>
-<a class="sourceLine" id="cb124-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="co"># blacksmITh and senorITa remain!</span></a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="filter-join.html#cb124-1"></a>fish_it &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb124-2"><a href="filter-join.html#cb124-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(common_name, <span class="dt">pattern =</span> <span class="st">&quot;it&quot;</span>))</span>
+<span id="cb124-3"><a href="filter-join.html#cb124-3"></a></span>
+<span id="cb124-4"><a href="filter-join.html#cb124-4"></a><span class="co"># blacksmITh and senorITa remain!</span></span></code></pre></div>
 <p>We can also <em>exclude</em> observations that contain a set string pattern by adding the <code>negate = TRUE</code> argument within <code>str_detect()</code>.</p>
 <p><strong>Sync your local project to your repo on GitHub.</strong></p>
 </div>
@@ -646,8 +648,8 @@ royal blue fish
 </ul>
 <p>Use <code>full_join()</code> to safely combine two data frames, keeping everything from both and populating with <code>NA</code> as necessary.</p>
 <p>Example: use <code>full_join()</code> to combine <strong>kelp_abur</strong> and <strong>fish</strong>:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">abur_kelp_fish &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="st">  </span><span class="kw">full_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) </a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="filter-join.html#cb125-1"></a>abur_kelp_fish &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb125-2"><a href="filter-join.html#cb125-2"></a><span class="st">  </span><span class="kw">full_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) </span></code></pre></div>
 <p>Let’s look at the merged data frame with <code>View(abur_kelp_fish)</code>. A few things to notice about how <code>full_join()</code> has worked:</p>
 <ol style="list-style-type: decimal">
 <li>All columns that existed in <strong>both data frames</strong> still exist</li>
@@ -659,18 +661,18 @@ royal blue fish
 <div id="left_joinxy-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame" class="section level3">
 <h3><span class="header-section-number">8.4.2</span> <code>left_join(x,y)</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</h3>
 <p>Now, we want to keep all observations in <em>kelp_abur</em>, and merge them with <em>fish</em> while only keeping observations from <em>fish</em> that match an observation within <em>abur</em>. When we use <code>left_join()</code>, any information from <em>fish</em> that don’t have a match (by year and site) in <em>kelp_abur</em> won’t be retained, because those wouldn’t have a match in the left data frame.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">kelp_fish_left &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;site&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="filter-join.html#cb126-1"></a>kelp_fish_left &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb126-2"><a href="filter-join.html#cb126-2"></a><span class="st">  </span><span class="kw">left_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;site&quot;</span>))</span></code></pre></div>
 <p>Notice when you look at <strong>kelp_fish_left</strong>, data for other sites that exist in fish do <strong>not</strong> get joined, because <code>left_join(df_a, df_b)</code> will only keep observations from <code>df_b</code> if they have a match in <code>df_a</code>!</p>
 </div>
 <div id="inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both" class="section level3">
 <h3><span class="header-section-number">8.4.3</span> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></h3>
 <p>Use <code>inner_join()</code> if you <strong>only</strong> want to retain observations that have matches across <strong>both data</strong> frames. Caution: this is built to exclude any observations that don’t match across data frames by joined variables - double check to make sure this is actually what you want to do!</p>
 <p>For example, if we use <code>inner_join()</code> to merge fish and kelp_abur, then we are asking R to <strong>only return observations where the joining variables (<em>year</em> and <em>site</em>) have matches in both data frames.</strong> Let’s see what the outcome is:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">kelp_fish_injoin &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>))</a>
-<a class="sourceLine" id="cb127-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb127-4" data-line-number="4"><span class="co"># kelp_fish_injoin</span></a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="filter-join.html#cb127-1"></a>kelp_fish_injoin &lt;-<span class="st"> </span>kelp_abur <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-2"><a href="filter-join.html#cb127-2"></a><span class="st">  </span><span class="kw">inner_join</span>(fish, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>))</span>
+<span id="cb127-3"><a href="filter-join.html#cb127-3"></a></span>
+<span id="cb127-4"><a href="filter-join.html#cb127-4"></a><span class="co"># kelp_fish_injoin</span></span></code></pre></div>
 <p>Here, we see that only observations (rows) where there is a match for <em>year</em> and <em>site</em> in both data frames are returned.</p>
 </div>
 <div id="filter-and-join-in-a-sequence" class="section level3">
@@ -684,10 +686,10 @@ royal blue fish
 <li>Add a new column that contains the ‘fish per kelp fronds’ density (total_count / total_fronds)</li>
 </ul>
 <p>That sequence might look like this:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">my_fish_join &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>, site <span class="op">==</span><span class="st"> &quot;abur&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(kelp_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fish_per_frond =</span> total_count <span class="op">/</span><span class="st"> </span>total_fronds)</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="filter-join.html#cb128-1"></a>my_fish_join &lt;-<span class="st"> </span>fish <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-2"><a href="filter-join.html#cb128-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2017</span>, site <span class="op">==</span><span class="st"> &quot;abur&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-3"><a href="filter-join.html#cb128-3"></a><span class="st">  </span><span class="kw">left_join</span>(kelp_abur, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;site&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb128-4"><a href="filter-join.html#cb128-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">fish_per_frond =</span> total_count <span class="op">/</span><span class="st"> </span>total_fronds)</span></code></pre></div>
 <p>Explore the resulting <strong>my_fish_join</strong> data frame.</p>
 </div>
 </div>
@@ -695,12 +697,12 @@ royal blue fish
 <h2><span class="header-section-number">8.5</span> An HTML table with <code>kable()</code> and <code>kableExtra</code></h2>
 <p>With any data frame, you can a nicer looking table in your knitted HTML using <code>knitr::kable()</code> and functions in the <code>kableExtra</code> package.</p>
 <p>Start by using <code>kable()</code> with my_fish_join, and see what the default HTML table looks like in your knitted document:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">kable</span>(my_fish_join)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="filter-join.html#cb129-1"></a><span class="kw">kable</span>(my_fish_join)</span></code></pre></div>
 <p>Simple, but quick to get a clear &amp; useful table! Now let’s spruce it up a bit with <code>kableExtra::kable_styling()</code> to modify HTML table styles:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">my_fish_join <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb130-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </a>
-<a class="sourceLine" id="cb130-4" data-line-number="4">                <span class="dt">full_width =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="filter-join.html#cb130-1"></a>my_fish_join <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb130-2"><a href="filter-join.html#cb130-2"></a><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb130-3"><a href="filter-join.html#cb130-3"></a><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="st">&quot;striped&quot;</span>, </span>
+<span id="cb130-4"><a href="filter-join.html#cb130-4"></a>                <span class="dt">full_width =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>…with many other options for customizing HTML tables! Make sure to check out <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">“Create awesome HTML tables with knitr::kable() and kableExtra” by Hao Zhu</a> for more examples and options.</p>
 <p><strong>Sync your project with your repo on GitHub</strong></p>
 <div id="end-filter-_join-section" class="section level3">

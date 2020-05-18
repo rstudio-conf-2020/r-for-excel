@@ -172,7 +172,7 @@ Each of them start with 3 backticks and `{r label}` that signify there will be R
 - the third chunk labeled "pressure" says `echo=FALSE`, and in the HTML document we do not see the code echoed, we only see the plot when the code is executed.
 
 > **Aside: Code chunk labels** It is possible to label your code chunks. This is to help us navigate between them and keep them organized. In our example Rmd, our  three chunks say `r` as the language, and have a label (`setup`, `cars`, `pressure`).   
-> Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. So while a third option for creating a new code chunk is to copy-paste-edit an existing one, you'll have to remember to relabel it something unique. We will explore this more in a moment.
+> Labels are optional, but will become powerful as you become a powerful R user. But if you label your code chunks, you must have unique labels. 
 
 Notice how the word `FALSE` is all capitals. Capitalization matters in R; `TRUE/FALSE` is something that R can interpret as a binary yes/no or 1/0. 
 
@@ -186,6 +186,7 @@ We can create a new chunk in your RMarkdown first in one of these ways:
 - type it by hand: 
    \```{r}
    \```
+- copy-paste an existing chunk — but remember to relabel it something unique! 
 
 > **Aside**: doesn't have to be only R, other languages supported. 
 

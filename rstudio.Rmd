@@ -186,7 +186,7 @@ We can create a new chunk in your RMarkdown first in one of these ways:
 - type it by hand: 
    \```{r}
    \```
-- copy-paste an existing chunk — but remember to relabel it something unique! 
+- copy-paste an existing chunk — but remember to relabel it something unique! (we'll explore this more in a moment)
 
 > **Aside**: doesn't have to be only R, other languages supported. 
 
@@ -245,7 +245,7 @@ The first step of becoming a proficient R user is to move past the exasperation 
 
 #### RMarkdown error messages
 
-Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let's see what happens if not. If I (re)name our `summary(pressure)` chunk to "pressure", I will see an error when you try to knit: 
+Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let's see what happens if not. If I (re)name our `summary(pressure)` chunk to "cars", I will see an error when you try to knit: 
 
 ```
 processing file: testing.Rmd

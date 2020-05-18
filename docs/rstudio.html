@@ -543,7 +543,7 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 <li>type it by hand:
 ```{r}
 ```</li>
-<li>copy-paste an existing chunk — but remember to relabel it something unique!</li>
+<li>copy-paste an existing chunk — but remember to relabel it something unique! (we’ll explore this more in a moment)</li>
 </ul>
 <blockquote>
 <p><strong>Aside</strong>: doesn’t have to be only R, other languages supported.</p>
@@ -581,7 +581,7 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 </div>
 <div id="rmarkdown-error-messages" class="section level4">
 <h4><span class="header-section-number">3.4.1.2</span> RMarkdown error messages</h4>
-<p>Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let’s see what happens if not. If I (re)name our <code>summary(pressure)</code> chunk to “pressure”, I will see an error when you try to knit:</p>
+<p>Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let’s see what happens if not. If I (re)name our <code>summary(pressure)</code> chunk to “cars”, I will see an error when you try to knit:</p>
 <pre><code>processing file: testing.Rmd
 Error in parse_block(g[-1], g[1], params.src) : duplicate label &#39;cars&#39;
 Calls: &lt;Anonymous&gt; ... process_file -&gt; split_file -&gt; lapply -&gt; FUN -&gt; parse_block

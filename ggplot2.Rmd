@@ -80,6 +80,8 @@ We can explore our data frame a bit more to see what it contains. For example:
 - `head()`: to see the first *x* rows (6 is the default)
 - `summary()`: see a quick summary of each variable
 
+(Remember that `names()` is the name of the function but `names(ca_np)` is how we use it on the data.)
+
 Cool! Next, let's read in ci_np.xlsx an Excel file) using `read_excel()`.
 
 ### `readxl` to read in Excel files 

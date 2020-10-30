@@ -269,7 +269,9 @@ So far we have written code in our RMarkdown file that is executed when we knit 
 How do we do it? There are several ways. Let's do each of these with `summary(pressure)`.
 
 **First approach: send R code to the Console.**
-This approach involves selecting (highlighting) the R code only (`summary(pressure)`), not any of the backticks/fences from the code chunk. (If you see `Error: attempt to use zero-length variable name` it is because you have accidentally highlighted the backticks along with the R code. Try again (and don't forget that you can add spaces within the code chunk or make your RStudio session bigger (View > Zoom In)). 
+This approach involves selecting (highlighting) the R code only (`summary(pressure)`), not any of the backticks/fences from the code chunk. 
+
+> **Troubleshooting:** If you see `Error: attempt to use zero-length variable name` it is because you have accidentally highlighted the backticks along with the R code. Try again — and don't forget that you can add spaces within the code chunk or make your RStudio session bigger (View > Zoom In)! 
 
 Do this by selecting code and then: 
 

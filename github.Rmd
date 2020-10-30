@@ -63,17 +63,15 @@ OK so what is GitHub? And Git?
 
 - **Git** is a program that you install on your computer: it is version control software that tracks changes to your files over time.
 
-- **Github** is an website that is essentially a social media platform for your git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people's files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between [images](https://help.github.com/articles/rendering-and-diffing-images/), [rendering](https://help.github.com/articles/mapping-geojson-files-on-github/) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://help.github.com/articles/rendering-csv-and-tsv-data/), and [track changes in text](https://help.github.com/articles/rendering-differences-in-prose-documents/).
+- **Github** is a website that is essentially a social media platform for your git-versioned files. GitHub stores all your versioned files as an archive, but also as allows you to interact with other people's files and has management tools for the social side of software projects. It has many nice features to be able visualize differences between [images](https://help.github.com/articles/rendering-and-diffing-images/), [rendering](https://help.github.com/articles/mapping-geojson-files-on-github/) & [diffing](https://github.com/blog/1772-diffable-more-customizable-maps) map data files, [render text data files](https://help.github.com/articles/rendering-csv-and-tsv-data/), and [track changes in text](https://help.github.com/articles/rendering-differences-in-prose-documents/).
 
 Github was developed for software development, so much of the functionality and terminology of that is exciting for professional programmers (e.g., branches and pull requests) isn't necessarily the right place for us as new R users to get started.  
 
 So we will be learning and practicing GitHub's features and terminology on a "need to know basis" as we start managing our projects with GitHub.
 
-Let's get started by going to <https://github.com> and going to our user profile. You can do this by typing your username in the URL (github.com/username), or after signing in, by clicking on the top-right button and going to your profile. 
+## Github Configuration
 
-This will have an overview of you and your work, and then you can click on the Repository button. 
-
-Repositories are the main "unit" of GitHub: they are what GitHub tracks. They are essentially project-level folders that will contain everything associated with a project. It's where we'll start too. 
+We've just configured Github this at the end of Chapter \@ref(rstudio). So skip to the next section if you've just completed this! However, if you're dropping in on this chapter to setup Github, make sure you first [configure Github with these instructions](#github-brief-intro-config) before continuing. 
 
 <!---
 ### Some Github terminology
@@ -95,6 +93,12 @@ Repositories are the main "unit" of GitHub: they are what GitHub tracks. They ar
 --->
 
 ## Create a repository on Github.com
+
+Let's get started by going to <https://github.com> and going to our user profile. You can do this by typing your username in the URL (github.com/username), or after signing in, by clicking on the top-right button and going to your profile. 
+
+This will have an overview of you and your work, and then you can click on the Repository tab 
+
+Repositories are the main "unit" of GitHub: they are what GitHub tracks. They are essentially project-level folders that will contain everything associated with a project. It's where we'll start too. 
 
 We create a new repository (called a "repo") by clicking "New repository".
 
@@ -574,4 +578,6 @@ knitr::include_graphics("img/issues_globalfellows.png")
 <br>
 
 ### END **GitHub** session!
+
+We'll continue practicing GitHub throughout the rest of the book, but see Chapter \@ref(collaborating) for explicit instructions on collaborating in GitHub.
 

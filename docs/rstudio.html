@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-07-16" />
+<meta name="date" content="2020-10-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="overview.html"/>
 <link rel="next" href="github.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,18 +55,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -135,31 +135,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/rstudio-conf-2020/r-for-excel/">← Go to GitHub repo</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.1</b> Agenda</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-citations"><i class="fa fa-check"></i><b>1.3</b> Data citations</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
-<li class="chapter" data-level="2.1" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a><ul>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="overview.html"><a href="overview.html#you-are-all-welcome-here"><i class="fa fa-check"></i><b>2.1.1</b> You are all welcome here</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.2</b> Guiding principles / recurring themes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
-<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
+<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.2</b> RStudio Orientation</a></li>
-<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Intro to RMarkdown</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.1</b> Create an RMarkdown file</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.2</b> Knit your RMarkdown file</a></li>
 <li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#markdown-text"><i class="fa fa-check"></i><b>3.3.3</b> Markdown text</a></li>
 <li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#r-code"><i class="fa fa-check"></i><b>3.3.4</b> R code</a></li>
 <li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#code-chunks"><i class="fa fa-check"></i><b>3.3.5</b> Code chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
+<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.-console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
@@ -168,73 +175,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
 <li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#commenting"><i class="fa fa-check"></i><b>3.7</b> Commenting</a></li>
 <li class="chapter" data-level="3.8" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.8</b> Assigning objects with <code>&lt;-</code></a></li>
-<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a><ul>
+<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="rstudio.html"><a href="rstudio.html#how-do-you-know-what-packagesfunctions-exist"><i class="fa fa-check"></i><b>3.9.1</b> How do you know what packages/functions exist?</a></li>
 <li class="chapter" data-level="3.9.2" data-path="rstudio.html"><a href="rstudio.html#installing-r-packages"><i class="fa fa-check"></i><b>3.9.2</b> Installing R Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#github-brief-intro-config"><i class="fa fa-check"></i><b>3.10</b> GitHub brief intro &amp; config</a><ul>
+<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#github-brief-intro-config"><i class="fa fa-check"></i><b>3.10</b> GitHub brief intro &amp; config</a>
+<ul>
 <li class="chapter" data-level="3.10.1" data-path="rstudio.html"><a href="rstudio.html#configure-github"><i class="fa fa-check"></i><b>3.10.1</b> Configure GitHub</a></li>
 <li class="chapter" data-level="3.10.2" data-path="rstudio.html"><a href="rstudio.html#ensure-that-gitgithubrstudio-are-communicating"><i class="fa fa-check"></i><b>3.10.2</b> Ensure that Git/GitHub/RStudio are communicating</a></li>
 <li class="chapter" data-level="3.10.3" data-path="rstudio.html"><a href="rstudio.html#troubleshooting"><i class="fa fa-check"></i><b>3.10.3</b> Troubleshooting</a></li>
 <li class="chapter" data-level="3.10.4" data-path="rstudio.html"><a href="rstudio.html#end-rstudiormarkdown-session"><i class="fa fa-check"></i><b>3.10.4</b> END <strong>RStudio/RMarkdown</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
-<li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>4.1</b> Summary</a><ul>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>4.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>4.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="4.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>4.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.2</b> Why should R users use Github?</a><ul>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.2</b> Why should R users use Github?</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="github.html"><a href="github.html#what-is-github-and-git"><i class="fa fa-check"></i><b>4.2.1</b> What is Github? And Git?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.3</b> Create a repository on Github.com</a></li>
-<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.4</b> Clone your repository using RStudio</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="github.html"><a href="github.html#copy-the-repo-address"><i class="fa fa-check"></i><b>4.4.1</b> Copy the repo address</a></li>
-<li class="chapter" data-level="4.4.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-new-project"><i class="fa fa-check"></i><b>4.4.2</b> RStudio: New Project</a></li>
-<li class="chapter" data-level="4.4.3" data-path="rstudio.html"><a href="rstudio.html#select-version-control"><i class="fa fa-check"></i><b>4.4.3</b> Select Version Control</a></li>
-<li class="chapter" data-level="4.4.4" data-path="rstudio.html"><a href="rstudio.html#select-git"><i class="fa fa-check"></i><b>4.4.4</b> Select Git</a></li>
-<li class="chapter" data-level="4.4.5" data-path="github.html"><a href="github.html#paste-the-repo-address"><i class="fa fa-check"></i><b>4.4.5</b> Paste the repo address</a></li>
-<li class="chapter" data-level="4.4.6" data-path="github.html"><a href="github.html#admire-your-local-repo"><i class="fa fa-check"></i><b>4.4.6</b> Admire your local repo</a></li>
-<li class="chapter" data-level="4.4.7" data-path="github.html"><a href="github.html#inspect-your-local-repo"><i class="fa fa-check"></i><b>4.4.7</b> Inspect your local repo</a></li>
-<li class="chapter" data-level="4.4.8" data-path="github.html"><a href="github.html#edit-your-readme-file"><i class="fa fa-check"></i><b>4.4.8</b> Edit your README file</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#github-configuration"><i class="fa fa-check"></i><b>4.3</b> Github Configuration</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.4</b> Create a repository on Github.com</a></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.5</b> Clone your repository using RStudio</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="github.html"><a href="github.html#copy-the-repo-address"><i class="fa fa-check"></i><b>4.5.1</b> Copy the repo address</a></li>
+<li class="chapter" data-level="4.5.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-new-project"><i class="fa fa-check"></i><b>4.5.2</b> RStudio: New Project</a></li>
+<li class="chapter" data-level="4.5.3" data-path="rstudio.html"><a href="rstudio.html#select-version-control"><i class="fa fa-check"></i><b>4.5.3</b> Select Version Control</a></li>
+<li class="chapter" data-level="4.5.4" data-path="rstudio.html"><a href="rstudio.html#select-git"><i class="fa fa-check"></i><b>4.5.4</b> Select Git</a></li>
+<li class="chapter" data-level="4.5.5" data-path="github.html"><a href="github.html#paste-the-repo-address"><i class="fa fa-check"></i><b>4.5.5</b> Paste the repo address</a></li>
+<li class="chapter" data-level="4.5.6" data-path="github.html"><a href="github.html#admire-your-local-repo"><i class="fa fa-check"></i><b>4.5.6</b> Admire your local repo</a></li>
+<li class="chapter" data-level="4.5.7" data-path="github.html"><a href="github.html#inspect-your-local-repo"><i class="fa fa-check"></i><b>4.5.7</b> Inspect your local repo</a></li>
+<li class="chapter" data-level="4.5.8" data-path="github.html"><a href="github.html#edit-your-readme-file"><i class="fa fa-check"></i><b>4.5.8</b> Edit your README file</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#sync-from-rstudio-local-to-github-remote"><i class="fa fa-check"></i><b>4.5</b> Sync from RStudio (local) to GitHub (remote)</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.5.1</b> Pull</a></li>
-<li class="chapter" data-level="4.5.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.5.2</b> Stage</a></li>
-<li class="chapter" data-level="4.5.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.5.3</b> Commit</a></li>
-<li class="chapter" data-level="4.5.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.5.4</b> Push</a></li>
+<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#sync-from-rstudio-local-to-github-remote"><i class="fa fa-check"></i><b>4.6</b> Sync from RStudio (local) to GitHub (remote)</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.6.1</b> Pull</a></li>
+<li class="chapter" data-level="4.6.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.6.2</b> Stage</a></li>
+<li class="chapter" data-level="4.6.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.6.3</b> Commit</a></li>
+<li class="chapter" data-level="4.6.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.6.4</b> Push</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#commit-history"><i class="fa fa-check"></i><b>4.6</b> Commit history</a></li>
-<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#project-oriented-workflows"><i class="fa fa-check"></i><b>4.7</b> Project-oriented workflows</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="github.html"><a href="github.html#working-directory"><i class="fa fa-check"></i><b>4.7.1</b> Working directory</a></li>
+<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#commit-history"><i class="fa fa-check"></i><b>4.7</b> Commit history</a></li>
+<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#project-oriented-workflows"><i class="fa fa-check"></i><b>4.8</b> Project-oriented workflows</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="github.html"><a href="github.html#working-directory"><i class="fa fa-check"></i><b>4.8.1</b> Working directory</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#project-oriented-workflows-in-action-aka-our-analytical-setup"><i class="fa fa-check"></i><b>4.8</b> Project-oriented workflows in action (aka our analytical setup)</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="github.html"><a href="github.html#create-a-new-rmd-file"><i class="fa fa-check"></i><b>4.8.1</b> Create a new Rmd file</a></li>
-<li class="chapter" data-level="4.8.2" data-path="github.html"><a href="github.html#create-data-and-figures-folders"><i class="fa fa-check"></i><b>4.8.2</b> Create data and figures folders</a></li>
-<li class="chapter" data-level="4.8.3" data-path="github.html"><a href="github.html#move-data-files-to-data-folder"><i class="fa fa-check"></i><b>4.8.3</b> Move data files to data folder</a></li>
-<li class="chapter" data-level="4.8.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>4.8.4</b> Activity</a></li>
+<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#project-oriented-workflows-in-action-aka-our-analytical-setup"><i class="fa fa-check"></i><b>4.9</b> Project-oriented workflows in action (aka our analytical setup)</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="github.html"><a href="github.html#create-a-new-rmd-file"><i class="fa fa-check"></i><b>4.9.1</b> Create a new Rmd file</a></li>
+<li class="chapter" data-level="4.9.2" data-path="github.html"><a href="github.html#create-data-and-figures-folders"><i class="fa fa-check"></i><b>4.9.2</b> Create data and figures folders</a></li>
+<li class="chapter" data-level="4.9.3" data-path="github.html"><a href="github.html#move-data-files-to-data-folder"><i class="fa fa-check"></i><b>4.9.3</b> Move data files to data folder</a></li>
+<li class="chapter" data-level="4.9.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>4.9.4</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.9</b> Committing - how often? Tracking changes in your files</a></li>
-<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#issues"><i class="fa fa-check"></i><b>4.10</b> Issues</a><ul>
-<li class="chapter" data-level="4.10.1" data-path="github.html"><a href="github.html#issues-in-the-wild"><i class="fa fa-check"></i><b>4.10.1</b> Issues in the wild!</a></li>
-<li class="chapter" data-level="4.10.2" data-path="github.html"><a href="github.html#end-github-session"><i class="fa fa-check"></i><b>4.10.2</b> END <strong>GitHub</strong> session!</a></li>
+<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.10</b> Committing - how often? Tracking changes in your files</a></li>
+<li class="chapter" data-level="4.11" data-path="github.html"><a href="github.html#issues"><i class="fa fa-check"></i><b>4.11</b> Issues</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="github.html"><a href="github.html#issues-in-the-wild"><i class="fa fa-check"></i><b>4.11.1</b> Issues in the wild!</a></li>
+<li class="chapter" data-level="4.11.2" data-path="github.html"><a href="github.html#end-github-session"><i class="fa fa-check"></i><b>4.11.2</b> END <strong>GitHub</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a><ul>
-<li class="chapter" data-level="5.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>5.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="5.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---in-existing-.rmd-attach-packages"><i class="fa fa-check"></i><b>5.2</b> Getting started - In existing .Rmd, attach packages</a></li>
-<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#read-in-.xlsx-and-.csv-files"><i class="fa fa-check"></i><b>5.3</b> Read in .xlsx and .csv files</a><ul>
+<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#read-in-.xlsx-and-.csv-files"><i class="fa fa-check"></i><b>5.3</b> Read in .xlsx and .csv files</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="ggplot2.html"><a href="ggplot2.html#read_csv-to-read-in-comma-separated-value-.csv-files"><i class="fa fa-check"></i><b>5.3.1</b> <code>read_csv()</code> to read in comma-separated-value (.csv) files</a></li>
 <li class="chapter" data-level="5.3.2" data-path="ggplot2.html"><a href="ggplot2.html#readxl-to-read-in-excel-files"><i class="fa fa-check"></i><b>5.3.2</b> <code>readxl</code> to read in Excel files</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>5.4</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
-<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.5</b> Intro to customizing <code>ggplot</code> graphs</a><ul>
+<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.5</b> Intro to customizing <code>ggplot</code> graphs</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-customize-your-own-ggplot-graph"><i class="fa fa-check"></i><b>5.5.1</b> Activity: customize your own ggplot graph</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.6</b> Mapping variables onto aesthetics</a><ul>
+<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.6</b> Mapping variables onto aesthetics</a>
+<ul>
 <li class="chapter" data-level="5.6.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-map-variables-onto-graph-aesthetics"><i class="fa fa-check"></i><b>5.6.1</b> Activity: map variables onto graph aesthetics</a></li>
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>5.7</b> ggplot2 complete themes</a></li>
@@ -242,25 +265,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>5.9</b> Combining compatible geoms</a></li>
 <li class="chapter" data-level="5.10" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>5.10</b> Multi-series ggplot graphs</a></li>
 <li class="chapter" data-level="5.11" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>5.11</b> Faceting ggplot graphs</a></li>
-<li class="chapter" data-level="5.12" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.12</b> Exporting a ggplot graph with <code>ggsave()</code></a><ul>
+<li class="chapter" data-level="5.12" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.12</b> Exporting a ggplot graph with <code>ggsave()</code></a>
+<ul>
 <li class="chapter" data-level="5.12.1" data-path="ggplot2.html"><a href="ggplot2.html#end-ggplot-session"><i class="fa fa-check"></i><b>5.12.1</b> End <code>ggplot</code> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="pivot-tables.html"><a href="pivot-tables.html"><i class="fa fa-check"></i><b>6</b> Pivot Tables with <code>dplyr</code></a><ul>
-<li class="chapter" data-level="6.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>6.1</b> Summary</a><ul>
+<li class="chapter" data-level="6" data-path="pivot-tables.html"><a href="pivot-tables.html"><i class="fa fa-check"></i><b>6</b> Pivot Tables with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>6.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>6.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="pivot-tables.html"><a href="pivot-tables.html#overview-setup"><i class="fa fa-check"></i><b>6.2</b> Overview &amp; setup</a><ul>
+<li class="chapter" data-level="6.2" data-path="pivot-tables.html"><a href="pivot-tables.html#overview-setup"><i class="fa fa-check"></i><b>6.2</b> Overview &amp; setup</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="pivot-tables.html"><a href="pivot-tables.html#view-data-in-excel"><i class="fa fa-check"></i><b>6.2.1</b> View data in Excel</a></li>
 <li class="chapter" data-level="6.2.2" data-path="pivot-tables.html"><a href="pivot-tables.html#rmarkdown-setup"><i class="fa fa-check"></i><b>6.2.2</b> RMarkdown setup</a></li>
 <li class="chapter" data-level="6.2.3" data-path="pivot-tables.html"><a href="pivot-tables.html#our-task"><i class="fa fa-check"></i><b>6.2.3</b> Our task</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.3</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="6.3" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.3</b> Pivot table demo</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-one-variable"><i class="fa fa-check"></i><b>6.3.1</b> pivot one variable</a></li>
 <li class="chapter" data-level="6.3.2" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-two-variables"><i class="fa fa-check"></i><b>6.3.2</b> pivot two variables</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-summarize"><i class="fa fa-check"></i><b>6.4</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-summarize"><i class="fa fa-check"></i><b>6.4</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-one-variable"><i class="fa fa-check"></i><b>6.4.1</b> <code>group_by</code> one variable</a></li>
 <li class="chapter" data-level="6.4.2" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>6.4.2</b> <code>group_by</code> multiple variables</a></li>
 <li class="chapter" data-level="6.4.3" data-path="pivot-tables.html"><a href="pivot-tables.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>6.4.3</b> <code>summarize</code> multiple variables</a></li>
@@ -268,43 +297,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.5" data-path="pivot-tables.html"><a href="pivot-tables.html#r-code-in-line-in-rmarkdown"><i class="fa fa-check"></i><b>6.4.5</b> R code in-line in RMarkdown</a></li>
 <li class="chapter" data-level="6.4.6" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>6.4.6</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="pivot-tables.html"><a href="pivot-tables.html#oh-no-they-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.5</b> Oh no, they sent the wrong data!</a><ul>
+<li class="chapter" data-level="6.5" data-path="pivot-tables.html"><a href="pivot-tables.html#oh-no-they-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.5</b> Oh no, they sent the wrong data!</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="pivot-tables.html"><a href="pivot-tables.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>6.5.1</b> Knit, push, &amp; show differences on GitHub</a></li>
 <li class="chapter" data-level="6.5.2" data-path="pivot-tables.html"><a href="pivot-tables.html#dplyrcount"><i class="fa fa-check"></i><b>6.5.2</b> <code>dplyr::count()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="pivot-tables.html"><a href="pivot-tables.html#mutate"><i class="fa fa-check"></i><b>6.6</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="6.7" data-path="pivot-tables.html"><a href="pivot-tables.html#select"><i class="fa fa-check"></i><b>6.7</b> <code>select()</code></a><ul>
+<li class="chapter" data-level="6.7" data-path="pivot-tables.html"><a href="pivot-tables.html#select"><i class="fa fa-check"></i><b>6.7</b> <code>select()</code></a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="pivot-tables.html"><a href="pivot-tables.html#end-dplyr-pivot-tables-session"><i class="fa fa-check"></i><b>6.7.1</b> END <strong>dplyr-pivot-tables</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
-<li class="chapter" data-level="7.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>7.1</b> Summary</a><ul>
+<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>7.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>7.1.1</b> Tidy data</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>7.1.2</b> Objectives</a></li>
 <li class="chapter" data-level="7.1.3" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>7.1.3</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#set-up"><i class="fa fa-check"></i><b>7.2</b> Set-up</a><ul>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#set-up"><i class="fa fa-check"></i><b>7.2</b> Set-up</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="tidying.html"><a href="tidying.html#create-a-new-r-markdown-and-attach-packages"><i class="fa fa-check"></i><b>7.2.1</b> Create a new R Markdown and attach packages</a></li>
 <li class="chapter" data-level="7.2.2" data-path="tidying.html"><a href="tidying.html#read_excel-to-read-in-data-from-an-excel-worksheet"><i class="fa fa-check"></i><b>7.2.2</b> <code>read_excel()</code> to read in data from an Excel worksheet</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#tidyrpivot_longer-to-reshape-from-wider-to-longer-format"><i class="fa fa-check"></i><b>7.3</b> <code>tidyr::pivot_longer()</code> to reshape from wider-to-longer format</a></li>
 <li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#tidyrpivot_wider-to-convert-from-longer-to-wider-format"><i class="fa fa-check"></i><b>7.4</b> <code>tidyr::pivot_wider()</code> to convert from longer-to-wider format</a></li>
 <li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#janitorclean_names-to-clean-up-column-names"><i class="fa fa-check"></i><b>7.5</b> <code>janitor::clean_names()</code> to clean up column names</a></li>
-<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#tidyrunite-and-tidyrseparate-to-combine-or-separate-information-in-columns"><i class="fa fa-check"></i><b>7.6</b> <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to combine or separate information in column(s)</a><ul>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#tidyrunite-and-tidyrseparate-to-combine-or-separate-information-in-columns"><i class="fa fa-check"></i><b>7.6</b> <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to combine or separate information in column(s)</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="tidying.html"><a href="tidying.html#tidyrunite-to-merge-information-from-separate-columns"><i class="fa fa-check"></i><b>7.6.1</b> <code>tidyr::unite()</code> to merge information from separate columns</a></li>
 <li class="chapter" data-level="7.6.2" data-path="tidying.html"><a href="tidying.html#tidyrseparate-to-separate-information-into-multiple-columns"><i class="fa fa-check"></i><b>7.6.2</b> <code>tidyr::separate()</code> to separate information into multiple columns</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#stringrstr_replace-to-replace-a-pattern"><i class="fa fa-check"></i><b>7.7</b> <code>stringr::str_replace()</code> to replace a pattern</a><ul>
+<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#stringrstr_replace-to-replace-a-pattern"><i class="fa fa-check"></i><b>7.7</b> <code>stringr::str_replace()</code> to replace a pattern</a>
+<ul>
 <li class="chapter" data-level="7.7.1" data-path="tidying.html"><a href="tidying.html#end-tidying-session"><i class="fa fa-check"></i><b>7.7.1</b> END <strong>tidying</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="filter-join.html"><a href="filter-join.html"><i class="fa fa-check"></i><b>8</b> Filters and joins</a><ul>
-<li class="chapter" data-level="8.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8" data-path="filter-join.html"><a href="filter-join.html"><i class="fa fa-check"></i><b>8</b> Filters and joins</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>8.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="8.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="filter-join.html"><a href="filter-join.html#set-up-create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>8.2</b> Set-up: Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="8.3" data-path="filter-join.html"><a href="filter-join.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a><ul>
+<li class="chapter" data-level="8.3" data-path="filter-join.html"><a href="filter-join.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="filter-join.html"><a href="filter-join.html#filter-rows-by-matching-a-single-character-string"><i class="fa fa-check"></i><b>8.3.1</b> Filter rows by matching a single character string</a></li>
 <li class="chapter" data-level="8.3.2" data-path="filter-join.html"><a href="filter-join.html#filter-rows-based-on-numeric-conditions"><i class="fa fa-check"></i><b>8.3.2</b> Filter rows based on numeric conditions</a></li>
 <li class="chapter" data-level="8.3.3" data-path="filter-join.html"><a href="filter-join.html#filter-to-return-rows-that-match-this-or-that-or-that"><i class="fa fa-check"></i><b>8.3.3</b> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></a></li>
@@ -313,35 +352,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.6" data-path="filter-join.html"><a href="filter-join.html#stringrstr_detect-to-filter-by-a-partial-pattern"><i class="fa fa-check"></i><b>8.3.6</b> <code>stringr::str_detect()</code> to filter by a partial pattern</a></li>
 <li class="chapter" data-level="8.3.7" data-path="filter-join.html"><a href="filter-join.html#activity-2"><i class="fa fa-check"></i><b>8.3.7</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="filter-join.html"><a href="filter-join.html#dplyr_join-to-merge-data-frames"><i class="fa fa-check"></i><b>8.4</b> <code>dplyr::*_join()</code> to merge data frames</a><ul>
+<li class="chapter" data-level="8.4" data-path="filter-join.html"><a href="filter-join.html#dplyr_join-to-merge-data-frames"><i class="fa fa-check"></i><b>8.4</b> <code>dplyr::*_join()</code> to merge data frames</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="filter-join.html"><a href="filter-join.html#full_join-to-merge-data-frames-keeping-everything"><i class="fa fa-check"></i><b>8.4.1</b> <code>full_join()</code> to merge data frames, keeping everything</a></li>
 <li class="chapter" data-level="8.4.2" data-path="filter-join.html"><a href="filter-join.html#left_joinxy-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame"><i class="fa fa-check"></i><b>8.4.2</b> <code>left_join(x,y)</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</a></li>
 <li class="chapter" data-level="8.4.3" data-path="filter-join.html"><a href="filter-join.html#inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both"><i class="fa fa-check"></i><b>8.4.3</b> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></a></li>
 <li class="chapter" data-level="8.4.4" data-path="filter-join.html"><a href="filter-join.html#filter-and-join-in-a-sequence"><i class="fa fa-check"></i><b>8.4.4</b> <code>filter()</code> and <code>join()</code> in a sequence</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="filter-join.html"><a href="filter-join.html#an-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> An HTML table with <code>kable()</code> and <code>kableExtra</code></a><ul>
+<li class="chapter" data-level="8.5" data-path="filter-join.html"><a href="filter-join.html#an-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> An HTML table with <code>kable()</code> and <code>kableExtra</code></a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="filter-join.html"><a href="filter-join.html#end-filter-_join-section"><i class="fa fa-check"></i><b>8.5.1</b> End <code>filter()</code> + <code>_join()</code> section!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating &amp; getting help</a><ul>
-<li class="chapter" data-level="9.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating &amp; getting help</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>9.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="9.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="collaborating.html"><a href="collaborating.html#r-communities"><i class="fa fa-check"></i><b>9.2</b> R communities</a><ul>
+<li class="chapter" data-level="9.2" data-path="collaborating.html"><a href="collaborating.html#r-communities"><i class="fa fa-check"></i><b>9.2</b> R communities</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="collaborating.html"><a href="collaborating.html#community-awesomeness"><i class="fa fa-check"></i><b>9.2.1</b> Community awesomeness</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="collaborating.html"><a href="collaborating.html#how-to-use-twitter-for-rstats"><i class="fa fa-check"></i><b>9.3</b> How to use Twitter for #rstats</a><ul>
+<li class="chapter" data-level="9.3" data-path="collaborating.html"><a href="collaborating.html#how-to-use-twitter-for-rstats"><i class="fa fa-check"></i><b>9.3</b> How to use Twitter for #rstats</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="collaborating.html"><a href="collaborating.html#examples"><i class="fa fa-check"></i><b>9.3.1</b> Examples</a></li>
 <li class="chapter" data-level="9.3.2" data-path="collaborating.html"><a href="collaborating.html#how-to-twitter"><i class="fa fa-check"></i><b>9.3.2</b> How to Twitter</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="collaborating.html"><a href="collaborating.html#getting-help"><i class="fa fa-check"></i><b>9.4</b> Getting help</a><ul>
+<li class="chapter" data-level="9.4" data-path="collaborating.html"><a href="collaborating.html#getting-help"><i class="fa fa-check"></i><b>9.4</b> Getting help</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="collaborating.html"><a href="collaborating.html#read-the-error-message"><i class="fa fa-check"></i><b>9.4.1</b> Read the error message</a></li>
 <li class="chapter" data-level="9.4.2" data-path="collaborating.html"><a href="collaborating.html#googling"><i class="fa fa-check"></i><b>9.4.2</b> Googling</a></li>
 <li class="chapter" data-level="9.4.3" data-path="collaborating.html"><a href="collaborating.html#create-a-reprex"><i class="fa fa-check"></i><b>9.4.3</b> Create a reprex</a></li>
 <li class="chapter" data-level="9.4.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>9.4.4</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="collaborating.html"><a href="collaborating.html#collaborating-with-github"><i class="fa fa-check"></i><b>9.5</b> Collaborating with GitHub</a><ul>
+<li class="chapter" data-level="9.5" data-path="collaborating.html"><a href="collaborating.html#collaborating-with-github"><i class="fa fa-check"></i><b>9.5</b> Collaborating with GitHub</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="collaborating.html"><a href="collaborating.html#create-repo-partner-1"><i class="fa fa-check"></i><b>9.5.1</b> Create repo (Partner 1)</a></li>
 <li class="chapter" data-level="9.5.2" data-path="collaborating.html"><a href="collaborating.html#create-a-gh-pages-branch-partner-1"><i class="fa fa-check"></i><b>9.5.2</b> Create a gh-pages branch (Partner 1)</a></li>
 <li class="chapter" data-level="9.5.3" data-path="collaborating.html"><a href="collaborating.html#give-your-collaborator-privileges-partner-1-and-2"><i class="fa fa-check"></i><b>9.5.3</b> Give your collaborator privileges (Partner 1 and 2)</a></li>
@@ -350,7 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5.6" data-path="collaborating.html"><a href="collaborating.html#create-data-folder-partner-2"><i class="fa fa-check"></i><b>9.5.6</b> Create data folder (Partner 2)</a></li>
 <li class="chapter" data-level="9.5.7" data-path="collaborating.html"><a href="collaborating.html#state-of-the-repository"><i class="fa fa-check"></i><b>9.5.7</b> State of the Repository</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="collaborating.html"><a href="collaborating.html#merge-conflicts"><i class="fa fa-check"></i><b>9.6</b> Merge conflicts</a><ul>
+<li class="chapter" data-level="9.6" data-path="collaborating.html"><a href="collaborating.html#merge-conflicts"><i class="fa fa-check"></i><b>9.6</b> Merge conflicts</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="collaborating.html"><a href="collaborating.html#pull-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.1</b> Pull (Partners 1 and 2)</a></li>
 <li class="chapter" data-level="9.6.2" data-path="collaborating.html"><a href="collaborating.html#create-a-conflict-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.2</b> Create a conflict (Partners 1 and 2)</a></li>
 <li class="chapter" data-level="9.6.3" data-path="collaborating.html"><a href="collaborating.html#sync-partner-2"><i class="fa fa-check"></i><b>9.6.3</b> Sync (Partner 2)</a></li>
@@ -358,12 +406,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.5" data-path="filter-join.html"><a href="filter-join.html#activity-1"><i class="fa fa-check"></i><b>9.6.5</b> Activity</a></li>
 <li class="chapter" data-level="9.6.6" data-path="collaborating.html"><a href="collaborating.html#how-do-you-avoid-merge-conflicts"><i class="fa fa-check"></i><b>9.6.6</b> How do you avoid merge conflicts?</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a><ul>
+<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a>
+<ul>
 <li class="chapter" data-level="9.7.1" data-path="collaborating.html"><a href="collaborating.html#end-collaborating-session"><i class="fa fa-check"></i><b>9.7.1</b> END <strong>collaborating</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
-<li class="chapter" data-level="10.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>10.1</b> Summary</a><ul>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>10.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>10.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="10.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>10.1.2</b> Resources</a></li>
 </ul></li>
@@ -373,7 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2"><i class="fa fa-check"></i><b>10.5</b> Make a graph of US commercial fisheries value by species over time with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#built-in-color-palettes"><i class="fa fa-check"></i><b>10.6</b> Built-in color palettes</a></li>
 <li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#sync-with-github-remote"><i class="fa fa-check"></i><b>10.7</b> Sync with GitHub remote</a></li>
-<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#add-an-image-to-your-partners-document"><i class="fa fa-check"></i><b>10.8</b> Add an image to your partner’s document</a><ul>
+<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#add-an-image-to-your-partners-document"><i class="fa fa-check"></i><b>10.8</b> Add an image to your partner’s document</a>
+<ul>
 <li class="chapter" data-level="10.8.1" data-path="synthesis.html"><a href="synthesis.html#end-synthesis-session"><i class="fa fa-check"></i><b>10.8.1</b> End Synthesis session!</a></li>
 </ul></li>
 </ul></li>
@@ -397,12 +449,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rstudio" class="section level1">
+<div id="rstudio" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> R &amp; RStudio, RMarkdown</h1>
-<div id="summary" class="section level2">
+<div id="summary" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Summary</h2>
 <p>We will begin learning R through RMarkdown, which helps you tell your story of data analysis because you can write text alongside the code. We are actually learning two languages at once: R and Markdown.</p>
-<div id="objectives" class="section level3">
+<div id="objectives" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Objectives</h3>
 <p>In this lesson we will get familiar with:</p>
 <ul>
@@ -413,7 +465,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>configuring GitHub with RStudio</li>
 </ul>
 </div>
-<div id="resources" class="section level3">
+<div id="resources" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Resources</h3>
 <ul>
 <li><a href="https://vimeo.com/178485416">What is RMarkdown?</a> awesome 1-minute video by RStudio</li>
@@ -428,7 +480,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 --->
 </div>
 </div>
-<div id="rstudio-orientation" class="section level2">
+<div id="rstudio-orientation" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> RStudio Orientation</h2>
 <p>What is the RStudio IDE (integrated development environment)? The RStudio IDE is software that greatly improves your R experience.</p>
 <p>I think that <strong>R is your airplane, and the RStudio IDE is your airport</strong>. You are the pilot, and you use R to go places! With practice you’ll gain skills and confidence; you can fly further distances and get through tricky situations. You will become an awesome pilot and can fly your plane anywhere. And the RStudio IDE provides support! Runways, communication, community, and other services that makes your life as a pilot much easier. It provides not only the infrastructure but a hub for the community that you can interact with.</p>
@@ -450,13 +502,13 @@ FYI: you can change the default location of the panes, among many other things: 
 <p><img src="img/RStudio_IDE_homedir.png" width="80%" /></p>
 <p>We are going to have our first experience with R through RMarkdown, so let’s do the following.</p>
 </div>
-<div id="intro-to-rmarkdown" class="section level2">
+<div id="intro-to-rmarkdown" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Intro to RMarkdown</h2>
 <p>An RMarkdown file is a plain text file that allow us to write code and text together, and when it is “knit”, the code will be evaluated and the text formatted so that it creates a reproducible report or document that is nice to read as a human.</p>
 <p>This is really critical to reproducibility, and it also saves time. This document will recreate your figures for you in the same document where you are writing text. So no more doing analysis, saving a plot, pasting that plot into Word, redoing the analysis, re-saving, re-pasting, etc.</p>
 <p>This 1-minute video does the best job of introducing RMarkdown: <a href="https://vimeo.com/178485416">What is RMarkdown?</a>.</p>
 <p>Now let’s experience this a bit ourselves and then we’ll talk about it more.</p>
-<div id="create-an-rmarkdown-file" class="section level3">
+<div id="create-an-rmarkdown-file" class="section level3" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Create an RMarkdown file</h3>
 <p>Let’s do this together:</p>
 <p>File -&gt; New File -&gt; RMarkdown… (or alternatively you can click the green plus in the top left -&gt; RMarkdown).</p>
@@ -475,7 +527,7 @@ FYI: you can change the default location of the panes, among many other things: 
 </ul>
 <p><img src="img/rmarkdown.png" width="80%" /></p>
 </div>
-<div id="knit-your-rmarkdown-file" class="section level3">
+<div id="knit-your-rmarkdown-file" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Knit your RMarkdown file</h3>
 <p>Let’s go ahead and “Knit” by clicking the blue yarn at the top of the RMarkdown file.
 It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note that this is by default going to save this file in your home directory <code>/~</code>. Since this is a testing document this is fine to save here; we will get more organized about where we save files very soon. Once you click Save, the knit process will be able to continue.</p>
@@ -484,12 +536,12 @@ It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note t
 <p><br></p>
 <p><img src="img/rmarkdown_side_by_side.png" width="80%" /></p>
 <p>Let’s take a deeper look at these two files. So much of learning to code is looking for patterns.</p>
-<div id="activity" class="section level4">
+<div id="activity" class="section level4" number="3.3.2.1">
 <h4><span class="header-section-number">3.3.2.1</span> Activity</h4>
 <p>Introduce yourself to the person sitting next to you. Discuss what you notice with these two files. Then we will have a brief share-out with the group. (5 mins)</p>
 </div>
 </div>
-<div id="markdown-text" class="section level3">
+<div id="markdown-text" class="section level3" number="3.3.3">
 <h3><span class="header-section-number">3.3.3</span> Markdown text</h3>
 <p>Let’s look more deeply at the Markdown text. Markdown is a formatting language for plain text, and there are only a handful of rules to know.</p>
 <p>Notice the syntax for:</p>
@@ -507,7 +559,7 @@ It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note t
 1. Reknit your html file. 
 --->
 </div>
-<div id="r-code" class="section level3">
+<div id="r-code" class="section level3" number="3.3.4">
 <h3><span class="header-section-number">3.3.4</span> R code</h3>
 <p>Let’s look at the R code that we see executed in our knitted document.</p>
 <p>We see that:</p>
@@ -520,7 +572,7 @@ It’s going to ask us to save first, I’ll name mine “testing.Rmd”. Note t
 <p><code>cars</code> and <code>pressure</code> are small datasets that come installed with R.</p>
 <p>We’ll talk more about functions and data shortly.</p>
 </div>
-<div id="code-chunks" class="section level3">
+<div id="code-chunks" class="section level3" number="3.3.5">
 <h3><span class="header-section-number">3.3.5</span> Code chunks</h3>
 <p>R code is written in code chunks, which are grey.
 <!---There are two things to look at: R code chunks and code chunk options ---></p>
@@ -536,7 +588,7 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 </blockquote>
 <p>Notice how the word <code>FALSE</code> is all capitals. Capitalization matters in R; <code>TRUE/FALSE</code> is something that R can interpret as a binary yes/no or 1/0.</p>
 <p>There are many more options available that we will discuss as we get more familiar with RMarkdown.</p>
-<div id="new-code-chunks" class="section level4">
+<div id="new-code-chunks" class="section level4" number="3.3.5.1">
 <h4><span class="header-section-number">3.3.5.1</span> New code chunks</h4>
 <p>We can create a new chunk in your RMarkdown first in one of these ways:</p>
 <ul>
@@ -559,7 +611,7 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 </div>
 </div>
 </div>
-<div id="r-code-in-the-console" class="section level2">
+<div id="r-code-in-the-console" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> R code in the Console</h2>
 <p>So far we have been telling R to execute our code only when we knit the document, but we can also write code in the Console to interact with the live R process.</p>
 <p>The Console (bottom left pane of the RStudio IDE) is where you can interact with the R engine and run code directly.</p>
@@ -567,10 +619,10 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rstudio.html#cb2-1"></a><span class="kw">summary</span>(pressure)</span></code></pre></div>
 <p>We can also do math as we can in Excel: type the following and press enter.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rstudio.html#cb3-1"></a><span class="dv">8</span><span class="op">*</span><span class="fl">22.3</span></span></code></pre></div>
-<div id="error-messages" class="section level3">
+<div id="error-messages" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Error messages</h3>
 <p>When you code in R or any language, you will encounter errors. We will discuss troubleshooting tips more deeply tomorrow in <a href="#collaboration">Collaborating &amp; getting help</a>; here we will just get a little comfortable with them.</p>
-<div id="r-error-messages" class="section level4">
+<div id="r-error-messages" class="section level4" number="3.4.1.1">
 <h4><span class="header-section-number">3.4.1.1</span> R error messages</h4>
 <p><strong>Error messages are your friends</strong>.</p>
 <p>What do they look like? I’ll demo typing in the Console <code>summary(pressur)</code></p>
@@ -580,7 +632,7 @@ Labels are optional, but will become powerful as you become a powerful R user. B
 <p>In this case, R is saying “I didn’t understand <code>pressur</code>”. R tracks the datasets it has available as objects, as well as any additional objects that you make. <code>pressur</code> is not among them, so it says that it is not found.</p>
 <p>The first step of becoming a proficient R user is to move past the exasperation of “it’s not working!” and <strong>read the error message</strong>. Errors will be less frustrating with the mindset that <strong>most likely the problem is your typo or misuse</strong>, and not that R is broken or hates you. Read the error message to learn what is wrong.</p>
 </div>
-<div id="rmarkdown-error-messages" class="section level4">
+<div id="rmarkdown-error-messages" class="section level4" number="3.4.1.2">
 <h4><span class="header-section-number">3.4.1.2</span> RMarkdown error messages</h4>
 <p>Errors can also occur in RMarkdown. I said a moment ago that you label your code chunks, they need to be unique. Let’s see what happens if not. If I (re)name our <code>summary(pressure)</code> chunk to “cars”, I will see an error when you try to knit:</p>
 <pre><code>processing file: testing.Rmd
@@ -593,12 +645,15 @@ Execution halted</code></pre>
 <p>You can click back and forth between the Console and the R Markdown tab; this is something to look out for as we continue. We will work in the Console and R Markdown and will discuss strategies for where and how to work as we go. Let’s click back to Console now.</p>
 </div>
 </div>
-<div id="running-rmarkdown-code-chunks" class="section level3">
+<div id="running-rmarkdown-code-chunks" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Running RMarkdown code chunks</h3>
 <p>So far we have written code in our RMarkdown file that is executed when we knit the file. We have also written code directly in the Console that is executed when we press enter/return. Additionally, we can write code in an RMarkdown code chunk and execute it by sending it into the Console (i.e. we can execute code without knitting the document).</p>
 <p>How do we do it? There are several ways. Let’s do each of these with <code>summary(pressure)</code>.</p>
 <p><strong>First approach: send R code to the Console.</strong>
-This approach involves selecting (highlighting) the R code only (<code>summary(pressure)</code>), not any of the backticks/fences from the code chunk. (If you see <code>Error: attempt to use zero-length variable name</code> it is because you have accidentally highlighted the backticks along with the R code. Try again (and don’t forget that you can add spaces within the code chunk or make your RStudio session bigger (View &gt; Zoom In)).</p>
+This approach involves selecting (highlighting) the R code only (<code>summary(pressure)</code>), not any of the backticks/fences from the code chunk.</p>
+<blockquote>
+<p><strong>Troubleshooting:</strong> If you see <code>Error: attempt to use zero-length variable name</code> it is because you have accidentally highlighted the backticks along with the R code. Try again — and don’t forget that you can add spaces within the code chunk or make your RStudio session bigger (View &gt; Zoom In)!</p>
+</blockquote>
 <p>Do this by selecting code and then:</p>
 <ol style="list-style-type: decimal">
 <li>copy-pasting into the Console and press enter/return.</li>
@@ -616,7 +671,7 @@ Since we are already grouping relevant code together in chunks, it’s reasonabl
 <li>clicking the little black down arrow next to the Run green arrow and selecting Run Current Chunk. Notice there are also options to run all chunks, run all chunks above or below…</li>
 </ol>
 </div>
-<div id="writing-code-in-a-file-vs.-console" class="section level3">
+<div id="writing-code-in-a-file-vs.-console" class="section level3" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Writing code in a file vs. Console</h3>
 <!---TODO more --->
 <p>When should you write code in a file (.Rmd or .R script) and when should you write it in the Console?</p>
@@ -624,7 +679,7 @@ Since we are already grouping relevant code together in chunks, it’s reasonabl
 <p>The Console is good for doing quick calculations like <code>8*22.3</code>, testing functions, for calling help pages, for installing packages. We’ll explore these things next.</p>
 </div>
 </div>
-<div id="r-functions" class="section level2">
+<div id="r-functions" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> R functions</h2>
 <p>Like Excel, the power of R comes not from doing small operations individually (like <code>8*22.3</code>). R’s power comes from being able to operate on whole suites of numbers and datasets.</p>
 <p>And also like Excel, some of the biggest power in R is that there are built-in functions that you can use in your analyses (and, as we’ll see, R users can easily create and share functions, and it is this open source developer and contributor community that makes R so awesome).</p>
@@ -658,7 +713,7 @@ From Gordon Shotwell's blog:
 
 --->
 </div>
-<div id="help-pages" class="section level2">
+<div id="help-pages" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Help pages</h2>
 <p>Every function available to you should have a help page, and you access it by typing a question mark preceding the function name in the Console.</p>
 <p>Let’s have a deeper look at the arguments for <code>plot()</code>, using the help pages.</p>
@@ -682,7 +737,7 @@ From Gordon Shotwell's blog:
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="rstudio.html#cb14-1"></a><span class="kw">plot</span>(sin, <span class="op">-</span>pi, <span class="dv">2</span><span class="op">*</span>pi)</span></code></pre></div>
 <p><img src="R-for-Excel-Users_files/figure-html/plot-help-example-1.png" width="672" /></p>
 </div>
-<div id="commenting" class="section level2">
+<div id="commenting" class="section level2" number="3.7">
 <h2><span class="header-section-number">3.7</span> Commenting</h2>
 <p>I’ve been working in the Console to illustrate working interactively with the live R process. But it is likely that you may want to write some of these things as notes in your R Markdown file. That’s great!</p>
 <p>But you may not want everything you type to be run when you knit your document. So you can tell R not to run something by “commenting it out”. This is done with one or more pound/hash/number signs: <code>#</code>. So if I wanted to write a note to myself about using <code>?</code> to open the help pages, I would write this in my R Markdown code chunk:</p>
@@ -694,7 +749,7 @@ From Gordon Shotwell's blog:
 <p><strong>Aside</strong>: Note also that the hashtag <code>#</code> is used differently in Markdown and in R. In R, a hashtag indicates a comment that will not be evaluated. You can use as many as you want: <code>#</code> is equivalent to <code>######</code>. In Markdown, a hashtag indicates a level of a header. And the number you use matters: <code>#</code> is a “level one header”, meaning the biggest font and the top of the hierarchy. <code>###</code> is a level three header, and will show up nested below the <code>#</code> and <code>##</code> headers.</p>
 </blockquote>
 </div>
-<div id="assigning-objects-with--" class="section level2">
+<div id="assigning-objects-with--" class="section level2" number="3.8">
 <h2><span class="header-section-number">3.8</span> Assigning objects with <code>&lt;-</code></h2>
 <p>In Excel, data are stored in the spreadsheet. In R, they are stored in objects. Data can be a variety of formats, for example numeric and strings like we just talked about.</p>
 <p>We will be working with data objects that are rectangular in shape. If they only have one column or one row, they are also called a vector. And we assign these objects names.</p>
@@ -712,7 +767,7 @@ From Gordon Shotwell's blog:
 <span id="cb18-4"><a href="rstudio.html#cb18-4"></a><span class="co">## also-there-is-kebab-case</span></span></code></pre></div>
 <p><img src="img/horst_coding_cases.png" width="80%" /></p>
 </div>
-<div id="r-packages" class="section level2">
+<div id="r-packages" class="section level2" number="3.9">
 <h2><span class="header-section-number">3.9</span> R Packages</h2>
 <p>So far we’ve been using a couple functions that are included with R out-of-the-box such as <code>plot()</code> and <code>c()</code>. We say that these functions are from “Base R”. But, one of the amazing things about R is that a vast user community is always creating new functions and packages that expand R’s capabilities.</p>
 <p>In R, the fundamental unit of shareable code is the package. A package bundles together code, data, documentation (including to create the help pages), and tests, and is easy to share with others. They increase the power of R by improving existing base R functionalities, or by adding new ones.</p>
@@ -721,11 +776,11 @@ From Gordon Shotwell's blog:
 <p><strong>Aside</strong>: You can also install packages from GitHub; see <a href="https://devtools.r-lib.org/"><code>devtools::install_github()</code></a></p>
 </blockquote>
 <p>You don’t need to go to CRAN’s website to install packages, this can be accomplished within R using the command <code>install.packages("package-name-in-quotes")</code>.</p>
-<div id="how-do-you-know-what-packagesfunctions-exist" class="section level3">
+<div id="how-do-you-know-what-packagesfunctions-exist" class="section level3" number="3.9.1">
 <h3><span class="header-section-number">3.9.1</span> How do you know what packages/functions exist?</h3>
 <p>How do you know what packages exist? Well, how do you know what movies exist on iTunes? You learn what’s available based on your needs, interests the community around you. We’ll introduce you to several really powerful packages that we work with and help you find others that might be of interest to you. <em>provide examples here</em> <!---TODO---></p>
 </div>
-<div id="installing-r-packages" class="section level3">
+<div id="installing-r-packages" class="section level3" number="3.9.2">
 <h3><span class="header-section-number">3.9.2</span> Installing R Packages</h3>
 <p>Let’s install several packages that we will be using shortly. Write this in your R Markdown document and run it:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="rstudio.html#cb19-1"></a><span class="co">## setup packages</span></span>
@@ -741,7 +796,7 @@ From Gordon Shotwell's blog:
 <p>When <code>usethis</code> is successfully attached, you won’t get any feedback in the Console. So unless you get an error, this worked for you.</p>
 <p>Now let’s do the same with the <code>here</code> package.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="rstudio.html#cb22-1"></a><span class="kw">library</span>(here) <span class="co"># install.packages(&quot;here&quot;)</span></span></code></pre></div>
-<pre><code>## here() starts at /Users/ahorst/github/r-for-excel</code></pre>
+<pre><code>## here() starts at /Users/lowndes/github/rstudio-conf-2020/r-for-excel</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="rstudio.html#cb24-1"></a><span class="co"># here() starts at /Users/lowndes</span></span></code></pre></div>
 <p><code>here</code> also successfully attached but isn’t quiet about it. It is a “chatty” package; when we attached it did so, and responded with the filepath where we are working from. This is the same as <code>~/</code> which we saw earlier.</p>
 <p>Finally, let’s install the <code>tidyverse</code> package.</p>
@@ -750,13 +805,13 @@ From Gordon Shotwell's blog:
 <p>This may take a little while to complete.</p>
 </div>
 </div>
-<div id="github-brief-intro-config" class="section level2">
+<div id="github-brief-intro-config" class="section level2" number="3.10">
 <h2><span class="header-section-number">3.10</span> GitHub brief intro &amp; config</h2>
 <p>Before we break, we are going to set up Git and GitHub which we will be using along with R and RStudio for the rest of the workshop.</p>
 <p>Before we do the setup configuration, let me take a moment to talk about what Git and GitHub are.</p>
 <p>It helps me to think of GitHub like Dropbox: you identify folders for GitHub to ‘track’ and it syncs them to the cloud. This is good first-and-foremost because it makes a back-up copy of your files: if your computer dies not all of your work is gone. But with GitHub, you have to be more deliberate about when syncs are made. This is because GitHub saves these as different versions, with information about who contributed when, line-by-line. This makes collaboration easier, and it allows you to roll-back to different versions or contribute to others’ work.</p>
 <p>git will track and version your files, GitHub stores this online and enables you to collaborate with others (and yourself). Although git and GitHub are two different things, distinct from each other, we can think of them as a bundle since we will always use them together.</p>
-<div id="configure-github" class="section level3">
+<div id="configure-github" class="section level3" number="3.10.1">
 <h3><span class="header-section-number">3.10.1</span> Configure GitHub</h3>
 <p>This set up is a one-time thing! You will only have to do this once per computer. We’ll walk through this together. In a browser, go to github.com and to your profile page as a reminder.</p>
 <p><strong>You will need to remember your GitHub username, the email address you created your GitHub account with, and your GitHub password.</strong></p>
@@ -765,10 +820,10 @@ From Gordon Shotwell's blog:
 <span id="cb26-2"><a href="rstudio.html#cb26-2"></a><span class="kw">use_git_config</span>(<span class="dt">user.name =</span> <span class="st">&quot;jules32&quot;</span>, <span class="dt">user.email =</span> <span class="st">&quot;jules32@example.org&quot;</span>)</span></code></pre></div>
 <p>If you see <code>Error in use_git_config() : could not find function "use_git_config"</code> please run <code>library("usethis")</code></p>
 </div>
-<div id="ensure-that-gitgithubrstudio-are-communicating" class="section level3">
+<div id="ensure-that-gitgithubrstudio-are-communicating" class="section level3" number="3.10.2">
 <h3><span class="header-section-number">3.10.2</span> Ensure that Git/GitHub/RStudio are communicating</h3>
 <p>We are going to go through a few steps to ensure the Git/GitHub are communicating with RStudio</p>
-<div id="rstudio-new-project" class="section level4">
+<div id="rstudio-new-project" class="section level4" number="3.10.2.1">
 <h4><span class="header-section-number">3.10.2.1</span> RStudio: New Project</h4>
 <p>Click on New Project. There are a few different ways; you could also go to File &gt; New Project…, or click the little green + with the R box in the top left.
 also in the File menu).</p>
@@ -776,13 +831,13 @@ also in the File menu).</p>
 <p><img src="img/new_project1.png" width="80%" /></p>
 <p><br></p>
 </div>
-<div id="select-version-control" class="section level4">
+<div id="select-version-control" class="section level4" number="3.10.2.2">
 <h4><span class="header-section-number">3.10.2.2</span> Select Version Control</h4>
 <p><br></p>
 <p><img src="img/new_project2.png" width="80%" /></p>
 <p><br></p>
 </div>
-<div id="select-git" class="section level4">
+<div id="select-git" class="section level4" number="3.10.2.3">
 <h4><span class="header-section-number">3.10.2.3</span> Select Git</h4>
 <p>Since we are using git.</p>
 <p><br></p>
@@ -809,9 +864,9 @@ also in the File menu).</p>
 --->
 </div>
 </div>
-<div id="troubleshooting" class="section level3">
+<div id="troubleshooting" class="section level3" number="3.10.3">
 <h3><span class="header-section-number">3.10.3</span> Troubleshooting</h3>
-<div id="configure-git-from-terminal" class="section level4">
+<div id="configure-git-from-terminal" class="section level4" number="3.10.3.1">
 <h4><span class="header-section-number">3.10.3.1</span> Configure git from Terminal</h4>
 <p>If <code>usethis</code> fails, the following is the classic approach to configuring <strong>git</strong>. Open the Git Bash program (Windows) or the Terminal (Mac) and type the following:</p>
 <pre><code>    # display your version of git
@@ -827,10 +882,10 @@ also in the File menu).</p>
     git config --list</code></pre>
 <p>This will configure git with global (<code>--global</code>) commands, which means it will apply ‘globally’ to all your future github repositories, rather than only to this one now. <strong>Note for PCs</strong>: We’ve seen PC failures correct themselves by doing the above but omitting <code>--global</code>. (Then you will need to configure GitHub for every repo you clone but that is fine for now).</p>
 </div>
-<div id="troubleshooting-1" class="section level4">
+<div id="troubleshooting-1" class="section level4" number="3.10.3.2">
 <h4><span class="header-section-number">3.10.3.2</span> Troubleshooting</h4>
 <p>All troubleshooting starts with reading Happy Git With R’s <a href="http://happygitwithr.com/troubleshooting.html">RStudio, Git, GitHub Hell</a> troubleshooting chapter.</p>
-<div id="newish-error-on-a-mac" class="section level5">
+<div id="newish-error-on-a-mac" class="section level5" number="3.10.3.2.1">
 <h5><span class="header-section-number">3.10.3.2.1</span> New(ish) Error on a Mac</h5>
 <p>We’ve also seen the following errors from RStudio:</p>
 <pre><code>error key does not contain a section --global terminal</code></pre>
@@ -855,7 +910,7 @@ also in the File menu).</p>
 </div>
 </div>
 </div>
-<div id="end-rstudiormarkdown-session" class="section level3">
+<div id="end-rstudiormarkdown-session" class="section level3" number="3.10.4">
 <h3><span class="header-section-number">3.10.4</span> END <strong>RStudio/RMarkdown</strong> session!</h3>
 
 </div>

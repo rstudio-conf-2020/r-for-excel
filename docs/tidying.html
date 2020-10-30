@@ -24,7 +24,7 @@
 <meta name="author" content="Julie Lowndes &amp; Allison Horst" />
 
 
-<meta name="date" content="2020-07-16" />
+<meta name="date" content="2020-10-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="pivot-tables.html"/>
 <link rel="next" href="filter-join.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,18 +55,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -135,31 +135,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/rstudio-conf-2020/r-for-excel/">← Go to GitHub repo</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#agenda"><i class="fa fa-check"></i><b>1.1</b> Agenda</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-citations"><i class="fa fa-check"></i><b>1.3</b> Data citations</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a><ul>
-<li class="chapter" data-level="2.1" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a><ul>
+<li class="chapter" data-level="2" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>2</b> Overview</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i><b>2.1</b> Welcome!</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="overview.html"><a href="overview.html#you-are-all-welcome-here"><i class="fa fa-check"></i><b>2.1.1</b> You are all welcome here</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="overview.html"><a href="overview.html#guiding-principles-recurring-themes"><i class="fa fa-check"></i><b>2.2</b> Guiding principles / recurring themes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a><ul>
-<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a><ul>
+<li class="chapter" data-level="3" data-path="rstudio.html"><a href="rstudio.html"><i class="fa fa-check"></i><b>3</b> R &amp; RStudio, RMarkdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>3.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>3.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="3.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>3.1.2</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-orientation"><i class="fa fa-check"></i><b>3.2</b> RStudio Orientation</a></li>
-<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Intro to RMarkdown</a><ul>
+<li class="chapter" data-level="3.3" data-path="rstudio.html"><a href="rstudio.html#intro-to-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Intro to RMarkdown</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="rstudio.html"><a href="rstudio.html#create-an-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.1</b> Create an RMarkdown file</a></li>
 <li class="chapter" data-level="3.3.2" data-path="rstudio.html"><a href="rstudio.html#knit-your-rmarkdown-file"><i class="fa fa-check"></i><b>3.3.2</b> Knit your RMarkdown file</a></li>
 <li class="chapter" data-level="3.3.3" data-path="rstudio.html"><a href="rstudio.html#markdown-text"><i class="fa fa-check"></i><b>3.3.3</b> Markdown text</a></li>
 <li class="chapter" data-level="3.3.4" data-path="rstudio.html"><a href="rstudio.html#r-code"><i class="fa fa-check"></i><b>3.3.4</b> R code</a></li>
 <li class="chapter" data-level="3.3.5" data-path="rstudio.html"><a href="rstudio.html#code-chunks"><i class="fa fa-check"></i><b>3.3.5</b> Code chunks</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a><ul>
+<li class="chapter" data-level="3.4" data-path="rstudio.html"><a href="rstudio.html#r-code-in-the-console"><i class="fa fa-check"></i><b>3.4</b> R code in the Console</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="rstudio.html"><a href="rstudio.html#error-messages"><i class="fa fa-check"></i><b>3.4.1</b> Error messages</a></li>
 <li class="chapter" data-level="3.4.2" data-path="rstudio.html"><a href="rstudio.html#running-rmarkdown-code-chunks"><i class="fa fa-check"></i><b>3.4.2</b> Running RMarkdown code chunks</a></li>
 <li class="chapter" data-level="3.4.3" data-path="rstudio.html"><a href="rstudio.html#writing-code-in-a-file-vs.-console"><i class="fa fa-check"></i><b>3.4.3</b> Writing code in a file vs. Console</a></li>
@@ -168,73 +175,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6" data-path="rstudio.html"><a href="rstudio.html#help-pages"><i class="fa fa-check"></i><b>3.6</b> Help pages</a></li>
 <li class="chapter" data-level="3.7" data-path="rstudio.html"><a href="rstudio.html#commenting"><i class="fa fa-check"></i><b>3.7</b> Commenting</a></li>
 <li class="chapter" data-level="3.8" data-path="rstudio.html"><a href="rstudio.html#assigning-objects-with--"><i class="fa fa-check"></i><b>3.8</b> Assigning objects with <code>&lt;-</code></a></li>
-<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a><ul>
+<li class="chapter" data-level="3.9" data-path="rstudio.html"><a href="rstudio.html#r-packages"><i class="fa fa-check"></i><b>3.9</b> R Packages</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="rstudio.html"><a href="rstudio.html#how-do-you-know-what-packagesfunctions-exist"><i class="fa fa-check"></i><b>3.9.1</b> How do you know what packages/functions exist?</a></li>
 <li class="chapter" data-level="3.9.2" data-path="rstudio.html"><a href="rstudio.html#installing-r-packages"><i class="fa fa-check"></i><b>3.9.2</b> Installing R Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#github-brief-intro-config"><i class="fa fa-check"></i><b>3.10</b> GitHub brief intro &amp; config</a><ul>
+<li class="chapter" data-level="3.10" data-path="rstudio.html"><a href="rstudio.html#github-brief-intro-config"><i class="fa fa-check"></i><b>3.10</b> GitHub brief intro &amp; config</a>
+<ul>
 <li class="chapter" data-level="3.10.1" data-path="rstudio.html"><a href="rstudio.html#configure-github"><i class="fa fa-check"></i><b>3.10.1</b> Configure GitHub</a></li>
 <li class="chapter" data-level="3.10.2" data-path="rstudio.html"><a href="rstudio.html#ensure-that-gitgithubrstudio-are-communicating"><i class="fa fa-check"></i><b>3.10.2</b> Ensure that Git/GitHub/RStudio are communicating</a></li>
 <li class="chapter" data-level="3.10.3" data-path="rstudio.html"><a href="rstudio.html#troubleshooting"><i class="fa fa-check"></i><b>3.10.3</b> Troubleshooting</a></li>
 <li class="chapter" data-level="3.10.4" data-path="rstudio.html"><a href="rstudio.html#end-rstudiormarkdown-session"><i class="fa fa-check"></i><b>3.10.4</b> END <strong>RStudio/RMarkdown</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a><ul>
-<li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>4.1</b> Summary</a><ul>
+<li class="chapter" data-level="4" data-path="github.html"><a href="github.html"><i class="fa fa-check"></i><b>4</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>4.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>4.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="4.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>4.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.2</b> Why should R users use Github?</a><ul>
+<li class="chapter" data-level="4.2" data-path="github.html"><a href="github.html#why-should-r-users-use-github"><i class="fa fa-check"></i><b>4.2</b> Why should R users use Github?</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="github.html"><a href="github.html#what-is-github-and-git"><i class="fa fa-check"></i><b>4.2.1</b> What is Github? And Git?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.3</b> Create a repository on Github.com</a></li>
-<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.4</b> Clone your repository using RStudio</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="github.html"><a href="github.html#copy-the-repo-address"><i class="fa fa-check"></i><b>4.4.1</b> Copy the repo address</a></li>
-<li class="chapter" data-level="4.4.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-new-project"><i class="fa fa-check"></i><b>4.4.2</b> RStudio: New Project</a></li>
-<li class="chapter" data-level="4.4.3" data-path="rstudio.html"><a href="rstudio.html#select-version-control"><i class="fa fa-check"></i><b>4.4.3</b> Select Version Control</a></li>
-<li class="chapter" data-level="4.4.4" data-path="rstudio.html"><a href="rstudio.html#select-git"><i class="fa fa-check"></i><b>4.4.4</b> Select Git</a></li>
-<li class="chapter" data-level="4.4.5" data-path="github.html"><a href="github.html#paste-the-repo-address"><i class="fa fa-check"></i><b>4.4.5</b> Paste the repo address</a></li>
-<li class="chapter" data-level="4.4.6" data-path="github.html"><a href="github.html#admire-your-local-repo"><i class="fa fa-check"></i><b>4.4.6</b> Admire your local repo</a></li>
-<li class="chapter" data-level="4.4.7" data-path="github.html"><a href="github.html#inspect-your-local-repo"><i class="fa fa-check"></i><b>4.4.7</b> Inspect your local repo</a></li>
-<li class="chapter" data-level="4.4.8" data-path="github.html"><a href="github.html#edit-your-readme-file"><i class="fa fa-check"></i><b>4.4.8</b> Edit your README file</a></li>
+<li class="chapter" data-level="4.3" data-path="github.html"><a href="github.html#github-configuration"><i class="fa fa-check"></i><b>4.3</b> Github Configuration</a></li>
+<li class="chapter" data-level="4.4" data-path="github.html"><a href="github.html#create-a-repository-on-github.com"><i class="fa fa-check"></i><b>4.4</b> Create a repository on Github.com</a></li>
+<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#clone-your-repository-using-rstudio"><i class="fa fa-check"></i><b>4.5</b> Clone your repository using RStudio</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="github.html"><a href="github.html#copy-the-repo-address"><i class="fa fa-check"></i><b>4.5.1</b> Copy the repo address</a></li>
+<li class="chapter" data-level="4.5.2" data-path="rstudio.html"><a href="rstudio.html#rstudio-new-project"><i class="fa fa-check"></i><b>4.5.2</b> RStudio: New Project</a></li>
+<li class="chapter" data-level="4.5.3" data-path="rstudio.html"><a href="rstudio.html#select-version-control"><i class="fa fa-check"></i><b>4.5.3</b> Select Version Control</a></li>
+<li class="chapter" data-level="4.5.4" data-path="rstudio.html"><a href="rstudio.html#select-git"><i class="fa fa-check"></i><b>4.5.4</b> Select Git</a></li>
+<li class="chapter" data-level="4.5.5" data-path="github.html"><a href="github.html#paste-the-repo-address"><i class="fa fa-check"></i><b>4.5.5</b> Paste the repo address</a></li>
+<li class="chapter" data-level="4.5.6" data-path="github.html"><a href="github.html#admire-your-local-repo"><i class="fa fa-check"></i><b>4.5.6</b> Admire your local repo</a></li>
+<li class="chapter" data-level="4.5.7" data-path="github.html"><a href="github.html#inspect-your-local-repo"><i class="fa fa-check"></i><b>4.5.7</b> Inspect your local repo</a></li>
+<li class="chapter" data-level="4.5.8" data-path="github.html"><a href="github.html#edit-your-readme-file"><i class="fa fa-check"></i><b>4.5.8</b> Edit your README file</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="github.html"><a href="github.html#sync-from-rstudio-local-to-github-remote"><i class="fa fa-check"></i><b>4.5</b> Sync from RStudio (local) to GitHub (remote)</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.5.1</b> Pull</a></li>
-<li class="chapter" data-level="4.5.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.5.2</b> Stage</a></li>
-<li class="chapter" data-level="4.5.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.5.3</b> Commit</a></li>
-<li class="chapter" data-level="4.5.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.5.4</b> Push</a></li>
+<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#sync-from-rstudio-local-to-github-remote"><i class="fa fa-check"></i><b>4.6</b> Sync from RStudio (local) to GitHub (remote)</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="github.html"><a href="github.html#pull"><i class="fa fa-check"></i><b>4.6.1</b> Pull</a></li>
+<li class="chapter" data-level="4.6.2" data-path="github.html"><a href="github.html#stage"><i class="fa fa-check"></i><b>4.6.2</b> Stage</a></li>
+<li class="chapter" data-level="4.6.3" data-path="github.html"><a href="github.html#commit"><i class="fa fa-check"></i><b>4.6.3</b> Commit</a></li>
+<li class="chapter" data-level="4.6.4" data-path="github.html"><a href="github.html#push"><i class="fa fa-check"></i><b>4.6.4</b> Push</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="github.html"><a href="github.html#commit-history"><i class="fa fa-check"></i><b>4.6</b> Commit history</a></li>
-<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#project-oriented-workflows"><i class="fa fa-check"></i><b>4.7</b> Project-oriented workflows</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="github.html"><a href="github.html#working-directory"><i class="fa fa-check"></i><b>4.7.1</b> Working directory</a></li>
+<li class="chapter" data-level="4.7" data-path="github.html"><a href="github.html#commit-history"><i class="fa fa-check"></i><b>4.7</b> Commit history</a></li>
+<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#project-oriented-workflows"><i class="fa fa-check"></i><b>4.8</b> Project-oriented workflows</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="github.html"><a href="github.html#working-directory"><i class="fa fa-check"></i><b>4.8.1</b> Working directory</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="github.html"><a href="github.html#project-oriented-workflows-in-action-aka-our-analytical-setup"><i class="fa fa-check"></i><b>4.8</b> Project-oriented workflows in action (aka our analytical setup)</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="github.html"><a href="github.html#create-a-new-rmd-file"><i class="fa fa-check"></i><b>4.8.1</b> Create a new Rmd file</a></li>
-<li class="chapter" data-level="4.8.2" data-path="github.html"><a href="github.html#create-data-and-figures-folders"><i class="fa fa-check"></i><b>4.8.2</b> Create data and figures folders</a></li>
-<li class="chapter" data-level="4.8.3" data-path="github.html"><a href="github.html#move-data-files-to-data-folder"><i class="fa fa-check"></i><b>4.8.3</b> Move data files to data folder</a></li>
-<li class="chapter" data-level="4.8.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>4.8.4</b> Activity</a></li>
+<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#project-oriented-workflows-in-action-aka-our-analytical-setup"><i class="fa fa-check"></i><b>4.9</b> Project-oriented workflows in action (aka our analytical setup)</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="github.html"><a href="github.html#create-a-new-rmd-file"><i class="fa fa-check"></i><b>4.9.1</b> Create a new Rmd file</a></li>
+<li class="chapter" data-level="4.9.2" data-path="github.html"><a href="github.html#create-data-and-figures-folders"><i class="fa fa-check"></i><b>4.9.2</b> Create data and figures folders</a></li>
+<li class="chapter" data-level="4.9.3" data-path="github.html"><a href="github.html#move-data-files-to-data-folder"><i class="fa fa-check"></i><b>4.9.3</b> Move data files to data folder</a></li>
+<li class="chapter" data-level="4.9.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>4.9.4</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.9</b> Committing - how often? Tracking changes in your files</a></li>
-<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#issues"><i class="fa fa-check"></i><b>4.10</b> Issues</a><ul>
-<li class="chapter" data-level="4.10.1" data-path="github.html"><a href="github.html#issues-in-the-wild"><i class="fa fa-check"></i><b>4.10.1</b> Issues in the wild!</a></li>
-<li class="chapter" data-level="4.10.2" data-path="github.html"><a href="github.html#end-github-session"><i class="fa fa-check"></i><b>4.10.2</b> END <strong>GitHub</strong> session!</a></li>
+<li class="chapter" data-level="4.10" data-path="github.html"><a href="github.html#committing---how-often-tracking-changes-in-your-files"><i class="fa fa-check"></i><b>4.10</b> Committing - how often? Tracking changes in your files</a></li>
+<li class="chapter" data-level="4.11" data-path="github.html"><a href="github.html#issues"><i class="fa fa-check"></i><b>4.11</b> Issues</a>
+<ul>
+<li class="chapter" data-level="4.11.1" data-path="github.html"><a href="github.html#issues-in-the-wild"><i class="fa fa-check"></i><b>4.11.1</b> Issues in the wild!</a></li>
+<li class="chapter" data-level="4.11.2" data-path="github.html"><a href="github.html#end-github-session"><i class="fa fa-check"></i><b>4.11.2</b> END <strong>GitHub</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a><ul>
-<li class="chapter" data-level="5.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>5.1</b> Summary</a><ul>
+<li class="chapter" data-level="5" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>5</b> Graphs with ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>5.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>5.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="5.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>5.1.2</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="ggplot2.html"><a href="ggplot2.html#getting-started---in-existing-.rmd-attach-packages"><i class="fa fa-check"></i><b>5.2</b> Getting started - In existing .Rmd, attach packages</a></li>
-<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#read-in-.xlsx-and-.csv-files"><i class="fa fa-check"></i><b>5.3</b> Read in .xlsx and .csv files</a><ul>
+<li class="chapter" data-level="5.3" data-path="ggplot2.html"><a href="ggplot2.html#read-in-.xlsx-and-.csv-files"><i class="fa fa-check"></i><b>5.3</b> Read in .xlsx and .csv files</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="ggplot2.html"><a href="ggplot2.html#read_csv-to-read-in-comma-separated-value-.csv-files"><i class="fa fa-check"></i><b>5.3.1</b> <code>read_csv()</code> to read in comma-separated-value (.csv) files</a></li>
 <li class="chapter" data-level="5.3.2" data-path="ggplot2.html"><a href="ggplot2.html#readxl-to-read-in-excel-files"><i class="fa fa-check"></i><b>5.3.2</b> <code>readxl</code> to read in Excel files</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="ggplot2.html"><a href="ggplot2.html#our-first-ggplot-graph-visitors-to-channel-islands-np"><i class="fa fa-check"></i><b>5.4</b> Our first ggplot graph: Visitors to Channel Islands NP</a></li>
-<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.5</b> Intro to customizing <code>ggplot</code> graphs</a><ul>
+<li class="chapter" data-level="5.5" data-path="ggplot2.html"><a href="ggplot2.html#intro-to-customizing-ggplot-graphs"><i class="fa fa-check"></i><b>5.5</b> Intro to customizing <code>ggplot</code> graphs</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-customize-your-own-ggplot-graph"><i class="fa fa-check"></i><b>5.5.1</b> Activity: customize your own ggplot graph</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.6</b> Mapping variables onto aesthetics</a><ul>
+<li class="chapter" data-level="5.6" data-path="ggplot2.html"><a href="ggplot2.html#mapping-variables-onto-aesthetics"><i class="fa fa-check"></i><b>5.6</b> Mapping variables onto aesthetics</a>
+<ul>
 <li class="chapter" data-level="5.6.1" data-path="ggplot2.html"><a href="ggplot2.html#activity-map-variables-onto-graph-aesthetics"><i class="fa fa-check"></i><b>5.6.1</b> Activity: map variables onto graph aesthetics</a></li>
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-complete-themes"><i class="fa fa-check"></i><b>5.7</b> ggplot2 complete themes</a></li>
@@ -242,25 +265,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9" data-path="ggplot2.html"><a href="ggplot2.html#combining-compatible-geoms"><i class="fa fa-check"></i><b>5.9</b> Combining compatible geoms</a></li>
 <li class="chapter" data-level="5.10" data-path="ggplot2.html"><a href="ggplot2.html#multi-series-ggplot-graphs"><i class="fa fa-check"></i><b>5.10</b> Multi-series ggplot graphs</a></li>
 <li class="chapter" data-level="5.11" data-path="ggplot2.html"><a href="ggplot2.html#faceting-ggplot-graphs"><i class="fa fa-check"></i><b>5.11</b> Faceting ggplot graphs</a></li>
-<li class="chapter" data-level="5.12" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.12</b> Exporting a ggplot graph with <code>ggsave()</code></a><ul>
+<li class="chapter" data-level="5.12" data-path="ggplot2.html"><a href="ggplot2.html#exporting-a-ggplot-graph-with-ggsave"><i class="fa fa-check"></i><b>5.12</b> Exporting a ggplot graph with <code>ggsave()</code></a>
+<ul>
 <li class="chapter" data-level="5.12.1" data-path="ggplot2.html"><a href="ggplot2.html#end-ggplot-session"><i class="fa fa-check"></i><b>5.12.1</b> End <code>ggplot</code> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="pivot-tables.html"><a href="pivot-tables.html"><i class="fa fa-check"></i><b>6</b> Pivot Tables with <code>dplyr</code></a><ul>
-<li class="chapter" data-level="6.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>6.1</b> Summary</a><ul>
+<li class="chapter" data-level="6" data-path="pivot-tables.html"><a href="pivot-tables.html"><i class="fa fa-check"></i><b>6</b> Pivot Tables with <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>6.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>6.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="6.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>6.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="pivot-tables.html"><a href="pivot-tables.html#overview-setup"><i class="fa fa-check"></i><b>6.2</b> Overview &amp; setup</a><ul>
+<li class="chapter" data-level="6.2" data-path="pivot-tables.html"><a href="pivot-tables.html#overview-setup"><i class="fa fa-check"></i><b>6.2</b> Overview &amp; setup</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="pivot-tables.html"><a href="pivot-tables.html#view-data-in-excel"><i class="fa fa-check"></i><b>6.2.1</b> View data in Excel</a></li>
 <li class="chapter" data-level="6.2.2" data-path="pivot-tables.html"><a href="pivot-tables.html#rmarkdown-setup"><i class="fa fa-check"></i><b>6.2.2</b> RMarkdown setup</a></li>
 <li class="chapter" data-level="6.2.3" data-path="pivot-tables.html"><a href="pivot-tables.html#our-task"><i class="fa fa-check"></i><b>6.2.3</b> Our task</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.3</b> Pivot table demo</a><ul>
+<li class="chapter" data-level="6.3" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-table-demo"><i class="fa fa-check"></i><b>6.3</b> Pivot table demo</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-one-variable"><i class="fa fa-check"></i><b>6.3.1</b> pivot one variable</a></li>
 <li class="chapter" data-level="6.3.2" data-path="pivot-tables.html"><a href="pivot-tables.html#pivot-two-variables"><i class="fa fa-check"></i><b>6.3.2</b> pivot two variables</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-summarize"><i class="fa fa-check"></i><b>6.4</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a><ul>
+<li class="chapter" data-level="6.4" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-summarize"><i class="fa fa-check"></i><b>6.4</b> <code>group_by()</code> %&gt;% <code>summarize()</code></a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-one-variable"><i class="fa fa-check"></i><b>6.4.1</b> <code>group_by</code> one variable</a></li>
 <li class="chapter" data-level="6.4.2" data-path="pivot-tables.html"><a href="pivot-tables.html#group_by-multiple-variables"><i class="fa fa-check"></i><b>6.4.2</b> <code>group_by</code> multiple variables</a></li>
 <li class="chapter" data-level="6.4.3" data-path="pivot-tables.html"><a href="pivot-tables.html#summarize-multiple-variables"><i class="fa fa-check"></i><b>6.4.3</b> <code>summarize</code> multiple variables</a></li>
@@ -268,43 +297,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4.5" data-path="pivot-tables.html"><a href="pivot-tables.html#r-code-in-line-in-rmarkdown"><i class="fa fa-check"></i><b>6.4.5</b> R code in-line in RMarkdown</a></li>
 <li class="chapter" data-level="6.4.6" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>6.4.6</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="pivot-tables.html"><a href="pivot-tables.html#oh-no-they-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.5</b> Oh no, they sent the wrong data!</a><ul>
+<li class="chapter" data-level="6.5" data-path="pivot-tables.html"><a href="pivot-tables.html#oh-no-they-sent-the-wrong-data"><i class="fa fa-check"></i><b>6.5</b> Oh no, they sent the wrong data!</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="pivot-tables.html"><a href="pivot-tables.html#knit-push-show-differences-on-github"><i class="fa fa-check"></i><b>6.5.1</b> Knit, push, &amp; show differences on GitHub</a></li>
 <li class="chapter" data-level="6.5.2" data-path="pivot-tables.html"><a href="pivot-tables.html#dplyrcount"><i class="fa fa-check"></i><b>6.5.2</b> <code>dplyr::count()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="pivot-tables.html"><a href="pivot-tables.html#mutate"><i class="fa fa-check"></i><b>6.6</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="6.7" data-path="pivot-tables.html"><a href="pivot-tables.html#select"><i class="fa fa-check"></i><b>6.7</b> <code>select()</code></a><ul>
+<li class="chapter" data-level="6.7" data-path="pivot-tables.html"><a href="pivot-tables.html#select"><i class="fa fa-check"></i><b>6.7</b> <code>select()</code></a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="pivot-tables.html"><a href="pivot-tables.html#end-dplyr-pivot-tables-session"><i class="fa fa-check"></i><b>6.7.1</b> END <strong>dplyr-pivot-tables</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a><ul>
-<li class="chapter" data-level="7.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>7.1</b> Summary</a><ul>
+<li class="chapter" data-level="7" data-path="tidying.html"><a href="tidying.html"><i class="fa fa-check"></i><b>7</b> Tidying</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>7.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="tidying.html"><a href="tidying.html#tidy-data"><i class="fa fa-check"></i><b>7.1.1</b> Tidy data</a></li>
 <li class="chapter" data-level="7.1.2" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>7.1.2</b> Objectives</a></li>
 <li class="chapter" data-level="7.1.3" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>7.1.3</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#set-up"><i class="fa fa-check"></i><b>7.2</b> Set-up</a><ul>
+<li class="chapter" data-level="7.2" data-path="tidying.html"><a href="tidying.html#set-up"><i class="fa fa-check"></i><b>7.2</b> Set-up</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="tidying.html"><a href="tidying.html#create-a-new-r-markdown-and-attach-packages"><i class="fa fa-check"></i><b>7.2.1</b> Create a new R Markdown and attach packages</a></li>
 <li class="chapter" data-level="7.2.2" data-path="tidying.html"><a href="tidying.html#read_excel-to-read-in-data-from-an-excel-worksheet"><i class="fa fa-check"></i><b>7.2.2</b> <code>read_excel()</code> to read in data from an Excel worksheet</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="tidying.html"><a href="tidying.html#tidyrpivot_longer-to-reshape-from-wider-to-longer-format"><i class="fa fa-check"></i><b>7.3</b> <code>tidyr::pivot_longer()</code> to reshape from wider-to-longer format</a></li>
 <li class="chapter" data-level="7.4" data-path="tidying.html"><a href="tidying.html#tidyrpivot_wider-to-convert-from-longer-to-wider-format"><i class="fa fa-check"></i><b>7.4</b> <code>tidyr::pivot_wider()</code> to convert from longer-to-wider format</a></li>
 <li class="chapter" data-level="7.5" data-path="tidying.html"><a href="tidying.html#janitorclean_names-to-clean-up-column-names"><i class="fa fa-check"></i><b>7.5</b> <code>janitor::clean_names()</code> to clean up column names</a></li>
-<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#tidyrunite-and-tidyrseparate-to-combine-or-separate-information-in-columns"><i class="fa fa-check"></i><b>7.6</b> <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to combine or separate information in column(s)</a><ul>
+<li class="chapter" data-level="7.6" data-path="tidying.html"><a href="tidying.html#tidyrunite-and-tidyrseparate-to-combine-or-separate-information-in-columns"><i class="fa fa-check"></i><b>7.6</b> <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to combine or separate information in column(s)</a>
+<ul>
 <li class="chapter" data-level="7.6.1" data-path="tidying.html"><a href="tidying.html#tidyrunite-to-merge-information-from-separate-columns"><i class="fa fa-check"></i><b>7.6.1</b> <code>tidyr::unite()</code> to merge information from separate columns</a></li>
 <li class="chapter" data-level="7.6.2" data-path="tidying.html"><a href="tidying.html#tidyrseparate-to-separate-information-into-multiple-columns"><i class="fa fa-check"></i><b>7.6.2</b> <code>tidyr::separate()</code> to separate information into multiple columns</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#stringrstr_replace-to-replace-a-pattern"><i class="fa fa-check"></i><b>7.7</b> <code>stringr::str_replace()</code> to replace a pattern</a><ul>
+<li class="chapter" data-level="7.7" data-path="tidying.html"><a href="tidying.html#stringrstr_replace-to-replace-a-pattern"><i class="fa fa-check"></i><b>7.7</b> <code>stringr::str_replace()</code> to replace a pattern</a>
+<ul>
 <li class="chapter" data-level="7.7.1" data-path="tidying.html"><a href="tidying.html#end-tidying-session"><i class="fa fa-check"></i><b>7.7.1</b> END <strong>tidying</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="filter-join.html"><a href="filter-join.html"><i class="fa fa-check"></i><b>8</b> Filters and joins</a><ul>
-<li class="chapter" data-level="8.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>8.1</b> Summary</a><ul>
+<li class="chapter" data-level="8" data-path="filter-join.html"><a href="filter-join.html"><i class="fa fa-check"></i><b>8</b> Filters and joins</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>8.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>8.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="8.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>8.1.2</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="filter-join.html"><a href="filter-join.html#set-up-create-a-new-.rmd-attach-packages-get-data"><i class="fa fa-check"></i><b>8.2</b> Set-up: Create a new .Rmd, attach packages &amp; get data</a></li>
-<li class="chapter" data-level="8.3" data-path="filter-join.html"><a href="filter-join.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a><ul>
+<li class="chapter" data-level="8.3" data-path="filter-join.html"><a href="filter-join.html#dplyrfilter-to-conditionally-subset-by-rows"><i class="fa fa-check"></i><b>8.3</b> <code>dplyr::filter()</code> to conditionally subset by rows</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="filter-join.html"><a href="filter-join.html#filter-rows-by-matching-a-single-character-string"><i class="fa fa-check"></i><b>8.3.1</b> Filter rows by matching a single character string</a></li>
 <li class="chapter" data-level="8.3.2" data-path="filter-join.html"><a href="filter-join.html#filter-rows-based-on-numeric-conditions"><i class="fa fa-check"></i><b>8.3.2</b> Filter rows based on numeric conditions</a></li>
 <li class="chapter" data-level="8.3.3" data-path="filter-join.html"><a href="filter-join.html#filter-to-return-rows-that-match-this-or-that-or-that"><i class="fa fa-check"></i><b>8.3.3</b> Filter to return rows that match <em>this</em> OR <em>that</em> OR <em>that</em></a></li>
@@ -313,35 +352,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.6" data-path="filter-join.html"><a href="filter-join.html#stringrstr_detect-to-filter-by-a-partial-pattern"><i class="fa fa-check"></i><b>8.3.6</b> <code>stringr::str_detect()</code> to filter by a partial pattern</a></li>
 <li class="chapter" data-level="8.3.7" data-path="filter-join.html"><a href="filter-join.html#activity-2"><i class="fa fa-check"></i><b>8.3.7</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="filter-join.html"><a href="filter-join.html#dplyr_join-to-merge-data-frames"><i class="fa fa-check"></i><b>8.4</b> <code>dplyr::*_join()</code> to merge data frames</a><ul>
+<li class="chapter" data-level="8.4" data-path="filter-join.html"><a href="filter-join.html#dplyr_join-to-merge-data-frames"><i class="fa fa-check"></i><b>8.4</b> <code>dplyr::*_join()</code> to merge data frames</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="filter-join.html"><a href="filter-join.html#full_join-to-merge-data-frames-keeping-everything"><i class="fa fa-check"></i><b>8.4.1</b> <code>full_join()</code> to merge data frames, keeping everything</a></li>
 <li class="chapter" data-level="8.4.2" data-path="filter-join.html"><a href="filter-join.html#left_joinxy-to-merge-data-frames-keeping-everything-in-the-x-data-frame-and-only-matches-from-the-y-data-frame"><i class="fa fa-check"></i><b>8.4.2</b> <code>left_join(x,y)</code> to merge data frames, keeping everything in the ‘x’ data frame and only matches from the ‘y’ data frame</a></li>
 <li class="chapter" data-level="8.4.3" data-path="filter-join.html"><a href="filter-join.html#inner_join-to-merge-data-frames-only-keeping-observations-with-a-match-in-both"><i class="fa fa-check"></i><b>8.4.3</b> <code>inner_join()</code> to merge data frames, only keeping observations with a match in <strong>both</strong></a></li>
 <li class="chapter" data-level="8.4.4" data-path="filter-join.html"><a href="filter-join.html#filter-and-join-in-a-sequence"><i class="fa fa-check"></i><b>8.4.4</b> <code>filter()</code> and <code>join()</code> in a sequence</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="filter-join.html"><a href="filter-join.html#an-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> An HTML table with <code>kable()</code> and <code>kableExtra</code></a><ul>
+<li class="chapter" data-level="8.5" data-path="filter-join.html"><a href="filter-join.html#an-html-table-with-kable-and-kableextra"><i class="fa fa-check"></i><b>8.5</b> An HTML table with <code>kable()</code> and <code>kableExtra</code></a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="filter-join.html"><a href="filter-join.html#end-filter-_join-section"><i class="fa fa-check"></i><b>8.5.1</b> End <code>filter()</code> + <code>_join()</code> section!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating &amp; getting help</a><ul>
-<li class="chapter" data-level="9.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>9.1</b> Summary</a><ul>
+<li class="chapter" data-level="9" data-path="collaborating.html"><a href="collaborating.html"><i class="fa fa-check"></i><b>9</b> Collaborating &amp; getting help</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>9.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>9.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="9.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>9.1.2</b> Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="collaborating.html"><a href="collaborating.html#r-communities"><i class="fa fa-check"></i><b>9.2</b> R communities</a><ul>
+<li class="chapter" data-level="9.2" data-path="collaborating.html"><a href="collaborating.html#r-communities"><i class="fa fa-check"></i><b>9.2</b> R communities</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="collaborating.html"><a href="collaborating.html#community-awesomeness"><i class="fa fa-check"></i><b>9.2.1</b> Community awesomeness</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="collaborating.html"><a href="collaborating.html#how-to-use-twitter-for-rstats"><i class="fa fa-check"></i><b>9.3</b> How to use Twitter for #rstats</a><ul>
+<li class="chapter" data-level="9.3" data-path="collaborating.html"><a href="collaborating.html#how-to-use-twitter-for-rstats"><i class="fa fa-check"></i><b>9.3</b> How to use Twitter for #rstats</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="collaborating.html"><a href="collaborating.html#examples"><i class="fa fa-check"></i><b>9.3.1</b> Examples</a></li>
 <li class="chapter" data-level="9.3.2" data-path="collaborating.html"><a href="collaborating.html#how-to-twitter"><i class="fa fa-check"></i><b>9.3.2</b> How to Twitter</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="collaborating.html"><a href="collaborating.html#getting-help"><i class="fa fa-check"></i><b>9.4</b> Getting help</a><ul>
+<li class="chapter" data-level="9.4" data-path="collaborating.html"><a href="collaborating.html#getting-help"><i class="fa fa-check"></i><b>9.4</b> Getting help</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="collaborating.html"><a href="collaborating.html#read-the-error-message"><i class="fa fa-check"></i><b>9.4.1</b> Read the error message</a></li>
 <li class="chapter" data-level="9.4.2" data-path="collaborating.html"><a href="collaborating.html#googling"><i class="fa fa-check"></i><b>9.4.2</b> Googling</a></li>
 <li class="chapter" data-level="9.4.3" data-path="collaborating.html"><a href="collaborating.html#create-a-reprex"><i class="fa fa-check"></i><b>9.4.3</b> Create a reprex</a></li>
 <li class="chapter" data-level="9.4.4" data-path="rstudio.html"><a href="rstudio.html#activity"><i class="fa fa-check"></i><b>9.4.4</b> Activity</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="collaborating.html"><a href="collaborating.html#collaborating-with-github"><i class="fa fa-check"></i><b>9.5</b> Collaborating with GitHub</a><ul>
+<li class="chapter" data-level="9.5" data-path="collaborating.html"><a href="collaborating.html#collaborating-with-github"><i class="fa fa-check"></i><b>9.5</b> Collaborating with GitHub</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="collaborating.html"><a href="collaborating.html#create-repo-partner-1"><i class="fa fa-check"></i><b>9.5.1</b> Create repo (Partner 1)</a></li>
 <li class="chapter" data-level="9.5.2" data-path="collaborating.html"><a href="collaborating.html#create-a-gh-pages-branch-partner-1"><i class="fa fa-check"></i><b>9.5.2</b> Create a gh-pages branch (Partner 1)</a></li>
 <li class="chapter" data-level="9.5.3" data-path="collaborating.html"><a href="collaborating.html#give-your-collaborator-privileges-partner-1-and-2"><i class="fa fa-check"></i><b>9.5.3</b> Give your collaborator privileges (Partner 1 and 2)</a></li>
@@ -350,7 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5.6" data-path="collaborating.html"><a href="collaborating.html#create-data-folder-partner-2"><i class="fa fa-check"></i><b>9.5.6</b> Create data folder (Partner 2)</a></li>
 <li class="chapter" data-level="9.5.7" data-path="collaborating.html"><a href="collaborating.html#state-of-the-repository"><i class="fa fa-check"></i><b>9.5.7</b> State of the Repository</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="collaborating.html"><a href="collaborating.html#merge-conflicts"><i class="fa fa-check"></i><b>9.6</b> Merge conflicts</a><ul>
+<li class="chapter" data-level="9.6" data-path="collaborating.html"><a href="collaborating.html#merge-conflicts"><i class="fa fa-check"></i><b>9.6</b> Merge conflicts</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="collaborating.html"><a href="collaborating.html#pull-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.1</b> Pull (Partners 1 and 2)</a></li>
 <li class="chapter" data-level="9.6.2" data-path="collaborating.html"><a href="collaborating.html#create-a-conflict-partners-1-and-2"><i class="fa fa-check"></i><b>9.6.2</b> Create a conflict (Partners 1 and 2)</a></li>
 <li class="chapter" data-level="9.6.3" data-path="collaborating.html"><a href="collaborating.html#sync-partner-2"><i class="fa fa-check"></i><b>9.6.3</b> Sync (Partner 2)</a></li>
@@ -358,12 +406,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6.5" data-path="filter-join.html"><a href="filter-join.html#activity-1"><i class="fa fa-check"></i><b>9.6.5</b> Activity</a></li>
 <li class="chapter" data-level="9.6.6" data-path="collaborating.html"><a href="collaborating.html#how-do-you-avoid-merge-conflicts"><i class="fa fa-check"></i><b>9.6.6</b> How do you avoid merge conflicts?</a></li>
 </ul></li>
-<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a><ul>
+<li class="chapter" data-level="9.7" data-path="collaborating.html"><a href="collaborating.html#create-your-collaborative-website"><i class="fa fa-check"></i><b>9.7</b> Create your collaborative website</a>
+<ul>
 <li class="chapter" data-level="9.7.1" data-path="collaborating.html"><a href="collaborating.html#end-collaborating-session"><i class="fa fa-check"></i><b>9.7.1</b> END <strong>collaborating</strong> session!</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a><ul>
-<li class="chapter" data-level="10.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>10.1</b> Summary</a><ul>
+<li class="chapter" data-level="10" data-path="synthesis.html"><a href="synthesis.html"><i class="fa fa-check"></i><b>10</b> Synthesis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="rstudio.html"><a href="rstudio.html#summary"><i class="fa fa-check"></i><b>10.1</b> Summary</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="rstudio.html"><a href="rstudio.html#objectives"><i class="fa fa-check"></i><b>10.1.1</b> Objectives</a></li>
 <li class="chapter" data-level="10.1.2" data-path="rstudio.html"><a href="rstudio.html#resources"><i class="fa fa-check"></i><b>10.1.2</b> Resources</a></li>
 </ul></li>
@@ -373,7 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="synthesis.html"><a href="synthesis.html#make-a-graph-of-us-commercial-fisheries-value-by-species-over-time-with-ggplot2"><i class="fa fa-check"></i><b>10.5</b> Make a graph of US commercial fisheries value by species over time with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.6" data-path="synthesis.html"><a href="synthesis.html#built-in-color-palettes"><i class="fa fa-check"></i><b>10.6</b> Built-in color palettes</a></li>
 <li class="chapter" data-level="10.7" data-path="synthesis.html"><a href="synthesis.html#sync-with-github-remote"><i class="fa fa-check"></i><b>10.7</b> Sync with GitHub remote</a></li>
-<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#add-an-image-to-your-partners-document"><i class="fa fa-check"></i><b>10.8</b> Add an image to your partner’s document</a><ul>
+<li class="chapter" data-level="10.8" data-path="synthesis.html"><a href="synthesis.html#add-an-image-to-your-partners-document"><i class="fa fa-check"></i><b>10.8</b> Add an image to your partner’s document</a>
+<ul>
 <li class="chapter" data-level="10.8.1" data-path="synthesis.html"><a href="synthesis.html#end-synthesis-session"><i class="fa fa-check"></i><b>10.8.1</b> End Synthesis session!</a></li>
 </ul></li>
 </ul></li>
@@ -397,18 +449,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tidying" class="section level1">
+<div id="tidying" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Tidying</h1>
-<div id="summary" class="section level2">
+<div id="summary" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Summary</h2>
 <p>In previous sessions, we learned to read in data, do some wrangling, and create a graph and table.</p>
 <p>Here, we’ll continue by <em>reshaping</em> data frames (converting from long-to-wide, or wide-to-long format), <em>separating</em> and <em>uniting</em> variable (column) contents, and finding and replacing string patterns.</p>
-<div id="tidy-data" class="section level3">
+<div id="tidy-data" class="section level3" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Tidy data</h3>
 <p>“Tidy” might sound like a generic way to describe non-messy looking data, but it is actually a specific data structure. When data is <em>tidy</em>, it is rectangular with each variable as a column, each row an observation, and each cell contains a single value (see: <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 in R for Data Science by Grolemund &amp; Wickham</a>).</p>
 <p><img src="img/tidy_data.png" /></p>
 </div>
-<div id="objectives" class="section level3">
+<div id="objectives" class="section level3" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Objectives</h3>
 <p>In this session we’ll learn some tools to help make our data <strong>tidy</strong> and more coder-friendly. Those include:</p>
 <ul>
@@ -418,16 +470,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Detect or replace a string with <code>stringr</code> functions</li>
 </ul>
 </div>
-<div id="resources" class="section level3">
+<div id="resources" class="section level3" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> Resources</h3>
 <p>– <a href="https://r4ds.had.co.nz/tidy-data.html">Ch. 12 <em>Tidy Data</em>, in R for Data Science</a> by Grolemund &amp; Wickham
 - <a href="https://tidyr.tidyverse.org/"><code>tidyr</code> documentation from tidyverse.org</a>
 - <a href="https://github.com/sfirke/janitor"><code>janitor</code> repo / information</a> from Sam Firke</p>
 </div>
 </div>
-<div id="set-up" class="section level2">
+<div id="set-up" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Set-up</h2>
-<div id="create-a-new-r-markdown-and-attach-packages" class="section level3">
+<div id="create-a-new-r-markdown-and-attach-packages" class="section level3" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Create a new R Markdown and attach packages</h3>
 <ul>
 <li>Open your project from Day 1 (click on the .Rproj file)</li>
@@ -443,24 +495,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Knit and save your new .Rmd within the project folder.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="tidying.html#cb90-1"></a><span class="co"># Attach packages</span></span>
-<span id="cb90-2"><a href="tidying.html#cb90-2"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb90-3"><a href="tidying.html#cb90-3"></a><span class="kw">library</span>(janitor)</span>
-<span id="cb90-4"><a href="tidying.html#cb90-4"></a><span class="kw">library</span>(here)</span>
-<span id="cb90-5"><a href="tidying.html#cb90-5"></a><span class="kw">library</span>(readxl)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tidying.html#cb93-1"></a><span class="co"># Attach packages</span></span>
+<span id="cb93-2"><a href="tidying.html#cb93-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb93-3"><a href="tidying.html#cb93-3"></a><span class="kw">library</span>(janitor)</span>
+<span id="cb93-4"><a href="tidying.html#cb93-4"></a><span class="kw">library</span>(here)</span>
+<span id="cb93-5"><a href="tidying.html#cb93-5"></a><span class="kw">library</span>(readxl)</span></code></pre></div>
 </div>
-<div id="read_excel-to-read-in-data-from-an-excel-worksheet" class="section level3">
+<div id="read_excel-to-read-in-data-from-an-excel-worksheet" class="section level3" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> <code>read_excel()</code> to read in data from an Excel worksheet</h3>
 <p>We’ve used both <code>read_csv()</code> and <code>read_excel()</code> to import data from spreadsheets into R.</p>
 <p>Use <code>read_excel()</code> to read in the <strong>inverts.xlsx</strong> data as an objected called <strong>inverts</strong>.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="tidying.html#cb91-1"></a>inverts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;inverts.xlsx&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tidying.html#cb94-1"></a>inverts &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;inverts.xlsx&quot;</span>))</span></code></pre></div>
 <p>Be sure to explore the imported data a bit:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="tidying.html#cb92-1"></a><span class="kw">View</span>(inverts)</span>
-<span id="cb92-2"><a href="tidying.html#cb92-2"></a><span class="kw">names</span>(inverts)</span>
-<span id="cb92-3"><a href="tidying.html#cb92-3"></a><span class="kw">summary</span>(inverts)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="tidying.html#cb95-1"></a><span class="kw">View</span>(inverts)</span>
+<span id="cb95-2"><a href="tidying.html#cb95-2"></a><span class="kw">names</span>(inverts)</span>
+<span id="cb95-3"><a href="tidying.html#cb95-3"></a><span class="kw">summary</span>(inverts)</span></code></pre></div>
 </div>
 </div>
-<div id="tidyrpivot_longer-to-reshape-from-wider-to-longer-format" class="section level2">
+<div id="tidyrpivot_longer-to-reshape-from-wider-to-longer-format" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> <code>tidyr::pivot_longer()</code> to reshape from wider-to-longer format</h2>
 <p>If we look at <em>inverts</em>, we can see that the <em>year</em> variable is actually split over 3 columns, so we’d say this is currently in <strong>wide format</strong>.</p>
 <p>There may be times when you want to have data in wide format, but often with code it is more efficient to convert to <strong>long format</strong> by gathering together observations for a variable that is currently split into multiple columns.</p>
@@ -472,14 +524,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>one called <em>sp_count</em> containing the number of each species observed.</li>
 </ul>
 <p>The new data frame will be stored as <em>inverts_long</em>:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="tidying.html#cb93-1"></a><span class="co"># Note: Either single-quotes, double-quotes, OR backticks around years work!</span></span>
-<span id="cb93-2"><a href="tidying.html#cb93-2"></a></span>
-<span id="cb93-3"><a href="tidying.html#cb93-3"></a>inverts_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> inverts, </span>
-<span id="cb93-4"><a href="tidying.html#cb93-4"></a>                                    <span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>,</span>
-<span id="cb93-5"><a href="tidying.html#cb93-5"></a>                                    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb93-6"><a href="tidying.html#cb93-6"></a>                                    <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tidying.html#cb96-1"></a><span class="co"># Note: Either single-quotes, double-quotes, OR backticks around years work!</span></span>
+<span id="cb96-2"><a href="tidying.html#cb96-2"></a></span>
+<span id="cb96-3"><a href="tidying.html#cb96-3"></a>inverts_long &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(<span class="dt">data =</span> inverts, </span>
+<span id="cb96-4"><a href="tidying.html#cb96-4"></a>                                    <span class="dt">cols =</span> <span class="st">&#39;2016&#39;</span><span class="op">:</span><span class="st">&#39;2018&#39;</span>,</span>
+<span id="cb96-5"><a href="tidying.html#cb96-5"></a>                                    <span class="dt">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb96-6"><a href="tidying.html#cb96-6"></a>                                    <span class="dt">values_to =</span> <span class="st">&quot;sp_count&quot;</span>)</span></code></pre></div>
 <p>The outcome is the new long-format <em>inverts_long</em> data frame:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="tidying.html#cb94-1"></a>inverts_long</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="tidying.html#cb97-1"></a>inverts_long</span></code></pre></div>
 <pre><code>## # A tibble: 165 x 5
 ##    month site  common_name              year  sp_count
 ##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                    &lt;chr&gt;    &lt;dbl&gt;
@@ -497,27 +549,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Hooray, long format!</p>
 <p>One thing that isn’t obvious at first (but would become obvious if you continued working with this data) is that since those year numbers were initially column names (characters), when they are stacked into the <em>year</em> column, their class wasn’t auto-updated to numeric.</p>
 <p>Explore the class of <em>year</em> in <em>inverts_long</em>:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="tidying.html#cb96-1"></a><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tidying.html#cb99-1"></a><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>That’s a good thing! We don’t want R to update classes of our data without our instruction. We’ll use <code>dplyr::mutate()</code> in a different way here: to create a new column (that’s how we’ve used <code>mutate()</code> previously) that has the same name of an existing column, in order to update and overwrite the existing column.</p>
 <p>In this case, we’ll <code>mutate()</code> to add a column called <em>year</em>, which contains an <code>as.numeric()</code> version of the existing <em>year</em> variable:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="tidying.html#cb98-1"></a><span class="co"># Coerce &quot;year&quot; class to numeric: </span></span>
-<span id="cb98-2"><a href="tidying.html#cb98-2"></a></span>
-<span id="cb98-3"><a href="tidying.html#cb98-3"></a>inverts_long &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb98-4"><a href="tidying.html#cb98-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tidying.html#cb101-1"></a><span class="co"># Coerce &quot;year&quot; class to numeric: </span></span>
+<span id="cb101-2"><a href="tidying.html#cb101-2"></a></span>
+<span id="cb101-3"><a href="tidying.html#cb101-3"></a>inverts_long &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb101-4"><a href="tidying.html#cb101-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(year))</span></code></pre></div>
 <p>Checking the class again, we see that <em>year</em> has been updated to a numeric variable:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="tidying.html#cb99-1"></a><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="tidying.html#cb102-1"></a><span class="kw">class</span>(inverts_long<span class="op">$</span>year)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 </div>
-<div id="tidyrpivot_wider-to-convert-from-longer-to-wider-format" class="section level2">
+<div id="tidyrpivot_wider-to-convert-from-longer-to-wider-format" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> <code>tidyr::pivot_wider()</code> to convert from longer-to-wider format</h2>
 <p>In the previous example, we had information spread over multiple columns that we wanted to <em>gather</em>. Sometimes, we’ll have data that we want to <em>spread</em> over multiple columns.</p>
 <p>For example, imagine that starting from <em>inverts_long</em> we want each species in the <em>common_name</em> column to exist as its <strong>own column</strong>. In that case, we would be converting from a longer to a wider format, and will use <code>tidyr::pivot_wider()</code>.</p>
 <p>Specifically for our data, we’ll use <code>pivot_wider()</code> to spread the <em>common_name</em> across multiple columns as follows:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="tidying.html#cb101-1"></a>inverts_wide &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb101-2"><a href="tidying.html#cb101-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> common_name, </span>
-<span id="cb101-3"><a href="tidying.html#cb101-3"></a>                     <span class="dt">values_from =</span> sp_count)</span></code></pre></div>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="tidying.html#cb102-1"></a>inverts_wide</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="tidying.html#cb104-1"></a>inverts_wide &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb104-2"><a href="tidying.html#cb104-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> common_name, </span>
+<span id="cb104-3"><a href="tidying.html#cb104-3"></a>                     <span class="dt">values_from =</span> sp_count)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tidying.html#cb105-1"></a>inverts_wide</span></code></pre></div>
 <pre><code>## # A tibble: 33 x 8
 ##    month site   year `california con… `california spi… `orange cup cor…
 ##    &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
@@ -535,7 +587,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## #   scallop` &lt;dbl&gt;</code></pre>
 <p>We can see that now each <em>species</em> has its own column (wider format). But also notice that those column headers (since they have spaces) might not be in the most coder-friendly format…</p>
 </div>
-<div id="janitorclean_names-to-clean-up-column-names" class="section level2">
+<div id="janitorclean_names-to-clean-up-column-names" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> <code>janitor::clean_names()</code> to clean up column names</h2>
 <p>The <code>janitor</code> package by Sam Firke is a great collection of functions for some quick data cleaning, like:</p>
 <ul>
@@ -553,9 +605,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>2015</code> becomes <code>x2015</code></li>
 </ul>
 <p>If we wanted to then use these columns (which we probably would, since we created them), we could clean the names to get them into more coder-friendly lower_snake_case with <code>janitor::clean_names()</code>:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="tidying.html#cb104-1"></a>inverts_wide &lt;-<span class="st"> </span>inverts_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb104-2"><a href="tidying.html#cb104-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="tidying.html#cb105-1"></a><span class="kw">names</span>(inverts_wide)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tidying.html#cb107-1"></a>inverts_wide &lt;-<span class="st"> </span>inverts_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb107-2"><a href="tidying.html#cb107-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="tidying.html#cb108-1"></a><span class="kw">names</span>(inverts_wide)</span></code></pre></div>
 <pre><code>## [1] &quot;month&quot;                    &quot;site&quot;                    
 ## [3] &quot;year&quot;                     &quot;california_cone_snail&quot;   
 ## [5] &quot;california_spiny_lobster&quot; &quot;orange_cup_coral&quot;        
@@ -570,13 +622,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>“upper_lower” produces UPPERlower</li>
 </ul>
 </div>
-<div id="tidyrunite-and-tidyrseparate-to-combine-or-separate-information-in-columns" class="section level2">
+<div id="tidyrunite-and-tidyrseparate-to-combine-or-separate-information-in-columns" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to combine or separate information in column(s)</h2>
 <p>Sometimes we’ll want to <em>separate</em> contents of a single column into multiple columns, or <em>combine</em> entries from different columns into a single column.</p>
 <p>For example, the following data frame has <em>genus</em> and <em>species</em> in separate columns:</p>
 <p>We may want to combine the genus and species into a single column, <em>scientific_name</em>:</p>
 <p>Or we may want to do the reverse (separate information from a single column into multiple columns). Here, we’ll learn <code>tidyr::unite()</code> and <code>tidyr::separate()</code> to help us do both.</p>
-<div id="tidyrunite-to-merge-information-from-separate-columns" class="section level3">
+<div id="tidyrunite-to-merge-information-from-separate-columns" class="section level3" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> <code>tidyr::unite()</code> to merge information from separate columns</h3>
 <p>Use <code>tidyr::unite()</code> to combine information from multiple columns into a single column (as for the scientific name example above)</p>
 <p><img src="img/rstudio-cheatsheet-unite.png" /></p>
@@ -588,10 +640,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>the <strong>columns you are uniting</strong></li>
 <li><strong>sep:</strong> the symbol, value or character to put between the united information from each column</li>
 </ul>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="tidying.html#cb107-1"></a>inverts_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb107-2"><a href="tidying.html#cb107-2"></a><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;site_year&quot;</span>, <span class="co"># What to name the new united column</span></span>
-<span id="cb107-3"><a href="tidying.html#cb107-3"></a>               <span class="kw">c</span>(site, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></span>
-<span id="cb107-4"><a href="tidying.html#cb107-4"></a>               <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="co"># How to separate the things we&#39;re uniting</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="tidying.html#cb110-1"></a>inverts_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb110-2"><a href="tidying.html#cb110-2"></a><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;site_year&quot;</span>, <span class="co"># What to name the new united column</span></span>
+<span id="cb110-3"><a href="tidying.html#cb110-3"></a>               <span class="kw">c</span>(site, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></span>
+<span id="cb110-4"><a href="tidying.html#cb110-4"></a>               <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="co"># How to separate the things we&#39;re uniting</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   month site_year common_name              sp_count
 ##   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;                       &lt;dbl&gt;
@@ -601,23 +653,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 7     abur_2016 california spiny lobster       17
 ## 5 7     abur_2017 california spiny lobster       17
 ## 6 7     abur_2018 california spiny lobster       16</code></pre>
-<div id="activity" class="section level4">
+<div id="activity" class="section level4" number="7.6.1.1">
 <h4><span class="header-section-number">7.6.1.1</span> Activity:</h4>
 <p><strong>Task:</strong> Create a new object called ‘inverts_moyr’, starting from inverts_long, that unites the month and year columns into a single column named “mo_yr”, using a slash “/” as the separator. Then try updating the separator to something else! Like “<em>hello!</em>”.</p>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="tidying.html#cb109-1"></a>inverts_moyr &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb109-2"><a href="tidying.html#cb109-2"></a><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;mo_yr&quot;</span>, <span class="co"># What to name the new united column</span></span>
-<span id="cb109-3"><a href="tidying.html#cb109-3"></a>               <span class="kw">c</span>(month, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></span>
-<span id="cb109-4"><a href="tidying.html#cb109-4"></a>               <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="tidying.html#cb112-1"></a>inverts_moyr &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb112-2"><a href="tidying.html#cb112-2"></a><span class="st">  </span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;mo_yr&quot;</span>, <span class="co"># What to name the new united column</span></span>
+<span id="cb112-3"><a href="tidying.html#cb112-3"></a>               <span class="kw">c</span>(month, year), <span class="co"># The columns we&#39;ll unite (site, year)</span></span>
+<span id="cb112-4"><a href="tidying.html#cb112-4"></a>               <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) </span></code></pre></div>
 <p><strong>Merging information from &gt; 2 columns (not done in workshop)</strong></p>
 <p><code>tidyr::unite()</code> can also combine information from <em>more</em> than two columns. For example, to combine the <em>site</em>, <em>common_name</em> and <em>year</em> columns from <em>inverts_long</em>, we could use:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="tidying.html#cb110-1"></a><span class="co"># Uniting more than 2 columns: </span></span>
-<span id="cb110-2"><a href="tidying.html#cb110-2"></a></span>
-<span id="cb110-3"><a href="tidying.html#cb110-3"></a>inverts_triple_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb110-4"><a href="tidying.html#cb110-4"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;year_site_name&quot;</span>,</span>
-<span id="cb110-5"><a href="tidying.html#cb110-5"></a>               <span class="kw">c</span>(year, site, common_name),</span>
-<span id="cb110-6"><a href="tidying.html#cb110-6"></a>               <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="co"># Note: this is a dash</span></span></code></pre></div>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="tidying.html#cb111-1"></a><span class="kw">head</span>(inverts_triple_unite)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tidying.html#cb113-1"></a><span class="co"># Uniting more than 2 columns: </span></span>
+<span id="cb113-2"><a href="tidying.html#cb113-2"></a></span>
+<span id="cb113-3"><a href="tidying.html#cb113-3"></a>inverts_triple_unite &lt;-<span class="st"> </span>inverts_long <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb113-4"><a href="tidying.html#cb113-4"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">unite</span>(<span class="dt">col =</span> <span class="st">&quot;year_site_name&quot;</span>,</span>
+<span id="cb113-5"><a href="tidying.html#cb113-5"></a>               <span class="kw">c</span>(year, site, common_name),</span>
+<span id="cb113-6"><a href="tidying.html#cb113-6"></a>               <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>) <span class="co"># Note: this is a dash</span></span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="tidying.html#cb114-1"></a><span class="kw">head</span>(inverts_triple_unite)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   month year_site_name                     sp_count
 ##   &lt;chr&gt; &lt;chr&gt;                                 &lt;dbl&gt;
@@ -629,32 +681,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 7     2018-abur-california spiny lobster       16</code></pre>
 </div>
 </div>
-<div id="tidyrseparate-to-separate-information-into-multiple-columns" class="section level3">
+<div id="tidyrseparate-to-separate-information-into-multiple-columns" class="section level3" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> <code>tidyr::separate()</code> to separate information into multiple columns</h3>
 <p>While <code>tidyr::unite()</code> allows us to combine information from multiple columns, it’s more likely that you’ll <em>start</em> with a single column that you want to split up into pieces.</p>
 <p>For example, I might want to split up a column containing the <em>genus</em> and <em>species</em> (<em>Scorpaena guttata</em>) into two separate columns (<em>Scorpaena</em> | <em>guttata</em>), so that I can count how many <em>Scorpaena</em> organisms exist in my dataset at the genus level.</p>
 <p>Use <code>tidyr::separate()</code> to “separate a character column into multiple columns using a regular expression separator.”</p>
 <p><img src="img/rstudio-cheatsheet-separate.png" /></p>
 <p>Let’s start again with <em>inverts_unite</em>, where we have combined the <em>site</em> and <em>year</em> into a single column called <em>site_year</em>. If we want to <strong>separate</strong> those, we can use:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="tidying.html#cb113-1"></a>inverts_sep &lt;-<span class="st"> </span>inverts_unite <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb113-2"><a href="tidying.html#cb113-2"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">separate</span>(site_year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;my_site&quot;</span>, <span class="st">&quot;my_year&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="tidying.html#cb116-1"></a>inverts_sep &lt;-<span class="st"> </span>inverts_unite <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb116-2"><a href="tidying.html#cb116-2"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">separate</span>(site_year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;my_site&quot;</span>, <span class="st">&quot;my_year&quot;</span>))</span></code></pre></div>
 </div>
 </div>
-<div id="stringrstr_replace-to-replace-a-pattern" class="section level2">
+<div id="stringrstr_replace-to-replace-a-pattern" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> <code>stringr::str_replace()</code> to replace a pattern</h2>
 <p>Was data entered in a way that’s difficult to code with, or is just plain annoying? Did someone wrongly enter “fish” as “fsh” throughout the spreadsheet, and you want to update it everywhere?</p>
 <p>Use <code>stringr::str_replace()</code> to automatically replace a string pattern.</p>
 <p><strong>Warning</strong>: The pattern will be replaced everywhere - so if you ask to replace “fsh” with “fish”, then “offshore” would be updated to “offishore”. Be careful to ensure that when you think you’re making one replacement, you’re not also replacing something else unexpectedly.</p>
 <p>Starting with inverts, let’s any place we find “california” we want to replace it with the abbreviation “CA”:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="tidying.html#cb114-1"></a>ca_abbr &lt;-<span class="st"> </span>inverts <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb114-2"><a href="tidying.html#cb114-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb114-3"><a href="tidying.html#cb114-3"></a>    <span class="dt">common_name =</span> </span>
-<span id="cb114-4"><a href="tidying.html#cb114-4"></a>      <span class="kw">str_replace</span>(common_name, </span>
-<span id="cb114-5"><a href="tidying.html#cb114-5"></a>              <span class="dt">pattern =</span> <span class="st">&quot;california&quot;</span>, </span>
-<span id="cb114-6"><a href="tidying.html#cb114-6"></a>              <span class="dt">replacement =</span> <span class="st">&quot;CA&quot;</span>)</span>
-<span id="cb114-7"><a href="tidying.html#cb114-7"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="tidying.html#cb117-1"></a>ca_abbr &lt;-<span class="st"> </span>inverts <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb117-2"><a href="tidying.html#cb117-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb117-3"><a href="tidying.html#cb117-3"></a>    <span class="dt">common_name =</span> </span>
+<span id="cb117-4"><a href="tidying.html#cb117-4"></a>      <span class="kw">str_replace</span>(common_name, </span>
+<span id="cb117-5"><a href="tidying.html#cb117-5"></a>              <span class="dt">pattern =</span> <span class="st">&quot;california&quot;</span>, </span>
+<span id="cb117-6"><a href="tidying.html#cb117-6"></a>              <span class="dt">replacement =</span> <span class="st">&quot;CA&quot;</span>)</span>
+<span id="cb117-7"><a href="tidying.html#cb117-7"></a>  )</span></code></pre></div>
 <p>Now, check to confirm that “california” has been replaced with “CA”.</p>
-<div id="end-tidying-session" class="section level3">
+<div id="end-tidying-session" class="section level3" number="7.7.1">
 <h3><span class="header-section-number">7.7.1</span> END <strong>tidying</strong> session!</h3>
 
 </div>

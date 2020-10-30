@@ -31,10 +31,10 @@ We'll use the `ggplot2` package, but the function we use to initialize a graph w
 
 ### Resources
 
-- [https://readr.tidyverse.org/](`readr` documentation) from tidyverse.org
-- [https://readxl.tidyverse.org/](`readxl` documentation) from tidyverse.org
-- [https://readxl.tidyverse.org/articles/articles/readxl-workflows.html](`readxl` workflows article) from tidyverse.org
-- [https://r4ds.had.co.nz/data-visualisation.html](Chapter 3 - Data Visualization in R for Data Science by Grolemund and Wickham)
+- [readr documentation](https://readr.tidyverse.org/) from tidyverse.org
+- [readxl documentation](https://readxl.tidyverse.org/) from tidyverse.org
+- [readxl workflows](https://readxl.tidyverse.org/articles/articles/readxl-workflows.html) from tidyverse.org
+- [Chapter 3 - Data Visualization in R for Data Science by Grolemund and Wickham](https://r4ds.had.co.nz/data-visualisation.html)
 - [ggplot2-cheatsheet-2.1.pdf](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)  
 - [Graphs with ggplot2 - Cookbook for R](http://www.cookbook-r.com/Graphs/#graphs-with-ggplot2)  
 - ["Why I use ggplot2" - David Robinson Blog Post](http://varianceexplained.org/r/why-I-use-ggplot2/)
@@ -79,6 +79,8 @@ We can explore our data frame a bit more to see what it contains. For example:
 - `names()`: to see the variable (column) names
 - `head()`: to see the first *x* rows (6 is the default)
 - `summary()`: see a quick summary of each variable
+
+(Remember that `names()` is the name of the function but `names(ca_np)` is how we use it on the data.)
 
 Cool! Next, let's read in ci_np.xlsx an Excel file) using `read_excel()`.
 

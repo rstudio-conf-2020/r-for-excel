@@ -309,7 +309,7 @@ R has a mind-blowing collection of built-in functions that are used with the sam
 
 We've seen a few functions already: we've seen `plot()` and `summary()`. 
 
-Functions always have the same structure: a name, parentheses, and arguments that you can specify. `function_name(arguments)`. Let's see a few more examples. 
+Functions always have the same structure: a name, parentheses, and arguments that you can specify. `function_name(arguments)`. When we talk about function names, we use the convention `function_name()` (the name with empty parentheses), but in practice, we usually supply arguments to the function `function_name(arguments)` so that it works on some data. Let's see a few more function examples. 
 
 Like in Excel, there is a function called "sum" to calculate a total. In R, it is spelled lowercase: `sum()`. (As I type in the Console, R will provide suggestions). 
 

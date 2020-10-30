@@ -403,7 +403,7 @@ Like we saw this morning, when you first clone a repo through RStudio, RStudio w
 
 Remember: 
 
-![](img/commit_overview.png)
+![](img/commit_steps.png)
 
 <br> 
 

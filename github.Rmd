@@ -477,7 +477,7 @@ Notice that when we save this file, it pops up in our Git tab. Git knows that th
 Let's also knit this file. And look: Git also sees the knitted .html. 
 
 
-And let's practice syncing our file to to GitHub: pull, stage, commit, push
+And let's practice syncing our file to GitHub: pull, stage, commit, push
 
 > **Troubleshooting:** What if a file doesn't show up in the Git tab and you expect that it should? Check to make sure you've saved the file. If the filename is red with an asterix, there have been changes since it was saved. Remember to save before syncing to GitHub!
 

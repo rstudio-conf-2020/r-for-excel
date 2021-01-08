@@ -22,6 +22,7 @@ In this lesson we will get familiar with:
 - [Happy Git with R](http://happygitwithr.com) by Jenny Bryan
 - [R for Excel Users](https://blog.shotwell.ca/posts/r_for_excel_users/) by Gordon Shotwell
 - [Welcome to the tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) by Hadley Wickham et al.
+- [A GIF-based introduction to RStudio](https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/) - Shannon Pileggi, Piping Hot Data
 
 <!---
 - Broman & Woo 2017: https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989
